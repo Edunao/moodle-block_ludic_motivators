@@ -1,0 +1,10 @@
+#score-container .score {
+    font-size : 26px;
+    text-align : center;
+    margin-top : 30px;
+    color : red;
+}
+
+#score-container .score .points {
+    font-size : 0.8em;
+}

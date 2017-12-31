@@ -1,0 +1,16 @@
+#badges-container {
+    margin-top : 30px;
+}
+
+.ludic_motivators-badge {
+    display : none;
+    width : 40px;
+    height : 40px;
+    display : inline-block;
+    margin : 6px;
+}
+
+.ludic_motivators-badge img {
+    width : 45px;
+    height : 45px;
+}

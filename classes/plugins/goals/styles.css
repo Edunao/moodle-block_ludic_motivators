@@ -1,0 +1,30 @@
+#goals-container {
+    margin-top : 30px;
+}
+
+#goals-container #goals {
+    list-style-type: none;
+}
+
+#goals-container #goals li {
+    margin-bottom : 6px;
+}
+
+#goals-container #goals li input[type="checkbox"]{
+    margin-right : 3px;
+}
+
+#goals-container #goals li label {
+    cursor : pointer;
+}
+
+#new-goal {
+    display : block;
+    width : 100%;
+    height : 50px;
+}
+
+#add-goal {
+    display : block;
+    margin : auto;
+}

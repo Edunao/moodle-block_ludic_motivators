@@ -1,0 +1,40 @@
+.svg {
+    position:absolute;
+    top:0;
+    left:0;
+    width : 180px;
+    height : 180px;
+}
+
+path {
+    fill : red;
+}
+
+#puzzle-picture {
+    display : none;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#congratulation {
+    display : none;
+    font-weight : bold;
+    color : red;
+    text-align : center;
+}
+
+#puzzle-container {
+    position : relative;
+    overflow:auto;
+    width : 180px;
+    height:180px;
+    margin : auto;
+    margin-top : 30px;
+}
+
+#next-piece {
+    display : block;
+    margin : auto;
+    margin-top : 3px;
+}
