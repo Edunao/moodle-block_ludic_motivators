@@ -23,18 +23,21 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
 
-class score extends iPLugin {
+class badges extends iMotivator {
 
     public function getTitle() {
-        return 'Mon score';
+        return 'Mes badges';
     }
 
     public function get_content() {
-        $output = '<div id="score-container">';
-        $output .= '<div class="score"/><span class="score-number">136</span><span class="points">pts</span></div>';
+        global $CFG;
+        $output = '<div id="badges-container">';
+        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
+        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
         $output .= '</div>';
         return $output;
     }
+
 }

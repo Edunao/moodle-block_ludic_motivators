@@ -23,24 +23,19 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
 
-class goals extends iPLugin {
+class timer extends iPLugin {
 
     public function getTitle() {
-        return 'Mes objectifs';
+        return 'Timer';
     }
 
     public function get_content() {
-        $output = '<div id="goals-container">';
-        $output .= '<ul id="goals">';
-        $output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
-        $output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
-        $output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
-        $output .= '</ul>';
-        $output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
+        global $CFG;
+        $output = '<div id="timer-container">';
+        $output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/timer/iframe.php"></iframe>';
         $output .= '</div>';
         return $output;
     }
-
 }

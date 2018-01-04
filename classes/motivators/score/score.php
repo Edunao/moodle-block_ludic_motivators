@@ -23,37 +23,18 @@
 
 namespace block_ludic_motivators;
 
-abstract class iPLugin {
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
 
-    var $context;
-
-    public function __construct($context) {
-        $this->context = $context;
-    }
-
-    public function getPLuginName() {
-        return (new \ReflectionClass($this))->getShortName();
-    }
+class score extends iPLugin {
 
     public function getTitle() {
-        return '';
+        return 'Mon score';
     }
 
     public function get_content() {
-        return 'You must override this method!';
+        $output = '<div id="score-container">';
+        $output .= '<div class="score"/><span class="score-number">136</span><span class="points">pts</span></div>';
+        $output .= '</div>';
+        return $output;
     }
-
-    public function image_url($image) {
-        global $CFG;
-        return $CFG->wwwroot . '/blocks/ludic_motivators/classes/plugins/'.$this->getPLuginName().'/pix/'.$image;
-    }
-
-    public function getContext() {
-        return $this->context;
-    }
-
-    public function getJsParams() {
-        return array();
-    }
-
 }

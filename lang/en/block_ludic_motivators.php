@@ -21,23 +21,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace block_ludic_motivators;
-
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
-
-class badges extends iPLugin {
-
-    public function getTitle() {
-        return 'Mes badges';
-    }
-
-    public function get_content() {
-        global $CFG;
-        $output = '<div id="badges-container">';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/plugins/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/plugins/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
-        $output .= '</div>';
-        return $output;
-    }
-
-}
+$string['ludic_motivators:addinstance']     = 'Add a new LudicMotivators block';
+$string['newludic_motivatorsblock']         = '(new LudicMotivators block)';
+$string['pluginname']                 = 'LudicMotivators';

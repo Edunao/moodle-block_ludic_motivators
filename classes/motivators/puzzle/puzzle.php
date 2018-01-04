@@ -23,9 +23,9 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
 
-class puzzle extends iPLugin {
+class puzzle extends iMotivator {
 
     public function get_content() {
         $output = '<div id="puzzle-container">';

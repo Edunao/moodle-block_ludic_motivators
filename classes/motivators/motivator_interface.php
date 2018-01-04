@@ -23,19 +23,37 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
+abstract class iMotivator {
 
-class timer extends iPLugin {
+    var $context;
+
+    public function __construct($context) {
+        $this->context = $context;
+    }
+
+    public function getMotivatorName() {
+        return (new \ReflectionClass($this))->getShortName();
+    }
 
     public function getTitle() {
-        return 'Timer';
+        return '';
     }
 
     public function get_content() {
-        global $CFG;
-        $output = '<div id="timer-container">';
-        $output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/plugins/timer/iframe.php"></iframe>';
-        $output .= '</div>';
-        return $output;
+        return 'You must override this method!';
     }
+
+    public function image_url($image) {
+        global $CFG;
+        return $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/'.$this->getMotivatorName().'/pix/'.$image;
+    }
+
+    public function getContext() {
+        return $this->context;
+    }
+
+    public function getJsParams() {
+        return array();
+    }
+
 }

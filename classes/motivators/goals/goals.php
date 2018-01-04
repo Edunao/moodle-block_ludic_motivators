@@ -21,6 +21,26 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['ludic_motivators:addinstance']     = 'Add a new ludic_motivators block';
-$string['newludic_motivatorsblock']         = '(new ludic_motivators block)';
-$string['pluginname']                       = 'ludic_motivators';
+namespace block_ludic_motivators;
+
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
+
+class goals extends iMotivator {
+
+    public function getTitle() {
+        return 'Mes objectifs';
+    }
+
+    public function get_content() {
+        $output = '<div id="goals-container">';
+        $output .= '<ul id="goals">';
+        $output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
+        $output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
+        $output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
+        $output .= '</ul>';
+        $output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
+        $output .= '</div>';
+        return $output;
+    }
+
+}

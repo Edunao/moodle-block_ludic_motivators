@@ -26,5 +26,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2017111600;                // The current module version (Date: YYYYMMDDXX)
 $plugin->requires  = 2016120500;                // Requires this Moodle version
 $plugin->component = 'block_ludic_motivators';  // Full name of the plugin (used for diagnostics)
-$plugin->release   = '3.2.001';                 // Plugin-specific versiuon number
+$plugin->release   = '3.2.001';                 // Plugin-specific version number
 $plugin->maturity  = MATURITY_ALPHA;            // This version's maturity level.

@@ -25,7 +25,7 @@ require_once __DIR__ . '/classes/context.php';
 
 class block_ludic_motivators extends block_base {
 
-    var $plugin;
+    var $motivator;
 
     function init() {
         $this->title = get_string('pluginname', 'block_ludic_motivators');
@@ -46,57 +46,58 @@ class block_ludic_motivators extends block_base {
     function get_content() {
         global $CFG;
 
-        $plugin_name = optional_param('plugin', 'puzzle', PARAM_TEXT);
+        $motivator_name = optional_param('motivator', 'puzzle', PARAM_TEXT);
 
-        require_once __DIR__ . '/classes/plugins/' . $plugin_name . '/' . $plugin_name . '.php';
+        require_once __DIR__ . '/classes/motivators/' . $plugin_name . '/' . $plugin_name . '.php';
+        require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
 
-        $class_name = '\\block_ludic_motivators\\' . $plugin_name;
+        $class_name = '\\block_ludic_motivators\\' . $motivator_name;
 
         $context = $this->get_context();
 
-        $this->plugin = new $class_name($context);
+        $this->motivator = new $class_name($context);
 
         if ($this->content !== NULL) {
             return $this->content;
         }
 
-        $this->title = $this->plugin->getTitle();
+        $this->title = $this->motivator->getTitle();
         $this->content         = new stdClass;
         $this->content->footer = '';
 
-        //plugin selector
-        $plugins = $this->get_plugins();
+        // Motivators selector
+        $motivators = $this->get_motivators();
 
         $this->content->text = '<div>';
         $this->content->text .= '<form method="POST">';
-        $this->content->text .= '<select name="plugin">';
-        foreach ($plugins as $pluginid => $pluginvalue) {
-            $selected = $plugin_name == $pluginid ? 'selected' : '';
-            $this->content->text .= '<option value="' . $pluginid . '" ' . $selected . '>' . $pluginvalue . '</option>';
+        $this->content->text .= '<select name="motivator">';
+        foreach ($motivators as $motivatorid => $motivatorvalue) {
+            $selected = $motivator_name == $motivatorid ? 'selected' : '';
+            $this->content->text .= '<option value="' . $motivatorid . '" ' . $selected . '>' . $motivatorvalue . '</option>';
         }
         $this->content->text .= '</select>';
-        $this->content->text .= '<input type="submit" value="Changer de plugin">';
+        $this->content->text .= '<input type="submit" value="Changer de motivateur">';
         $this->content->text .= '</form>';
         $this->content->text .= '</div>';
 
 
         $this->page->requires->jquery_plugin('ui-css');
 
-        //require plugin css
-        $css_url = '/blocks/ludic_motivators/classes/plugins/' . $plugin_name . '/styles.css';
+        // Require motivator css
+        $css_url = '/blocks/ludic_motivators/classes/motivators/' . $motivator_name . '/styles.css';
         if (file_exists($CFG->dirroot . $css_url)) {
             $this->page->requires->css($css_url);
         }
 
-        //add plugin HTML
-        $this->content->text .= $this->plugin->get_content();
+        // Add motivator HTML
+        $this->content->text .= $this->motivator->get_content();
 
         return $this->content;
     }
 
     function get_required_javascript() {
         parent::get_required_javascript();
-        $this->page->requires->js_call_amd('block_ludic_motivators/ludic_motivators', 'init', array($this->plugin->getPluginName(), $this->plugin->getJsParams()));
+        $this->page->requires->js_call_amd('block_ludic_motivators/ludic_motivators', 'init', array($this->motivator->getMotivatorName(), $this->motivator->getJsParams()));
     }
 
     public function instance_can_be_docked() {
@@ -117,27 +118,27 @@ class block_ludic_motivators extends block_base {
         return $context;
     }
 
-    function get_plugins() {
+    function get_motivators() {
         global $CFG;
-        $plugin_path = __DIR__ . '/classes/plugins';
+        $plugin_path = __DIR__ . '/classes/motivators';
 
-        $plugins = array();
+        $motivators = array();
 
-        $dir = new DirectoryIterator($plugin_path);
+        $dir = new DirectoryIterator($motivator_path);
         foreach ($dir as $fileinfo) {
             if ($fileinfo->isDir() && !$fileinfo->isDot()) {
-                $plugin_name  = $fileinfo->getFilename();
-                $langfile_url = $plugin_path . '/' . $plugin_name . '/lang/en/' . $plugin_name . '.php';
+                $motivator_name  = $fileinfo->getFilename();
+                $langfile_url = $motivator_path . '/' . $motivator_name . '/lang/en/' . $motivator_name . '.php';
                 if (!file_exists($langfile_url)) {
                     print_error('Lang file does not exist : ' . $langfile_url);
                 }
                 require_once $langfile_url;
                 $str_name              = $string['pluginname'];
-                $plugins[$plugin_name] = $str_name;
+                $motivators[$motivator_name] = $str_name;
             }
         }
 
-        return $plugins;
+        return $motivators;
     }
 
 }
