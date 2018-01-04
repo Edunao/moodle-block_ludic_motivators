@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/context.php';
+require_once __DIR__ . '/classes/context.php';
 
 class block_ludic_motivators extends block_base {
 
@@ -46,9 +46,9 @@ class block_ludic_motivators extends block_base {
     function get_content() {
         global $CFG;
 
-        $plugin_name = optional_param('plugin', 'puzzle', PARAM_RAW);
+        $plugin_name = optional_param('plugin', 'puzzle', PARAM_TEXT);
 
-        require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/' . $plugin_name . '/' . $plugin_name . '.php';
+        require_once __DIR__ . '/classes/plugins/' . $plugin_name . '/' . $plugin_name . '.php';
 
         $class_name = '\\block_ludic_motivators\\' . $plugin_name;
 
@@ -119,7 +119,7 @@ class block_ludic_motivators extends block_base {
 
     function get_plugins() {
         global $CFG;
-        $plugin_path = $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins';
+        $plugin_path = __DIR__ . '/classes/plugins';
 
         $plugins = array();
 
