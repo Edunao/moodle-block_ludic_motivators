@@ -23,9 +23,9 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
 
-class goals extends iPLugin {
+class goals extends iMotivator {
 
     public function getTitle() {
         return 'Mes objectifs';

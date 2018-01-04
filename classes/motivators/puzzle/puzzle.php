@@ -23,21 +23,31 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/plugins/plugin_interface.php';
+require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
 
-class badges extends iPLugin {
-
-    public function getTitle() {
-        return 'Mes badges';
-    }
+class puzzle extends iMotivator {
 
     public function get_content() {
-        global $CFG;
-        $output = '<div id="badges-container">';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/plugins/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/plugins/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
+        $output = '<div id="puzzle-container">';
+        $output .= '<img src="'.$this->image_url('fractal.jpg').'"width="180px" height="180px" id="puzzle-picture"/>';
+        $output .= '<img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="puzzle svg"/>';
         $output .= '</div>';
+        $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
+        $output .= '<div id="congratulation">Congratulation!</div>';
         return $output;
+    }
+
+    public function getTitle() {
+        return 'Découverte';
+    }
+
+    public function getJsParams() {
+        $datas = $this->context->store->get_datas();
+        $params = array('revealed_pieces' => array());
+        if (isset($datas->puzzle)) {
+            $params = $datas->puzzle;
+        }
+        return $params;
     }
 
 }
