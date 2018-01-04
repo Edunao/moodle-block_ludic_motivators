@@ -21,6 +21,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['ludic_motivators:addinstance']     = 'Add a new ludic_motivators block';
-$string['newludic_motivatorsblock']         = '(new ludic_motivators block)';
-$string['pluginname']                       = 'ludic_motivators';
+$string['ludic_motivators:addinstance']     = 'Add a new LudicMotivators block';
+$string['newludic_motivatorsblock']         = '(new LudicMotivators block)';
+$string['pluginname']                 = 'LudicMotivators';
