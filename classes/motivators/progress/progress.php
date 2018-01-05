@@ -27,14 +27,34 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class progress extends iMotivator {
 
-    public function getTitle() {
-        return 'My progress';
-    }
+	public function __construct($preset) {
+		$preset = array(
+			'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
+			'maxDurationTimer' => 90,
+			'numberAttempts' => 3,
+			'attemptsTiming' => [40, 60, 30],
+			'courseAchievements' => [
+				"runOfFiveGoodAnswers" => 0,
+				"tenOfTenGoodAnswers" => 1
+			],
+			'globalAchievements' => [
+				'session1Objectives' => 0,
+				'session2Objectives' => 1
+			]
+		);
+		parent::__construct($preset);
+	}
 
-    public function get_content() {
-        $output = '<div id="progress-container">';
-        $output .= '<div class="progress"/><span class="progress-number">136</span><span class="points">pts</span></div>';
-        $output .= '</div>';
-        return $output;
-    }
+	public function getTitle() {
+
+		return 'My progress';
+	}
+
+	public function get_content() {
+		$output = '<div id="progress-container">';
+		$output .= '<div class="progress"/><span class="progress-number">136</span><span class="points">pts</span></div>';
+		$output .= '</div>';
+
+		return $output;
+	}
 }

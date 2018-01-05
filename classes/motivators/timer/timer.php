@@ -27,40 +27,37 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class timer extends iMotivator {
 
-    public function __construct($preset) {
-        $preset = array(
-            'numberOfObjectives' => 5,
-            'titleObjectives' => ['Objective1', 'Objective2', 'Objective3', 'Objective4', 'Objective5'],
-            'percentageObjectives' => [70, 65, 70, 65, 75],
-            'courseAchievements' => [
-                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
-                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
-                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
-                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
-                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED]
-            ],
-            'globalAchievements' => [
-                'session1Objectives' => 0,
-                'session2Objectives' => 1
-            ]
-        );
-        parent::__construct($preset);
-    }
+	public function __construct($preset) {
+		$preset = array(
+			'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
+			'maxDurationTimer' => 90,
+			'maxNumberAttempts' => 5,
+			'doneNumberAttempts' => 3,
+			'attemptsTiming' => [40, 60, 30],
+			'courseAchievements' => [
+				"runOfFiveGoodAnswers" => 0,
+				"tenOfTenGoodAnswers" => 1
+			],
+			'globalAchievements' => [
+				'session1Objectives' => 0,
+				'session2Objectives' => 1
+			]
+		);
+		parent::__construct($preset);
+	}
 
-    public function getTitle() {
-        return 'Timer';
-    }
+	public function getTitle() {
 
-    public function get_content() {
-        global $CFG;
-        $output = '<div id="timer-container">';
-        $output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/timer/iframe.php"></iframe>';
-        $output .= '</div>';
-        return $output;
-    }
+		return 'Timer';
+	}
+
+	public function get_content() {
+		global $CFG;
+
+		$output = '<div id="timer-container">';
+		$output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/timer/iframe.php"></iframe>';
+		$output .= '</div>';
+
+		return $output;
+	}
 }

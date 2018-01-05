@@ -95,6 +95,6 @@ require_once '../../../../../config.php';
     </head>
     <body>
         <div id="timer_div" style="height: 120px;"></div>
-        <div id="column_div" style="height: 120px;"></div>
+        <div id="column_div" style="height: 300px;"></div>
     </body>
 </html>

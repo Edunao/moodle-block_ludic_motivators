@@ -27,20 +27,47 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class goals extends iMotivator {
 
-    public function getTitle() {
-        return 'Mes objectifs';
-    }
+	public function __construct($preset) {
+		$preset = array(
+			'numberOfObjectives' => 5,
+			'titleObjectives' => ['Objective1', 'Objective2', 'Objective3', 'Objective4', 'Objective5'],
+			'percentageObjectives' => [70, 65, 70, 65, 75],
+			'courseAchievements' => [
+				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
+				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
+				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
+				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
+				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
+				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
+				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
+				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
+				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
+				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED]
+			],
+			'globalAchievements' => [
+				'session1Objectives' => 0,
+				'session2Objectives' => 1
+			]
+		);
+		parent::__construct($preset);
+	}
 
-    public function get_content() {
-        $output = '<div id="goals-container">';
-        $output .= '<ul id="goals">';
-        $output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
-        $output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
-        $output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
-        $output .= '</ul>';
-        $output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
-        $output .= '</div>';
-        return $output;
-    }
+	public function getTitle() {
+
+		return 'Mes objectifs';
+	}
+
+	public function get_content() {
+		$output = '<div id="goals-container">';
+		$output .= '<ul id="goals">';
+		$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
+		$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
+		$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
+		$output .= '</ul>';
+		$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
+		$output .= '</div>';
+
+		return $output;
+	}
 
 }

@@ -27,17 +27,60 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class badges extends iMotivator {
 
-    public function getTitle() {
-        return 'Mes badges';
-    }
+	public function __construct($preset) {
+		$preset = array(
+			'typeBadge' => 'session',
+			'session' => [
+				'badgeOnSuccessiveAttempt' => 'badge1',
+				'nbquestionOnSuccessiveAttempt' => 5,
+				'badgeAtFirtAttempt' => 'badge2',
+				'badgeAtNAttempt' => 3,
+				'numberattemptAtNAttempt' => 1,
+				'badgeOnSelfCorrection' => 'badge3',
+				'numberattemptOnSelfCorrection' => 1,
+				'courseAchievements' => [
+					"runOfFiveGoodAnswers" => 0,
+					"tenOfTenGoodAnswers" => 1
+				],
+				'globalAchievements' => [
+					'session1Objectives' => 0,
+					'session2Objectives' => 1
+				]
+			],
+			'theme' => [
+				'badgeOnSuccessiveAttempt' => '0',
+				'nbquestionOnSuccessiveAttempt' => '1',
+				'badgeAtFirtAttempt' => '2',
+				'badgeAtNAttempt' => '0',
+				'numberattemptAtNAttempt' => '1',
+				'badgeOnSelfCorrection' => '2',
+				'numberattemptOnSelfCorrection' => '0',
+				'courseAchievements' => [
+					"runOfFiveGoodAnswers" => 0,
+					"tenOfTenGoodAnswers" => 1
+				],
+				'globalAchievements' => [
+					'session1Objectives' => 0,
+					'session2Objectives' => 1
+				]
+			]
+		);
+		parent::__construct($preset);
+	}
 
-    public function get_content() {
-        global $CFG;
-        $output = '<div id="badges-container">';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
-        $output .= '</div>';
-        return $output;
-    }
+	public function getTitle() {
+
+		return 'Mes badges';
+	}
+
+	public function get_content() {
+		global $CFG;
+		$output = '<div id="badges-container">';
+		$output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
+		$output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
+		$output .= '</div>';
+
+		return $output;
+	}
 
 }
