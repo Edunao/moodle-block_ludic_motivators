@@ -27,7 +27,7 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class avatar extends iMotivator {
 
-	public function __construct($preset) {
+	public function __construct($context) {
 		$preset = array(
 			'typeBadge' => 'session',
 			'session' => [
@@ -50,7 +50,7 @@ class avatar extends iMotivator {
 				]
 			]
 		);
-		parent::__construct($preset);
+		parent::__construct($context, $preset);
 	}
 
 	public function getTitle() {

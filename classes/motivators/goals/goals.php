@@ -27,7 +27,7 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class goals extends iMotivator {
 
-	public function __construct($preset) {
+	public function __construct($context) {
 		$preset = array(
 			'numberOfObjectives' => 5,
 			'titleObjectives' => ['Objective1', 'Objective2', 'Objective3', 'Objective4', 'Objective5'],
@@ -49,7 +49,7 @@ class goals extends iMotivator {
 				'session2Objectives' => 1
 			]
 		);
-		parent::__construct($preset);
+		parent::__construct($context, $preset);
 	}
 
 	public function getTitle() {

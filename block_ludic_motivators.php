@@ -97,7 +97,14 @@ class block_ludic_motivators extends block_base {
 
     function get_required_javascript() {
         parent::get_required_javascript();
-        $this->page->requires->js_call_amd('block_ludic_motivators/ludic_motivators', 'init', array($this->motivator->getMotivatorName(), $this->motivator->getJsParams()));
+        $this->page->requires->js_call_amd(
+            'block_ludic_motivators/ludic_motivators',
+            'init',
+            array(
+                $this->motivator->getMotivatorName(),
+                $this->motivator->getJsParams()
+            )
+        );
     }
 
     public function instance_can_be_docked() {

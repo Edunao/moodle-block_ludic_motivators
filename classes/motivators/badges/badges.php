@@ -27,7 +27,7 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class badges extends iMotivator {
 
-	public function __construct($preset) {
+	public function __construct($context) {
 		$preset = array(
 			'typeBadge' => 'session',
 			'session' => [
@@ -65,7 +65,7 @@ class badges extends iMotivator {
 				]
 			]
 		);
-		parent::__construct($preset);
+		parent::__construct($context, $preset);
 	}
 
 	public function getTitle() {
@@ -75,6 +75,7 @@ class badges extends iMotivator {
 
 	public function get_content() {
 		global $CFG;
+
 		$output = '<div id="badges-container">';
 		$output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
 		$output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';

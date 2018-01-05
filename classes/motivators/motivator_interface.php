@@ -26,37 +26,48 @@ namespace block_ludic_motivators;
 define('BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED', 0);
 define('BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED', 1);
 define('BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED', 2);
+define('BLOCK_LUDICMOTIVATORS_PATH', '/blocks/ludic_motivators/classes/motivators/');
 
 abstract class iMotivator {
 
     protected $context;
+    protected $preset;
 
-    public function __construct($context) {
+    public function __construct($context, $preset) {
         $this->context = $context;
+        $this->preset = $preset;
     }
 
     public function getMotivatorName() {
+
         return (new \ReflectionClass($this))->getShortName();
     }
 
     public function getTitle() {
+
         return '';
     }
 
     public function get_content() {
+
         return 'You must override this method!';
     }
 
     public function image_url($image) {
         global $CFG;
-        return __DIR__ . '/' . $this->getMotivatorName() . '/pix/' . $image;
+
+        //return __DIR__ . '/' . $this->getMotivatorName() . '/pix/' . $image;
+        return $CFG->wwwroot . BLOCK_LUDICMOTIVATORS_PATH . $this->getMotivatorName() . '/pix/' . $image;
+
     }
 
     public function getContext() {
+
         return $this->context;
     }
 
     public function getJsParams() {
+
         return array();
     }
 

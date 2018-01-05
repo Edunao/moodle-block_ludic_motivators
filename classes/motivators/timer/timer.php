@@ -27,7 +27,7 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class timer extends iMotivator {
 
-	public function __construct($preset) {
+	public function __construct($context) {
 		$preset = array(
 			'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
 			'maxDurationTimer' => 90,
@@ -43,7 +43,7 @@ class timer extends iMotivator {
 				'session2Objectives' => 1
 			]
 		);
-		parent::__construct($preset);
+		parent::__construct($context, $preset);
 	}
 
 	public function getTitle() {
