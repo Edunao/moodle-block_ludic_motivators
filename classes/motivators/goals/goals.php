@@ -27,65 +27,65 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class goals extends iMotivator {
 
-	public function __construct($context) {
-		$preset = array(
-			'objectiveNumber' => 5,
-			'objectives' => [
-				[
-					'title' => 'Répondre à 3 questions',
-					'percent' => '70',
-					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				],
-				[
-					'title' => 'Terminer un quiz',
-					'percent' => '65',
-					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				],
-				[
-					'title' => 'Réponse à une question en moins de 20 secondes',
-					'percent' => '70',
-					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				],
-				[
-					'title' => 'Objective4',
-					'percent' => '65',
-					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				],
-				[
-					'title' => 'Objective5',
-					'percent' => '75',
-					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				]
-			],
-			'globalAchievements' => [
-				'session1Objectives' => 0,
-				'session2Objectives' => 1
-			]
-		);
-		parent::__construct($context, $preset);
-	}
+    public function __construct($context) {
+        $preset = array(
+            'objectiveNumber' => 5,
+            'objectives' => [
+                [
+                    'title' => 'Répondre à 3 questions',
+                    'percent' => '70',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'title' => 'Terminer un quiz',
+                    'percent' => '65',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'title' => 'Réponse à une question en moins de 20 secondes',
+                    'percent' => '70',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'title' => 'Objective4',
+                    'percent' => '65',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'title' => 'Objective5',
+                    'percent' => '75',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ]
+            ],
+            'globalAchievements' => [
+                'session1Objectives' => 0,
+                'session2Objectives' => 1
+            ]
+        );
+        parent::__construct($context, $preset);
+    }
 
-	public function getTitle() {
+    public function getTitle() {
 
-		return 'Mes objectifs';
-	}
+        return 'Mes objectifs';
+    }
 
-	public function get_content() {
-		$output = '<div id="goals-container">';
-		$output .= '<ul id="goals">';
-		foreach ($this->preset['objectives'] as $key => $objective) {
-			$titleObjective = $objective['title'];
-			$checked = $objective['title'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED ? 'checked' : '';
-			$output .= "<li><label><input type='checkbox' $checked>$titleObjective</label></li>";
-		}
-		//$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
-		//$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
-		//$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
-		$output .= '</ul>';
-		//$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
-		$output .= '</div>';
+    public function get_content() {
+        $output = '<div id="goals-container">';
+        $output .= '<ul id="goals">';
+        foreach ($this->preset['objectives'] as $key => $objective) {
+            $titleObjective = $objective['title'];
+            $checked = $objective['title'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED ? 'checked' : '';
+            $output .= "<li><label><input type='checkbox' $checked>$titleObjective</label></li>";
+        }
+        //$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
+        //$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
+        //$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
+        $output .= '</ul>';
+        //$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
+        $output .= '</div>';
 
-		return $output;
-	}
+        return $output;
+    }
 
 }

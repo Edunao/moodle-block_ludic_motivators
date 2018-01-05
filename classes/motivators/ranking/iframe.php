@@ -38,9 +38,9 @@ require_once '../../../../../config.php';
             function drawScoreChart() {
                 var data = google.visualization.arrayToDataTable([
                     ['Element', 'Score', {role: 'style'}],
-                    ['Average score', 15, 'red'],
-                    ['Best score', 20, 'orange'],
-                    ['My Score', 16, '#eee'],
+                    ['Average score', parent.classAverage, 'red'],
+                    ['Best score', parent.bestScore, 'orange'],
+                    ['My Score', parent.userScore, '#eee'],
                 ]);
 
                 var view = new google.visualization.DataView(data);

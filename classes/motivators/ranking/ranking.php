@@ -27,42 +27,46 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class ranking extends iMotivator {
 
-	public function __construct($context) {
-		$preset = array(
-			'maxScore' => 20,
-			'userScore' => 16,
-			'classAverage' => 15,
-			'bestScore' => 20,
-			'userRank' => 3,
-			'numberOfCorrectAnswer' => 4,
-			'numberOfQuestions' => 5,
-			'courseAchievements' => [
-				"runOfFiveGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				"tenOfTenGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
-			],
-			'globalAchievements' => [
-				'session1Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-				'session2Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
-			]
-		);
-		parent::__construct($context, $preset);
-	}
+    public function __construct($context) {
+        $preset = array(
+            'maxScore' => 20,
+            'userScore' => 16,
+            'classAverage' => 15,
+            'bestScore' => 20,
+            'userRank' => 3,
+            'numberOfCorrectAnswer' => 4,
+            'numberOfQuestions' => 5,
+            'courseAchievements' => [
+                "runOfFiveGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                "tenOfTenGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
+            ],
+            'globalAchievements' => [
+                'session1Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                'session2Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
+            ]
+        );
+        parent::__construct($context, $preset);
+    }
 
-	public function getTitle() {
+    public function getTitle() {
 
-		return 'Mon ranking';
-	}
+        return 'Mon ranking';
+    }
 
-	public function get_content() {
-		global $CFG;
+    public function get_content() {
+        global $CFG;
 
-		//$output = '<div id="ranking-container">';
-		//$output .= '<div class="ranking"/><span class="ranking-number">136</span><span class="points">pts</span></div>';
-		//$output .= '</div>';
-		$output = '<div id="ranking-container">';
-		$output .= '<iframe id="ranking-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
-		$output .= '</div>';
+        //$output = '<div id="ranking-container">';
+        //$output .= '<div class="ranking"/><span class="ranking-number">136</span><span class="points">pts</span></div>';
+        //$output .= '</div>';
+        //print_r($this->preset['userScore']);
+        $output = '<div id="ranking-container">';
+        $output .= '<script>var userScore = ' . $this->preset['userScore'] . '</script>';
+        $output .= '<script>var classAverage = ' . $this->preset['classAverage'] . '</script>';
+        $output .= '<script>var bestScore = ' . $this->preset['bestScore'] . '</script>';
+        $output .= '<iframe id="ranking-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
+        $output .= '</div>';
 
-		return $output;
-	}
+        return $output;
+    }
 }
