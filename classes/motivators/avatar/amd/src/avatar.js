@@ -1,14 +1,14 @@
 define(['jquery', 'core/tree'], function ($, Tree) {
-    var puzzle = {
+    var avatar = {
         init: function (params) {
-            console.log('Puzzle init', params);
-            
+            console.log('Avatar init', params);
+
             var that = this;
-            
+
             this.params = params;
-            
+
             this.revealed_pieces = this.params.revealed_pieces;
-            
+
             this.nb_cols = 4;
             this.unrevealed_pieces = [];
             for(var x = 1;x <= this.nb_cols; x++) {
@@ -20,19 +20,19 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             }
 
             //convert svg pictures
-            this.convert_svg('img.svg.puzzle');
-            
+            this.convert_svg('img.svg.avatar');
+
             for(var i in this.revealed_pieces) {
                 that.reveal_piece(this.revealed_pieces[i]);
             }
-            
-            $('#puzzle-picture').show();
-            
+
+            $('#avatar-picture').show();
+
             $('#next-piece').on('click', function() {
                 that.display_next_piece();
             });
         },
-        
+
         convert_svg : function(selector) {
             //convert svg pictures
             $(selector).each(function () {
@@ -54,10 +54,10 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 });
             });
         },
-        
+
         display_next_piece: function () {
             var rand = this.get_random_unrevealed_piece();
-            
+
             if (rand) {
                 this.reveal_piece(rand);
             }
@@ -67,10 +67,10 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 $('#congratulation').show();
             }
         },
-        
+
         reveal_piece : function(id) {
             console.log('reveal piece', id);
-            
+
             if ($('#piece-'+id).length == 0) {
                 console.log('Piece not found : #piece-' + id);
             }
@@ -90,7 +90,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 }
             }
         },
-        
+
         get_random_unrevealed_piece : function() {
             var nb_pieces = this.unrevealed_pieces.length;
             if (nb_pieces === 0) {
@@ -98,7 +98,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             }
             var random_index = Math.floor(Math.random() * nb_pieces);
             return this.unrevealed_pieces[random_index];
-        }        
+        }
     };
-    return puzzle;
+    return avatar;
 });

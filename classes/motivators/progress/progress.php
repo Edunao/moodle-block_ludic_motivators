@@ -25,19 +25,16 @@ namespace block_ludic_motivators;
 
 require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
-class badges extends iMotivator {
+class progress extends iMotivator {
 
     public function getTitle() {
-        return 'Mes badges';
+        return 'My progress';
     }
 
     public function get_content() {
-        global $CFG;
-        $output = '<div id="badges-container">';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
+        $output = '<div id="progress-container">';
+        $output .= '<div class="progress"/><span class="progress-number">136</span><span class="points">pts</span></div>';
         $output .= '</div>';
         return $output;
     }
-
 }

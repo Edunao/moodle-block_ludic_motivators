@@ -25,19 +25,29 @@ namespace block_ludic_motivators;
 
 require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
-class badges extends iMotivator {
-
-    public function getTitle() {
-        return 'Mes badges';
-    }
+class avatar extends iMotivator {
 
     public function get_content() {
-        global $CFG;
-        $output = '<div id="badges-container">';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge1.png" title="3 bonnes réponses"/></div>';
-        $output .= '<div class="ludic_motivators-badge"><img src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/badges/pix/badge2.png" title="10 bonnes réponses" style="display:none;"/></div>';
+        $output = '<div id="avatar-container">';
+        $output .= '<img src="'.$this->image_url('fractal.jpg').'"width="180px" height="180px" id="avatar-picture"/>';
+        $output .= '<img src="'.$this->image_url('avatar.svg').'" width="180px" height="180px" class="avatar svg"/>';
         $output .= '</div>';
+        $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
+        $output .= '<div id="congratulation">Congratulation!</div>';
         return $output;
+    }
+
+    public function getTitle() {
+        return 'Découverte';
+    }
+
+    public function getJsParams() {
+        $datas = $this->context->store->get_datas();
+        $params = array('revealed_pieces' => array());
+        if (isset($datas->avatar)) {
+            $params = $datas->avatar;
+        }
+        return $params;
     }
 
 }

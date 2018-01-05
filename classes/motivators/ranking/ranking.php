@@ -23,31 +23,18 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
+require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
-class puzzle extends iMotivator {
-
-    public function get_content() {
-        $output = '<div id="puzzle-container">';
-        $output .= '<img src="'.$this->image_url('fractal.jpg').'"width="180px" height="180px" id="puzzle-picture"/>';
-        $output .= '<img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="puzzle svg"/>';
-        $output .= '</div>';
-        $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
-        $output .= '<div id="congratulation">Congratulation!</div>';
-        return $output;
-    }
+class ranking extends iMotivator {
 
     public function getTitle() {
-        return 'Découverte';
+        return 'Mon ranking';
     }
 
-    public function getJsParams() {
-        $datas = $this->context->store->get_datas();
-        $params = array('revealed_pieces' => array());
-        if (isset($datas->puzzle)) {
-            $params = $datas->puzzle;
-        }
-        return $params;
+    public function get_content() {
+        $output = '<div id="ranking-container">';
+        $output .= '<div class="ranking"/><span class="ranking-number">136</span><span class="points">pts</span></div>';
+        $output .= '</div>';
+        return $output;
     }
-
 }

@@ -10,7 +10,7 @@ path {
     fill : red;
 }
 
-#puzzle-picture {
+#avatar-picture {
     display : none;
     position:absolute;
     top:0;
@@ -24,7 +24,7 @@ path {
     text-align : center;
 }
 
-#puzzle-container {
+#avatar-container {
     position : relative;
     overflow:auto;
     width : 180px;

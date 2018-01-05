@@ -23,9 +23,9 @@
 
 namespace block_ludic_motivators;
 
-require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/motivator_interface.php';
+require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
-class timer extends iPLugin {
+class timer extends iMotivator {
 
     public function getTitle() {
         return 'Timer';

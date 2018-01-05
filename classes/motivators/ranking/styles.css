@@ -1,0 +1,10 @@
+#progress-container .progress {
+    font-size : 26px;
+    text-align : center;
+    margin-top : 30px;
+    color : red;
+}
+
+#progress-container .progress .points {
+    font-size : 0.8em;
+}

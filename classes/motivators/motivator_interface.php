@@ -25,7 +25,7 @@ namespace block_ludic_motivators;
 
 abstract class iMotivator {
 
-    var $context;
+    protected var $context;
 
     public function __construct($context) {
         $this->context = $context;
@@ -45,7 +45,7 @@ abstract class iMotivator {
 
     public function image_url($image) {
         global $CFG;
-        return $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/'.$this->getMotivatorName().'/pix/'.$image;
+        return __DIR__ . '/' . $this->getMotivatorName() . '/pix/' . $image;
     }
 
     public function getContext() {
