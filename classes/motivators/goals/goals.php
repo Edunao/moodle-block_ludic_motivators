@@ -29,20 +29,33 @@ class goals extends iMotivator {
 
 	public function __construct($context) {
 		$preset = array(
-			'numberOfObjectives' => 5,
-			'titleObjectives' => ['Objective1', 'Objective2', 'Objective3', 'Objective4', 'Objective5'],
-			'percentageObjectives' => [70, 65, 70, 65, 75],
-			'courseAchievements' => [
-				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
-				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
-				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
-				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
-				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
-				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
-				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
-				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED],
-				["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED,
-				 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_ACHIEVEMENTSTATE_NOTACQUIRED]
+			'objectiveNumber' => 5,
+			'objectives' => [
+				[
+					'title' => 'Répondre à 3 questions',
+					'percent' => '70',
+					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				],
+				[
+					'title' => 'Terminer un quiz',
+					'percent' => '65',
+					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				],
+				[
+					'title' => 'Réponse à une question en moins de 20 secondes',
+					'percent' => '70',
+					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				],
+				[
+					'title' => 'Objective4',
+					'percent' => '65',
+					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				],
+				[
+					'title' => 'Objective5',
+					'percent' => '75',
+					'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				]
 			],
 			'globalAchievements' => [
 				'session1Objectives' => 0,
@@ -60,9 +73,13 @@ class goals extends iMotivator {
 	public function get_content() {
 		$output = '<div id="goals-container">';
 		$output .= '<ul id="goals">';
-		$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
-		$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
-		$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
+		foreach ($this->preset['objectives'] as $key => $objective) {
+			$titleObjective = $objective['title'];
+			$output .= "<li><label><input type='checkbox' checked>$titleObjective</label></li>";
+		}
+		//$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
+		//$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
+		//$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
 		$output .= '</ul>';
 		$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
 		$output .= '</div>';

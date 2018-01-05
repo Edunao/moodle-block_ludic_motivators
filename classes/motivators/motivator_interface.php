@@ -23,12 +23,13 @@
 
 namespace block_ludic_motivators;
 
-define('BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED', 0);
-define('BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED', 1);
-define('BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED', 2);
 define('BLOCK_LUDICMOTIVATORS_PATH', '/blocks/ludic_motivators/classes/motivators/');
 
 abstract class iMotivator {
+
+    const BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED = 0;
+    const BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED = 1;
+    const BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED = 2;
 
     protected $context;
     protected $preset;
