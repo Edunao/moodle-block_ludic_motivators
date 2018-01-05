@@ -69,7 +69,7 @@ abstract class iMotivator {
 
     public function getJsParams() {
 
-        return array();
+        return array($this->preset);
     }
 
 }

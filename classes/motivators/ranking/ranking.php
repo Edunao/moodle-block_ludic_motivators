@@ -29,17 +29,20 @@ class ranking extends iMotivator {
 
 	public function __construct($context) {
 		$preset = array(
-			'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
-			'maxDurationTimer' => 90,
-			'numberAttempts' => 3,
-			'attemptsTiming' => [40, 60, 30],
+			'maxScore' => 20,
+			'userScore' => 16,
+			'classAverage' => 15,
+			'bestScore' => 20,
+			'userRank' => 3,
+			'numberOfCorrectAnswer' => 4,
+			'numberOfQuestions' => 5,
 			'courseAchievements' => [
-				"runOfFiveGoodAnswers" => 0,
-				"tenOfTenGoodAnswers" => 1
+				"runOfFiveGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				"tenOfTenGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
 			],
 			'globalAchievements' => [
-				'session1Objectives' => 0,
-				'session2Objectives' => 1
+				'session1Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+				'session2Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
 			]
 		);
 		parent::__construct($context, $preset);
@@ -51,8 +54,13 @@ class ranking extends iMotivator {
 	}
 
 	public function get_content() {
+		global $CFG;
+
+		//$output = '<div id="ranking-container">';
+		//$output .= '<div class="ranking"/><span class="ranking-number">136</span><span class="points">pts</span></div>';
+		//$output .= '</div>';
 		$output = '<div id="ranking-container">';
-		$output .= '<div class="ranking"/><span class="ranking-number">136</span><span class="points">pts</span></div>';
+		$output .= '<iframe id="ranking-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
 		$output .= '</div>';
 
 		return $output;

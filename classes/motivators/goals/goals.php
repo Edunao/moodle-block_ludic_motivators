@@ -75,13 +75,14 @@ class goals extends iMotivator {
 		$output .= '<ul id="goals">';
 		foreach ($this->preset['objectives'] as $key => $objective) {
 			$titleObjective = $objective['title'];
-			$output .= "<li><label><input type='checkbox' checked>$titleObjective</label></li>";
+			$checked = $objective['title'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED ? 'checked' : '';
+			$output .= "<li><label><input type='checkbox' $checked>$titleObjective</label></li>";
 		}
 		//$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
 		//$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
 		//$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
 		$output .= '</ul>';
-		$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
+		//$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
 		$output .= '</div>';
 
 		return $output;
