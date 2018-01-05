@@ -46,9 +46,9 @@ class block_ludic_motivators extends block_base {
     function get_content() {
         global $CFG;
 
-        $motivator_name = optional_param('motivator', 'puzzle', PARAM_TEXT);
+        $motivator_name = optional_param('motivator', 'avatar', PARAM_TEXT);
 
-        require_once __DIR__ . '/classes/motivators/' . $plugin_name . '/' . $plugin_name . '.php';
+        require_once __DIR__ . '/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
         require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
 
         $class_name = '\\block_ludic_motivators\\' . $motivator_name;
@@ -120,7 +120,7 @@ class block_ludic_motivators extends block_base {
 
     function get_motivators() {
         global $CFG;
-        $plugin_path = __DIR__ . '/classes/motivators';
+        $motivator_path = __DIR__ . '/classes/motivators';
 
         $motivators = array();
 

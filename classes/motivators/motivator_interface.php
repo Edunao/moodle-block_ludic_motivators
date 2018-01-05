@@ -23,9 +23,13 @@
 
 namespace block_ludic_motivators;
 
+define('BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED', 0);
+define('BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED', 1);
+define('BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED', 2);
+
 abstract class iMotivator {
 
-    protected var $context;
+    protected $context;
 
     public function __construct($context) {
         $this->context = $context;

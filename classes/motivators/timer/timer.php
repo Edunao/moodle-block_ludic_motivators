@@ -27,6 +27,31 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class timer extends iMotivator {
 
+    public function __construct($preset) {
+        $preset = array(
+            'numberOfObjectives' => 5,
+            'titleObjectives' => ['Objective1', 'Objective2', 'Objective3', 'Objective4', 'Objective5'],
+            'percentageObjectives' => [70, 65, 70, 65, 75],
+            'courseAchievements' => [
+                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
+                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
+                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
+                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED],
+                ["runOfGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                 "tenOfTenGoodAnswers" => BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED]
+            ],
+            'globalAchievements' => [
+                'session1Objectives' => 0,
+                'session2Objectives' => 1
+            ]
+        );
+        parent::__construct($preset);
+    }
+
     public function getTitle() {
         return 'Timer';
     }
