@@ -2,7 +2,27 @@
     margin-top : 30px;
 }
 
-.ludic_motivators-badge {
+#course-badge {
+    display : block;
+    margin : 6px;
+    list-style: none;
+    padding: 0;
+}
+
+#course-badge ul {
+    text-align: center;
+}
+
+#course-badge li {
+    text-align: center;
+}
+
+#course-badge img {
+    width : 40px;
+    height : 40px;
+}
+
+#global-badge {
     display : none;
     width : 40px;
     height : 40px;
@@ -13,4 +33,49 @@
 .ludic_motivators-badge img {
     width : 45px;
     height : 45px;
+}
+
+/*
+ * Definition for the displaying GI
+ */
+.svg {
+    position:absolute;
+    top:0;
+    left:0;
+    width : 180px;
+    height : 180px;
+}
+
+path {
+    fill : red;
+}
+
+#avatar-picture {
+    display : none;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#congratulation {
+    display : none;
+    font-weight : bold;
+    color : red;
+    text-align : center;
+    margin-top: 10px;
+}
+
+#avatar-container {
+    position : relative;
+    overflow:auto;
+    width : 180px;
+    height:180px;
+    margin : auto;
+    margin-top : 30px;
+}
+
+#next-piece {
+    display : block;
+    margin : auto;
+    margin-top : 3px;
 }
