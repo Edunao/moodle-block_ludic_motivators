@@ -30,8 +30,8 @@ class avatar extends iMotivator {
     public function __construct($context) {
         $preset = array(
             'questionsSet' => [
-                'nbOfQuestions' => '5',
-                'currentQuestion' => '0',
+                'nbOfQuestions' => '8',
+                'currentQuestion' => '3',
                 'percentToPass' => '70',
                 'quizState' => 'Notdone | InProgress | Completed',
                 'svgFileName' => 'puzzle.svg',
@@ -39,35 +39,35 @@ class avatar extends iMotivator {
             ],
             'layers' => [
                 [
-                    'layerName' => 'piece-1-1',
+                    'layerName' => '1-1',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                ],
+                [
+                    'layerName' => '1-2',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                ],
+                [
+                    'layerName' => '1-3',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => 'piece-1-2',
+                    'layerName' => '1-4',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => 'piece-1-3',
+                    'layerName' => '2-1',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => 'piece-1-4',
+                    'layerName' => '2-2',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => 'piece-2-1',
+                    'layerName' => '2-3',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => 'piece-2-2',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                ],
-                [
-                    'layerName' => 'piece-2-3',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                ],
-                [
-                    'layerName' => 'piece-2-4',
+                    'layerName' => '2-4',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
             ],
@@ -91,28 +91,8 @@ class avatar extends iMotivator {
         $output .= '<div id="avatar-container">';
         $output .= '<img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>';
         $output .= '</div>';
-        $output .= '<div id="stage" width="180px" height="180px" class="avatar"> <!-- Content can go here --> </div>';
-        $output .= '<script type="text/javascript">
-                    $(function(){
-                        $("#stage").load("' . $this->image_url("puzzle.svg"). '",function(response){
-
-                            $(this).addClass("svgLoaded");
-
-                            if(!response){
-                                // Error loading SVG!
-                                // Make absolutely sure you are running this on a web server or localhost!
-                            }
-                        });
-                    });
-                    $(function(){
-                        $("#next-piece").click( function() {
-                            //alert("button clicked");
-                            $("#piece-4-2").addClass("dimmed");
-                        });
-                    });
-                    </script>';
         $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
-        $output .= '<div id="congratulation">Congratulation!</div>';
+        $output .= '<div id="congratulation">Congratulations !</div>';
 
         return $output;
     }
@@ -120,6 +100,13 @@ class avatar extends iMotivator {
     public function getJsParams() {
         $datas = $this->context->store->get_datas();
         $params = array('revealed_pieces' => array());
+
+        foreach ($this->preset['layers'] as $key => $value) {
+            if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+                $params['revealed_pieces'][] = $value['layerName'];
+            }
+        }
+
         if (isset($datas->avatar)) {
             $params = $datas->avatar;
         }

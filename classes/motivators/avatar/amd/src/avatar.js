@@ -11,7 +11,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             this.nb_cols = 4;
             this.unrevealed_pieces = [];
-            for(var x = 1;x <= this.nb_cols; x++) {
+            for (var x = 1; x <= this.nb_cols; x++) {
                 for(var y = 1;y <= this.nb_cols; y++) {
                     if (this.revealed_pieces.indexOf(x+'-'+y) === -1) {
                         this.unrevealed_pieces.push(x+'-'+y);
@@ -22,7 +22,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             //convert svg pictures
             this.convert_svg('img.svg.avatar');
 
-            for(var i in this.revealed_pieces) {
+            for (var i in this.revealed_pieces) {
                 that.reveal_piece(this.revealed_pieces[i]);
             }
 
