@@ -56,15 +56,13 @@ class ranking extends iMotivator {
     public function get_content() {
         global $CFG;
 
-        //$output = '<div id="ranking-container">';
-        //$output .= '<div class="ranking"/><span class="ranking-number">136</span><span class="points">pts</span></div>';
-        //$output .= '</div>';
-        //print_r($this->preset['userScore']);
-        $output = '<div id="ranking-container">';
-        $output .= '<script>var userScore = ' . $this->preset['userScore'] . '</script>';
-        $output .= '<script>var classAverage = ' . $this->preset['classAverage'] . '</script>';
-        $output .= '<script>var bestScore = ' . $this->preset['bestScore'] . '</script>';
-        $output .= '<iframe id="ranking-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
+        $output  = '<div id="ranking-container">';
+        $output .= '<script type="text/javascript">' . PHP_EOL;
+        $output .= 'var userScore = ' . $this->preset['userScore'] . ';' . PHP_EOL;
+        $output .= 'var classAverage = ' . $this->preset['classAverage'] . ';' . PHP_EOL;
+        $output .= 'var bestScore = ' . $this->preset['bestScore'] . ';' . PHP_EOL;
+        $output .= '</script>';
+        $output .= '<iframe id="ranking-iframe" frameBorder="0" src="' .$CFG->wwwroot. '/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
         $output .= '</div>';
 
         return $output;

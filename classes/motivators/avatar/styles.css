@@ -1,13 +1,28 @@
-.svg {
-    position:absolute;
-    top:0;
-    left:0;
+svg {
+    /*position:absolute;*/
+    /*top:0;*/
+    /*left:0;*/
     width : 180px;
     height : 180px;
+    margin: 16px;
 }
 
 path {
     fill : red;
+    fill-opacity:0.5;
+}
+
+path #piece-2-1{
+    fill: beige;
+}
+
+#stage{
+    width: 180px;
+    height: 180px;
+}
+
+.dimmed {
+    fill-opacity: 1;
 }
 
 #avatar-picture {

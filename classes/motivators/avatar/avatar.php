@@ -27,56 +27,104 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class avatar extends iMotivator {
 
-	public function __construct($context) {
-		$preset = array(
-			'typeBadge' => 'session',
-			'session' => [
-				['badgeOnSuccessiveAttempt' => '0'],
-				['nbquestionOnSuccessiveAttempt' => '1'],
-				['badgeAtFirtAttempt' => '2'],
-				['badgeAtNAttempt' => '0'],
-				['numberattemptAtNAttempt' => '1'],
-				['badgeOnSelfCorrection' => '2'],
-				['numberattemptOnSelfCorrection' => '0'],
-				['courseAchievements' => [
-						"runOfFiveGoodAnswers" => 0,
-						"tenOfTenGoodAnswers" => 1
-					]
-				],
-				['globalAchievements' => [
-						'session1Objectives' => 0,
-						'session2Objectives' => 1
-					]
-				]
-			]
-		);
-		parent::__construct($context, $preset);
-	}
+    public function __construct($context) {
+        $preset = array(
+            'questionsSet' => [
+                'nbOfQuestions' => '5',
+                'currentQuestion' => '0',
+                'percentToPass' => '70',
+                'quizState' => 'Notdone | InProgress | Completed',
+                'svgFileName' => 'puzzle.svg',
+                'nbOfLayers' => 16,
+            ],
+            'layers' => [
+                [
+                    'layerName' => 'piece-1-1',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-1-2',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-1-3',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-1-4',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-2-1',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-2-2',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-2-3',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'piece-2-4',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+            ],
+            'globalAchievements' => [
+                        'session1Objectives' => 0,
+                        'session2Objectives' => 1
+            ]
+        );
+        parent::__construct($context, $preset);
+    }
 
-	public function getTitle() {
+    public function getTitle() {
 
-		return 'Découverte';
-	}
+        return 'Découverte';
+    }
 
-	public function get_content() {
-		$output = '<div id="avatar-container">';
-		$output .= '<img src="'.$this->image_url('fractal.jpg').'"width="180px" height="180px" id="avatar-picture"/>';
-		$output .= '<img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>';
-		$output .= '</div>';
-		$output .= '<div><button id="next-piece">Répondre à une question</button></div>';
-		$output .= '<div id="congratulation">Congratulation!</div>';
+    public function get_content() {
+        $output = '<div id="avatar-container">';
+        $output .= '<img src="'.$this->image_url('fractal.jpg').'"width="180px" height="180px" id="avatar-picture"/>';
+        $output .= '</div>';
+        $output .= '<div id="avatar-container">';
+        $output .= '<img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>';
+        $output .= '</div>';
+        $output .= '<div id="stage" width="180px" height="180px" class="avatar"> <!-- Content can go here --> </div>';
+        $output .= '<script type="text/javascript">
+                    $(function(){
+                        $("#stage").load("' . $this->image_url("puzzle.svg"). '",function(response){
 
-		return $output;
-	}
+                            $(this).addClass("svgLoaded");
 
-	public function getJsParams() {
-		$datas = $this->context->store->get_datas();
-		$params = array('revealed_pieces' => array());
-		if (isset($datas->avatar)) {
-			$params = $datas->avatar;
-		}
+                            if(!response){
+                                // Error loading SVG!
+                                // Make absolutely sure you are running this on a web server or localhost!
+                            }
+                        });
+                    });
+                    $(function(){
+                        $("#next-piece").click( function() {
+                            //alert("button clicked");
+                            $("#piece-4-2").addClass("dimmed");
+                        });
+                    });
+                    </script>';
+        $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
+        $output .= '<div id="congratulation">Congratulation!</div>';
 
-		return $params;
-	}
+        return $output;
+    }
+
+    public function getJsParams() {
+        $datas = $this->context->store->get_datas();
+        $params = array('revealed_pieces' => array());
+        if (isset($datas->avatar)) {
+            $params = $datas->avatar;
+        }
+
+        return $params;
+    }
 
 }

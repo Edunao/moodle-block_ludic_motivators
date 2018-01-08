@@ -33,27 +33,27 @@ class goals extends iMotivator {
             'objectives' => [
                 [
                     'title' => 'Répondre à 3 questions',
-                    'percent' => '70',
+                    'percentToPass' => '70',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'title' => 'Terminer un quiz',
-                    'percent' => '65',
+                    'percentToPass' => '65',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'title' => 'Réponse à une question en moins de 20 secondes',
-                    'percent' => '70',
+                    'percentToPass' => '70',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'title' => 'Objective4',
-                    'percent' => '65',
+                    'percentToPass' => '65',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'title' => 'Objective5',
-                    'percent' => '75',
+                    'percentToPass' => '75',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ]
             ],

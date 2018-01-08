@@ -3,7 +3,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         init: function () {
             console.log('Score init');
             var that = this;
-            
+
             $({someValue: 136}).animate({someValue: 143}, {
                 duration: 1000,
                 easing:'swing', // can be anything
@@ -11,7 +11,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                     $('.score-number').text(Math.ceil(this.someValue));
                 }
             });
-            
+
         }
     };
     return score;
