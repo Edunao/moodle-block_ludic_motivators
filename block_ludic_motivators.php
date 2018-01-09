@@ -36,7 +36,7 @@ class block_ludic_motivators extends block_base {
     }
 
     function applicable_formats() {
-        return array('course-view' => true, 'mod' => 'true');
+        return array('course-view' => true, 'mod' => 'true', 'my' => true);
     }
 
     function instance_allow_multiple() {
