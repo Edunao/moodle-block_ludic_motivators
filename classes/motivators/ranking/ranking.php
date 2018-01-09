@@ -30,7 +30,7 @@ class ranking extends iMotivator {
     public function __construct($context) {
         $preset = array(
             'maxScore' => 20,
-            'userScore' => 16,
+            'userScore' => 0,
             'classAverage' => 15,
             'bestScore' => 20,
             'userRank' => 3,
@@ -57,12 +57,18 @@ class ranking extends iMotivator {
         global $CFG;
 
         $output  = '<div id="ranking-container">';
+
+        // Passing to the iFrame the user's score, the class average and the best score
         $output .= '<script type="text/javascript">' . PHP_EOL;
         $output .= 'var userScore = ' . $this->preset['userScore'] . ';' . PHP_EOL;
         $output .= 'var classAverage = ' . $this->preset['classAverage'] . ';' . PHP_EOL;
         $output .= 'var bestScore = ' . $this->preset['bestScore'] . ';' . PHP_EOL;
         $output .= '</script>';
+
+        // Calling the iFrame file generating the bargraph showing the classe average,
+        // the class best and the user's own level
         $output .= '<iframe id="ranking-iframe" frameBorder="0" src="' .$CFG->wwwroot. '/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
+
         $output .= '</div>';
 
         return $output;
