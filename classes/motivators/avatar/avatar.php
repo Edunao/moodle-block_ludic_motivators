@@ -85,9 +85,13 @@ class avatar extends iMotivator {
     }
 
     public function get_content() {
+        // Div block showing the image with all of the layers for previously achieved goals unmasked
         $output = '<div id="avatar-container">';
         $output .= '<img src="'.$this->image_url('fractal.jpg').'"width="180px" height="180px" id="avatar-picture"/>';
         $output .= '</div>';
+
+        // Div block that appears when there are goals that have just been achieved displaying
+        // only the layers for the goals that have been newly achieved
         $output .= '<div id="avatar-container">';
         $output .= '<img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>';
         $output .= '</div>';

@@ -126,11 +126,11 @@ class badges extends iMotivator {
         // Div block displaying an SVG image representing the global goals with layers that
         // can be displayed to represent the goals that have been achieved
         $output .=
-            '<div id="avatar-container">
-                <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Global Goals</h4>';
+            '<div>
+                <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Global Goals</h4>
+                <div id="avatar-container">';
         $output .=
-                '<div /*style="position:relative"*/>
-                    <img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>
+                '   <img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>
                 </div>';
         $output .=
             '</div>';
@@ -141,7 +141,7 @@ class badges extends iMotivator {
 
     public function getJsParams() {
         $datas = $this->context->store->get_datas();
-        $params = array('revealed_pieces' => array());print_r($this->preset['globalsGoals']);
+        $params = array('revealed_pieces' => array());
 
         foreach ($this->preset['globalsGoals'] as $key => $value) {
             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
@@ -152,8 +152,6 @@ class badges extends iMotivator {
         if (isset($datas->avatar)) {
             $params = $datas->avatar;
         }
-
-        print_r($params['revealed_pieces']);
 
         return $params;
     }
