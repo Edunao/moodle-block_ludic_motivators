@@ -29,17 +29,16 @@ class goals extends iMotivator {
 
     public function __construct($context) {
         $preset = array(
-            'objectiveNumber' => 5,
             'objectives' => [
                 [
                     'title' => 'Répondre à 3 questions',
                     'percentToPass' => '70',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED,
                 ],
                 [
                     'title' => 'Terminer un quiz',
                     'percentToPass' => '65',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'title' => 'Réponse à une question en moins de 20 secondes',
@@ -49,7 +48,7 @@ class goals extends iMotivator {
                 [
                     'title' => 'Objective4',
                     'percentToPass' => '65',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'title' => 'Objective5',
@@ -58,8 +57,21 @@ class goals extends iMotivator {
                 ]
             ],
             'globalAchievements' => [
-                'session1Objectives' => 0,
-                'session2Objectives' => 1
+                [
+                    'title' => 'session1Objectives',
+                    'percentToPass' => '70',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'title' => 'session2Objectives',
+                    'percentToPass' => '65',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'title' => 'session3Objectives',
+                    'percentToPass' => '70',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
             ]
         );
         parent::__construct($context, $preset);
@@ -71,19 +83,46 @@ class goals extends iMotivator {
     }
 
     public function get_content() {
-        $output = '<div id="goals-container">';
-        $output .= '<ul id="goals">';
+
+        // Div block listing all goals with checkboxes next to those that have been achieved
+        $output  = '<div id="goals-container">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Goals achieved</h4>
+                        <div>
+                            <ul id="goals">';
         foreach ($this->preset['objectives'] as $key => $objective) {
-            $titleObjective = $objective['title'];
-            $checked = $objective['title'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED ? 'checked' : '';
-            $output .= "<li><label><input type='checkbox' $checked>$titleObjective</label></li>";
+            if ($objective['achievement'] != $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED){
+                $titleObjective = $objective['title'];
+                $output .= "<li><label><input type='checkbox' checked onclick='return false;'>$titleObjective</label></li>";
+            }
         }
-        //$output .= '<li><label><input type="checkbox" checked>Répondre à 3 questions</label></li>';
-        //$output .= '<li><label><input type="checkbox" checked>Terminer un quiz</label></li>';
-        //$output .= '<li><label><input type="checkbox">Réponse à une question en moins de 20 secondes</label></li>';
-        $output .= '</ul>';
-        //$output .= '<div><button id="add-goal">Ajouter un objectif</button></div>';
-        $output .= '</div>';
+        $output .= '        </ul>
+                        </div>
+                    </div>';
+
+        // Div block that appears when there are goals that have just been achieved listing these goals
+        // Determining if there is at once one goal just achieved
+        $isGoalsJustAchieved = false;
+        foreach ($this->preset['objectives'] as $key => $objective) {
+            if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $isGoalsJustAchieved = true;
+            }
+        }
+
+        if ($isGoalsJustAchieved === true) {
+        $output .= '<div id="goals-container">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Goals just achieved</h4>
+                        <div>
+                            <ul id="goals">';
+            foreach ($this->preset['objectives'] as $key => $objective) {
+                if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                    $titleObjective = $objective['title'];
+                    $output .= "<li><label><input type='checkbox' checked disabled='disabled'>$titleObjective</label></li>";
+                }
+            }
+        $output .= '        </ul>
+                        </div>
+                    </div>';
+        }
 
         return $output;
     }
