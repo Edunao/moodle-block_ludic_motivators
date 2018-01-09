@@ -29,13 +29,29 @@ class score extends iMotivator {
 
 	public function __construct($context) {
 		$preset = array(
-			'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
-			'maxDurationTimer' => 90,
-			'numberAttempts' => 3,
-			'attemptsTiming' => [40, 60, 30],
-			'courseAchievements' => [
-				"runOfFiveGoodAnswers" => 0,
-				"tenOfTenGoodAnswers" => 1
+			'previousTotalScore' => 10,
+			'newTotalScore' => 15,
+			'bonuses' => [
+                [
+                    'nameOfBonus' => 'Répondre à 3 questions',
+                    'valueOfBonus' => '70',
+                    'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED,
+                ],
+                [
+                    'nameOfBonus' => 'Terminer un quiz',
+                    'valueOfBonus' => '65',
+                    'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                ],
+                [
+                    'nameOfBonus' => 'Réponse à une question en moins de 20 secondes',
+                    'valueOfBonus' => '70',
+                    'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'nameOfBonus' => 'Objective4',
+                    'valueOfBonus' => '65',
+                    'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                ],
 			],
 			'globalAchievements' => [
 				'session1Objectives' => 0,
@@ -55,6 +71,55 @@ class score extends iMotivator {
 		$output .= '<div class="score"/><span class="score-number">136</span><span class="points">pts</span></div>';
 		$output .= '</div>';
 
+		// Div block listing all goals with checkboxes next to those that have been achieved
+        $output  = '<div id="score-container">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">The latest score</h4>
+                        <div class="score">';
+		$output .= '		<span class="score-number">' . $this->preset['previousTotalScore'] . '</span>
+							<span class="points">pts</span>';
+        $output .= '    </div>
+                    </div>';
+
+        // Div block that appears when there are goals that have just been achieved listing these goals
+        // Determining if there is at once one goal just achieved
+        /*$isGoalsJustAchieved = false;
+        foreach ($this->preset['objectives'] as $key => $objective) {
+            if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $isGoalsJustAchieved = true;
+            }
+        }
+
+        if ($isGoalsJustAchieved === true) {
+        $output .= '<div id="score-container">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Goals just achieved</h4>
+                        <div class="score">
+                            <ul id="goals">';
+            foreach ($this->preset['objectives'] as $key => $objective) {
+                if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                    $titleObjective = $objective['title'];
+                    $output .= "<li><label><input type='checkbox' checked disabled='disabled'>$titleObjective</label></li>";
+                }
+            }
+        $output .= '        </ul>
+                        </div>
+                    </div>';
+        }*/
+
 		return $output;
 	}
+
+
+    public function getJsParams() {
+        //$datas = $this->context->store->get_datas();
+        $params = array(
+        	'previous_score' => $this->preset['previousTotalScore'],
+        	'new_score' => $this->preset['newTotalScore'],
+        );
+
+        if (isset($datas->avatar)) {
+            $params = $datas->avatar;
+        }
+
+        return $params;
+    }
 }
