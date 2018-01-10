@@ -27,37 +27,60 @@ require_once dirname( __DIR__ ) . '/motivator_interface.php';
 
 class timer extends iMotivator {
 
-	public function __construct($context) {
-		$preset = array(
-			'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
-			'maxDurationTimer' => 90,
-			'maxNumberAttempts' => 5,
-			'doneNumberAttempts' => 3,
-			'attemptsTiming' => [40, 60, 30],
-			'courseAchievements' => [
-				"runOfFiveGoodAnswers" => 0,
-				"tenOfTenGoodAnswers" => 1
-			],
-			'globalAchievements' => [
-				'session1Objectives' => 0,
-				'session2Objectives' => 1
-			]
-		);
-		parent::__construct($context, $preset);
-	}
+    public function __construct($context) {
+        $preset = array(
+            'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
+            'maxDurationTimer' => 90,
+            'maxNumberAttempts' => 5,
+            'numberPreviousAttempts' => 3,
+            'timingAttempts' => [40, 60, 30],
+            'globalAchievements' => [
+                'session1Objectives' => 0,
+                'session2Objectives' => 1
+            ]
+        );
+        parent::__construct($context, $preset);
+    }
 
-	public function getTitle() {
+    public function getTitle() {
 
-		return 'Timer';
-	}
+        return 'Timer';
+    }
 
-	public function get_content() {
-		global $CFG;
+    public function get_content() {
+        global $CFG;
 
-		$output = '<div id="timer-container">';
-		$output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/timer/iframe.php"></iframe>';
-		$output .= '</div>';
+        $output = '';
 
-		return $output;
-	}
+        if ($this->preset['numberPreviousAttempts'] != 0) {
+            $output = '<div id="timer-container">';
+
+            // Passing to the iFrame the timestamps and the last attempts timing
+            $output .= '<script type="text/javascript">' . PHP_EOL;
+            $output .= 'var timingAttempts = ' . json_encode($this->preset['timingAttempts']) . ';' . PHP_EOL;
+            $output .= 'var timestamp = ' . time() . ';' . PHP_EOL;
+            $output .= '</script>';
+
+            // Calling the iFrame file generating the gauge and the bargraph showing the classe average,
+            // the class best and the user's own level
+            $output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/timer/iframe.php"></iframe>';
+            $output .= '</div>';
+        }
+
+        return $output;
+    }
+
+        public function getJsParams() {
+        $datas = $this->context->store->get_datas();
+        $params = array();
+
+        $params['timingAttempts'] = $this->preset['timingAttempts'];
+        $params['timestamp'] = time();
+
+        if (isset($datas->avatar)) {
+            $params = $datas->avatar;
+        }
+
+        return $params;
+    }
 }

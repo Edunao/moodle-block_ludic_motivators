@@ -24,7 +24,7 @@
 require_once '../../../../../config.php';
 ?>
 
-<html>
+<html style="overflow: hidden">
     <head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
@@ -40,38 +40,56 @@ require_once '../../../../../config.php';
 
                 var data = google.visualization.arrayToDataTable([
                     ['Label', 'Value'],
-                    ['Temps', 100]
+                    ['Temps', {v: 0, f: '00:00'}]
                 ]);
 
                 var options = {
-                    width: 400, height: 120,
-                    redFrom: 0, redTo: 25,
-                    yellowFrom: 25, yellowTo: 50,
-                    greenFrom: 75, greenTo: 100,
-                    minorTicks: 5
+                    width: 190, height: 190,
+                    redFrom: 3.2, redTo: 5,
+                    yellowFrom: 1.6, yellowTo: 3.2,
+                    minorTicks: 6, max:5,
+                    majorTicks : ['0','1','2','3','4','5']
                 };
 
                 var chart = new google.visualization.Gauge(document.getElementById('timer_div'));
 
                 chart.draw(data, options);
 
-                value = 100;
-                setInterval(function () {
-                    value = Math.max(0, value - 1);
-                    data.setValue(0, 1, value);
+                value = 0;
+                timerId = setInterval(function () {
+                    value = Math.max(0, value + 1);
+                    data.setValue(0, 1, value/60);
+
+                    // Formatting minutes and seconds for displaying digit
+                    seconds = value % 60;
+                    minutes = Math.floor(value / 60);
+                    secondsFormatted = ("0" + seconds).slice(-2);
+                    minutesFormatted = ("0" + minutes).slice(-2);
+                    timeFormatted = minutesFormatted + ':' + secondsFormatted;
+                    data.setFormattedValue(0, 1, timeFormatted);
                     chart.draw(data, options);
 
-                }, 500);
+                    // Stop the timer after more than 300 seconds (5 minutes)
+                    if (value >= 300) {
+                        clearInterval(timerId);
+                    }
+
+                }, 1000);
             }
 
             function drawColumnChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Element', 'Density', {role: 'style'}],
-                    ['1', 8.94, 'red'],
-                    ['2', 10.49, 'orange'],
-                    ['3', 19.30, '#eee'],
-                    ['4', 21.45, 'green']
-                ]);
+                var colors = ['red', 'orange', '#eee', 'green'];
+                var params = parent.timingAttempts;
+                var data = new google.visualization.DataTable();
+
+                // Declare columns
+                data.addColumn('string', 'Element');    // Implicit domain column.
+                data.addColumn('number', 'Timing');     // Implicit data column.
+                data.addColumn({type:'string', role: 'style'});
+
+                params.forEach(function(element, index) {
+                    data.addRow([(index+1).toString(), params[index], colors[index]]);
+                });
 
                 var view = new google.visualization.DataView(data);
                 view.setColumns([0, 1,
@@ -79,7 +97,8 @@ require_once '../../../../../config.php';
                         sourceColumn: 1,
                         type: "string",
                         role: "annotation"},
-                    2]);
+                    2]
+                );
 
                 var options = {
                     title: "Progression des tentatives",
@@ -94,7 +113,7 @@ require_once '../../../../../config.php';
         </script>
     </head>
     <body>
-        <div id="timer_div" style="height: 120px;"></div>
+        <div id="timer_div" style="height: 190px;"></div>
         <div id="column_div" style="height: 300px;"></div>
     </body>
 </html>
