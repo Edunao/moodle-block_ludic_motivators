@@ -26,28 +26,27 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             this.params = params;
 
-            this.revealed_pieces = this.params.revealed_pieces;
+            this.revealed_stages = this.params.revealed_pieces;
 
-            this.nb_cols = 4;
-            this.unrevealed_pieces = [];
-            for (var x = 1; x <= this.nb_cols; x++) {
-                for(var y = 1;y <= this.nb_cols; y++) {
-                    if (this.revealed_pieces.indexOf(x+'-'+y) === -1) {
-                        this.unrevealed_pieces.push(x+'-'+y);
-                    }
+            // Initializing unrevealed_stages array
+            this.nb_stages = 8;
+            this.unrevealed_stages = [];
+            for (var x = 1; x <= this.nb_stages; x++) {
+                if (this.revealed_stages.indexOf('Etape'+x) === -1) {
+                    this.unrevealed_stages.push('Etape'+x);
                 }
             }
 
-            //convert svg pictures
+            // Convert svg pictures
             this.convert_svg('img.svg.avatar');
 
-            for (var i in this.revealed_pieces) {
-                that.reveal_piece(this.revealed_pieces[i]);
+            for (var i in this.revealed_stages) {
+                that.reveal_stage(this.revealed_stages[i]);
             }
 
             $('#avatar-picture').show();
 
-            $('#next-piece').on('click', function() {
+            $('#next-stage').on('click', function() {
                 that.display_next_piece();
             });
         },
@@ -75,48 +74,50 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         },
 
         display_next_piece: function () {
-            var rand = this.get_random_unrevealed_piece();
+            var next = this.get_next_unrevealed_stage();
 
-            if (rand) {
-                this.reveal_piece(rand);
+            if (next) {
+                this.reveal_stage(next);
             }
-            //image complete
-            if (this.unrevealed_pieces.length == 0) {
-                $('#next-piece').hide();
+            // Branch complete
+            if (this.unrevealed_stages.length == 0) {
+                $('#next-stage').hide();
                 $('#congratulation').show();
             }
         },
 
-        reveal_piece : function(id) {
-            console.log('reveal piece', id);
+        reveal_stage : function(id) {
+            stageId = 'Branche1_'+id;
+            console.log('reveal stage', stageId);
 
-            if ($('#piece-'+id).length == 0) {
-                console.log('Piece not found : #piece-' + id);
+            if ($('#'+stageId).length == 0) {
+                console.log('Stage not found : ' + stageId);
             }
             else {
-                $('#piece-'+id).css({fill : 'transparent', transition: "1.2s"});
+                $('#'+stageId).css({visibility : 'visible', transition: "1.2s"});
 
-                //add piece to revealed pieces
-                var index = this.revealed_pieces.indexOf(id);
+                // Add stage to revealed stages
+                var index = this.revealed_stages.indexOf(id);
                 if (index === -1) {
-                    this.revealed_pieces.push(id);
+                    this.revealed_stages.push(id);
                 }
 
-                //remove piece from unrevealed pieces
-                var index = this.unrevealed_pieces.indexOf(id);
+                // Remove stage from unrevealed stages
+                var index = this.unrevealed_stages.indexOf(id);
                 if (index !== -1) {
-                    this.unrevealed_pieces.splice(index, 1);
+                    this.unrevealed_stages.splice(index, 1);
                 }
             }
         },
 
-        get_random_unrevealed_piece : function() {
-            var nb_pieces = this.unrevealed_pieces.length;
-            if (nb_pieces === 0) {
+        get_next_unrevealed_stage : function() {
+            var nb_stages = this.unrevealed_stages.length;
+            console.log(this.unrevealed_stages);
+            if (nb_stages === 0) {
                 return false;
             }
-            var random_index = Math.floor(Math.random() * nb_pieces);
-            return this.unrevealed_pieces[random_index];
+            //var next_index = Math.floor(Math.next() * nb_stages);
+            return this.unrevealed_stages[0];
         }
     };
     return avatar;

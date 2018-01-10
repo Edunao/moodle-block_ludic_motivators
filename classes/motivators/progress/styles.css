@@ -29,8 +29,12 @@
     height : 180px;
 }
 
-path {
-    fill : red;
+[id^=Branche1_Etape] {
+    visibility: hidden;
+}
+
+#Branche1_Etape0 {
+    visibility: visible;
 }
 
 #avatar-picture {

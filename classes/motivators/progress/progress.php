@@ -35,11 +35,39 @@ class progress extends iMotivator {
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                     'layers' => [
                         [
-                            'layerName' => '1-1',
+                            'layerName' => 'Etape0',
                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
-                            'layerName' => '2-1',
+                            'layerName' => 'Etape1',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape2',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape3',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape4',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape5',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape6',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape7',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape8',
                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                         ],
                     ]
@@ -49,12 +77,40 @@ class progress extends iMotivator {
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                     'layers' => [
                         [
-                            'layerName' => '2-2',
+                            'layerName' => 'Etape0',
                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
-                            'layerName' => '4-2',
+                            'layerName' => 'Etape1',
                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape2',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape3',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape4',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape5',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape6',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape7',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                        [
+                            'layerName' => 'Etape8',
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                         ],
                     ]
                 ],
@@ -137,7 +193,7 @@ class progress extends iMotivator {
             $output .= '        <img src="'.$this->image_url('tree.svg').'" width="180px" height="180px" class="avatar svg"/>';
             $output .= '    </div>
                         </div>';
-            $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
+            $output .= '<div><button id="next-stage">Répondre à une question</button></div>';
             $output .= '<div id="congratulation">Congratulations !</div>';
 
         // The view within a course shows a tree branch as an SVG with 8 optional layers.
@@ -149,7 +205,7 @@ class progress extends iMotivator {
             $output .= '        <img src="'.$this->image_url('branch.svg').'" width="180px" height="180px" class="avatar svg"/>';
             $output .= '    </div>
                         </div>';
-            $output .= '<div><button id="next-piece">Répondre à une question</button></div>';
+            $output .= '<div><button id="next-stage">Répondre à une question</button></div>';
             $output .= '<div id="congratulation">Congratulations !</div>';
         }
 
