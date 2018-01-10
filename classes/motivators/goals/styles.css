@@ -7,7 +7,7 @@
 }
 
 #goals-container #goals li {
-    margin-bottom : 6px;
+    /*margin-bottom : 6px;*/
 }
 
 #goals-container #goals li input[type="checkbox"]{
@@ -15,7 +15,7 @@
 }
 
 #goals-container #goals li label {
-    cursor : pointer;
+    /*cursor : pointer;*/
 }
 
 #new-goal {

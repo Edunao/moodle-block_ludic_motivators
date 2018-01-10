@@ -1,10 +1,30 @@
+#score-container {
+    margin-top : 15px;
+}
+
 #score-container .score {
     font-size : 26px;
     text-align : center;
-    margin-top : 30px;
+    margin-top : 15px;
+    margin-bottom: 15px;
     color : red;
 }
 
 #score-container .score .points {
-    font-size : 0.8em;
+    /*font-size : 0.8em;*/
+}
+
+#score-container #bonus {
+    /*font-size : 16px;*/
+    margin-top : 15px;
+    list-style-type: none;
+    padding-left: 0.5rem;
+}
+
+#score-container #bonus li {
+    margin-bottom : 6px;
+}
+
+#score-container #bonus li input[type="checkbox"]{
+    margin-right : 3px;
 }
