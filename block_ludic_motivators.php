@@ -68,17 +68,18 @@ class block_ludic_motivators extends block_base {
         // Motivators selector
         $motivators = $this->get_motivators();
 
-        $this->content->text = '<div>';
-        $this->content->text .= '<form method="POST">';
-        $this->content->text .= '<select name="motivator">';
-        foreach ($motivators as $motivatorid => $motivatorvalue) {
-            $selected = $motivator_name == $motivatorid ? 'selected' : '';
-            $this->content->text .= '<option value="' . $motivatorid . '" ' . $selected . '>' . $motivatorvalue . '</option>';
-        }
-        $this->content->text .= '</select>';
-        $this->content->text .= '<input type="submit" value="Changer de motivateur">';
-        $this->content->text .= '</form>';
-        $this->content->text .= '</div>';
+        $this->content->text  =
+                '<div style="margin-bottom:15px;">
+                    <form id="motivator_form" method="POST">
+                        <select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+                    foreach ($motivators as $motivatorid => $motivatorvalue) {
+                        $selected = $motivator_name == $motivatorid ? 'selected' : '';
+                        $this->content->text .= '<option value="' . $motivatorid . '" ' . $selected . '>' . $motivatorvalue . '</option>';
+                    }
+        $this->content->text .=
+                        '</select>
+                    </form>
+                </div>';
 
 
         $this->page->requires->jquery_plugin('ui-css');
