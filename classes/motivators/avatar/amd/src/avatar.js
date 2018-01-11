@@ -19,7 +19,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 }
             }
 
-            //convert svg pictures
+            // Convert SVG (<img>) in to raw SVG code (<svg>)
             this.convert_svg('img.svg.avatar');
 
             for (var i in this.revealed_pieces) {
@@ -28,13 +28,16 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             $('#avatar-picture').show();
 
-            $('#next-piece').on('click', function() {
+            /*$('#next-piece').on('click', function() {
                 that.display_next_piece();
-            });
+            });*/
         },
 
+        /*
+         * Convert SVG (<img>) in to raw SVG code (<svg>)
+         */
         convert_svg : function(selector) {
-            //convert svg pictures
+
             $(selector).each(function () {
                 var $img = $(this);
                 var imgID = $img.attr('id');

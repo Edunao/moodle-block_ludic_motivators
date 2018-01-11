@@ -6,15 +6,11 @@
     height : 180px;
 }
 
-path {
-    fill : red;
-}
-
 #avatar-picture {
-    display : none;
+    /*display : none;
     position:absolute;
     top:0;
-    left:0;
+    left:0;*/
 }
 
 #congratulation {
@@ -25,13 +21,18 @@ path {
     margin-top: 10px;
 }
 
-#avatar-container {
+#avatar-container, #element-container {
     position : relative;
     overflow:auto;
     width : 180px;
-    height:180px;
+    height: 180px;
     margin : auto;
-    margin-top : 30px;
+    margin-bottom : 15px;
+}
+
+#avatar-container > img, #avatar-container > img {
+    width : 180px;
+    height: 180px;
 }
 
 #next-piece {
