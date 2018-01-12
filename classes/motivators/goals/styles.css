@@ -1,13 +1,16 @@
 #goals-container {
-    margin-top : 15px;
+    /*margin-top : 15px;*/
+    margin-bottom: 15px;
+    border: 1px solid;
 }
 
 #goals-container #goals {
-    list-style-type: none;
+    /*list-style-type: none;*/
+    padding-left: 2rem;
 }
 
 #goals-container #goals li {
-    /*margin-bottom : 6px;*/
+    margin-bottom : 6px;
 }
 
 #goals-container #goals li input[type="checkbox"]{

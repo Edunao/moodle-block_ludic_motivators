@@ -82,46 +82,62 @@ class goals extends iMotivator {
         return 'Mes objectifs';
     }
 
+    function isGoalsJustAchieved() {
+        foreach ($this->preset['objectives'] as $key => $objective) {
+            if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function getPreviouslyAchievedGoals() {
+        $textHtml = '';
+        foreach ($this->preset['objectives'] as $key => $objective) {
+            if ($objective['achievement'] != $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED){
+                $textHtml .= '<li>' . $objective['title'] . '</li>';
+            }
+        }
+
+        return $textHtml;
+
+    }
+
+    function getJustAchievedGoals() {
+        $textHtml = '';
+        foreach ($this->preset['objectives'] as $key => $objective) {
+            if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $textHtml .= "<li>" . $objective['title'] . "</li>";
+            }
+        }
+
+        return $textHtml;
+    }
+
     public function get_content() {
 
         // Div block listing all goals with checkboxes next to those that have been achieved
         $output  = '<div id="goals-container">
-                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Goals achieved</h4>
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Objectifs</h4>
                         <div>
-                            <ul id="goals">';
-        foreach ($this->preset['objectives'] as $key => $objective) {
-            if ($objective['achievement'] != $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED){
-                $titleObjective = $objective['title'];
-                $output .= "<li><label><input type='checkbox' checked onclick='return false;'>$titleObjective</label></li>";
-            }
-        }
-        $output .= '        </ul>
+                            <ul id="goals">'
+                            . $this->getPreviouslyAchievedGoals() .
+                            '</ul>
                         </div>
                     </div>';
 
         // Div block that appears when there are goals that have just been achieved listing these goals
         // Determining if there is at once one goal just achieved
-        $isGoalsJustAchieved = false;
-        foreach ($this->preset['objectives'] as $key => $objective) {
-            if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-                $isGoalsJustAchieved = true;
-            }
-        }
-
-        if ($isGoalsJustAchieved === true) {
-        $output .= '<div id="goals-container">
-                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Goals just achieved</h4>
-                        <div>
-                            <ul id="goals">';
-            foreach ($this->preset['objectives'] as $key => $objective) {
-                if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-                    $titleObjective = $objective['title'];
-                    $output .= "<li><label><input type='checkbox' checked disabled='disabled'>$titleObjective</label></li>";
-                }
-            }
-        $output .= '        </ul>
-                        </div>
-                    </div>';
+        if ($this->isGoalsJustAchieved() === true) {
+            $output .= '<div id="goals-container">
+                            <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
+                            <div>
+                                <ul id="goals">'
+                                    . $this->getJustAchievedGoals() .
+                                '</ul>
+                            </div>
+                        </div>';
         }
 
         return $output;
