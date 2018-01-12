@@ -146,7 +146,7 @@ class avatar extends iMotivator {
 
         $textSelect  = '';
         foreach ($this->preset['layers'] as $key => $layer) {
-            if ($layer['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+            if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
                 $selected = $layer['layerName'] == $selectedLayer ? 'selected' : '';
                 $textSelect .= '<option value="' . $layer['layerName'] . '" ' . $selected . '>' . $layer['layerElement'] . '</option>';
             }
