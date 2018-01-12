@@ -134,7 +134,6 @@ class avatar extends iMotivator {
 
             }
         }
-        //print_r($preset);
         parent::__construct($context, $preset);
     }
 
