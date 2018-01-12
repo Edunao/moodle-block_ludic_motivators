@@ -3,7 +3,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         init: function (params) {
             console.log('Score init', params);
 
-            var that = this;
+            /*var that = this;
 
             this.params = params;
 
@@ -16,7 +16,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 step: function() { // called on every steps
                     $('.score-number').text(Math.ceil(this.someValue));
                 }
-            });
+            });*/
 
         }
     };

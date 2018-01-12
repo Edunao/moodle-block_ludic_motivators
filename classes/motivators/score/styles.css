@@ -1,5 +1,5 @@
 #score-container {
-    margin-top : 15px;
+    /*margin-top : 15px;*/
 }
 
 #score-container .score {
@@ -17,8 +17,8 @@
 #score-container #bonus {
     /*font-size : 16px;*/
     margin-top : 15px;
-    list-style-type: none;
-    padding-left: 0.5rem;
+    /*list-style-type: none;*/
+    padding-left: 2rem;
 }
 
 #score-container #bonus li {

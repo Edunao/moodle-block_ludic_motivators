@@ -66,42 +66,61 @@ class score extends iMotivator {
         return 'Mon score';
     }
 
+    function getBonusList() {
+        $resultHtml = '';
+        foreach ($this->preset['bonuses'] as $key => $bonus) {
+            if ($bonus['stateOfBonus'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $resultHtml .= '<li><label><b>' . $bonus['valueOfBonus'] . ' points</b></label></li>';
+            }
+        }
+
+        return $resultHtml;
+    }
+
     public function get_content() {
-        $output = '<div id="score-container">';
-        $output .= '<div class="score"/><span class="score-number">136</span><span class="points">pts</span></div>';
-        $output .= '</div>';
 
         // Div block displaying the latest total score with an animation
         // showing in first the previous and progressively the new score
-        $output  = '<div id="score-container">
-                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">The latest score</h4>
-                        <div class="score">';
-        $output .= '        <span class="score-number">' . $this->preset['previousTotalScore'] . '</span>
-                            <span class="points">pts</span>';
-        $output .= '    </div>
+        $output   = '<div id="score-container" style="margin-bottom:15px;border:1px solid">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Score</h4>
+                        <div class="score">
+                            <span class="score-number">' . $this->preset['newTotalScore'] . '</span>
+                            <span class="points">pts</span>
+                        </div>
                     </div>';
 
         // Div block that appears only if the score progresses containing the number of
-        // new points obtained from the last quiz and any bonuses obtained with the last quiz
+        // new points obtained from the last quiz
         if ($this->preset['newTotalScore'] > $this->preset['previousTotalScore']) {
-            $output .= '<div id="score-container">
-                            <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">You win</h4>
+            $output .= '<div id="score-container" style="margin-bottom:15px;border:1px solid">
+                            <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
                             <div>
-                                <ul id="bonus">';
-            $output .= '            <li><label><input type="checkbox" checked disabled="disabled"><b>' . ($this->preset['newTotalScore']-$this->preset['previousTotalScore']) . ' points</b> depuis le dernier quiz</label></li>';
-            foreach ($this->preset['bonuses'] as $key => $bonus) {
-                if ($bonus['stateOfBonus'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-                    $output .= '<li><label><input type="checkbox" checked disabled="disabled"><b>' . $bonus['valueOfBonus'] . ' points</b> pour avoir ' . $bonus['nameOfBonus'] . '</label></li>';
-                }
-            }
-            $output .= '        </ul>
+                                <ul id="bonus">
+                                    <li>
+                                        <label><b>'
+                                            . ($this->preset['newTotalScore']-$this->preset['previousTotalScore']) . ' points en plus' .
+                                        '</b></label>
+                                    </li>
+                                </ul>
                             </div>
                         </div>';
         }
 
+        // Div block that appears only on any bonuses obtained with the last quiz
+        if ($this->preset['newTotalScore'] > $this->preset['previousTotalScore']) {
+            $output .= '<div id="score-container" style="border:1px solid">
+                            <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bonus</h4>
+                            <div>
+                                <ul id="bonus">'
+                                    . $this->getBonusList() .
+                                '</ul>
+                            </div>
+                        </div>';
+
+        }
+
         return $output;
     }
-
 
     public function getJsParams() {
         //$datas = $this->context->store->get_datas();
