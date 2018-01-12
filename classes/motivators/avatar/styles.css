@@ -6,13 +6,6 @@
     height : 180px;
 }
 
-#avatar-picture {
-    /*display : none;
-    position:absolute;
-    top:0;
-    left:0;*/
-}
-
 #congratulation {
     display : none;
     font-weight : bold;
@@ -23,16 +16,18 @@
 
 #avatar-container, #element-container {
     position : relative;
-    overflow:auto;
+    overflow: auto;
     width : 180px;
     height: 180px;
     margin : auto;
-    margin-bottom : 15px;
 }
 
-#avatar-container > img, #avatar-container > img {
-    width : 180px;
-    height: 180px;
+#avatar-picture [id^=calque]:not(#calque01) {
+    visibility: hidden;
+}
+
+#element-picture [id^=calque] {
+    visibility: hidden;
 }
 
 #next-piece {

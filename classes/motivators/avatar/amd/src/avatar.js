@@ -7,30 +7,27 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             this.params = params;
 
-            this.revealed_pieces = this.params.revealed_pieces;
-
-            this.nb_cols = 4;
-            this.unrevealed_pieces = [];
-            for (var x = 1; x <= this.nb_cols; x++) {
-                for(var y = 1;y <= this.nb_cols; y++) {
-                    if (this.revealed_pieces.indexOf(x+'-'+y) === -1) {
-                        this.unrevealed_pieces.push(x+'-'+y);
-                    }
-                }
-            }
+            this.previously_obtained = this.params.previously_obtained;
+            this.newly_obtained = this.params.newly_obtained;
 
             // Convert SVG (<img>) in to raw SVG code (<svg>)
             this.convert_svg('img.svg.avatar');
 
-            for (var i in this.revealed_pieces) {
-                that.reveal_piece(this.revealed_pieces[i]);
-            }
+            //$('#avatar-picture').find('#calque05').css("visibility", "visible");
 
-            $('#avatar-picture').show();
+            // Set visible the layer (items) that are previously obtained
+            $.each(this.previously_obtained, function( index, value ) {
+                layer = $('#avatar-picture #'+value);
+                layer.css('visibility', 'visible');
+            });
 
-            /*$('#next-piece').on('click', function() {
-                that.display_next_piece();
-            });*/
+            // Set visible the layer (items) that are newly obtained
+            $.each(this.newly_obtained, function( index, value ) {
+                console.log(value);
+                layer = $('#element-picture #'+value);
+                console.log(layer);
+                layer.css('visibility', 'visible');
+            });
         },
 
         /*
@@ -72,13 +69,13 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         },
 
         reveal_piece : function(id) {
-            console.log('reveal piece', id);
+            console.log('reveal layer', id);
 
-            if ($('#piece-'+id).length == 0) {
-                console.log('Piece not found : #piece-' + id);
+            if ($(id).length == 0) {
+                console.log('Layer not found : ' + id);
             }
             else {
-                $('#piece-'+id).css({fill : 'transparent', transition: "1.2s"});
+                $(id).css({visibility : 'visible'});
 
                 //add piece to revealed pieces
                 var index = this.revealed_pieces.indexOf(id);

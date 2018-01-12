@@ -40,82 +40,82 @@ class avatar extends iMotivator {
             'layers' => [
                 [
                     'layerName' => 'calque00',
-                    'layerElement' => 'panda',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-                ],
-                [
-                    'layerName' => 'calque01',
-                    'layerElement' => 'panda1',
+                    'layerElement' => 'Panda',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
+                    'layerName' => 'calque01',
+                    'layerElement' => 'Panda1',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                ],
+                [
                     'layerName' => 'calque02',
-                    'layerElement' => 'bandeau',
+                    'layerElement' => 'Bandeau',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque03',
-                    'layerElement' => 'chapeau',
+                    'layerElement' => 'Chapeau',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque04',
-                    'layerElement' => 'pendentif',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'layerElement' => 'Pendentif',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'layerName' => 'calque05',
-                    'layerElement' => 'tonneau',
+                    'layerElement' => 'Tonneau',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque06',
-                    'layerElement' => 'bambou1',
+                    'layerElement' => 'Bambou1',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque07',
-                    'layerElement' => 'bambou2',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'layerElement' => 'Bambou2',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'layerName' => 'calque08',
-                    'layerElement' => 'short',
+                    'layerElement' => 'Short',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque09',
-                    'layerElement' => 'table',
+                    'layerElement' => 'Table',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque10',
-                    'layerElement' => 'bol',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'layerElement' => 'Bol',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'layerName' => 'calque11',
-                    'layerElement' => 'theiere',
+                    'layerElement' => 'Théière',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque12',
-                    'layerElement' => 'arche',
+                    'layerElement' => 'Arche',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque13',
-                    'layerElement' => 'collier',
+                    'layerElement' => 'Collier',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque14',
-                    'layerElement' => 'guitare',
+                    'layerElement' => 'Guitare',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque15',
-                    'layerElement' => 'eventail',
+                    'layerElement' => 'Eventail',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
             ],
@@ -124,6 +124,17 @@ class avatar extends iMotivator {
                         'session2Objectives' => 1
             ]
         );
+
+        // Updating layers array in the preset array when an element is selected
+        if (($element = optional_param('element', '', PARAM_TEXT)) !== '') {
+            foreach ($preset['layers'] as $key => $layer) {
+                if ($layer['layerName'] === $element) {
+                    $preset['layers'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+                }
+
+            }
+        }
+        //print_r($preset);
         parent::__construct($context, $preset);
     }
 
@@ -136,46 +147,58 @@ class avatar extends iMotivator {
 
         $textSelect  = '';
         foreach ($this->preset['layers'] as $key => $layer) {
-            $selected = $layer['layerName'] == $selectedLayer ? 'selected' : '';
-            $textSelect .= '<option value="' . $layer['layerName'] . '" ' . $selected . '>' . $layer['layerElement'] . '</option>';
+            if ($layer['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+                $selected = $layer['layerName'] == $selectedLayer ? 'selected' : '';
+                $textSelect .= '<option value="' . $layer['layerName'] . '" ' . $selected . '>' . $layer['layerElement'] . '</option>';
+            }
         }
+
+        return $textSelect;
     }
 
     public function get_content() {
         // Div block showing the image with all of the layers for previously achieved goals unmasked
-        $output  = '<div>
+        $output  = '<div style="margin-bottom:15px;border:1px solid">
                         <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Avatar</h4>
                         <div id="avatar-container">
                             <img src="' . $this->image_url('LudiMoodle_avatar.svg') . '"width="180px" height="180px" class="avatar svg" id="avatar-picture"/>
                         </div>
                     </div>';
 
+        // Div block showing the element selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="element_form" method="POST">
+                            <select name="element" onChange="document.getElementById(\'element_form\').submit()">' . $this->getElementSelect(optional_param('element', 'calque01', PARAM_TEXT)) .
+                            '</select>
+                        </form>
+                    </div>';
+
         // Div block that appears when there are goals that have just been achieved displaying
         // only the layers for the goals that have been newly achieved
-        echo $this->getElementSelect('calque01');
-        $output .= '<div>
-                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Tree</h4>
-                        <form id="motivator_form" method="POST">
-                            <select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">
-                            </select>
-                        </form>
-                        <div id="element-container">
-                            <img src="' . $this->image_url('LudiMoodle_avatar.svg') . '" width="180px" height="180px" class="avatar svg" id="element-picture"/>
-                        </div>
-                    </div>';
-        //$output .= '<div><button id="next-piece">Répondre à une question</button></div>';
-        $output .= '<div id="congratulation">Bravo !</div>';
+        if (optional_param('element', '', PARAM_TEXT) !== '') {
+            $output .= '<div style="border:1px solid">
+                            <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo</h4>
+                            <div id="element-container">
+                                <img src="' . $this->image_url('LudiMoodle_avatar.svg') . '" width="180px" height="180px" class="avatar svg" id="element-picture"/>
+                            </div>
+                        </div>';
+        }
 
         return $output;
     }
 
     public function getJsParams() {
         $datas = $this->context->store->get_datas();
-        $params = array('revealed_pieces' => array());
+        $params = array();
+
+        //$params['newly_obtained'][] = optional_param('element', 'avatar', PARAM_TEXT);
 
         foreach ($this->preset['layers'] as $key => $value) {
             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                $params['revealed_pieces'][] = $value['layerName'];
+                $params['previously_obtained'][] = $value['layerName'];
+            }
+            if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED) {
+                $params['newly_obtained'][] = $value['layerName'];
             }
         }
 
