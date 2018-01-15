@@ -1,18 +1,3 @@
-/*define(['jquery', 'core/tree'], function ($, Tree) {
-    var badges = {
-        init: function () {
-            console.log('Badges init');
-            var that = this;
-
-            $('.ludic_motivators-badge:last-child img').each(function() {
-                $(this).fadeIn();
-            });
-        }
-    };
-
-    return badges;
-});*/
-
 define(['jquery', 'core/tree'], function ($, Tree) {
     var badges = {
         init: function (params) {
@@ -22,30 +7,27 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             this.params = params;
 
-            this.revealed_pieces = this.params.revealed_pieces;
+            this.previously_obtained = this.params.previously_obtained;
+            this.not_obtained = this.params.not_obtained;
 
-            this.nb_cols = 4;
-            this.unrevealed_pieces = [];
-            for (var x = 1; x <= this.nb_cols; x++) {
-                for(var y = 1;y <= this.nb_cols; y++) {
-                    if (this.revealed_pieces.indexOf(x+'-'+y) === -1) {
-                        this.unrevealed_pieces.push(x+'-'+y);
-                    }
-                }
-            }
-
-            //convert svg pictures
+            // Convert SVG (<img>) in to raw SVG code (<svg>)
             this.convert_svg('img.svg.avatar');
 
-            for (var i in this.revealed_pieces) {
-                that.reveal_piece(this.revealed_pieces[i]);
-            }
+            //$('#avatar-picture').find('#calque00').css("visibility", "visible");
 
-            $('#avatar-picture').show();
-
-            $('#next-piece').on('click', function() {
-                that.display_next_piece();
+            // Set visible the layer (badges) that are previously obtained
+            $.each(this.previously_obtained, function( index, value ) {
+                layer = $('#avatar-picture #'+value);
+                layer.css('visibility', 'visible');
             });
+
+            // Set not visible the layer (badges) that are not obtained
+            $.each(this.not_obtained, function( index, value ) {
+                layer = $('#avatar-picture #'+value);
+                layer.css('visibility', 'hidden');
+            });
+
+            $('#avatar-div').css('display', 'block');
         },
 
         convert_svg : function(selector) {
@@ -70,7 +52,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             });
         },
 
-        display_next_piece: function () {
+        /*display_next_piece: function () {
             var rand = this.get_random_unrevealed_piece();
 
             if (rand) {
@@ -113,7 +95,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             }
             var random_index = Math.floor(Math.random() * nb_pieces);
             return this.unrevealed_pieces[random_index];
-        }
+        }*/
     };
     return badges;
 });

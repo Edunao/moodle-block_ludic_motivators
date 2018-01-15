@@ -1,25 +1,55 @@
 #badges-container {
-    margin-top : 15px;
+    /*margin-top : 15px;*/
 }
 
 #course-badge {
-    display : block;
-    margin : 6px;
+    margin : 0px;
     list-style: none;
     padding: 0;
 }
 
-#course-badge ul {
-    text-align: center;
+#course-badge {
+    display: inline-block;
 }
 
 #course-badge li {
     text-align: center;
+    display: inline;
+    list-style: none;
 }
 
 #course-badge img {
-    width : 40px;
-    height : 40px;
+    width : 45px;
+    height : 45px;
+}
+
+#course-badge figure {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+    padding: 5px 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 0 0.3rem;
+}
+
+#course-badge figcaption {
+    font-size: 8px;
+}
+
+#new-badge  {
+    margin-top: 15px;
+}
+
+#new-badge li {
+    text-align: center;
+    display: inline;
+    list-style: none;
+}
+
+#new-badge img {
+    width : 50px;
+    height : 50px;
 }
 
 #global-badge {
@@ -46,32 +76,20 @@
     height : 180px;
 }
 
-path {
-    fill : red;
-}
-
-#avatar-picture {
-    display : none;
-    position:absolute;
-    top:0;
-    left:0;
-}
-
-#congratulation {
-    display : none;
-    font-weight : bold;
-    color : red;
-    text-align : center;
-    margin-top: 10px;
-}
-
 #avatar-container {
     position : relative;
-    overflow:auto;
+    overflow: auto;
     width : 180px;
-    height:180px;
+    height: 180px;
     margin : auto;
-    margin-top : 30px;
+}
+
+#avatar-div {
+    /*display: none;*/
+}
+
+#avatar-picture [id^=calque]:not(#calque01) {
+    visibility: hidden;
 }
 
 #next-piece {

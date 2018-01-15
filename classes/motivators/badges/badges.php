@@ -29,7 +29,7 @@ class badges extends iMotivator {
 
     public function __construct($context) {
         $preset = array(
-            'coursesGoals' => [
+            'coursesBadges' => [
                 [
                     'badgeName' => '3 bonnes réponses',
                     'iconId' => 'course_badge1',
@@ -53,24 +53,42 @@ class badges extends iMotivator {
                 [
                     'badgeName' => 'Course Goal 5',
                     'iconId' => 'course_badge1',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ]
             ],
-            'globalsGoals' => [
+            'globalBadges' => [
                 [
-                    'layerName' => '1-1',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                    'layerName' => 'calque00',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => '1-4',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                    'layerName' => 'calque01',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
-                    'layerName' => '2-2',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-                ]
-            ]
+                    'layerName' => 'calque02',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+            ],
         );
+
+        // Updating course badges array in the preset array when a badge is selected
+        if (($newBadge = optional_param('badge', '', PARAM_TEXT)) !== '') {
+            foreach ($preset['coursesBadges'] as $key => $badge) {
+                if ($badge['badgeName'] === $newBadge) {
+                    $preset['coursesBadges'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+                }
+            }
+        }
+
+        // Updating global badges array in the preset array when a badge is selected
+        if (($globalBadge = optional_param('globalBadge', '', PARAM_TEXT)) !== '') {
+            foreach ($preset['globalBadges'] as $key => $badge) {
+                if ($badge['layerName'] === $globalBadge) {
+                    $preset['coursesBadges'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+                }
+            }
+        }
         parent::__construct($context, $preset);
     }
 
@@ -79,61 +97,150 @@ class badges extends iMotivator {
         return 'Mes badges';
     }
 
+    function getGlobalBadgeList() {
+        global $CFG;
+        $resultHtml = '';
+
+        foreach ($this->preset['globalBadges'] as $key => $badge) {
+            if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $resultHtml .=
+                '<li style="opacity:' . $opacity . '">
+                    <figure>
+                        <img src="' . $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/badges/pix/' . $badge['iconId'] . '.png" title="' . $badge['badgeName'] . '"/>
+                        <figcaption>' . $badge['badgeName'] . '</figcaption>
+                    </figure>
+                </li>';
+            }
+        }
+
+        return $resultHtml;
+    }
+
+    function getGlobalBadgesSelect($selectedBadge){
+        $textSelect  = '';
+        foreach ($this->preset['globalBadges'] as $key => $badge) {
+            if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+                $selected = $badge['layerName'] == $selectedBadge ? 'selected' : '';
+                $textSelect .= '<option value="' . $badge['layerName'] . '" ' . $selected . '>' . $badge['layerName'] . '</option>';
+            }
+        }
+
+        return $textSelect;
+    }
+
+    function getCourseBadgeList() {
+        global $CFG;
+        $resultHtml = '';
+
+        foreach ($this->preset['coursesBadges'] as $key => $badge) {
+            if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $opacity = ($badge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) ? "0.5" : "1";
+                $resultHtml .=
+                '<li style="opacity:' . $opacity . '">
+                    <figure>
+                        <img src="' . $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/badges/pix/' . $badge['iconId'] . '.png" title="' . $badge['badgeName'] . '"/>
+                        <figcaption>' . $badge['badgeName'] . '</figcaption>
+                    </figure>
+                </li>';
+            }
+        }
+
+        return $resultHtml;
+    }
+
+    function getJustAchievedBadgeList() {
+        global $CFG;
+        $resultHtml = '';
+
+        foreach ($this->preset['coursesBadges'] as $key => $badge) {
+            if ($badge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+                $resultHtml .=
+                '<li>
+                    <figure>
+                        <img src="' . $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/badges/pix/' . $badge['iconId'] . '.png" title="' . $badge['badgeName'] . '"/>
+                        <figcaption>' . $badge['badgeName'] . '</figcaption>
+                    </figure>
+                </li>';
+            }
+        }
+
+        return $resultHtml;
+    }
+
+    function getJustAchievedBadgesSelect($selectedBadge){
+        $textSelect  = '';
+        foreach ($this->preset['coursesBadges'] as $key => $badge) {
+            if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+                $selected = $badge['badgeName'] == $selectedBadge ? 'selected' : '';
+                $textSelect .= '<option value="' . $badge['badgeName'] . '" ' . $selected . '>' . $badge['badgeName'] . '</option>';
+            }
+        }
+
+        return $textSelect;
+    }
+
+    function isNewBadge() {
+        return optional_param('badge', '', PARAM_TEXT) !== '';
+    }
+
+    function getSVGImage(){
+        $fileIndex = count($this->preset['globalBadges']) - 1;
+        return $this->image_url('LudiMoodle_pyramide_' . str_pad($fileIndex, 2, 0, STR_PAD_LEFT) . '.svg');
+    }
+
     public function get_content() {
         global $CFG;
 
         $output  = '<div id="badges-container">';
 
         // Div block for course goals selected between the achieved and not achieved (opacity:0.3)
-        $output .=
-            '<div>
-                <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Course Goals achieved and not</h4>
-                <ul id="course-badge">';
-        foreach ($this->preset['coursesGoals'] as $key => $courseBadge) {
-            $opacity = ($courseBadge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) ? "0.3" : "1";
-            $output .=
-                '<li style="opacity:' . $opacity . '">
-                    <figure>
-                        <img src="' . $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/badges/pix/' . $courseBadge['iconId'] . '.png " title="' . $courseBadge['badgeName'] . '"/>
-                        <figcaption>' . $courseBadge['badgeName'] . '</figcaption>
-                    </figure>
-                </li>';
-        }
-        $output .=
-            '   </ul>
-            </div>';
+        $output .= '<div style="margin-bottom:15px;border:1px solid">
+                    <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Course Goals</h4>
+                        <ul id="course-badge">'
+                            . $this->getCourseBadgeList() .
+                        '</ul>
+                    </div>';
 
-        // Div block for course goals that have just been achieved
-        $output .=
-            '<div>
-                <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Course Goals just achieved</h4>
-                <ul id="course-badge">';
-        foreach ($this->preset['coursesGoals'] as $key => $courseBadge) {
-            if ($courseBadge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED) {
-                $output .=
-                '<li>
-                    <figure>
-                        <img src="' . $CFG->wwwroot . '/blocks/ludic_motivators/classes/motivators/badges/pix/' . $courseBadge['iconId'] . '.png " title="' . $courseBadge['badgeName'] . '"/>
-                        <figcaption>' . $courseBadge['badgeName'] . '</figcaption>
-                    </figure>
-                </li>';
-            }
-        }
-        $output .=
-            '   </ul>
-            </div>';
+        // Div block showing the bonus selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="badges_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="badges">
+                            <select name="badge" onChange="document.getElementById(\'badges_form\').submit()">
+                                <option value="" selected>Badges à gagner</option>'
+                                . $this->getJustAchievedBadgesSelect(optional_param('badge', '', PARAM_TEXT)) .
+                            '</select>
+                        </form>
+                    </div>';
 
-        // Div block displaying an SVG image representing the global goals with layers that
+        // Div block for course badges that have just been achieved
+        if ($this->isNewBadge()) {
+        $output .= '<div style="margin-bottom:15px;border:1px solid">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
+                        <ul id="new-badge">'
+                            . $this->getJustAchievedBadgeList() .
+                        '</ul>
+                    </div>';
+        }
+
+        // Div block showing the global badges selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="globalBadges_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="badges">
+                            <select name="globalBadge" onChange="document.getElementById(\'globalBadges_form\').submit()">
+                                <option value="" selected>Badges globaux à gagner</option>'
+                                . $this->getGlobalBadgesSelect(optional_param('globalBadge', '', PARAM_TEXT)) .
+                            '</select>
+                        </form>
+                    </div>';
+
+        // Div block displaying an SVG image representing the global badges with layers that
         // can be displayed to represent the goals that have been achieved
-        $output .=
-            '<div>
-                <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Global Goals</h4>
-                <div id="avatar-container">';
-        $output .=
-                '   <img src="'.$this->image_url('puzzle.svg').'" width="180px" height="180px" class="avatar svg"/>
-                </div>';
-        $output .=
-            '</div>';
+        $output  .= '<div id="avatar-div" style="margin-bottom:15px;border:1px solid">
+                        <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Avatar</h4>
+                        <div id="avatar-container">
+                            <img src="' . $this->getSVGImage() . '"width="180px" height="180px" class="avatar svg" id="avatar-picture"/>
+                        </div>
+                    </div>';
 
         return $output;
     }
@@ -141,11 +248,14 @@ class badges extends iMotivator {
 
     public function getJsParams() {
         $datas = $this->context->store->get_datas();
-        $params = array('revealed_pieces' => array());
+        $params = array('previously_obtained' => array());
 
-        foreach ($this->preset['globalsGoals'] as $key => $value) {
+        foreach ($this->preset['globalBadges'] as $key => $value) {
             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                $params['revealed_pieces'][] = $value['layerName'];
+                $params['previously_obtained'][] = $value['layerName'];
+            }
+            if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+                $params['not_obtained'][] = $value['layerName'];
             }
         }
 
