@@ -58,10 +58,11 @@ class score extends iMotivator {
                 'session2Objectives' => 1
             ]
         );
+
         // Updating bonus array in the preset array when a bonus is selected
-        if (($bonus = optional_param('bonus', '', PARAM_TEXT)) !== '') {
-            foreach ($preset['bonuses'] as $key => $layer) {
-                if ($layer['nameOfBonus'] === $bonus) {
+        if (($newBonus = optional_param('bonus', '', PARAM_TEXT)) !== '') {
+            foreach ($preset['bonuses'] as $key => $bonus) {
+                if ($bonus['nameOfBonus'] === $newBonus) {
                     $preset['bonuses'][$key]['stateOfBonus'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
                 }
 
@@ -74,6 +75,7 @@ class score extends iMotivator {
             $preset['previousTotalScore'] = $preset['newTotalScore'];
             $preset['newTotalScore'] = $newScore;
         }
+
         parent::__construct($context, $preset);
     }
 
@@ -93,13 +95,13 @@ class score extends iMotivator {
         return $resultHtml;
     }
 
-    function getBonusSelect($selectedLayer){
+    function getBonusSelect($selectedBonus){
 
         $textSelect  = '';
-        foreach ($this->preset['bonuses'] as $key => $layer) {
-            if ($layer['stateOfBonus'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                $selected = $layer['nameOfBonus'] == $selectedLayer ? 'selected' : '';
-                $textSelect .= '<option value="' . $layer['nameOfBonus'] . '" ' . $selected . '>' . $layer['nameOfBonus'] . '</option>';
+        foreach ($this->preset['bonuses'] as $key => $bonus) {
+            if ($bonus['stateOfBonus'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+                $selected = $bonus['nameOfBonus'] == $selectedBonus ? 'selected' : '';
+                $textSelect .= '<option value="' . $bonus['nameOfBonus'] . '" ' . $selected . '>' . $bonus['nameOfBonus'] . '</option>';
             }
         }
 
