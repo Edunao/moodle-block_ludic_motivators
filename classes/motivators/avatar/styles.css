@@ -22,6 +22,10 @@
     margin : auto;
 }
 
+#avatar-div, #element-div {
+    display: none;
+}
+
 #avatar-picture [id^=calque]:not(#calque01) {
     visibility: hidden;
 }

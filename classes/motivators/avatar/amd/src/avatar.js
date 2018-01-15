@@ -21,6 +21,8 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 layer.css('visibility', 'visible');
             });
 
+            $('#avatar-div').css('display', 'block')
+
             // Set visible the layer (items) that are newly obtained
             $.each(this.newly_obtained, function( index, value ) {
                 console.log(value);
@@ -28,6 +30,8 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 console.log(layer);
                 layer.css('visibility', 'visible');
             });
+
+            $('#element-div').css('display', 'block')
         },
 
         /*

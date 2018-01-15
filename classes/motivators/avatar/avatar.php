@@ -157,7 +157,7 @@ class avatar extends iMotivator {
 
     public function get_content() {
         // Div block showing the image with all of the layers for previously achieved goals unmasked
-        $output  = '<div style="margin-bottom:15px;border:1px solid">
+        $output  = '<div id="avatar-div" style="margin-bottom:15px;border:1px solid">
                         <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Avatar</h4>
                         <div id="avatar-container">
                             <img src="' . $this->image_url('LudiMoodle_avatar.svg') . '"width="180px" height="180px" class="avatar svg" id="avatar-picture"/>
@@ -176,7 +176,7 @@ class avatar extends iMotivator {
         // Div block that appears when there are goals that have just been achieved displaying
         // only the layers for the goals that have been newly achieved
         if (optional_param('element', '', PARAM_TEXT) !== '') {
-            $output .= '<div style="border:1px solid">
+            $output .= '<div id="element-div" style="border:1px solid">
                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo</h4>
                             <div id="element-container">
                                 <img src="' . $this->image_url('LudiMoodle_avatar.svg') . '" width="180px" height="180px" class="avatar svg" id="element-picture"/>
