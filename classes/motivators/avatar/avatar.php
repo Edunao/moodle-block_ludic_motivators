@@ -167,6 +167,7 @@ class avatar extends iMotivator {
         // Div block showing the element selector for the purpose of test
         $output .= '<div style="margin-bottom:15px;">
                         <form id="element_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="avatar">
                             <select name="element" onChange="document.getElementById(\'element_form\').submit()">' . $this->getElementSelect(optional_param('element', 'calque01', PARAM_TEXT)) .
                             '</select>
                         </form>
