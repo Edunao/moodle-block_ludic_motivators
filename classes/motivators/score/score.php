@@ -29,13 +29,13 @@ class score extends iMotivator {
 
     public function __construct($context) {
         $preset = array(
-            'previousTotalScore' => 10,
-            'newTotalScore' => 15,
+            'previousTotalScore' => 0,
+            'newTotalScore' => 0,
             'bonuses' => [
                 [
                     'nameOfBonus' => 'répondu correctement après 3 tentatives',
                     'valueOfBonus' => '3',
-                    'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED,
+                    'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'nameOfBonus' => 'terminé le quiz',
@@ -44,7 +44,7 @@ class score extends iMotivator {
                 ],
                 [
                     'nameOfBonus' => 'répondu à une question en moins de 20 secondes',
-                    'valueOfBonus' => '3',
+                    'valueOfBonus' => '5',
                     'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
@@ -58,6 +58,22 @@ class score extends iMotivator {
                 'session2Objectives' => 1
             ]
         );
+        // Updating bonus array in the preset array when a bonus is selected
+        if (($bonus = optional_param('bonus', '', PARAM_TEXT)) !== '') {
+            foreach ($preset['bonuses'] as $key => $layer) {
+                if ($layer['nameOfBonus'] === $bonus) {
+                    $preset['bonuses'][$key]['stateOfBonus'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+                }
+
+            }
+        }
+
+        // Updating points array in the preset array when new points is selected
+
+        if (($newScore = optional_param('newScore', '', PARAM_TEXT)) !== '') {
+            $preset['previousTotalScore'] = $preset['newTotalScore'];
+            $preset['newTotalScore'] = $newScore;
+        }
         parent::__construct($context, $preset);
     }
 
@@ -70,11 +86,35 @@ class score extends iMotivator {
         $resultHtml = '';
         foreach ($this->preset['bonuses'] as $key => $bonus) {
             if ($bonus['stateOfBonus'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-                $resultHtml .= '<li><label><b>' . $bonus['valueOfBonus'] . ' points</b></label></li>';
+                $resultHtml .= '<li><b>' . $bonus['valueOfBonus'] . ' points</b></li>';
             }
         }
 
         return $resultHtml;
+    }
+
+    function getBonusSelect($selectedLayer){
+
+        $textSelect  = '';
+        foreach ($this->preset['bonuses'] as $key => $layer) {
+            if ($layer['stateOfBonus'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+                $selected = $layer['nameOfBonus'] == $selectedLayer ? 'selected' : '';
+                $textSelect .= '<option value="' . $layer['nameOfBonus'] . '" ' . $selected . '>' . $layer['nameOfBonus'] . '</option>';
+            }
+        }
+
+        return $textSelect;
+    }
+
+    function getPreviousScore() {
+        return $this->preset['previousTotalScore'];
+    }
+
+    function getNewScore() {
+        return $this->preset['newTotalScore'];
+    }
+    function isNewBonus() {
+        return optional_param('bonus', '', PARAM_TEXT) !== '';
     }
 
     public function get_content() {
@@ -89,6 +129,23 @@ class score extends iMotivator {
                         </div>
                     </div>';
 
+        // Div block showing the points to win (or lose) selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="score_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="score">
+                            <input id="previousScore" name="previousScore" type="hidden" value='. $this->getPreviousScore() .'>
+                            <select name="newScore" onChange="document.getElementById(\'score_form\').submit()">
+                                <option value="" selected>Points à gagner</option>
+                                <option value=' . ($this->getPreviousScore()+1) . '>+1 points</option>
+                                <option value=' . ($this->getPreviousScore()+2) . '>+2 points</option>
+                                <option value=' . ($this->getPreviousScore()+3) . '>+3 points</option>
+                                <option value=' . ($this->getPreviousScore()+4) . '>+4 points</option>
+                                <option value=' . ($this->getPreviousScore()+5) . '>+5 points</option>
+                                <option value=' . ($this->getPreviousScore()+6) . '>+6 points</option>
+                            </select>
+                        </form>
+                    </div>';
+
         // Div block that appears only if the score progresses containing the number of
         // new points obtained from the last quiz
         if ($this->preset['newTotalScore'] > $this->preset['previousTotalScore']) {
@@ -97,17 +154,26 @@ class score extends iMotivator {
                             <div>
                                 <ul id="bonus">
                                     <li>
-                                        <label><b>'
-                                            . ($this->preset['newTotalScore']-$this->preset['previousTotalScore']) . ' points en plus' .
-                                        '</b></label>
+                                        <b>'. ($this->getNewScore()-$this->getPreviousScore()) . ' points </b>
                                     </li>
                                 </ul>
                             </div>
                         </div>';
         }
 
+        // Div block showing the bonus selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="bonus_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="score">
+                            <select name="bonus" onChange="document.getElementById(\'bonus_form\').submit()">
+                                <option value="" selected>Bonus à gagner</option>'
+                                . $this->getBonusSelect(optional_param('bonus', 'calque01', PARAM_TEXT)) .
+                            '</select>
+                        </form>
+                    </div>';
+
         // Div block that appears only on any bonuses obtained with the last quiz
-        if ($this->preset['newTotalScore'] > $this->preset['previousTotalScore']) {
+        if ($this->isNewBonus()) {
             $output .= '<div id="score-container" style="border:1px solid">
                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bonus</h4>
                             <div>
@@ -116,7 +182,6 @@ class score extends iMotivator {
                                 '</ul>
                             </div>
                         </div>';
-
         }
 
         return $output;
@@ -125,7 +190,7 @@ class score extends iMotivator {
     public function getJsParams() {
         //$datas = $this->context->store->get_datas();
         $params = array(
-            'previous_score' => $this->preset['previousTotalScore'],
+            'previous_score' => $this->getPreviousScore(),
             'new_score' => $this->preset['newTotalScore'],
         );
 
