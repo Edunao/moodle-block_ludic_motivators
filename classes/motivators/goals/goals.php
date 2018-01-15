@@ -33,7 +33,7 @@ class goals extends iMotivator {
                 [
                     'title' => 'Répondre à 3 questions',
                     'percentToPass' => '70',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'title' => 'Terminer un quiz',
@@ -74,6 +74,17 @@ class goals extends iMotivator {
                 ],
             ]
         );
+
+        // Updating objectivs array in the preset array when a goals is selected
+        if (($bonus = optional_param('goals', '', PARAM_TEXT)) !== '') {
+            foreach ($preset['objectives'] as $key => $layer) {
+                if ($layer['title'] === $bonus) {
+                    $preset['objectives'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+                }
+
+            }
+        }
+
         parent::__construct($context, $preset);
     }
 
@@ -95,13 +106,12 @@ class goals extends iMotivator {
     function getPreviouslyAchievedGoals() {
         $textHtml = '';
         foreach ($this->preset['objectives'] as $key => $objective) {
-            if ($objective['achievement'] != $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED){
+            if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED){
                 $textHtml .= '<li>' . $objective['title'] . '</li>';
             }
         }
 
         return $textHtml;
-
     }
 
     function getJustAchievedGoals() {
@@ -115,6 +125,19 @@ class goals extends iMotivator {
         return $textHtml;
     }
 
+    function getGoalsSelect($selectedLayer){
+
+        $textSelect  = '';
+        foreach ($this->preset['objectives'] as $key => $layer) {
+            if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+                $selected = $layer['title'] == $selectedLayer ? 'selected' : '';
+                $textSelect .= '<option value="' . $layer['title'] . '" ' . $selected . '>' . $layer['title'] . '</option>';
+            }
+        }
+
+        return $textSelect;
+    }
+
     public function get_content() {
 
         // Div block listing all goals with checkboxes next to those that have been achieved
@@ -125,6 +148,17 @@ class goals extends iMotivator {
                             . $this->getPreviouslyAchievedGoals() .
                             '</ul>
                         </div>
+                    </div>';
+
+        // Div block showing the goals selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="goals_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="goals">
+                            <select name="goals" onChange="document.getElementById(\'goals_form\').submit()">
+                                <option value="" selected>Objectifs à atteindre</option>'
+                                . $this->getGoalsSelect(optional_param('goals', '', PARAM_TEXT)) .
+                            '</select>
+                        </form>
                     </div>';
 
         // Div block that appears when there are goals that have just been achieved listing these goals
