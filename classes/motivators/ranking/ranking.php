@@ -31,26 +31,50 @@ class ranking extends iMotivator {
         $preset = array(
             'maxScore' => 20,
             'userScore' => 0,
-            'classAverage' => 15,
+            'classAverage' => 11,
             'bestScore' => 20,
             'userRank' => 3,
             'numberOfCorrectAnswer' => 4,
             'numberOfQuestions' => 5,
-            'courseAchievements' => [
-                "runOfFiveGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                "tenOfTenGoodAnswers" => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
-            ],
-            'globalAchievements' => [
-                'session1Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-                'session2Objectives' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED
-            ]
+            'otherScores' => [12, 18, 16, 15, 3, 8, 14, 18, 13, 15],
         );
+
+        // Updating preset array when a user score is selected
+        if (($userScore = optional_param('userScore', '', PARAM_TEXT)) !== '') {
+            $scores = $preset['otherScores'];
+            array_push($scores, $userScore);
+            $preset['bestScore'] = max($scores);
+            $preset['classAverage'] = number_format(array_sum($scores) / count($scores), 2);
+            $preset['userScore'] = $userScore;
+        }
+
         parent::__construct($context, $preset);
     }
+
 
     public function getTitle() {
 
         return 'Mon ranking';
+    }
+
+    function getUserScore() {
+        return $this->preset['userScore'];
+    }
+
+    function getClassAverage() {
+        return $this->preset['classAverage'];
+    }
+
+    function getBestScore() {
+        return $this->preset['bestScore'];
+    }
+
+    function isFirstRank() {
+        if ($this->preset['userScore'] >= $this->preset['bestScore']) {
+            return true;
+        }
+
+        return false;
     }
 
     public function get_content() {
@@ -58,12 +82,31 @@ class ranking extends iMotivator {
 
         $output  = '<div id="ranking-container">';
 
+        // Div block selecting the points to win selector for the purpose of test
+        $output .= '<div style="margin-bottom:15px;">
+                        <form id="ranking_form" method="POST">
+                            <input id="motivator" name="motivator" type="hidden" value="ranking">
+                            <select name="userScore" onChange="document.getElementById(\'ranking_form\').submit()">
+                                <option value="" selected>Note à obtenir</option>
+                                <option value="5">5</option>
+                                <option value="8">8</option>
+                                <option value="10">10</option>
+                                <option value="12">12</option>
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18">18</option>
+                                <option value="20">20</option>
+                            </select>
+                        </form>
+                    </div>';
+
         // Passing to the iFrame the user's score, the class average and the best score
-        $output .= '<script type="text/javascript">' . PHP_EOL;
-        $output .= 'var userScore = ' . $this->preset['userScore'] . ';' . PHP_EOL;
-        $output .= 'var classAverage = ' . $this->preset['classAverage'] . ';' . PHP_EOL;
-        $output .= 'var bestScore = ' . $this->preset['bestScore'] . ';' . PHP_EOL;
-        $output .= '</script>';
+        $output .= '<script type="text/javascript">
+                        var userScore = ' . $this->getUserScore() . ';
+                        var classAverage = ' . $this->getClassAverage() . ';
+                        var bestScore = ' . $this->getBestScore() . ';
+                        var isFirstRank = ' . var_export($this->isFirstRank(), true) . ';
+                    </script>';
 
         // Calling the iFrame file generating the bargraph showing the classe average,
         // the class best and the user's own level

@@ -22,10 +22,12 @@
  */
 
 require_once '../../../../../config.php';
+global $CFG;
 ?>
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="<?=$CFG->wwwroot?>/blocks/ludic_motivators/classes/motivators/ranking/styles.css">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
             google.charts.load('current', {'packages': ['gauge', 'corechart']});
@@ -54,7 +56,7 @@ require_once '../../../../../config.php';
                 var options = {
                     title: "Course Ranking",
                     width: 200,
-                    height: 300,
+                    height: 280,
                     bar: {groupWidth: "95%"},
                     legend: {position: "none"}
                 };
@@ -64,6 +66,18 @@ require_once '../../../../../config.php';
         </script>
     </head>
     <body>
-        <div id="bargraph_div" style="height: 300px;"></div>
+        <div class="bargraph" id="bargraph_div"></div>
+
+        <div id="ranking-bravo">
+            <h4 style="background-color:#6F5499;color:#CDBFE3;text-align:center;margin:20 0 0 0">Bravo !</h4>
+        </div>
+
     </body>
+
+    <script type="text/javascript">
+        console.log(parent.isFirstRank);
+        if (parent.isFirstRank) {
+            document.getElementById('ranking-bravo').style.display = 'block';
+        }
+    </script>
 </html>
