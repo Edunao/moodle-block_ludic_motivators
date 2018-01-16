@@ -29,40 +29,18 @@
     height : 180px;
 }
 
-[id^=Branche1_Etape] {
-    visibility: hidden;
-}
-
-#Branche1_Etape0 {
-    visibility: visible;
-}
-
-#avatar-picture {
-    display : none;
-    position:absolute;
-    top:0;
-    left:0;
-}
-
-#congratulation {
-    display : none;
-    font-weight : bold;
-    color : red;
-    text-align : center;
-    margin-top: 10px;
-}
-
-#avatar-container {
+#branch-container {
     position : relative;
-    overflow:auto;
+    overflow: auto;
     width : 180px;
-    height:180px;
+    height: 180px;
     margin : auto;
-    margin-top : 30px;
 }
 
-#next-piece {
-    display : block;
-    margin : auto;
-    margin-top : 3px;
+#branch-div {
+    display: none;
+}
+
+#branch-picture [id^=calque]:not(#calque00) {
+    visibility: hidden;
 }
