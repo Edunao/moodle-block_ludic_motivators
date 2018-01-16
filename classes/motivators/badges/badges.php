@@ -59,7 +59,7 @@ class badges extends iMotivator {
             'globalBadges' => [
                 [
                     'layerName' => 'calque00',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'layerName' => 'calque01',
@@ -67,6 +67,54 @@ class badges extends iMotivator {
                 ],
                 [
                     'layerName' => 'calque02',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque03',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque04',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque05',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque06',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque07',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque08',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque09',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque10',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque11',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque12',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque13',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                ],
+                [
+                    'layerName' => 'calque14',
                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
             ],
@@ -82,13 +130,14 @@ class badges extends iMotivator {
         }
 
         // Updating global badges array in the preset array when a badge is selected
-        if (($globalBadge = optional_param('globalBadge', '', PARAM_TEXT)) !== '') {
-            foreach ($preset['globalBadges'] as $key => $badge) {
-                if ($badge['layerName'] === $globalBadge) {
-                    $preset['coursesBadges'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
-                }
-            }
+        if (($globalBadge = optional_param('globalBadge', 0, PARAM_TEXT)) !== 0) {
+            $i = 1;
+            do {
+                $preset['globalBadges'][$i]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED;
+                $i++;
+            } while ($i <= $globalBadge);
         }
+
         parent::__construct($context, $preset);
     }
 
@@ -117,11 +166,11 @@ class badges extends iMotivator {
     }
 
     function getGlobalBadgesSelect($selectedBadge){
-        $textSelect  = '';
-        foreach ($this->preset['globalBadges'] as $key => $badge) {
-            if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                $selected = $badge['layerName'] == $selectedBadge ? 'selected' : '';
-                $textSelect .= '<option value="' . $badge['layerName'] . '" ' . $selected . '>' . $badge['layerName'] . '</option>';
+        $globalBadges = $this->preset['globalBadges'];
+        $textSelect  = '<option value="' . $selectedBadge . '" selected> Etape ' . $selectedBadge . '</option>';
+        foreach ($globalBadges as $key => $badge) {
+            if ($badge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+                $textSelect .= '<option value="' . $key . '""> Etape ' . $key . '</option>';
             }
         }
 
@@ -184,7 +233,9 @@ class badges extends iMotivator {
     }
 
     function getSVGImage(){
-        $fileIndex = count($this->preset['globalBadges']) - 1;
+        $fileIndex = optional_param('globalBadge', 0, PARAM_TEXT);
+        $fileIndex = $fileIndex == 14 ? $fileIndex : $fileIndex+1;
+
         return $this->image_url('LudiMoodle_pyramide_' . str_pad($fileIndex, 2, 0, STR_PAD_LEFT) . '.svg');
     }
 
@@ -227,8 +278,8 @@ class badges extends iMotivator {
                         <form id="globalBadges_form" method="POST">
                             <input id="motivator" name="motivator" type="hidden" value="badges">
                             <select name="globalBadge" onChange="document.getElementById(\'globalBadges_form\').submit()">
-                                <option value="" selected>Badges globaux à gagner</option>'
-                                . $this->getGlobalBadgesSelect(optional_param('globalBadge', '', PARAM_TEXT)) .
+                                <option value="0" selected>Badges globaux à gagner</option>'
+                                . $this->getGlobalBadgesSelect(optional_param('globalBadge', 0, PARAM_TEXT)) .
                             '</select>
                         </form>
                     </div>';

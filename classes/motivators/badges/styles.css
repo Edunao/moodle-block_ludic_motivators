@@ -85,7 +85,7 @@
 }
 
 #avatar-div {
-    /*display: none;*/
+    display: none;
 }
 
 #avatar-picture [id^=calque]:not(#calque01) {
