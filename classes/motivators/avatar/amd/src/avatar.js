@@ -16,7 +16,6 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             // Set visible the layer (items) that are previously and newly obtained
             $.each(this.obtained, function( index, value ) {
                 layer = $('#avatar-picture #'+value);
-                console.log(layer);
                 layer.css('visibility', 'visible');
             });
 
@@ -24,9 +23,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             // Set visible the layer (items) that are newly obtained
             $.each(this.newly_obtained, function( index, value ) {
-                console.log(value);
                 layer = $('#element-picture #'+value);
-                console.log(layer);
                 layer.css('visibility', 'visible');
             });
 
@@ -57,51 +54,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 });
             });
         },
-
-        display_next_piece: function () {
-            var rand = this.get_random_unrevealed_piece();
-
-            if (rand) {
-                this.reveal_piece(rand);
-            }
-            //image complete
-            if (this.unrevealed_pieces.length == 0) {
-                $('#next-piece').hide();
-                $('#congratulation').show();
-            }
-        },
-
-        reveal_piece : function(id) {
-            console.log('reveal layer', id);
-
-            if ($(id).length == 0) {
-                console.log('Layer not found : ' + id);
-            }
-            else {
-                $(id).css({visibility : 'visible'});
-
-                //add piece to revealed pieces
-                var index = this.revealed_pieces.indexOf(id);
-                if (index === -1) {
-                    this.revealed_pieces.push(id);
-                }
-
-                //remove piece from unrevealed pieces
-                var index = this.unrevealed_pieces.indexOf(id);
-                if (index !== -1) {
-                    this.unrevealed_pieces.splice(index, 1);
-                }
-            }
-        },
-
-        get_random_unrevealed_piece : function() {
-            var nb_pieces = this.unrevealed_pieces.length;
-            if (nb_pieces === 0) {
-                return false;
-            }
-            var random_index = Math.floor(Math.random() * nb_pieces);
-            return this.unrevealed_pieces[random_index];
-        }
     };
+
     return avatar;
 });
