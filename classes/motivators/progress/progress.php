@@ -217,8 +217,8 @@ class progress extends iMotivator {
     function getTreeOptionsSelect($selectedLayer){
         $textSelect  = '';
         foreach ($this->preset['branches'] as $key => $branch) {
-            if ($branch['courseId'] === $courseId) {echo $selectedLayer;
-                foreach ($branch['layers'] as $layerKey => $layer) {echo $layerKey;
+            if ($branch['courseId'] === $courseId) {
+                foreach ($branch['layers'] as $layerKey => $layer) {
                     if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
                         $selected = $layerKey == $selectedLayer ? 'selected' : '';
                         $textSelect .= '<option value="' . $layerKey . '" ' . $selected . '>Calque ' . $layerKey . '</option>';
@@ -259,8 +259,8 @@ class progress extends iMotivator {
         // The view within a course shows a tree branch as an SVG with 8 optional layers.
         // The progress value (0..8) determines which of the layers will be hidden and which revealed
         } else {
-            $courseId = $this->context->getCourseId();echo $courseId;
-            $branchParam = optional_param('branch', 0, PARAM_TEXT);//echo $branchParam;
+            $courseId = $this->context->getCourseId();
+            $branchParam = optional_param('branch', 0, PARAM_TEXT);
 
             // Div block showing the branch items selector for the purpose of test
             $output  = '<div style="margin-bottom:15px;">
