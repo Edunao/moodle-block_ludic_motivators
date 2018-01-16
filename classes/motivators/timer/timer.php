@@ -57,8 +57,8 @@ class timer extends iMotivator {
 
             // Passing to the iFrame the timestamps and the last attempts timing
             $output .= '<script type="text/javascript">' . PHP_EOL;
-            $output .= 'var timingAttempts = ' . json_encode($this->preset['timingAttempts']) . ';' . PHP_EOL;
-            $output .= 'var timestamp = ' . time() . ';' . PHP_EOL;
+            $output .= '    var timingAttempts = ' . json_encode($this->preset['timingAttempts']) . ';' . PHP_EOL;
+            $output .= '    var timestamp = ' . time() . ';' . PHP_EOL;
             $output .= '</script>';
 
             // Calling the iFrame file generating the gauge and the bargraph showing the classe average,

@@ -45,10 +45,9 @@ require_once '../../../../../config.php';
 
                 var options = {
                     width: 190, height: 190,
-                    redFrom: 3.2, redTo: 5,
-                    yellowFrom: 1.6, yellowTo: 3.2,
-                    minorTicks: 6, max:5,
-                    majorTicks : ['0','1','2','3','4','5']
+                    greenFrom: parent.timingAttempts[(parent.timingAttempts.length-1)], greenTo: 45,
+                    minorTicks: 5, max:45,
+                    majorTicks : ['0','5','10','15','20','25','30','35','40','45']
                 };
 
                 var chart = new google.visualization.Gauge(document.getElementById('timer_div'));
@@ -69,8 +68,8 @@ require_once '../../../../../config.php';
                     data.setFormattedValue(0, 1, timeFormatted);
                     chart.draw(data, options);
 
-                    // Stop the timer after more than 300 seconds (5 minutes)
-                    if (value >= 300) {
+                    // Stop the timer after more than 2700 seconds (45 minutes)
+                    if (value >= 2700) {
                         clearInterval(timerId);
                     }
 
