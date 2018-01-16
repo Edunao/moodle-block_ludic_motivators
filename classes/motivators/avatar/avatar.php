@@ -40,13 +40,13 @@ class avatar extends iMotivator {
             'layers' => [
                 [
                     'layerName' => 'calque00',
-                    'layerElement' => 'Panda',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                    'layerElement' => 'Panda net nu',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                 ],
                 [
                     'layerName' => 'calque01',
-                    'layerElement' => 'Panda1',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                    'layerElement' => 'Panda flou nu',
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                 ],
                 [
                     'layerName' => 'calque02',
@@ -143,7 +143,6 @@ class avatar extends iMotivator {
     }
 
     function getElementSelect($selectedLayer){
-
         $textSelect  = '';
         foreach ($this->preset['layers'] as $key => $layer) {
             if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
@@ -194,8 +193,8 @@ class avatar extends iMotivator {
         //$params['newly_obtained'][] = optional_param('element', 'avatar', PARAM_TEXT);
 
         foreach ($this->preset['layers'] as $key => $value) {
-            if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                $params['previously_obtained'][] = $value['layerName'];
+            if ($value['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+                $params['obtained'][] = $value['layerName'];
             }
             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED) {
                 $params['newly_obtained'][] = $value['layerName'];

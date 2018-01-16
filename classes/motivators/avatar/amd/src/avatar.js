@@ -7,17 +7,16 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
             this.params = params;
 
-            this.previously_obtained = this.params.previously_obtained;
+            this.obtained = this.params.obtained;
             this.newly_obtained = this.params.newly_obtained;
 
             // Convert SVG (<img>) in to raw SVG code (<svg>)
             this.convert_svg('img.svg.avatar');
 
-            //$('#avatar-picture').find('#calque05').css("visibility", "visible");
-
-            // Set visible the layer (items) that are previously obtained
-            $.each(this.previously_obtained, function( index, value ) {
+            // Set visible the layer (items) that are previously and newly obtained
+            $.each(this.obtained, function( index, value ) {
                 layer = $('#avatar-picture #'+value);
+                console.log(layer);
                 layer.css('visibility', 'visible');
             });
 

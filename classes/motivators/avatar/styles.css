@@ -26,11 +26,11 @@
     display: none;
 }
 
-#avatar-picture [id^=calque]:not(#calque01) {
+#avatar-picture [id^=calque]:not(#calque00) {
     visibility: hidden;
 }
 
-#element-picture [id^=calque] {
+#element-picture [id^=calque]:not(#calque01) {
     visibility: hidden;
 }
 
