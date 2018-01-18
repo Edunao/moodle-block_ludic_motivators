@@ -82,19 +82,19 @@ class progress extends iMotivator {
                         ],
                         [
                             'layerName' => 'calque01',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
                             'layerName' => 'calque02',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
                             'layerName' => 'calque03',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
                             'layerName' => 'calque04',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
                             'layerName' => 'calque05',
@@ -120,7 +120,7 @@ class progress extends iMotivator {
                     'layers' => [
                         [
                             'layerName' => 'calque00',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                     ]
                 ],
@@ -130,11 +130,11 @@ class progress extends iMotivator {
                     'layers' => [
                         [
                             'layerName' => 'calque00',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
                             'layerName' => 'calque01',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
                         ],
                         [
                             'layerName' => 'calque02',
@@ -204,7 +204,7 @@ class progress extends iMotivator {
 
         foreach ($layers as $key => $layer) {
             if ($layer['achievement'] === $state) {
-                $revealedLayers[] = $layer['layerName'];
+                $revealedLayers = $layer['layerName'];
             }
         }
 

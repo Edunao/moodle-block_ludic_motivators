@@ -13,7 +13,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             this.convert_svg('img.svg.avatar');
 
             // Set visible the layer (items) that are newly obtained
-            $.each(this.revealed_layers, function( branchId, arrayLayer ) {
+            /*$.each(this.revealed_layers, function( branchId, arrayLayer ) {
                 branchId = branchId+1;
                 if (arrayLayer.length == 0) {
                     console.log('branche vide');
@@ -24,6 +24,19 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                         console.log('layer=',layerSelector);
                         layerSelector.css('visibility', 'visible');
                     });
+                }
+            });*/
+
+            // Set visible only the layers (items) that are newly obtained
+            $.each(this.revealed_layers, function( branchId, layerName ) {
+                branchId = branchId+1;
+                if (layerName.length == 0) {
+                    console.log('branche vide');
+                    return true;
+                } else {
+                    layerSelector = $('#branch-picture'+branchId+' #'+layerName);
+                    console.log('layer=',layerSelector);
+                    layerSelector.css('visibility', 'visible');
                 }
             });
 
