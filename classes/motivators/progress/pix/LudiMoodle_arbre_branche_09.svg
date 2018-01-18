@@ -2,21 +2,21 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="340px" height="410px" viewBox="0 0 340 410" enable-background="new 0 0 340 410" xml:space="preserve">
+	 width="400px" height="400px" viewBox="0 0 400 400" enable-background="new 0 0 400 400" xml:space="preserve">
 <g id="calque00">
 	<g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.4893" stroke-linecap="round" stroke-miterlimit="10" d="M239.497,178.965
-			l-4.404-7.646c-0.568-0.869-0.326-2.035,0.547-2.605l0,0c0.869-0.568,2.037-0.324,2.604,0.546l5.237,7.1"/>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.6539" stroke-linecap="round" stroke-miterlimit="10" d="M291.35,214.085
+			l-8.429-4.173c-1.02-0.436-1.494-1.612-1.06-2.633l0,0c0.437-1.021,1.614-1.494,2.636-1.061l8.846,3.194"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M236.773,167.793c0,0-2.417-1.66-2.979-1.86c-0.452-0.162,0.687,2.76,1.286,3.734L236.773,167.793z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M282.322,205.791c0,0-3.125-0.042-3.743,0.113c-0.495,0.123,2.243,2.041,3.354,2.549L282.322,205.791z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M234.707,168.862l4.356,1.161c0,0-1.87-4.079-3.623-4.748C235.441,165.275,235.235,167.441,234.707,168.862z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M281.124,207.965l4.552-1.554c0,0-4.073-2.509-6.024-2.065C279.651,204.346,280.75,206.391,281.124,207.965z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M237.146,173.661c0,0-4.647-3.073-4.799-6.363l4.112,1.318L237.146,173.661z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M286.126,210.773c0,0-5.939,0.026-8.021-2.801l4.429-1.267L286.126,210.773z"/>
 		</g>
 	</g>
 </g>
@@ -24,31 +24,31 @@
 	<g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M223.023,162.417c1-0.717,1.104-1.64,3.66-1.271c2.555,0.367,1.155,1.961,2.838,2.202c-1.683-0.241-0.889,1.721-3.349,1.368
-				C223.71,164.362,223.857,163.315,223.023,162.417z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M266.947,209.164c0.463-1.227,0.011-2.104,2.492-3.293c2.484-1.189,2.188,1.053,3.821,0.271c-1.634,0.78,0.231,2.051-2.161,3.195
+				C268.709,210.484,268.22,209.466,266.947,209.164z"/>
 			<g>
-				<line fill="none" x1="229.521" y1="163.348" x2="224.485" y2="162.626"/>
+				<line fill="none" x1="273.261" y1="206.143" x2="268.367" y2="208.484"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						229.028,163.277 228.39,163.186 227.081,162.998 226.526,162.918 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.782,206.372 272.162,206.669 270.889,207.277 270.35,207.535 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="224.979" y1="162.696" x2="225.048" y2="162.707"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="268.846" y1="208.255" x2="268.913" y2="208.223"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.4893" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-15.4-22.646c-0.569-0.87-1.736-1.114-2.606-0.545l0,0c-0.871,0.57-1.115,1.734-0.545,2.606l14.567,23.19"/>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.6539" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-27.063-10.96c-1.02-0.435-2.198,0.038-2.635,1.059l0,0c-0.435,1.021,0.04,2.199,1.061,2.635l26.645,11.938"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M224.176,153.838c0,0-0.552-2.88-0.509-3.476c0.03-0.479,2.251,1.736,2.902,2.676L224.176,153.838z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.891,200.875c0,0-2.191-2.227-2.508-2.78c-0.257-0.441,3.022,0.208,4.159,0.654L262.891,200.875z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.984,152.374l-0.683,4.457c0,0-2.988-3.349-2.898-5.225C222.403,151.606,224.47,152.286,225.984,152.374z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M263.628,198.505l2.032,4.358c0,0-4.633-1.201-5.664-2.916C259.996,199.948,262.233,199.326,263.628,198.505z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M229.401,156.532c0,0-0.95-5.49-3.904-6.948l-0.441,4.298L229.401,156.532z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M269.119,200.171c0,0-4.094-4.305-7.575-3.851l2.152,4.073L269.119,200.171z"/>
 		</g>
 	</g>
 </g>
@@ -56,1025 +56,1053 @@
 	<g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.809,159.936c2.178-1.558,2.402-3.567,7.979-2.77c5.572,0.8,2.521,4.274,6.189,4.801c-3.668-0.526-1.938,3.752-7.307,2.982
-				C216.302,164.181,216.629,161.896,214.809,159.936z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.058,216.503c0.171-2.851-1.341-4.386,3.063-8.47c4.4-4.081,5.233,0.779,8.131-1.907c-2.896,2.687,1.81,4.123-2.433,8.056
+				C266.581,218.111,264.904,216.311,262.058,216.503z"/>
 			<g>
-				<line fill="none" x1="228.978" y1="161.967" x2="217.995" y2="160.395"/>
+				<line fill="none" x1="273.25" y1="206.126" x2="264.577" y2="214.169"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.484,161.896 227.846,161.805 220.591,160.766 220.036,160.687 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.861,206.486 272.356,206.955 266.627,212.27 266.188,212.675 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.488" y1="160.465" x2="218.558" y2="160.475"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="264.967" y1="213.809" x2="265.021" y2="213.758"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.056,144.242c0.76,0.938,1.669,0.984,1.461,3.51c-0.209,2.528-1.854,1.25-1.992,2.914c0.139-1.664-1.737-0.771-1.536-3.204
-				C225.188,145.027,226.226,145.113,227.056,144.242z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M267.879,192.806c1.132,0.613,2.046,0.287,2.874,2.859c0.827,2.574-1.313,1.988-0.771,3.684
+				c-0.544-1.695-2.025-0.047-2.823-2.526C266.362,194.345,267.418,194.004,267.879,192.806z"/>
 			<g>
-				<line fill="none" x1="226.524" y1="150.666" x2="226.92" y2="146.243"/>
+				<line fill="none" x1="269.983" y1="199.349" x2="268.565" y2="194.832"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.568,150.17 226.626,149.527 226.687,148.854 226.736,148.297 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						269.824,198.842 269.618,198.186 269.402,197.499 269.224,196.929 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="226.876" y1="146.739" x2="226.869" y2="146.809"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="268.725" y1="195.339" x2="268.747" y2="195.41"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.4893" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-20.084-29.808c-0.568-0.871-1.734-1.114-2.604-0.545l0,0c-0.872,0.569-1.115,1.735-0.546,2.604l19.25,30.354"/>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.6539" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-35.453-14.538c-1.021-0.436-2.199,0.038-2.637,1.059l0,0c-0.436,1.021,0.04,2.2,1.061,2.635l35.036,15.516"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M219.493,146.676c0,0-0.552-2.88-0.511-3.476c0.031-0.478,2.25,1.737,2.905,2.677L219.493,146.676z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M254.499,197.298c0,0-2.193-2.227-2.51-2.78c-0.256-0.442,3.024,0.207,4.158,0.656L254.499,197.298z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M221.301,145.212l-0.684,4.458c0,0-2.987-3.349-2.896-5.225C217.721,144.445,219.789,145.124,221.301,145.212z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M255.236,194.928l2.032,4.357c0,0-4.631-1.2-5.661-2.916C251.607,196.369,253.843,195.748,255.236,194.928z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M224.718,149.37c0,0-0.95-5.489-3.904-6.946l-0.44,4.296L224.718,149.37z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M260.728,196.594c0,0-4.094-4.306-7.575-3.851l2.152,4.071L260.728,196.594z"/>
 		</g>
 	</g>
 </g>
 <g id="calque03">
 	<g>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			226.566,144.059 227.43,152.718 225.894,150.366 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			268.145,193.131 271.537,200.229 269.757,199.473 		"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.806,159.936c2.181-1.558,2.407-3.568,7.981-2.77c5.572,0.8,2.521,4.274,6.189,4.801c-3.668-0.526-1.938,3.752-7.307,2.982
-				C216.302,164.181,216.629,161.896,214.806,159.936z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.083,216.337c0.188-2.851-1.313-4.396,3.116-8.448c4.43-4.053,5.229,0.813,8.145-1.854c-2.915,2.667,1.782,4.136-2.486,8.04
+				C266.592,217.979,264.931,216.161,262.083,216.337z"/>
 			<g>
-				<line fill="none" x1="228.978" y1="161.967" x2="217.836" y2="160.359"/>
+				<line fill="none" x1="273.344" y1="206.035" x2="264.617" y2="214.021"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.484,161.896 227.847,161.804 220.431,160.733 219.876,160.653 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.952,206.395 272.445,206.857 266.68,212.134 266.238,212.537 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.329" y1="160.431" x2="218.398" y2="160.44"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="265.009" y1="213.662" x2="265.063" y2="213.611"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.745,129.793c1.687,2.081,3.705,2.187,3.242,7.798c-0.463,5.612-4.115,2.776-4.422,6.468c0.307-3.691-3.86-1.71-3.415-7.114
-				C223.597,131.539,225.897,131.729,227.745,129.793z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M247.486,205.805c0.438-1.982-0.453-3.23,3.093-5.604c3.549-2.376,3.59,1.131,5.925-0.436c-2.335,1.566,0.808,3.099-2.606,5.384
+				C250.48,207.438,249.506,205.984,247.486,205.805z"/>
 			<g>
-				<line fill="none" x1="226.406" y1="144.024" x2="227.315" y2="132.969"/>
+				<line fill="none" x1="256.503" y1="199.765" x2="249.515" y2="204.445"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.447,143.528 226.5,142.886 227.101,135.582 227.146,135.023 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						256.062,200.061 255.49,200.443 251.837,202.891 251.341,203.223 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="227.274" y1="133.465" x2="227.269" y2="133.535"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="249.956" y1="204.15" x2="250.018" y2="204.109"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M210.146,147.294c1.132-1.086,1.096-2.268,4.388-2.272c3.295-0.005,1.819,2.264,3.986,2.261
-				c-2.167,0.003-0.809,2.334-3.979,2.339C211.367,149.626,211.366,148.274,210.146,147.294z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M261.631,181.714c-0.651,2.476-2.368,3.356,0.232,8.058c2.604,4.702,4.672,0.802,6.384,3.896
+				c-1.712-3.095,2.688-3.001,0.184-7.529C265.925,181.609,263.997,182.678,261.631,181.714z"/>
 			<g>
-				<line fill="none" x1="218.521" y1="147.282" x2="212.032" y2="147.289"/>
+				<line fill="none" x1="268.247" y1="193.668" x2="263.12" y2="184.406"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						218.022,147.283 217.378,147.283 214.654,147.286 214.094,147.287 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						267.99,193.203 267.657,192.602 264.474,186.852 264.185,186.329 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="212.53" y1="147.289" x2="212.601" y2="147.288"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="263.377" y1="184.871" x2="263.413" y2="184.936"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.6551" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-24.424-36.446c-0.57-0.871-1.736-1.114-2.607-0.545l0,0c-0.869,0.569-1.112,1.735-0.543,2.605l23.59,36.991"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M215.152,140.038c0,0-0.553-2.88-0.509-3.477c0.03-0.479,2.25,1.737,2.904,2.677L215.152,140.038z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M270.703,185.635c-1.304,0.76-2.387,0.413-3.262,3.456c-0.874,3.045,1.61,2.282,1.035,4.283c0.575-2.001,2.372-0.13,3.215-3.061
+				C272.536,187.382,271.287,187.021,270.703,185.635z"/>
+			<g>
+				<line fill="none" x1="268.478" y1="193.374" x2="270.202" y2="187.379"/>
+				<g>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						268.624,192.864 268.814,192.203 269.43,190.065 269.595,189.491 					"/>
+					
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="270.056" y1="187.889" x2="270.035" y2="187.961"/>
+				</g>
+			</g>
+		</g>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.8307" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-44.144-18.245c-1.021-0.433-2.198,0.041-2.636,1.063l0,0c-0.435,1.019,0.04,2.197,1.061,2.632l43.726,19.222"/>
+		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M216.961,138.572l-0.685,4.458c0,0-2.986-3.349-2.897-5.223C213.379,137.808,215.446,138.485,216.961,138.572z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M245.81,193.592c0,0-2.191-2.227-2.509-2.778c-0.256-0.442,3.024,0.206,4.16,0.652L245.81,193.592z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M220.378,142.731c0,0-0.951-5.489-3.906-6.948l-0.441,4.297L220.378,142.731z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M246.547,191.223l2.032,4.356c0,0-4.632-1.2-5.661-2.916C242.918,192.663,245.152,192.044,246.547,191.223z"/>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M252.038,192.888c0,0-4.093-4.307-7.574-3.849l2.149,4.069L252.038,192.888z"/>
 		</g>
 	</g>
 </g>
 <g id="calque04">
 	<g>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			226.566,144.059 227.43,152.718 225.894,150.366 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			240.046,207.667 259.678,200.004 256.923,198.829 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			206.188,145.67 221.188,150.051 219.649,147.698 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			268.145,193.131 271.537,200.229 269.757,199.473 		"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.806,159.936c2.181-1.558,2.405-3.567,7.98-2.769c5.573,0.799,2.522,4.273,6.19,4.8c-3.668-0.526-1.938,3.752-7.307,2.982
-				C216.302,164.181,216.629,161.896,214.806,159.936z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.083,216.337c0.188-2.851-1.313-4.396,3.114-8.448c4.432-4.052,5.23,0.813,8.146-1.854c-2.915,2.667,1.78,4.137-2.486,8.04
+				C266.592,217.979,264.931,216.161,262.083,216.337z"/>
 			<g>
-				<line fill="none" x1="228.978" y1="161.967" x2="217.836" y2="160.359"/>
+				<line fill="none" x1="273.344" y1="206.035" x2="264.617" y2="214.021"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.484,161.896 227.847,161.804 220.431,160.733 219.876,160.653 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.952,206.395 272.445,206.857 266.68,212.134 266.238,212.537 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.329" y1="160.431" x2="218.398" y2="160.44"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="265.009" y1="213.662" x2="265.063" y2="213.611"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.745,129.793c1.687,2.081,3.705,2.187,3.242,7.798c-0.463,5.612-4.115,2.776-4.422,6.468c0.307-3.691-3.86-1.71-3.415-7.114
-				C223.597,131.539,225.897,131.729,227.745,129.793z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M231.367,204.993c1.481-0.945,1.698-2.253,5.322-1.536c3.624,0.715,1.505,2.889,3.892,3.359
+				c-2.387-0.473-1.401,2.392-4.893,1.701C232.2,207.825,232.493,206.341,231.367,204.993z"/>
 			<g>
-				<line fill="none" x1="226.406" y1="144.024" x2="227.315" y2="132.969"/>
+				<line fill="none" x1="240.581" y1="206.816" x2="233.441" y2="205.402"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.447,143.528 226.5,142.886 227.101,135.582 227.146,135.023 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						240.061,206.713 239.386,206.58 236.184,205.945 235.598,205.83 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="227.274" y1="133.465" x2="227.269" y2="133.535"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="233.962" y1="205.506" x2="234.035" y2="205.521"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M200.646,139.724c1.473,0.03,2.23-0.777,4.421,1.404c2.189,2.184-0.295,2.709,1.146,4.146c-1.439-1.438-2.086,1.014-4.192-1.089
-				C199.911,142.082,200.804,141.185,200.646,139.724z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.198,217.277c0.695-3.148-0.72-5.127,4.91-8.898c5.627-3.77,5.695,1.795,9.398-0.686c-3.703,2.479,1.286,4.916-4.135,8.547
+				C230.949,219.872,229.404,217.563,226.198,217.277z"/>
 			<g>
-				<line fill="none" x1="206.212" y1="145.274" x2="201.899" y2="140.974"/>
+				<line fill="none" x1="240.507" y1="207.693" x2="229.418" y2="215.12"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						205.859,144.923 205.402,144.467 203.756,142.825 203.359,142.43 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						240.065,207.988 239.494,208.371 231.74,213.564 231.244,213.896 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="202.252" y1="141.325" x2="202.302" y2="141.375"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="229.859" y1="214.824" x2="229.921" y2="214.783"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M190.379,145.952c2.184-2.094,2.109-4.375,8.464-4.383c6.354-0.011,3.51,4.366,7.692,4.358c-4.184,0.008-1.561,4.506-7.679,4.515
-				C192.735,150.45,192.733,147.846,190.379,145.952z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M261.631,181.714c-0.651,2.474-2.368,3.356,0.232,8.058c2.604,4.702,4.672,0.802,6.384,3.896
+				c-1.712-3.095,2.688-3.002,0.184-7.529C265.925,181.609,263.997,182.678,261.631,181.714z"/>
 			<g>
-				<line fill="none" x1="206.535" y1="145.928" x2="194.016" y2="145.948"/>
+				<line fill="none" x1="268.247" y1="193.668" x2="263.12" y2="184.403"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						206.037,145.929 205.393,145.93 196.638,145.944 196.077,145.945 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						267.99,193.203 267.657,192.602 264.474,186.85 264.185,186.326 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="194.514" y1="145.947" x2="194.583" y2="145.947"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="263.377" y1="184.867" x2="263.413" y2="184.933"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M210.876,118.335c0.862,1.096,1.91,1.162,1.63,4.075c-0.277,2.913-2.156,1.413-2.34,3.331c0.184-1.918-1.993-0.916-1.726-3.721
-				C208.709,119.216,209.904,119.329,210.876,118.335z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M272.301,180.782c-2.208,1.288-4.044,0.698-5.529,5.864c-1.483,5.164,2.733,3.869,1.757,7.268
+				c0.978-3.398,4.025-0.221,5.455-5.193C275.413,183.747,273.295,183.137,272.301,180.782z"/>
 			<g>
-				<line fill="none" x1="210.166" y1="125.741" x2="210.717" y2="120.002"/>
+				<line fill="none" x1="268.528" y1="193.914" x2="271.454" y2="183.737"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						210.214,125.246 210.275,124.604 210.466,122.612 210.52,122.054 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						268.675,193.404 268.865,192.743 270.682,186.424 270.847,185.85 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="210.669" y1="120.498" x2="210.662" y2="120.567"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="271.308" y1="184.247" x2="271.287" y2="184.319"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.6551" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-35.337-53.14c-0.569-0.869-1.738-1.113-2.607-0.545l0,0c-0.871,0.569-1.113,1.736-0.545,2.605l34.505,53.685"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M204.238,123.345c0,0-0.551-2.879-0.51-3.477c0.031-0.477,2.253,1.738,2.906,2.678L204.238,123.345z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M231.947,176.598c1.559,0.508,2.629-0.111,4.258,2.919c1.626,3.032-1.188,2.792-0.116,4.787c-1.07-1.995-2.549,0.406-4.117-2.512
+				C230.403,178.872,231.646,178.205,231.947,176.598z"/>
+			<g>
+				<line fill="none" x1="236.088" y1="184.304" x2="232.879" y2="178.333"/>
+				<g>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.837,183.836 235.511,183.23 234.202,180.795 233.919,180.269 					"/>
+					
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="233.13" y1="178.801" x2="233.166" y2="178.866"/>
+				</g>
+			</g>
+		</g>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.8307" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-59.963-24.989c-1.021-0.436-2.2,0.04-2.636,1.06l0,0c-0.435,1.021,0.04,2.199,1.061,2.634l59.545,25.967"/>
+		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M206.047,121.88l-0.685,4.457c0,0-2.986-3.348-2.898-5.222C202.464,121.115,204.533,121.794,206.047,121.88z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M229.99,186.847c0,0-2.194-2.227-2.51-2.78c-0.256-0.441,3.023,0.208,4.158,0.654L229.99,186.847z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M209.464,126.039c0,0-0.951-5.489-3.906-6.948l-0.438,4.298L209.464,126.039z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M230.727,184.478l2.032,4.357c0,0-4.631-1.199-5.661-2.917C227.098,185.918,229.333,185.298,230.727,184.478z"/>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.219,186.143c0,0-4.093-4.306-7.575-3.849l2.15,4.071L236.219,186.143z"/>
 		</g>
 		<g>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.347,143.469c-0.199,0.396,0.279,1.144,0.698,1.663c0.757,0.938,2.535,1.481,3.166,0.231
-				c0.638-1.257-0.854-2.373-2.052-2.432C228.491,142.902,227.549,143.068,227.347,143.469z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M241.006,208.645c0.059,0.473,0.927,0.852,1.604,1.063c1.226,0.381,3.124-0.188,2.944-1.67c-0.181-1.492-2.161-1.601-3.261-0.94
+				C241.686,207.465,240.95,208.17,241.006,208.645z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.23,143.468c-0.245-0.374-1.132-0.334-1.792-0.229c-1.188,0.188-2.548,1.454-1.781,2.628
-				c0.771,1.178,2.482,0.446,3.132-0.563C227.149,144.74,227.476,143.843,227.23,143.468z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M240.902,208.715c-0.438-0.188-1.198,0.372-1.723,0.855c-0.944,0.869-1.4,2.799-0.026,3.387c1.382,0.588,2.468-1.074,2.444-2.355
+				C241.585,209.889,241.341,208.9,240.902,208.715z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.285,143.37c0.445-0.024,0.853-0.813,1.093-1.437c0.433-1.124,0.016-2.936-1.385-2.857c-1.404,0.077-1.626,1.925-1.078,2.993
-				C226.224,142.663,226.837,143.395,227.285,143.37z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M240.894,208.594c0.38-0.285,0.275-1.226,0.117-1.92c-0.28-1.251-1.724-2.611-2.918-1.714c-1.2,0.899-0.302,2.67,0.816,3.291
+				C239.533,208.596,240.512,208.882,240.894,208.594z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.435,143.377c0.243,0.372,1.131,0.331,1.789,0.227c1.188-0.187,2.551-1.454,1.783-2.627
-				c-0.771-1.178-2.482-0.445-3.133,0.563C227.517,142.103,227.188,143.001,227.435,143.377z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M241.029,208.514c0.438,0.186,1.199-0.377,1.723-0.861c0.942-0.866,1.398-2.795,0.024-3.383c-1.38-0.588-2.466,1.074-2.442,2.354
+				C240.348,207.334,240.588,208.325,241.029,208.514z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.371,143.474c-0.444,0.025-0.853,0.813-1.092,1.438c-0.436,1.122-0.016,2.934,1.386,2.856
-				c1.403-0.077,1.625-1.925,1.076-2.993C228.434,144.181,227.819,143.448,227.371,143.474z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M241.031,208.637c-0.379,0.282-0.272,1.225-0.116,1.92c0.279,1.252,1.724,2.61,2.918,1.715c1.201-0.903,0.304-2.672-0.816-3.291
+				C242.393,208.635,241.414,208.348,241.031,208.637z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.322,143.358c0.202-0.397-0.276-1.145-0.698-1.664c-0.756-0.936-2.532-1.48-3.165-0.229
-				c-0.635,1.256,0.854,2.372,2.053,2.429C226.18,143.925,227.121,143.759,227.322,143.358z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M240.921,208.563c-0.06-0.472-0.925-0.851-1.605-1.063c-1.225-0.383-3.124,0.188-2.943,1.671
+				c0.181,1.488,2.161,1.597,3.261,0.937C240.242,209.741,240.977,209.037,240.921,208.563z"/>
 			
-				<circle fill="#F9D53E" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="227.435" cy="143.376" r="0.926"/>
+				<circle fill="#F9D53E" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="241.029" cy="208.513" r="0.987"/>
 		</g>
 	</g>
 </g>
 <g id="calque05">
 	<g>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			226.566,144.059 227.43,152.718 225.894,150.366 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.8493" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			234.772,176.254 239.141,186.882 236.385,185.707 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			212.146,120.976 211.356,128.132 209.818,125.78 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			240.046,207.667 259.678,200.004 256.923,198.829 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			206.188,145.67 221.188,150.051 219.649,147.698 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			268.145,193.131 271.537,200.229 269.757,199.473 		"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.806,159.936c2.181-1.558,2.407-3.568,7.981-2.77c5.572,0.8,2.521,4.274,6.189,4.801c-3.668-0.526-1.938,3.752-7.307,2.982
-				C216.302,164.181,216.631,161.895,214.806,159.936z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.083,216.337c0.188-2.851-1.313-4.396,3.114-8.448c4.432-4.052,5.23,0.813,8.146-1.852c-2.915,2.665,1.78,4.135-2.486,8.039
+				C266.592,217.979,264.931,216.161,262.083,216.337z"/>
 			<g>
-				<line fill="none" x1="228.978" y1="161.967" x2="217.836" y2="160.359"/>
+				<line fill="none" x1="273.344" y1="206.037" x2="264.617" y2="214.021"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.484,161.896 227.847,161.804 220.431,160.733 219.876,160.653 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.952,206.396 272.444,206.859 266.68,212.134 266.238,212.537 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.329" y1="160.431" x2="218.398" y2="160.44"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="265.009" y1="213.662" x2="265.063" y2="213.611"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.745,129.793c1.687,2.081,3.705,2.187,3.242,7.798c-0.463,5.612-4.115,2.776-4.422,6.468c0.307-3.691-3.859-1.71-3.415-7.114
-				C223.597,131.539,225.897,131.729,227.745,129.793z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M223.209,204.105c2.719-1.733,3.118-4.133,9.764-2.818c6.646,1.314,2.759,5.297,7.132,6.16c-4.373-0.863-2.567,4.387-8.968,3.119
+				C224.736,209.303,225.274,206.578,223.209,204.105z"/>
 			<g>
-				<line fill="none" x1="226.406" y1="144.024" x2="227.318" y2="132.97"/>
+				<line fill="none" x1="240.104" y1="207.447" x2="227.011" y2="204.859"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.447,143.528 226.5,142.886 227.103,135.583 227.148,135.024 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						239.584,207.346 238.909,207.212 229.753,205.402 229.167,205.286 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="227.277" y1="133.466" x2="227.271" y2="133.535"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="227.531" y1="204.963" x2="227.604" y2="204.979"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.909,134.12c3.022,0.064,4.584-1.6,9.084,2.887c4.498,4.488-0.607,5.57,2.354,8.522c-2.961-2.952-4.287,2.082-8.619-2.239
-				C193.394,138.97,195.233,137.123,194.909,134.12z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.198,217.277c0.694-3.148-0.72-5.127,4.908-8.898c5.629-3.77,5.697,1.795,9.4-0.686c-3.703,2.479,1.286,4.916-4.135,8.547
+				C230.949,219.872,229.404,217.563,226.198,217.277z"/>
 			<g>
-				<line fill="none" x1="206.347" y1="145.529" x2="197.482" y2="136.69"/>
+				<line fill="none" x1="240.507" y1="207.693" x2="229.418" y2="215.12"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						205.994,145.178 205.537,144.723 199.339,138.542 198.942,138.146 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						240.065,207.988 239.494,208.371 231.74,213.564 231.244,213.896 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="197.835" y1="137.042" x2="197.885" y2="137.092"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="229.859" y1="214.824" x2="229.921" y2="214.783"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M190.38,145.951c2.183-2.093,2.108-4.374,8.464-4.384c6.354-0.009,3.509,4.368,7.691,4.36c-4.184,0.008-1.561,4.506-7.679,4.515
-				C192.735,150.45,192.733,147.846,190.38,145.951z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M261.631,181.714c-0.651,2.476-2.368,3.356,0.232,8.058c2.603,4.703,4.672,0.802,6.384,3.896
+				c-1.712-3.095,2.688-3.001,0.184-7.529C265.925,181.609,263.997,182.678,261.631,181.714z"/>
 			<g>
-				<line fill="none" x1="206.535" y1="145.928" x2="194.016" y2="145.948"/>
+				<line fill="none" x1="268.247" y1="193.668" x2="263.12" y2="184.406"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						206.037,145.929 205.393,145.93 196.638,145.944 196.077,145.945 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						267.99,193.203 267.657,192.602 264.474,186.852 264.185,186.329 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="194.514" y1="145.947" x2="194.583" y2="145.947"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="263.377" y1="184.871" x2="263.413" y2="184.936"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M196.458,120.201c1.105-0.511,1.374-1.388,3.793-0.562c2.42,0.828,0.767,2.121,2.358,2.664c-1.593-0.543-1.185,1.51-3.513,0.714
-				C196.767,122.222,197.106,121.229,196.458,120.201z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M272.301,180.782c-2.208,1.288-4.046,0.7-5.529,5.864s2.733,3.869,1.757,7.268c0.978-3.398,4.025-0.221,5.455-5.193
+				C275.413,183.747,273.295,183.137,272.301,180.782z"/>
 			<g>
-				<line fill="none" x1="202.61" y1="122.304" x2="197.843" y2="120.674"/>
+				<line fill="none" x1="268.528" y1="193.914" x2="271.453" y2="183.738"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						202.14,122.143 201.529,121.934 200.324,121.521 199.793,121.341 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						268.675,193.404 268.865,192.743 270.681,186.425 270.846,185.851 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="198.313" y1="120.835" x2="198.38" y2="120.857"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="271.307" y1="184.248" x2="271.286" y2="184.32"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M213.349,111.732c1.036,1.314,2.296,1.396,1.961,4.896s-2.592,1.699-2.813,4.002c0.222-2.303-2.397-1.101-2.074-4.47
-				C210.746,112.789,212.181,112.927,213.349,111.732z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.618,161.082c3.065,0.998,5.174-0.219,8.381,5.747c3.208,5.968-2.337,5.497-0.228,9.425
+				c-2.109-3.928-5.018,0.802-8.104-4.943C223.579,165.562,226.023,164.247,226.618,161.082z"/>
 			<g>
-				<line fill="none" x1="212.496" y1="120.63" x2="213.157" y2="113.735"/>
+				<line fill="none" x1="234.772" y1="176.254" x2="228.455" y2="164.496"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.544,120.135 212.605,119.492 212.907,116.346 212.96,115.787 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						234.521,175.786 234.195,175.181 229.778,166.959 229.495,166.432 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="213.109" y1="114.23" x2="213.103" y2="114.301"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="228.706" y1="164.964" x2="228.741" y2="165.029"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.075,121.442c-1.729,1.632-1.688,3.424-6.678,3.393c-4.994-0.032-2.729-3.453-6.017-3.473
-				c3.287,0.02,1.252-3.529,6.059-3.498C223.251,117.894,223.237,119.939,225.075,121.442z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M242.76,171.577c-0.383,1.672,0.359,2.728-2.646,4.708c-3.007,1.978-3.02-0.977-4.997,0.327c1.979-1.304-0.662-2.619,2.231-4.525
+				C240.246,170.18,241.056,171.412,242.76,171.577z"/>
 			<g>
-				<line fill="none" x1="212.221" y1="121.329" x2="222.055" y2="121.391"/>
+				<line fill="none" x1="235.117" y1="176.612" x2="241.039" y2="172.712"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.719,121.332 213.363,121.336 219.433,121.374 219.993,121.378 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.561,176.32 236.135,175.942 238.705,174.25 239.203,173.921 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="221.557" y1="121.388" x2="221.487" y2="121.387"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="240.596" y1="173.004" x2="240.533" y2="173.045"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.6551" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-40.177-60.539c-0.568-0.869-1.736-1.113-2.607-0.545l0,0c-0.869,0.569-1.112,1.735-0.545,2.606l39.345,61.083"/>
 		<g>
 			<g>
-				<path fill="#D3F46C" d="M232.787,144.517c0.655,2.233-1.129,5.48-2.858,5.229c-1.452,1.299-4.576-0.625-5.229-2.859
-					c-0.656-2.234-0.207-4.763,3.143-4.765C230.523,140.386,232.134,142.282,232.787,144.517z"/>
+				<path fill="#D3F46C" d="M244.954,204.93c2.646,0.723,4.805,4.523,3.482,6.106c0.408,2.258-3.456,4.207-6.104,3.481
+					c-2.647-0.723-4.908-2.734-2.841-6.102C239.406,204.65,242.307,204.206,244.954,204.93z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" d="M232.888,145.004
-						c0.021,0.214,0.045,0.428,0.031,0.644c-0.026,1.022-0.378,2.026-0.951,2.869c-0.29,0.417-0.648,0.804-1.104,1.042
-						c-0.229,0.108-0.477,0.199-0.732,0.191l-0.191-0.005c-0.056,0.024-0.104,0.07-0.157,0.104c-0.1,0.083-0.215,0.139-0.335,0.182
-						c-0.99,0.359-2.052-0.111-2.867-0.673c-0.818-0.599-1.527-1.406-1.848-2.383c-0.295-0.968-0.422-2.038-0.085-3.012
-						c0.32-0.995,1.298-1.646,2.309-1.767c0.252-0.052,0.507-0.059,0.763-0.07s0.447-0.231,0.684-0.319
-						c0.456-0.228,0.965-0.367,1.476-0.354c0.511,0.012,1.009,0.211,1.405,0.532c0.104,0.068,0.194,0.176,0.276,0.251
-						c0.044,0.043,0.09,0.085,0.127,0.134c0.076,0.097,0.159,0.188,0.23,0.288"/>
+					<path fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" d="M245.455,205.104
+						c0.2,0.109,0.42,0.188,0.605,0.321c1.047,0.642,1.853,1.632,2.375,2.731c0.251,0.556,0.419,1.162,0.396,1.775
+						c-0.027,0.305-0.087,0.61-0.247,0.873c-0.275,0.233-0.038,0.58-0.155,0.871c-0.101,0.607-0.48,1.133-0.933,1.536
+						c-0.456,0.408-0.992,0.72-1.555,0.959c-1.126,0.463-2.398,0.646-3.592,0.351c-1.166-0.326-2.335-0.889-3.073-1.879
+						c-0.771-0.994-0.712-2.392-0.18-3.479c0.104-0.285,0.319-0.531,0.396-0.82c0.011-0.305,0.004-0.612,0.061-0.913
+						c0.086-0.603,0.285-1.205,0.674-1.683c0.384-0.479,0.94-0.8,1.529-0.955c0.144-0.036,0.307-0.081,0.438-0.093l0.194-0.026
+						c0.13-0.024,0.262-0.019,0.394-0.026"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="232.631" y1="144.044" x2="232.605" y2="143.979"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="244.438" y1="204.805" x2="244.364" y2="204.791"/>
 				</g>
 			</g>
 			
-				<ellipse transform="matrix(0.3223 -0.9466 0.9466 0.3223 15.9163 312.1494)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="225.968" cy="144.958" rx="0.965" ry="0.793"/>
+				<ellipse transform="matrix(-0.6368 -0.771 0.771 -0.6368 231.2595 533.0982)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="241.189" cy="212.081" rx="1.139" ry="0.936"/>
+		</g>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.8307" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-67.858-28.356c-1.021-0.435-2.197,0.042-2.635,1.062l0,0c-0.435,1.02,0.039,2.198,1.062,2.633l67.438,29.333"/>
+		<g>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M222.095,183.48c0,0-2.193-2.228-2.508-2.781c-0.257-0.44,3.023,0.208,4.157,0.656L222.095,183.48z"/>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M222.832,181.11l2.031,4.357c0,0-4.631-1.199-5.661-2.915C219.202,182.553,221.438,181.932,222.832,181.11z"/>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M228.323,182.776c0,0-4.092-4.305-7.575-3.849l2.152,4.07L228.323,182.776z"/>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M199.4,115.945c0,0-0.552-2.88-0.51-3.476c0.033-0.479,2.251,1.737,2.906,2.677L199.4,115.945z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.429,176.576c0.057,0.473,0.924,0.852,1.604,1.063c1.225,0.383,3.124-0.188,2.943-1.67c-0.182-1.49-2.161-1.6-3.261-0.94
+				C237.105,175.397,236.371,176.102,236.429,176.576z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.21,114.479l-0.686,4.459c0,0-2.985-3.349-2.897-5.223C197.627,113.716,199.694,114.394,201.21,114.479z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.323,176.646c-0.438-0.187-1.198,0.374-1.723,0.857c-0.945,0.87-1.398,2.799-0.024,3.386c1.38,0.588,2.464-1.074,2.441-2.354
+				C237.004,177.824,236.763,176.833,236.323,176.646z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M204.626,118.64c0,0-0.949-5.49-3.904-6.948l-0.441,4.298L204.626,118.64z"/>
-		</g>
-		<g>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.314,176.526c0.38-0.283,0.274-1.226,0.117-1.92c-0.281-1.251-1.725-2.611-2.919-1.716c-1.198,0.904-0.303,2.673,0.819,3.292
+				C234.953,176.528,235.932,176.815,236.314,176.526z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.165,123.907c-0.202,0.397,0.277,1.146,0.698,1.664c0.755,0.936,2.533,1.48,3.165,0.229c0.637-1.257-0.854-2.371-2.054-2.43
-				C202.31,123.34,201.367,123.506,201.165,123.907z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.45,176.444c0.438,0.187,1.197-0.374,1.722-0.858c0.944-0.869,1.398-2.797,0.024-3.385c-1.381-0.588-2.466,1.072-2.441,2.354
+				C235.767,175.269,236.009,176.257,236.45,176.444z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.048,123.905c-0.244-0.374-1.131-0.331-1.791-0.228c-1.188,0.186-2.549,1.452-1.782,2.626
-				c0.771,1.178,2.479,0.447,3.13-0.563C200.966,125.179,201.293,124.28,201.048,123.905z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.452,176.568c-0.38,0.285-0.275,1.227-0.118,1.92c0.279,1.252,1.724,2.611,2.919,1.715c1.2-0.903,0.303-2.671-0.816-3.292
+				C237.812,176.566,236.835,176.278,236.452,176.568z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.103,123.808c0.443-0.023,0.854-0.813,1.091-1.436c0.436-1.125,0.018-2.936-1.383-2.857
-				c-1.405,0.078-1.627,1.925-1.077,2.993C200.04,123.102,200.655,123.833,201.103,123.808z"/>
+				<path fill="#FFFFFF" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M236.341,176.494c-0.058-0.47-0.926-0.851-1.604-1.063c-1.227-0.382-3.124,0.189-2.942,1.67c0.18,1.492,2.16,1.599,3.259,0.938
+				C235.663,177.674,236.397,176.969,236.341,176.494z"/>
 			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.251,123.813c0.244,0.375,1.131,0.332,1.791,0.229c1.188-0.188,2.549-1.454,1.781-2.627c-0.771-1.178-2.48-0.447-3.132,0.564
-				C201.333,122.541,201.006,123.438,201.251,123.813z"/>
-			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.19,123.911c-0.446,0.026-0.854,0.814-1.093,1.438c-0.433,1.123-0.017,2.935,1.382,2.857c1.407-0.08,1.628-1.926,1.078-2.995
-				C202.252,124.619,201.638,123.887,201.19,123.911z"/>
-			
-				<path fill="#FFFFFF" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M201.141,123.797c0.201-0.397-0.278-1.145-0.699-1.664c-0.755-0.938-2.533-1.481-3.165-0.231
-				c-0.637,1.258,0.854,2.373,2.055,2.431C199.996,124.363,200.938,124.198,201.141,123.797z"/>
-			
-				<circle fill="#F9D53E" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="201.25" cy="123.814" r="0.927"/>
+				<circle fill="#F9D53E" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="236.45" cy="176.444" r="0.988"/>
 		</g>
 	</g>
 </g>
 <g id="calque06">
 	<g>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			226.566,144.059 227.43,152.718 225.894,150.366 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.8493" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			234.773,176.252 239.141,186.882 236.385,185.707 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			212.146,120.976 211.356,128.132 209.818,125.78 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			240.046,207.667 259.678,200.004 256.923,198.829 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			206.188,145.67 221.188,150.051 219.649,147.698 		"/>
-		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			196.275,120.86 203.796,123.451 202.804,121.934 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			268.145,193.131 271.537,200.229 269.757,199.473 		"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.806,159.936c2.181-1.558,2.405-3.567,7.98-2.769c5.573,0.799,2.522,4.273,6.19,4.8c-3.668-0.526-1.938,3.752-7.307,2.982
-				C216.302,164.181,216.629,161.896,214.806,159.936z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.083,216.337c0.188-2.851-1.313-4.396,3.114-8.448c4.432-4.052,5.23,0.813,8.146-1.852c-2.915,2.665,1.78,4.135-2.486,8.039
+				C266.592,217.979,264.931,216.161,262.083,216.337z"/>
 			<g>
-				<line fill="none" x1="228.978" y1="161.967" x2="217.836" y2="160.359"/>
+				<line fill="none" x1="273.344" y1="206.037" x2="264.617" y2="214.021"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.484,161.896 227.847,161.804 220.431,160.733 219.876,160.653 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.952,206.396 272.444,206.859 266.68,212.134 266.238,212.537 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.329" y1="160.431" x2="218.398" y2="160.44"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="265.009" y1="213.662" x2="265.063" y2="213.611"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.745,129.793c1.687,2.081,3.705,2.187,3.242,7.798c-0.463,5.612-4.115,2.776-4.422,6.468c0.307-3.691-3.86-1.71-3.415-7.114
-				C223.597,131.539,225.897,131.729,227.745,129.793z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M215.636,188.116c1.505,0.832,1.798,2.095,5.289,1.171c3.494-0.923,1.291-2.909,3.59-3.518c-2.299,0.608-1.515-2.249-4.877-1.359
+				C216.271,185.3,216.651,186.731,215.636,188.116z"/>
 			<g>
-				<line fill="none" x1="226.406" y1="144.024" x2="227.315" y2="132.969"/>
+				<line fill="none" x1="224.515" y1="185.77" x2="217.635" y2="187.588"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.447,143.528 226.5,142.886 227.101,135.582 227.146,135.023 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						224.002,185.905 223.337,186.081 220.337,186.874 219.76,187.026 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="227.274" y1="133.465" x2="227.269" y2="133.535"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="218.148" y1="187.452" x2="218.22" y2="187.434"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.909,134.12c3.022,0.064,4.584-1.6,9.084,2.887c4.498,4.488-0.608,5.57,2.354,8.522c-2.962-2.952-4.287,2.082-8.62-2.238
-				C193.394,138.97,195.233,137.123,194.909,134.12z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M223.209,204.105c2.719-1.733,3.118-4.133,9.764-2.818c6.646,1.314,2.759,5.297,7.132,6.16c-4.373-0.863-2.567,4.387-8.968,3.119
+				C224.736,209.303,225.274,206.576,223.209,204.105z"/>
 			<g>
-				<line fill="none" x1="206.347" y1="145.529" x2="197.482" y2="136.69"/>
+				<line fill="none" x1="240.104" y1="207.447" x2="227.011" y2="204.859"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						205.994,145.178 205.537,144.723 199.339,138.542 198.942,138.146 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						239.584,207.346 238.909,207.212 229.753,205.402 229.167,205.286 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="197.835" y1="137.042" x2="197.885" y2="137.092"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="227.531" y1="204.963" x2="227.604" y2="204.979"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M190.379,145.952c2.184-2.094,2.109-4.375,8.464-4.383c6.354-0.011,3.51,4.366,7.692,4.358c-4.184,0.008-1.561,4.506-7.679,4.515
-				C192.735,150.45,192.733,147.846,190.379,145.952z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.198,217.277c0.694-3.148-0.72-5.127,4.908-8.898c5.629-3.77,5.697,1.795,9.4-0.686c-3.703,2.479,1.286,4.916-4.135,8.547
+				C230.949,219.872,229.404,217.563,226.198,217.277z"/>
 			<g>
-				<line fill="none" x1="206.535" y1="145.928" x2="194.016" y2="145.948"/>
+				<line fill="none" x1="240.507" y1="207.693" x2="229.418" y2="215.12"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						206.037,145.929 205.393,145.93 196.638,145.944 196.077,145.945 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						240.065,207.988 239.494,208.371 231.74,213.564 231.244,213.896 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="194.514" y1="145.947" x2="194.583" y2="145.947"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="229.859" y1="214.824" x2="229.921" y2="214.783"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M190.373,119.257c1.213-0.561,1.507-1.523,4.165-0.616c2.652,0.908,0.838,2.328,2.586,2.925
-				c-1.748-0.597-1.297,1.658-3.854,0.784C190.712,121.474,191.085,120.386,190.373,119.257z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M261.631,181.714c-0.651,2.476-2.368,3.356,0.232,8.058c2.603,4.703,4.672,0.802,6.384,3.896
+				c-1.712-3.095,2.688-3.001,0.184-7.529C265.925,181.609,263.997,182.678,261.631,181.714z"/>
 			<g>
-				<line fill="none" x1="197.124" y1="121.565" x2="191.892" y2="119.776"/>
+				<line fill="none" x1="268.247" y1="193.668" x2="263.12" y2="184.406"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						196.653,121.404 196.043,121.195 194.372,120.625 193.842,120.443 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						267.99,193.203 267.657,192.602 264.474,186.852 264.185,186.329 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="192.362" y1="119.938" x2="192.429" y2="119.96"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="263.377" y1="184.871" x2="263.413" y2="184.936"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M185.556,126.729c0.825-2.252-0.021-3.853,4.504-6.071c4.527-2.219,4.022,1.89,7.002,0.429c-2.979,1.461,0.457,3.754-3.899,5.891
-				C188.801,129.114,187.892,127.259,185.556,126.729z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M272.301,180.782c-2.208,1.288-4.046,0.7-5.529,5.864s2.733,3.869,1.757,7.268c0.978-3.398,4.025-0.221,5.455-5.193
+				C275.413,183.747,273.295,183.137,272.301,180.782z"/>
 			<g>
-				<line fill="none" x1="197.062" y1="121.086" x2="188.145" y2="125.46"/>
+				<line fill="none" x1="268.528" y1="193.914" x2="271.453" y2="183.738"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						196.614,121.305 196.035,121.589 190.499,124.306 189.995,124.552 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						268.675,193.404 268.865,192.743 270.681,186.425 270.846,185.851 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="188.592" y1="125.24" x2="188.654" y2="125.21"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="271.307" y1="184.248" x2="271.286" y2="184.32"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M219.622,115.241c-0.203,1.713,0.654,2.691-2.141,4.996c-2.796,2.307-3.128-0.65-4.968,0.867c1.84-1.518-0.946-2.548,1.745-4.77
-				C216.954,114.114,217.899,115.26,219.622,115.241z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M237.835,166.689c0.795,1.562,2.073,1.903,1.013,5.429c-1.062,3.529-3.012,1.216-3.71,3.538c0.698-2.322-2.238-1.62-1.218-5.017
+				C234.944,167.24,236.39,167.675,237.835,166.689z"/>
 			<g>
-				<line fill="none" x1="212.423" y1="121.085" x2="217.931" y2="116.541"/>
+				<line fill="none" x1="235.138" y1="175.656" x2="237.229" y2="168.705"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.807,120.769 213.305,120.357 215.908,118.21 216.341,117.853 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.291,175.148 235.488,174.489 236.424,171.382 236.596,170.81 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="217.547" y1="116.857" x2="217.492" y2="116.902"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="237.075" y1="169.213" x2="237.054" y2="169.285"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M213.685,104.896c1.874,2.375,4.151,2.522,3.544,8.849c-0.606,6.325-4.687,3.069-5.083,7.231c0.396-4.162-4.332-1.986-3.75-8.077
-				C208.979,106.806,211.573,107.054,213.685,104.896z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.618,161.082c3.065,0.998,5.174-0.219,8.381,5.747c3.208,5.968-2.337,5.497-0.227,9.423c-2.11-3.926-5.019,0.804-8.105-4.941
+				C223.579,165.562,226.023,164.247,226.618,161.082z"/>
 			<g>
-				<line fill="none" x1="212.146" y1="120.976" x2="213.339" y2="108.515"/>
+				<line fill="none" x1="234.773" y1="176.252" x2="228.455" y2="164.496"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.193,120.48 212.255,119.838 213.089,111.125 213.143,110.566 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						234.522,175.784 234.196,175.179 229.778,166.958 229.495,166.432 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="213.291" y1="109.01" x2="213.285" y2="109.08"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="228.706" y1="164.964" x2="228.742" y2="165.029"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.075,121.442c-1.729,1.632-1.688,3.424-6.678,3.393c-4.994-0.032-2.729-3.453-6.017-3.473
-				c3.287,0.02,1.252-3.529,6.059-3.498C223.251,117.894,223.237,119.939,225.075,121.442z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M246.512,169.014c-0.565,2.468,0.533,4.031-3.911,6.958c-4.445,2.929-4.464-1.444-7.39,0.483c2.926-1.928-0.979-3.87,3.303-6.689
+				C242.795,166.944,243.994,168.768,246.512,169.014z"/>
 			<g>
-				<line fill="none" x1="212.221" y1="121.329" x2="222.055" y2="121.391"/>
+				<line fill="none" x1="235.211" y1="176.455" x2="243.969" y2="170.688"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.719,121.332 213.363,121.336 219.433,121.374 219.993,121.378 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.654,176.163 236.229,175.785 241.634,172.225 242.133,171.896 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="221.557" y1="121.388" x2="221.487" y2="121.387"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="243.525" y1="170.979" x2="243.463" y2="171.021"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.6551" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-45.361-68.471c-0.57-0.871-1.736-1.114-2.605-0.546l0,0c-0.872,0.57-1.115,1.736-0.546,2.606l44.528,69.016"/>
 		<g>
 			<g>
-				<path fill="#D3F46C" d="M202.271,121.637c1.414,1.677,1.116,5.153-0.471,5.598c-0.757,1.671-4.184,1.204-5.599-0.472
-					c-1.414-1.677-1.991-4.026,0.896-5.305C198.746,118.939,200.857,119.962,202.271,121.637z"/>
+				<path fill="#D3F46C" d="M247.489,204.096c3.594,0.985,6.52,6.135,4.729,8.282c0.551,3.063-4.688,5.706-8.279,4.726
+					c-3.592-0.982-6.66-3.713-3.854-8.276C239.967,203.717,243.899,203.116,247.489,204.096z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" d="M202.558,122.044
-						c0.109,0.185,0.207,0.376,0.283,0.578c0.346,0.889,0.424,1.877,0.24,2.812c-0.095,0.464-0.258,0.928-0.562,1.3
-						c-0.154,0.179-0.335,0.347-0.558,0.434l-0.164,0.07l-0.091,0.153c-0.055,0.108-0.136,0.196-0.221,0.28
-						c-0.713,0.675-1.792,0.677-2.702,0.511c-0.925-0.201-1.839-0.611-2.486-1.318c-0.624-0.708-1.146-1.566-1.249-2.522
-						c-0.049-0.474,0.032-0.965,0.26-1.386c0.225-0.423,0.576-0.762,0.964-1.036c0.95-0.323,1.284-1.366,2.198-1.76
-						c0.429-0.21,0.928-0.262,1.395-0.163c0.11,0.03,0.24,0.049,0.337,0.093l0.173,0.064c0.117,0.04,0.222,0.106,0.333,0.158"/>
+					<path fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" d="M248.236,204.368
+						c0.311,0.151,0.621,0.298,0.902,0.497c1.37,0.894,2.442,2.215,3.112,3.701c0.325,0.744,0.552,1.557,0.496,2.377
+						c-0.044,0.402-0.128,0.814-0.354,1.158l-0.166,0.258c-0.02,0.096,0.006,0.203,0.007,0.303c0.029,0.205,0.011,0.406-0.031,0.607
+						c-0.143,0.812-0.65,1.51-1.252,2.053c-0.607,0.547-1.319,0.967-2.068,1.291c-1.502,0.613-3.196,0.902-4.795,0.521
+						c-1.565-0.409-3.128-1.135-4.174-2.409c-0.515-0.636-0.844-1.422-0.905-2.238c-0.077-0.817,0.127-1.637,0.435-2.387
+						c0.142-0.387,0.347-0.74,0.544-1.098c0.141-0.168,0.092-0.387,0.107-0.588c0.012-0.203-0.002-0.409,0.03-0.611
+						c0.072-0.813,0.308-1.619,0.753-2.305c0.443-0.688,1.134-1.199,1.901-1.471c0.183-0.084,0.403-0.118,0.575-0.168
+						c0.097-0.022,0.19-0.051,0.288-0.061c0.195-0.023,0.391-0.061,0.585-0.072"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="201.937" y1="121.269" x2="201.887" y2="121.22"/>
+						<line fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" x1="246.715" y1="203.913" x2="246.604" y2="203.895"/>
 				</g>
 			</g>
 			
-				<ellipse transform="matrix(-0.0877 -0.9961 0.9961 -0.0877 89.6551 331.3497)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="196.551" cy="124.622" rx="0.907" ry="0.748"/>
+				<ellipse transform="matrix(-0.6369 -0.7709 0.7709 -0.6369 231.9144 536.7843)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="242.356" cy="213.782" rx="1.542" ry="1.268"/>
+		</g>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.8307" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-74.76-31.299c-1.021-0.435-2.2,0.041-2.637,1.06l0,0c-0.435,1.021,0.04,2.2,1.062,2.635l74.342,32.275"/>
+		<g>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M215.191,180.538c0,0-2.191-2.228-2.507-2.781c-0.256-0.441,3.023,0.208,4.158,0.654L215.191,180.538z"/>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M215.929,178.168l2.033,4.357c0,0-4.631-1.2-5.662-2.916C212.3,179.609,214.536,178.987,215.929,178.168z"/>
+			
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M221.422,179.833c0,0-4.094-4.304-7.575-3.848l2.152,4.07L221.422,179.833z"/>
 		</g>
 		<g>
 			<g>
-				<path fill="#D3F46C" d="M234.844,145.485c0.983,3.351-1.692,8.22-4.288,7.844c-2.178,1.947-6.863-0.938-7.845-4.289
-					c-0.981-3.352-0.311-7.145,4.716-7.146C231.448,139.288,233.863,142.134,234.844,145.485z"/>
+				<path fill="#D3F46C" d="M242.832,173.651c2.299,1.501,3.188,5.777,1.446,6.879c-0.304,2.276-4.576,2.947-6.877,1.45
+					c-2.3-1.5-3.836-4.108-0.837-6.679C237.637,171.689,240.531,172.153,242.832,173.651z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" d="M234.994,146.216
-						c0.03,0.321,0.066,0.643,0.047,0.966c-0.039,1.533-0.567,3.039-1.426,4.304c-0.437,0.626-0.975,1.206-1.655,1.563
-						c-0.345,0.163-0.715,0.299-1.102,0.287l-0.287-0.007c-0.084,0.036-0.157,0.105-0.236,0.156
-						c-0.148,0.125-0.32,0.208-0.502,0.272c-0.717,0.285-1.524,0.223-2.253,0.009c-0.735-0.217-1.422-0.579-2.05-1.019
-						c-1.229-0.897-2.29-2.108-2.771-3.574c-0.442-1.451-0.632-3.056-0.126-4.518c0.254-0.723,0.72-1.372,1.342-1.822
-						c0.616-0.465,1.37-0.704,2.121-0.827c0.376-0.077,0.76-0.087,1.144-0.104c0.202,0.03,0.354-0.118,0.521-0.203
-						c0.169-0.091,0.326-0.203,0.503-0.276c0.686-0.341,1.445-0.551,2.212-0.531c0.768,0.018,1.515,0.316,2.108,0.798
-						c0.156,0.104,0.293,0.264,0.416,0.377c0.065,0.065,0.135,0.127,0.189,0.201c0.114,0.145,0.239,0.281,0.347,0.432"/>
+					<path fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" d="M243.255,173.973
+						c0.158,0.165,0.343,0.307,0.479,0.492c0.802,0.929,1.264,2.119,1.425,3.326c0.068,0.605,0.044,1.234-0.165,1.813
+						c-0.12,0.279-0.271,0.555-0.505,0.755c-0.334,0.138-0.211,0.542-0.413,0.781c-0.281,0.548-0.806,0.931-1.357,1.178
+						c-0.56,0.249-1.165,0.382-1.772,0.437c-1.214,0.097-2.48-0.118-3.526-0.765c-1.01-0.667-1.95-1.561-2.351-2.729
+						c-0.43-1.182,0.056-2.494,0.896-3.367c0.187-0.24,0.467-0.407,0.627-0.66c0.104-0.287,0.19-0.582,0.338-0.852
+						c0.266-0.546,0.639-1.059,1.155-1.395c0.512-0.34,1.14-0.475,1.748-0.442c0.146,0.01,0.314,0.017,0.444,0.046l0.193,0.034
+						c0.131,0.017,0.254,0.063,0.382,0.095"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" x1="234.609" y1="144.776" x2="234.571" y2="144.679"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="242.379" y1="173.375" x2="242.313" y2="173.34"/>
 				</g>
 			</g>
 			
-				<ellipse transform="matrix(0.3218 -0.9468 0.9468 0.3218 13.9243 311.7593)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="224.578" cy="146.16" rx="1.446" ry="1.19"/>
-		</g>
-		<g>
-			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.214,108.013c0,0-0.552-2.879-0.508-3.475c0.028-0.479,2.25,1.736,2.903,2.676L194.214,108.013z"/>
-			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M196.022,106.548l-0.684,4.459c0,0-2.988-3.349-2.898-5.224C192.44,105.783,194.508,106.462,196.022,106.548z"/>
-			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M199.439,110.708c0,0-0.95-5.491-3.903-6.947l-0.441,4.296L199.439,110.708z"/>
+				<ellipse transform="matrix(-0.3716 -0.9284 0.9284 -0.3716 158.7021 465.976)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="237.051" cy="179.279" rx="1.138" ry="0.935"/>
 		</g>
 	</g>
 </g>
 <g id="calque07">
 	<g>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			226.566,144.059 227.43,152.718 225.894,150.366 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			216.943,188.975 226.209,185.568 223.454,184.394 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			212.146,120.976 211.356,128.132 209.818,125.78 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.8493" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			234.772,176.254 239.141,186.882 236.385,185.707 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			206.188,145.67 221.188,150.051 219.649,147.698 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			240.046,207.667 259.678,200.004 256.923,198.829 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			196.275,120.86 203.796,123.451 202.804,121.934 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			268.145,193.131 271.537,200.229 269.757,199.473 		"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.806,159.936c2.181-1.558,2.407-3.568,7.981-2.77c5.572,0.8,2.521,4.274,6.189,4.801c-3.668-0.526-1.938,3.752-7.307,2.982
-				C216.302,164.181,216.629,161.896,214.806,159.936z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.083,216.337c0.188-2.851-1.313-4.396,3.114-8.448c4.432-4.052,5.23,0.813,8.146-1.852c-2.915,2.665,1.78,4.135-2.486,8.039
+				C266.592,217.979,264.931,216.161,262.083,216.337z"/>
 			<g>
-				<line fill="none" x1="228.978" y1="161.967" x2="217.836" y2="160.359"/>
+				<line fill="none" x1="273.344" y1="206.037" x2="264.617" y2="214.021"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.484,161.896 227.847,161.804 220.431,160.733 219.876,160.653 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.952,206.396 272.444,206.859 266.68,212.134 266.238,212.537 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.329" y1="160.431" x2="218.398" y2="160.44"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="265.009" y1="213.662" x2="265.063" y2="213.611"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.745,129.793c1.687,2.081,3.705,2.187,3.242,7.798c-0.463,5.612-4.115,2.776-4.422,6.468c0.307-3.691-3.859-1.71-3.415-7.114
-				C223.597,131.539,225.897,131.729,227.745,129.793z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M202.188,192.875c2.501,1.382,2.988,3.481,8.792,1.948c5.804-1.534,2.146-4.84,5.964-5.849c-3.818,1.009-2.516-3.734-8.104-2.255
+				C203.248,188.194,203.877,190.573,202.188,192.875z"/>
 			<g>
-				<line fill="none" x1="226.406" y1="144.024" x2="227.315" y2="132.969"/>
+				<line fill="none" x1="216.943" y1="188.975" x2="205.509" y2="191.998"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.447,143.528 226.5,142.886 227.101,135.582 227.146,135.023 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						216.431,189.11 215.766,189.286 208.211,191.283 207.634,191.437 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="227.274" y1="133.465" x2="227.269" y2="133.535"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="206.021" y1="191.862" x2="206.094" y2="191.844"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.909,134.12c3.022,0.064,4.584-1.6,9.084,2.887c4.498,4.488-0.607,5.57,2.354,8.522c-2.961-2.952-4.287,2.082-8.619-2.239
-				C193.394,138.97,195.233,137.123,194.909,134.12z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M223.209,204.105c2.719-1.733,3.118-4.133,9.764-2.818c6.646,1.314,2.759,5.297,7.132,6.16c-4.373-0.863-2.567,4.387-8.968,3.119
+				C224.736,209.303,225.274,206.578,223.209,204.105z"/>
 			<g>
-				<line fill="none" x1="206.347" y1="145.529" x2="197.482" y2="136.69"/>
+				<line fill="none" x1="240.104" y1="207.447" x2="227.011" y2="204.859"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						205.994,145.178 205.537,144.723 199.339,138.542 198.942,138.146 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						239.584,207.346 238.909,207.212 229.753,205.402 229.167,205.286 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="197.835" y1="137.042" x2="197.885" y2="137.092"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="227.531" y1="204.963" x2="227.604" y2="204.979"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M190.38,145.951c2.183-2.093,2.108-4.374,8.464-4.384c6.354-0.009,3.509,4.368,7.691,4.36c-4.184,0.008-1.561,4.506-7.679,4.515
-				C192.735,150.45,192.733,147.846,190.38,145.951z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.198,217.277c0.695-3.148-0.72-5.127,4.91-8.898c5.627-3.77,5.695,1.795,9.398-0.686c-3.703,2.479,1.286,4.916-4.135,8.547
+				C230.949,219.872,229.404,217.563,226.198,217.277z"/>
 			<g>
-				<line fill="none" x1="206.535" y1="145.928" x2="194.016" y2="145.948"/>
+				<line fill="none" x1="240.507" y1="207.693" x2="229.418" y2="215.12"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						206.037,145.929 205.393,145.93 196.638,145.944 196.077,145.945 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						240.065,207.988 239.494,208.371 231.74,213.564 231.244,213.896 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="194.514" y1="145.947" x2="194.583" y2="145.947"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="229.859" y1="214.824" x2="229.921" y2="214.783"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M184.661,116.721c2.179-1.009,2.711-2.738,7.48-1.107c4.768,1.632,1.506,4.181,4.646,5.254c-3.141-1.073-2.33,2.978-6.925,1.406
-				C185.271,120.704,185.939,118.747,184.661,116.721z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M261.631,181.714c-0.651,2.476-2.368,3.356,0.232,8.058c2.604,4.702,4.672,0.802,6.384,3.896
+				c-1.712-3.095,2.688-3.001,0.184-7.529C265.925,181.611,263.997,182.678,261.631,181.714z"/>
 			<g>
-				<line fill="none" x1="196.788" y1="120.867" x2="187.394" y2="117.653"/>
+				<line fill="none" x1="268.247" y1="193.668" x2="263.12" y2="184.403"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						196.317,120.706 195.707,120.497 189.874,118.502 189.344,118.32 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						267.99,193.203 267.657,192.602 264.474,186.85 264.185,186.326 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="187.864" y1="117.814" x2="187.931" y2="117.837"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="263.377" y1="184.867" x2="263.413" y2="184.933"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M185.556,126.729c0.825-2.252-0.021-3.853,4.504-6.071c4.527-2.219,4.022,1.89,7.002,0.429c-2.979,1.461,0.457,3.754-3.899,5.891
-				C188.801,129.114,187.892,127.259,185.556,126.729z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M272.301,180.782c-2.208,1.288-4.044,0.698-5.529,5.864c-1.483,5.164,2.733,3.869,1.757,7.268
+				c0.978-3.398,4.025-0.221,5.455-5.193C275.413,183.747,273.295,183.137,272.301,180.782z"/>
 			<g>
-				<line fill="none" x1="197.062" y1="121.086" x2="188.145" y2="125.46"/>
+				<line fill="none" x1="268.528" y1="193.914" x2="271.453" y2="183.738"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						196.614,121.305 196.035,121.589 190.499,124.306 189.995,124.552 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						268.675,193.404 268.865,192.743 270.681,186.425 270.846,185.851 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="188.592" y1="125.24" x2="188.654" y2="125.21"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="271.307" y1="184.248" x2="271.286" y2="184.32"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.022,110.548c-0.356,3.004,1.149,4.718-3.751,8.762c-4.901,4.045-5.482-1.143-8.71,1.52c3.228-2.662-1.66-4.469,3.063-8.364
-				C220.344,108.569,222.003,110.58,225.022,110.548z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M240.017,159.382c1.464,2.874,3.813,3.505,1.862,9.991c-1.953,6.488-5.539,2.233-6.824,6.504
+				c1.285-4.271-4.114-2.982-2.236-9.228C234.699,160.399,237.357,161.198,240.017,159.382z"/>
 			<g>
-				<line fill="none" x1="212.4" y1="120.796" x2="222.057" y2="112.827"/>
+				<line fill="none" x1="235.055" y1="175.877" x2="238.9" y2="163.094"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.784,120.479 213.282,120.068 220.034,114.496 220.467,114.14 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.208,175.369 235.405,174.71 238.095,165.771 238.268,165.198 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="221.673" y1="113.145" x2="221.618" y2="113.188"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="238.747" y1="163.602" x2="238.726" y2="163.674"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M213.685,104.896c1.874,2.375,4.151,2.522,3.544,8.849c-0.604,6.323-4.687,3.069-5.083,7.231c0.396-4.162-4.332-1.986-3.75-8.077
-				C208.979,106.806,211.573,107.054,213.685,104.896z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.619,161.08c3.064,1,5.173-0.217,8.38,5.749c3.208,5.968-2.337,5.497-0.228,9.425c-2.109-3.928-5.018,0.802-8.104-4.944
+				C223.579,165.562,226.023,164.246,226.619,161.08z"/>
 			<g>
-				<line fill="none" x1="212.146" y1="120.976" x2="213.339" y2="108.515"/>
+				<line fill="none" x1="234.772" y1="176.254" x2="228.455" y2="164.496"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.193,120.48 212.255,119.838 213.089,111.125 213.143,110.566 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						234.521,175.786 234.195,175.181 229.778,166.959 229.495,166.432 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="213.291" y1="109.01" x2="213.285" y2="109.08"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="228.706" y1="164.964" x2="228.741" y2="165.029"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.075,121.442c-1.729,1.632-1.688,3.424-6.678,3.393c-4.994-0.032-2.729-3.453-6.017-3.473
-				c3.287,0.02,1.252-3.529,6.059-3.498C223.251,117.894,223.237,119.939,225.075,121.442z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M246.512,169.014c-0.565,2.468,0.533,4.031-3.911,6.958c-4.442,2.927-4.464-1.444-7.39,0.483c2.926-1.928-0.979-3.87,3.303-6.689
+				C242.795,166.944,243.994,168.768,246.512,169.014z"/>
 			<g>
-				<line fill="none" x1="212.221" y1="121.329" x2="222.055" y2="121.391"/>
+				<line fill="none" x1="235.211" y1="176.455" x2="243.969" y2="170.688"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.719,121.332 213.363,121.336 219.433,121.374 219.993,121.378 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.654,176.163 236.229,175.785 241.634,172.225 242.133,171.896 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="221.557" y1="121.388" x2="221.487" y2="121.387"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="243.525" y1="170.979" x2="243.463" y2="171.021"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.6551" stroke-linecap="round" stroke-miterlimit="10" d="M243.482,176.359
-			l-45.361-68.471c-0.57-0.871-1.736-1.114-2.605-0.546l0,0c-0.872,0.57-1.115,1.736-0.546,2.606l44.528,69.016"/>
 		<g>
 			<g>
-				<path fill="#D3F46C" d="M205.26,122.216c2.253,2.669,1.774,8.205-0.752,8.911c-1.203,2.659-6.655,1.917-8.908-0.753
-					c-2.253-2.668-3.171-6.408,1.424-8.441C199.649,117.923,203.007,119.55,205.26,122.216z"/>
+				<path fill="#EF4529" d="M247.489,204.096c3.594,0.985,6.52,6.135,4.729,8.282c0.551,3.063-4.688,5.706-8.279,4.726
+					c-3.592-0.982-6.66-3.713-3.854-8.277C239.967,203.717,243.899,203.116,247.489,204.096z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" d="M205.692,122.824
-						c0.159,0.28,0.321,0.56,0.434,0.863c0.584,1.419,0.71,3.01,0.437,4.514c-0.146,0.748-0.4,1.496-0.881,2.1
-						c-0.249,0.288-0.533,0.563-0.89,0.708l-0.266,0.11c-0.064,0.063-0.103,0.16-0.154,0.237c-0.086,0.174-0.209,0.32-0.35,0.453
-						c-0.541,0.551-1.305,0.819-2.057,0.919c-0.761,0.1-1.534,0.046-2.285-0.102c-1.487-0.324-2.949-1.002-3.979-2.148
-						c-0.992-1.147-1.814-2.539-1.943-4.08c-0.061-0.764,0.104-1.546,0.489-2.21c0.376-0.674,0.969-1.197,1.604-1.613
-						c0.313-0.224,0.66-0.388,1.004-0.558c0.197-0.056,0.275-0.251,0.396-0.397c0.117-0.151,0.216-0.317,0.349-0.456
-						c0.488-0.589,1.1-1.089,1.808-1.381c0.709-0.294,1.513-0.323,2.251-0.124c0.186,0.031,0.375,0.123,0.533,0.177
-						c0.086,0.032,0.175,0.062,0.255,0.106c0.163,0.086,0.332,0.16,0.49,0.255"/>
+					<path fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" d="M248.236,204.368
+						c0.311,0.151,0.621,0.298,0.902,0.497c1.37,0.894,2.442,2.215,3.112,3.701c0.325,0.744,0.552,1.557,0.496,2.377
+						c-0.044,0.402-0.128,0.814-0.354,1.158l-0.166,0.258c-0.02,0.096,0.006,0.203,0.007,0.304c0.029,0.204,0.011,0.405-0.031,0.606
+						c-0.143,0.812-0.65,1.51-1.252,2.053c-0.607,0.547-1.32,0.967-2.068,1.291c-1.502,0.613-3.196,0.902-4.795,0.521
+						c-1.565-0.409-3.129-1.135-4.174-2.409c-0.515-0.636-0.844-1.422-0.905-2.238c-0.077-0.817,0.127-1.637,0.435-2.387
+						c0.141-0.387,0.347-0.74,0.544-1.098c0.141-0.168,0.092-0.387,0.107-0.588c0.012-0.204-0.002-0.409,0.03-0.611
+						c0.072-0.813,0.307-1.621,0.753-2.306c0.443-0.687,1.134-1.198,1.901-1.47c0.183-0.084,0.403-0.118,0.575-0.168
+						c0.097-0.022,0.19-0.051,0.288-0.061c0.195-0.023,0.391-0.061,0.585-0.072"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" x1="204.758" y1="121.663" x2="204.684" y2="121.589"/>
+						<line fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" x1="246.715" y1="203.913" x2="246.604" y2="203.895"/>
 				</g>
 			</g>
 			
-				<ellipse transform="matrix(-0.0888 -0.996 0.996 -0.0888 87.0925 333.6412)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="196.156" cy="126.984" rx="1.446" ry="1.19"/>
+				<ellipse transform="matrix(-0.6374 -0.7705 0.7705 -0.6374 232.1619 536.7992)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="242.377" cy="213.777" rx="1.541" ry="1.268"/>
 		</g>
 		<g>
 			<g>
-				<path fill="#EF4529" d="M234.845,145.485c0.982,3.351-1.693,8.22-4.289,7.844c-2.178,1.947-6.863-0.938-7.845-4.289
-					c-0.981-3.352-0.311-7.145,4.716-7.146C231.448,139.288,233.863,142.134,234.845,145.485z"/>
+				<path fill="#D3F46C" d="M245.444,173.682c2.797,2.46,3.164,8.371,0.611,9.513c-0.85,2.996-6.716,3.069-9.513,0.612
+					c-2.796-2.46-4.354-6.26,0.173-9.127C238.851,170.038,242.649,171.224,245.444,173.682z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" d="M234.995,146.217
-						c0.03,0.32,0.066,0.642,0.047,0.965c-0.04,1.533-0.568,3.039-1.428,4.304c-0.436,0.626-0.974,1.206-1.654,1.563
-						c-0.346,0.163-0.715,0.299-1.102,0.287l-0.287-0.007c-0.084,0.036-0.157,0.105-0.236,0.156
-						c-0.148,0.125-0.32,0.208-0.502,0.272c-0.719,0.285-1.524,0.223-2.253,0.009c-0.735-0.217-1.422-0.579-2.05-1.019
-						c-1.229-0.897-2.291-2.109-2.771-3.574c-0.442-1.451-0.632-3.057-0.126-4.518c0.254-0.723,0.721-1.372,1.342-1.822
-						c0.616-0.465,1.37-0.704,2.121-0.827c0.377-0.077,0.761-0.087,1.145-0.104c0.201,0.03,0.353-0.119,0.521-0.203
-						c0.168-0.091,0.325-0.203,0.503-0.276c0.686-0.342,1.445-0.551,2.211-0.531c0.769,0.018,1.516,0.317,2.108,0.798
-						c0.156,0.104,0.293,0.265,0.417,0.378c0.064,0.064,0.134,0.126,0.188,0.2c0.115,0.145,0.239,0.281,0.348,0.432"/>
+					<path fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" d="M245.996,174.255
+						c0.212,0.271,0.427,0.54,0.593,0.842c0.839,1.404,1.223,3.063,1.171,4.691c-0.035,0.812-0.188,1.642-0.599,2.353
+						c-0.219,0.343-0.475,0.677-0.827,0.886l-0.263,0.158c-0.057,0.079-0.082,0.185-0.126,0.276
+						c-0.063,0.196-0.17,0.369-0.296,0.531c-0.482,0.666-1.247,1.07-2.023,1.294c-0.786,0.225-1.61,0.289-2.426,0.251
+						c-1.619-0.107-3.269-0.592-4.536-1.637c-1.228-1.055-2.313-2.393-2.691-3.998c-0.183-0.796-0.134-1.646,0.17-2.407
+						c0.29-0.77,0.832-1.415,1.438-1.954c0.296-0.284,0.636-0.512,0.971-0.746c0.199-0.089,0.251-0.308,0.354-0.48
+						c0.1-0.178,0.178-0.369,0.295-0.537c0.422-0.697,0.986-1.32,1.688-1.74c0.701-0.422,1.544-0.578,2.354-0.484
+						c0.198,0.004,0.414,0.07,0.59,0.102c0.097,0.021,0.192,0.038,0.286,0.073c0.186,0.063,0.376,0.116,0.558,0.19"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" x1="234.609" y1="144.776" x2="234.571" y2="144.679"/>
+						<line fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" x1="244.828" y1="173.178" x2="244.738" y2="173.111"/>
 				</g>
 			</g>
-			
-				<ellipse transform="matrix(0.3218 -0.9468 0.9468 0.3218 13.9243 311.7593)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="224.578" cy="146.16" rx="1.446" ry="1.19"/>
+			<path opacity="0.5" fill="#FFFFFF" enable-background="new    " d="M237.824,179.838c0.198,0.828-0.189,1.632-0.87,1.797
+				c-0.682,0.164-1.396-0.373-1.601-1.2c-0.198-0.828,0.191-1.633,0.872-1.797C236.908,178.474,237.622,179.012,237.824,179.838z"/>
 		</g>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.8307" stroke-linecap="round" stroke-miterlimit="10" d="M293.343,209.414
+			l-80.757-33.854c-1.021-0.437-2.198,0.039-2.634,1.061l0,0c-0.436,1.019,0.04,2.197,1.059,2.632l80.339,34.833"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.214,108.013c0,0-0.552-2.879-0.508-3.475c0.03-0.479,2.25,1.736,2.903,2.676L194.214,108.013z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M209.197,177.98c0,0-2.194-2.225-2.51-2.778c-0.255-0.442,3.023,0.206,4.158,0.652L209.197,177.98z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M196.022,106.548l-0.684,4.459c0,0-2.986-3.35-2.898-5.224C192.44,105.783,194.508,106.462,196.022,106.548z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M209.933,175.612l2.034,4.356c0,0-4.632-1.199-5.662-2.918C206.305,177.051,208.541,176.432,209.933,175.612z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M199.439,110.708c0,0-0.95-5.491-3.903-6.947l-0.441,4.296L199.439,110.708z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M215.425,177.276c0,0-4.092-4.305-7.575-3.849l2.152,4.071L215.425,177.276z"/>
 		</g>
 	</g>
 </g>
 <g id="calque08">
 	<g>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			226.568,144.058 227.433,152.718 225.894,150.364 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			216.942,188.979 226.208,185.572 223.452,184.397 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			212.146,120.976 211.358,128.131 209.82,125.78 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.8493" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			234.772,176.256 239.139,186.885 236.384,185.709 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			206.19,145.668 221.189,150.05 219.651,147.698 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			240.046,207.67 259.677,200.007 256.922,198.832 		"/>
 		
-			<polygon fill="#CC924C" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-			196.278,120.859 203.798,123.45 202.805,121.932 		"/>
+			<polygon fill="#CC924C" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			268.143,193.134 271.534,200.231 269.757,199.474 		"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M214.809,159.935c2.18-1.558,2.405-3.567,7.979-2.77c5.573,0.8,2.523,4.275,6.19,4.801c-3.667-0.525-1.938,3.752-7.307,2.982
-				C216.304,164.18,216.632,161.894,214.809,159.935z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M262.081,216.341c0.19-2.851-1.312-4.396,3.119-8.45c4.427-4.051,5.228,0.813,8.142-1.852c-2.914,2.665,1.781,4.137-2.485,8.039
+				C266.591,217.98,264.93,216.163,262.081,216.341z"/>
 			<g>
-				<line fill="none" x1="228.979" y1="161.966" x2="217.837" y2="160.357"/>
+				<line fill="none" x1="273.342" y1="206.039" x2="264.617" y2="214.021"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						228.486,161.895 227.849,161.803 220.432,160.732 219.877,160.652 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						272.95,206.396 272.442,206.861 266.68,212.135 266.238,212.538 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="218.33" y1="160.429" x2="218.399" y2="160.438"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="265.009" y1="213.663" x2="265.063" y2="213.613"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M227.747,129.791c1.687,2.083,3.705,2.188,3.241,7.798c-0.464,5.613-4.116,2.776-4.421,6.469
-				c0.305-3.692-3.861-1.709-3.414-7.114C223.599,131.539,225.899,131.729,227.747,129.791z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M202.186,192.879c2.501,1.382,2.988,3.48,8.794,1.945c5.804-1.533,2.144-4.838,5.963-5.846c-3.819,1.008-2.517-3.734-8.104-2.257
+				C203.246,188.197,203.875,190.578,202.186,192.879z"/>
 			<g>
-				<line fill="none" x1="226.409" y1="144.023" x2="227.319" y2="132.969"/>
+				<line fill="none" x1="216.942" y1="188.979" x2="205.507" y2="192"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						226.45,143.527 226.503,142.885 227.104,135.582 227.15,135.023 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						216.43,189.114 215.765,189.29 208.209,191.286 207.632,191.438 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="227.278" y1="133.465" x2="227.272" y2="133.535"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="206.02" y1="191.864" x2="206.092" y2="191.846"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.911,134.119c3.021,0.064,4.584-1.6,9.083,2.888c4.5,4.486-0.606,5.569,2.354,8.521c-2.962-2.952-4.287,2.082-8.62-2.238
-				C193.395,138.968,195.234,137.124,194.911,134.119z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M223.208,204.107c2.718-1.731,3.118-4.132,9.763-2.818c6.646,1.314,2.76,5.298,7.134,6.164c-4.374-0.866-2.568,4.385-8.969,3.117
+				C224.735,209.305,225.272,206.58,223.208,204.107z"/>
 			<g>
-				<line fill="none" x1="206.35" y1="145.528" x2="197.483" y2="136.688"/>
+				<line fill="none" x1="240.104" y1="207.453" x2="227.011" y2="204.861"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						205.997,145.177 205.54,144.722 199.34,138.54 198.943,138.144 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						239.584,207.35 238.909,207.217 229.753,205.404 229.167,205.289 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="197.836" y1="137.04" x2="197.886" y2="137.09"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="227.531" y1="204.965" x2="227.604" y2="204.979"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M190.38,145.95c2.186-2.094,2.111-4.373,8.467-4.383c6.354-0.009,3.509,4.366,7.689,4.36c-4.182,0.006-1.56,4.505-7.679,4.513
-				C192.738,150.449,192.735,147.845,190.38,145.95z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.196,217.279c0.696-3.148-0.719-5.129,4.909-8.896c5.63-3.771,5.697,1.794,9.4-0.688c-3.703,2.48,1.285,4.918-4.135,8.547
+				C230.948,219.874,229.402,217.566,226.196,217.279z"/>
 			<g>
-				<line fill="none" x1="206.536" y1="145.928" x2="194.018" y2="145.946"/>
+				<line fill="none" x1="240.506" y1="207.695" x2="229.416" y2="215.124"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						206.038,145.929 205.394,145.93 196.64,145.942 196.079,145.943 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						240.064,207.992 239.493,208.374 231.738,213.568 231.242,213.9 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="194.516" y1="145.945" x2="194.585" y2="145.945"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="229.857" y1="214.828" x2="229.919" y2="214.787"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M184.663,116.72c2.18-1.008,2.712-2.738,7.48-1.107c4.77,1.632,1.507,4.182,4.646,5.254c-3.14-1.072-2.328,2.978-6.924,1.406
-				C185.273,120.702,185.94,118.747,184.663,116.72z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M261.629,181.718c-0.649,2.474-2.367,3.354,0.233,8.058c2.603,4.701,4.671,0.802,6.382,3.896
+				c-1.711-3.095,2.689-3.001,0.186-7.53C265.924,181.612,263.997,182.68,261.629,181.718z"/>
 			<g>
-				<line fill="none" x1="196.79" y1="120.866" x2="187.394" y2="117.653"/>
+				<line fill="none" x1="268.244" y1="193.672" x2="263.119" y2="184.408"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						196.319,120.705 195.709,120.496 189.874,118.502 189.344,118.32 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						267.987,193.207 267.654,192.605 264.473,186.854 264.183,186.331 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="187.864" y1="117.814" x2="187.931" y2="117.837"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="263.376" y1="184.873" x2="263.412" y2="184.938"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M185.558,126.728c0.826-2.253-0.021-3.852,4.506-6.07c4.524-2.221,4.021,1.889,7,0.428c-2.979,1.461,0.457,3.754-3.9,5.891
-				C188.804,129.113,187.894,127.258,185.558,126.728z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M272.301,180.786c-2.21,1.29-4.047,0.698-5.53,5.862c-1.484,5.165,2.733,3.87,1.756,7.269c0.979-3.398,4.026-0.22,5.456-5.194
+				C275.413,183.749,273.294,183.14,272.301,180.786z"/>
 			<g>
-				<line fill="none" x1="197.063" y1="121.085" x2="188.147" y2="125.458"/>
+				<line fill="none" x1="268.526" y1="193.917" x2="271.452" y2="183.741"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						196.616,121.305 196.037,121.588 190.502,124.304 189.998,124.551 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						268.673,193.407 268.863,192.746 270.68,186.428 270.845,185.854 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="188.595" y1="125.238" x2="188.657" y2="125.208"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="271.306" y1="184.251" x2="271.285" y2="184.323"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.022,110.548c-0.354,3.002,1.151,4.717-3.75,8.762c-4.9,4.045-5.483-1.144-8.709,1.519c3.226-2.662-1.658-4.47,3.062-8.363
-				C220.347,108.569,222.003,110.578,225.022,110.548z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M240.015,159.387c1.464,2.872,3.813,3.502,1.863,9.989c-1.952,6.487-5.54,2.233-6.823,6.503c1.283-4.27-4.116-2.98-2.236-9.229
+				C234.697,160.401,237.355,161.202,240.015,159.387z"/>
 			<g>
-				<line fill="none" x1="212.401" y1="120.794" x2="222.06" y2="112.826"/>
+				<line fill="none" x1="235.055" y1="175.879" x2="238.898" y2="163.097"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.785,120.478 213.283,120.066 220.037,114.495 220.47,114.138 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.207,175.371 235.405,174.712 238.094,165.773 238.266,165.201 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="221.676" y1="113.143" x2="221.621" y2="113.188"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="238.746" y1="163.605" x2="238.725" y2="163.677"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M213.688,104.896c1.873,2.375,4.149,2.521,3.544,8.848c-0.607,6.325-4.687,3.07-5.085,7.232c0.398-4.162-4.332-1.988-3.747-8.079
-				C208.98,106.805,211.575,107.053,213.688,104.896z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M226.617,161.084c3.066,0.998,5.175-0.219,8.382,5.749c3.205,5.968-2.339,5.495-0.228,9.423c-2.111-3.928-5.02,0.803-8.106-4.943
+				C223.576,165.564,226.023,164.249,226.617,161.084z"/>
 			<g>
-				<line fill="none" x1="212.146" y1="120.976" x2="213.34" y2="108.515"/>
+				<line fill="none" x1="234.772" y1="176.256" x2="228.453" y2="164.499"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.194,120.48 212.256,119.838 213.09,111.125 213.144,110.566 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						234.521,175.788 234.195,175.183 229.776,166.961 229.494,166.435 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="213.292" y1="109.01" x2="213.286" y2="109.08"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="228.704" y1="164.967" x2="228.74" y2="165.032"/>
 				</g>
 			</g>
 		</g>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M225.075,121.44c-1.729,1.633-1.685,3.424-6.677,3.393c-4.991-0.031-2.729-3.451-6.016-3.472c3.285,0.021,1.252-3.53,6.06-3.499
-				C223.251,117.893,223.239,119.938,225.075,121.44z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.5923" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M246.512,169.016c-0.566,2.469,0.533,4.032-3.912,6.959c-4.445,2.928-4.465-1.444-7.389,0.482
+				c2.924-1.927-0.979-3.87,3.301-6.688C242.793,166.948,243.992,168.77,246.512,169.016z"/>
 			<g>
-				<line fill="none" x1="212.224" y1="121.328" x2="222.057" y2="121.39"/>
+				<line fill="none" x1="235.211" y1="176.457" x2="243.968" y2="170.689"/>
 				<g>
-					<polyline fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" points="
-						212.722,121.331 213.366,121.335 219.435,121.373 219.995,121.377 					"/>
+					<polyline fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" points="
+						235.654,176.165 236.229,175.787 241.633,172.227 242.133,171.898 					"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-miterlimit="10" x1="221.559" y1="121.387" x2="221.489" y2="121.386"/>
+						<line fill="none" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-miterlimit="10" x1="243.524" y1="170.981" x2="243.462" y2="171.022"/>
 				</g>
 			</g>
 		</g>
-		<path fill="#CC924C" stroke="#333333" stroke-width="2.6551" stroke-linecap="round" stroke-miterlimit="10" d="M243.483,176.358
-			l-45.36-68.47c-0.568-0.872-1.736-1.114-2.607-0.546l0,0c-0.869,0.568-1.113,1.735-0.544,2.605l44.528,69.016"/>
 		<g>
 			<g>
-				<path fill="#EF4529" d="M205.263,122.216c2.252,2.669,1.772,8.203-0.752,8.909c-1.203,2.66-6.657,1.917-8.91-0.751
-					c-2.252-2.669-3.171-6.408,1.424-8.442C199.649,117.921,203.01,119.548,205.263,122.216z"/>
+				<path fill="#EF4529" d="M247.488,204.1c3.594,0.983,6.521,6.135,4.729,8.28c0.551,3.063-4.688,5.708-8.28,4.726
+					c-3.591-0.982-6.659-3.711-3.852-8.276C239.965,203.721,243.898,203.118,247.488,204.1z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" d="M205.695,122.824
-						c0.158,0.28,0.321,0.56,0.434,0.863c0.583,1.419,0.709,3.01,0.436,4.514c-0.146,0.748-0.402,1.497-0.883,2.1
-						c-0.249,0.288-0.533,0.563-0.89,0.707l-0.267,0.111c-0.062,0.066-0.102,0.16-0.152,0.238c-0.086,0.175-0.21,0.319-0.351,0.453
-						c-0.541,0.55-1.305,0.818-2.058,0.918c-0.76,0.099-1.534,0.044-2.285-0.104c-1.486-0.324-2.948-1.002-3.979-2.148
-						c-0.991-1.148-1.813-2.54-1.941-4.082c-0.06-0.763,0.104-1.545,0.491-2.209c0.376-0.674,0.969-1.197,1.605-1.613
-						c0.313-0.223,0.66-0.387,1.003-0.558c0.198-0.055,0.274-0.253,0.396-0.397c0.117-0.151,0.216-0.318,0.348-0.457
-						c0.488-0.589,1.101-1.088,1.81-1.38c0.709-0.293,1.513-0.321,2.251-0.122c0.185,0.031,0.375,0.123,0.532,0.177
-						c0.088,0.032,0.176,0.062,0.256,0.106c0.162,0.086,0.333,0.16,0.49,0.255"/>
+					<path fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" d="M248.235,204.372
+						c0.311,0.151,0.621,0.298,0.902,0.497c1.37,0.893,2.443,2.214,3.112,3.699c0.325,0.746,0.553,1.559,0.497,2.377
+						c-0.045,0.404-0.129,0.816-0.354,1.16l-0.167,0.258c-0.018,0.096,0.007,0.201,0.008,0.303c0.029,0.204,0.011,0.406-0.032,0.607
+						c-0.143,0.811-0.649,1.508-1.252,2.051c-0.606,0.547-1.318,0.968-2.067,1.291c-1.502,0.615-3.196,0.902-4.795,0.521
+						c-1.565-0.41-3.129-1.135-4.174-2.41c-0.515-0.635-0.844-1.422-0.905-2.236c-0.077-0.819,0.127-1.639,0.436-2.389
+						c0.141-0.386,0.347-0.74,0.544-1.097c0.141-0.168,0.092-0.387,0.107-0.588c0.012-0.204-0.002-0.41,0.03-0.612
+						c0.071-0.812,0.307-1.619,0.752-2.305c0.443-0.688,1.134-1.198,1.901-1.471c0.183-0.084,0.403-0.117,0.575-0.166
+						c0.096-0.023,0.19-0.053,0.289-0.062c0.194-0.022,0.389-0.062,0.585-0.073"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" x1="204.761" y1="121.663" x2="204.687" y2="121.589"/>
+						<line fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" x1="246.714" y1="203.917" x2="246.604" y2="203.896"/>
 				</g>
 			</g>
 			
-				<ellipse transform="matrix(-0.0887 -0.9961 0.9961 -0.0887 87.0727 333.6406)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="196.155" cy="126.99" rx="1.447" ry="1.19"/>
+				<ellipse transform="matrix(-0.6374 -0.7705 0.7705 -0.6374 232.1184 536.8285)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="242.375" cy="213.797" rx="1.544" ry="1.269"/>
 		</g>
 		<g>
 			<g>
-				<path fill="#EF4529" d="M234.847,145.483c0.981,3.352-1.695,8.222-4.291,7.846c-2.175,1.945-6.861-0.939-7.844-4.29
-					c-0.983-3.351-0.31-7.144,4.715-7.146C231.45,139.288,233.864,142.134,234.847,145.483z"/>
+				<path fill="#EF4529" d="M245.517,173.513c2.796,2.457,3.165,8.369,0.612,9.511c-0.851,2.994-6.718,3.071-9.516,0.612
+					c-2.793-2.46-4.352-6.26,0.175-9.127C238.924,169.867,242.723,171.052,245.517,173.513z"/>
 				<g>
-					<path fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" d="M234.997,146.215
-						c0.03,0.32,0.065,0.642,0.046,0.965c-0.04,1.533-0.568,3.039-1.426,4.305c-0.437,0.625-0.975,1.206-1.655,1.564
-						c-0.345,0.162-0.715,0.298-1.101,0.287l-0.286-0.007c-0.087,0.033-0.158,0.104-0.238,0.155
-						c-0.148,0.124-0.32,0.208-0.502,0.272c-0.717,0.285-1.524,0.222-2.253,0.009c-0.735-0.217-1.421-0.579-2.048-1.018
-						c-1.229-0.898-2.292-2.109-2.773-3.574c-0.443-1.451-0.632-3.057-0.127-4.518c0.255-0.723,0.721-1.372,1.343-1.822
-						c0.615-0.465,1.369-0.704,2.12-0.828c0.377-0.077,0.761-0.086,1.145-0.104c0.201,0.03,0.353-0.118,0.521-0.203
-						c0.168-0.091,0.326-0.203,0.503-0.276c0.686-0.341,1.445-0.551,2.212-0.531c0.768,0.019,1.515,0.317,2.108,0.798
-						c0.156,0.104,0.293,0.265,0.417,0.378c0.064,0.064,0.134,0.126,0.188,0.2c0.115,0.144,0.239,0.281,0.347,0.431"/>
+					<path fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" d="M246.069,174.085
+						c0.211,0.271,0.428,0.54,0.594,0.843c0.839,1.404,1.223,3.062,1.171,4.69c-0.035,0.812-0.188,1.642-0.601,2.353
+						c-0.217,0.343-0.474,0.677-0.827,0.886l-0.263,0.158c-0.055,0.08-0.082,0.185-0.124,0.276
+						c-0.063,0.197-0.171,0.369-0.297,0.531c-0.484,0.666-1.247,1.069-2.025,1.293c-0.785,0.225-1.609,0.289-2.426,0.251
+						c-1.619-0.107-3.268-0.591-4.536-1.637c-1.226-1.056-2.312-2.394-2.688-3.999c-0.184-0.795-0.133-1.646,0.17-2.406
+						c0.29-0.77,0.832-1.415,1.438-1.955c0.297-0.284,0.637-0.512,0.972-0.745c0.199-0.089,0.25-0.309,0.354-0.481
+						c0.101-0.178,0.179-0.369,0.295-0.536c0.422-0.698,0.987-1.321,1.688-1.74c0.701-0.422,1.545-0.579,2.354-0.484
+						c0.2,0.004,0.414,0.07,0.592,0.103c0.096,0.021,0.191,0.037,0.284,0.072c0.187,0.064,0.376,0.116,0.559,0.191"/>
 					
-						<line fill="none" stroke="#333333" stroke-width="1.4936" stroke-linecap="round" stroke-miterlimit="10" x1="234.611" y1="144.774" x2="234.573" y2="144.677"/>
+						<line fill="none" stroke="#333333" stroke-width="1.5924" stroke-linecap="round" stroke-miterlimit="10" x1="244.901" y1="173.008" x2="244.811" y2="172.941"/>
 				</g>
 			</g>
 			
-				<ellipse transform="matrix(0.3225 -0.9466 0.9466 0.3225 13.815 311.6191)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="224.597" cy="146.159" rx="1.446" ry="1.19"/>
+				<ellipse transform="matrix(-0.2345 -0.9721 0.9721 -0.2345 117.2205 452.2421)" opacity="0.5" fill="#FFFFFF" enable-background="new    " cx="236.674" cy="179.967" rx="1.543" ry="1.269"/>
 		</g>
+		<path fill="#CC924C" stroke="#333333" stroke-width="2.8307" stroke-linecap="round" stroke-miterlimit="10" d="M293.341,209.418
+			l-80.756-33.855c-1.021-0.436-2.198,0.038-2.633,1.06l0,0c-0.437,1.02,0.038,2.198,1.059,2.633l80.339,34.835"/>
 		<g>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M194.217,108.012c0,0-0.553-2.879-0.509-3.474c0.028-0.479,2.25,1.736,2.901,2.676L194.217,108.012z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M209.196,177.984c0,0-2.193-2.227-2.51-2.779c-0.255-0.444,3.024,0.207,4.159,0.653L209.196,177.984z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M196.024,106.548l-0.683,4.457c0,0-2.989-3.348-2.898-5.224C192.443,105.781,194.511,106.461,196.024,106.548z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M209.932,175.614l2.032,4.358c0,0-4.631-1.2-5.661-2.916C206.303,177.057,208.539,176.435,209.932,175.614z"/>
 			
-				<path fill="#A1C453" stroke="#333333" stroke-width="0.9957" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-				M199.442,110.707c0,0-0.95-5.49-3.905-6.948l-0.44,4.297L199.442,110.707z"/>
+				<path fill="#A1C453" stroke="#333333" stroke-width="1.0616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M215.423,177.28c0,0-4.092-4.307-7.574-3.848l2.152,4.068L215.423,177.28z"/>
 		</g>
 	</g>
 </g>
