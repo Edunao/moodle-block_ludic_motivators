@@ -256,7 +256,7 @@ class progress extends iMotivator {
                             </form>
                         </div>';
 
-            $output .= '<div style="border:1px solid">
+            $output .= '<div id="branch-div" style="border:1px solid">
                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Tree</h4>
                             <div id="progress-container">
                                 <img src="'.$this->image_url('LudiMoodle_arbre_troncs.svg').'" class="avatar svg"/>
