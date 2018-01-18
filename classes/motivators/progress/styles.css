@@ -41,6 +41,42 @@
     display: none;
 }
 
-#branch-picture [id^=calque]:not(#calque00) {
+[id^=branch-picture] [id^=calque]:not(#calque00) {
     visibility: hidden;
 }
+
+/*#branch-picture1 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture2 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture3 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture4 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture5 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture6 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture7 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture8 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}
+
+#branch-picture9 [id^=calque]:not(#calque00) {
+    visibility: hidden;
+}*/

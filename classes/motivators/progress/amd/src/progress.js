@@ -1,22 +1,3 @@
-/*define(['jquery', 'core/tree'], function ($, Tree) {
-    var progress = {
-        init: function () {
-            console.log('Progress init');
-            var that = this;
-
-            $({someValue: 136}).animate({someValue: 143}, {
-                duration: 1000,
-                easing:'swing', // can be anything
-                step: function() { // called on every steps
-                    $('.progress-number').text(Math.ceil(this.someValue));
-                }
-            });
-
-        }
-    };
-    return progress;
-});*/
-
 define(['jquery', 'core/tree'], function ($, Tree) {
     var avatar = {
         init: function (params) {
@@ -32,9 +13,18 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             this.convert_svg('img.svg.avatar');
 
             // Set visible the layer (items) that are newly obtained
-            $.each(this.revealed_layers, function( index, value ) {
-                layer = $('#branch-picture #'+value);
-                layer.css('visibility', 'visible');
+            $.each(this.revealed_layers, function( branchId, arrayLayer ) {
+                branchId = branchId+1;
+                if (arrayLayer.length == 0) {
+                    console.log('branche vide');
+                    return true;
+                } else {
+                    $.each(arrayLayer, function (layerId, layerName) {
+                        layerSelector = $('#branch-picture'+branchId+' #'+layerName);
+                        console.log('layer=',layerSelector);
+                        layerSelector.css('visibility', 'visible');
+                    });
+                }
             });
 
             $('#branch-div').css('display', 'block')

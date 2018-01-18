@@ -116,11 +116,11 @@ class progress extends iMotivator {
                 ],
                 [
                     'courseId' => '3',
-                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                    'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                     'layers' => [
                         [
                             'layerName' => 'calque00',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                         ],
                     ]
                 ],
@@ -130,16 +130,17 @@ class progress extends iMotivator {
                     'layers' => [
                         [
                             'layerName' => 'calque00',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                         ],
                         [
                             'layerName' => 'calque01',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
                         ],
                         [
                             'layerName' => 'calque02',
-                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-                        ],                    ]
+                            'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+                        ],
+                    ]
                 ],
             ]
         );
@@ -148,7 +149,7 @@ class progress extends iMotivator {
         if (($branchParam = optional_param('branch', 0, PARAM_TEXT)) !== 0) {
             // Check whether the courseid param is a valid course id (#0)
             if (($courseId = optional_param('courseid', 0, PARAM_TEXT)) !== 0) {
-                // Check whether the course is preset in the course layers array
+                // Check whether the course is presetted in the course layers array
                 foreach ($preset['branches'] as $branchKey => $branch) {
                     if ($branch['courseId'] == $courseId) {
                         $preset['branches'][$branchKey]['layers'][$branchParam]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
@@ -156,7 +157,20 @@ class progress extends iMotivator {
 
                 }
             }
+        } else {
+            if (($layerParam = optional_param('layer', 0, PARAM_TEXT)) !== 0) {
+                for ($i=0; $i <= $layerParam ; $i++) {
+                    $branch = floor($i/9);
+                    $layer = $i % 9;
+                    $preset['branches'][$branch]['layers'][$layer]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED;
+                    if (!isset($preset['branches'][$branch]['layers'][$layer]['layerName'])){
+                        $preset['branches'][$branch]['layers'][$layer]['layerName'] = 'calque' . str_pad($layer, 2, '0', STR_PAD_LEFT);
+                    }
+                }
+            }
         }
+
+
 
         parent::__construct($context, $preset);
     }
@@ -185,28 +199,25 @@ class progress extends iMotivator {
      *
      * @return an array
      */
-    function getRevealedLayer(array $layers){
-        //$datas = $this->context->store->get_datas();
-        //$params = array('revealed_pieces' => array());
+    function getRevealedLayer(array $layers, $state){
+        $revealedLayers = array();
 
         foreach ($layers as $key => $layer) {
-            if ($layer['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED) {
-                $revealedPieces[] = $layer['layerName'];
+            if ($layer['achievement'] === $state) {
+                $revealedLayers[] = $layer['layerName'];
             }
         }
 
-        return $revealedPieces;
+        return $revealedLayers;
     }
 
     function getBranchOptionsSelect($courseId, $selectedLayer){
         $textSelect  = '';
-        foreach ($this->preset['branches'] as $key => $branch) {
+        foreach ($this->preset['branches'] as $courseKey => $branch) {
             if ($branch['courseId'] === $courseId) {
                 foreach ($branch['layers'] as $layerKey => $layer) {
-                    //if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                        $selected = $layerKey == $selectedLayer ? 'selected' : '';
-                        $textSelect .= '<option value="' . $layerKey . '" ' . $selected . '>Calque ' . $layerKey . '</option>';
-                    //}
+                    $selected = ($layerKey == $selectedLayer) ? 'selected' : '';
+                    $textSelect .= '<option value="' . $layerKey . '" ' . $selected . '>Calque ' . $layerKey . '</option>';
                 }
             }
         }
@@ -214,17 +225,13 @@ class progress extends iMotivator {
         return $textSelect;
     }
 
-    function getTreeOptionsSelect($selectedLayer){
-        $textSelect  = '';
-        foreach ($this->preset['branches'] as $key => $branch) {
-            if ($branch['courseId'] === $courseId) {
-                foreach ($branch['layers'] as $layerKey => $layer) {
-                    if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                        $selected = $layerKey == $selectedLayer ? 'selected' : '';
-                        $textSelect .= '<option value="' . $layerKey . '" ' . $selected . '>Calque ' . $layerKey . '</option>';
-                    }
-                }
-            }
+    function getTreeOptionsSelect($courseId, $selectedLayer){
+        $textSelect  = '<option value="" selected>Sélectionnez une branche</option>';
+        for ($branch=0; $branch <15; $branch++) {
+            $layer = 0;
+            $layerId = ($branch*9) + $layer;
+            $selected = ($layerId == $selectedLayer) ? 'selected' : '';
+            $textSelect .= '<option value="' . $layerId . '" ' . $selected . '>Branche ' . $branch . ' - Calque ' . $layer . '</option>';
         }
 
         return $textSelect;
@@ -232,27 +239,41 @@ class progress extends iMotivator {
 
     public function get_content() {
 
-
         // The view for the /my/ page shows an image of trees with 8 optional layers per course
         // (making 14 x 8 = 112 optional layers in all)
         if ($this->isMyPage()) {
-            $treeParam = optional_param('tree', 0, PARAM_TEXT);
+            $layerParam = optional_param('layer', '', PARAM_TEXT);
+            $courseId = optional_param('courseId', 0, PARAM_TEXT);
 
             // Div block showing the tree items selector for the purpose of test
             $output  = '<div style="margin-bottom:15px;">
                             <form id="branch_form" method="POST">
                                 <input id="motivator" name="motivator" type="hidden" value="progress">
-                                <input id="motivator" name="motivator" type="hidden" value="' . $courseId .'">
-                                <select name="branch" onChange="document.getElementById(\'branch_form\').submit()">'
-                                    . $this->getBranchOptionsSelect($treeParam) .
+                                <input id="courseid" name="courseid" type="hidden" value="' . $courseId .'">
+                                <select name="layer" onChange="document.getElementById(\'branch_form\').submit()">'
+                                    . $this->getTreeOptionsSelect($courseId, $layerParam) .
                                 '</select>
                             </form>
                         </div>';
 
-            $output .= '<div>
+            $output .= '<div style="border:1px solid">
                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Tree</h4>
                             <div id="progress-container">
-                                <img src="'.$this->image_url('LudiMoodle_arbre_tronc_1.svg').'" width="180px" height="180px" class="avatar svg"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_troncs.svg').'" class="avatar svg"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_01.svg').'" class="avatar svg" id="branch-picture1"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_02.svg').'" class="avatar svg" id="branch-picture2"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_03.svg').'" class="avatar svg" id="branch-picture3"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_04.svg').'" class="avatar svg" id="branch-picture4"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_05.svg').'" class="avatar svg" id="branch-picture5"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_06.svg').'" class="avatar svg" id="branch-picture6"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_07.svg').'" class="avatar svg" id="branch-picture7"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_08.svg').'" class="avatar svg" id="branch-picture8"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_09.svg').'" class="avatar svg" id="branch-picture9"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_10.svg').'" class="avatar svg" id="branch-picture10"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_11.svg').'" class="avatar svg" id="branch-picture11"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_12.svg').'" class="avatar svg" id="branch-picture12"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_13.svg').'" class="avatar svg" id="branch-picture13"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_branche_14.svg').'" class="avatar svg" id="branch-picture14"/>
                             </div>
                         </div>';
 
@@ -276,7 +297,7 @@ class progress extends iMotivator {
             $output .= '<div id="branch-div" style="border:1px solid">
                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
                             <div id="branch-container">
-                                <img src="' . $this->image_url('LudiMoodle_branche_1.svg') . '" width="180px" height="180px" class="avatar svg" id="branch-picture"/>
+                                <img src="' . $this->image_url('LudiMoodle_branche_1.svg') . '" width="180px" height="180px" class="avatar svg" id="branch-picture1"/>
                             </div>
                         </div>';
         }
@@ -292,12 +313,7 @@ class progress extends iMotivator {
         // (making 14 x 8 = 112 optional layers in all)
         if ($this->isMyPage()) {
             foreach ($this->preset['branches'] as $key => $branch) {
-                //if ($branch['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-                $params['revealed_pieces'] = array_merge(
-                    $params['revealed_pieces'],
-                    $this->getRevealedLayer($branch['layers'])
-                );
-                //}
+                $params['revealed_layers'][] = $this->getRevealedLayer($branch['layers'], $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED);
             }
 
         // The view within a course shows a tree branch as an SVG with 8 optional layers.
@@ -305,7 +321,7 @@ class progress extends iMotivator {
         } else {
             foreach ($this->preset['branches'] as $key => $branch) {
                 if ($branch['courseId'] === $this->context->getCourseId()) {
-                    $params['revealed_layers'] = $this->getRevealedLayer($branch['layers']);
+                    $params['revealed_layers'][] = $this->getRevealedLayer($branch['layers'], $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED);
                 }
             }
         }
