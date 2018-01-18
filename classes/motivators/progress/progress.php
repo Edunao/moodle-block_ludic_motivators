@@ -259,7 +259,6 @@ class progress extends iMotivator {
             $output .= '<div id="branch-div" style="border:1px solid">
                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Tree</h4>
                             <div id="progress-container">
-                                <img src="'.$this->image_url('LudiMoodle_arbre_troncs.svg').'" class="avatar svg"/>
                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_01.svg').'" class="avatar svg" id="branch-picture1"/>
                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_02.svg').'" class="avatar svg" id="branch-picture2"/>
                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_03.svg').'" class="avatar svg" id="branch-picture3"/>
@@ -274,6 +273,7 @@ class progress extends iMotivator {
                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_12.svg').'" class="avatar svg" id="branch-picture12"/>
                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_13.svg').'" class="avatar svg" id="branch-picture13"/>
                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_14.svg').'" class="avatar svg" id="branch-picture14"/>
+                                <img src="'.$this->image_url('LudiMoodle_arbre_troncs.svg').'" class="avatar svg"/>
                             </div>
                         </div>';
 
