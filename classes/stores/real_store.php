@@ -51,7 +51,17 @@ class real_store extends \block_ludic_motivators\iStore {
 
     public function get_datas() {
         global $DB;
+
         if ($datas = $DB->get_record('ludic_motivators_states', array('course' => $this->courseid, 'userid' => $this->userid))) {
+            return json_decode($datas->datas);
+        }
+        return null;
+    }
+
+    public function get_quiz_attempt($attempt_id) {
+        global $DB;
+
+        if ($datas = $DB->get_record('quiz_attempts', array('id' => $attempt_id, 'userid' => $this->userid))) {
             return json_decode($datas->datas);
         }
         return null;
