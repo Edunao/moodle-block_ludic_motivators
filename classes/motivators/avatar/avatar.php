@@ -24,10 +24,15 @@
 namespace block_ludic_motivators;
 
 require_once dirname( __DIR__ ) . '/motivator_interface.php';
+require_once $CFG->dirroot . '/blocks/ludic_motivators/locallib.php';
 
 class avatar extends iMotivator {
 
     public function __construct($context) {
+        // Initialisation du status du modérateur
+        set_achievement_status($context, 'avatar');
+
+        // Lecture du fichier de configuration
         $preset = array(
             'questionsSet' => [
                 'nbOfQuestions' => '8',

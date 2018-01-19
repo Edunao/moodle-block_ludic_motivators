@@ -28,31 +28,64 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+use \block_ludic_motivators\real_store;
+use \block_ludic_motivators\context;
 
 /**
  * This return achievement status for the moderator passed in parameter.
  *
  * @return stdclass the status record.
+ * stdClass->courseId
+ * stdClass->moderator
+ * stdClass->userId
+ * stdClass->quiz_attempts = array(
+ *     array(
+ *         'quizid'
+ *         'attempt'
+ *         'layout'
+ *         'previouspage'
+ *         'currentpage'
+ *         'retryanswer'
+ *         'state'
+ *         'timestart'
+ *         'timefinish'
+ *         'sumgrades'
+ *     )
+ * )
  */
-function get_achievement_status($moderator, $courseId) {
-    global $DB;
+function get_achievement_status(context $context, $moderator) {
+
+    // Get the data from the database and update the status from
+    // code...
+    $store = $context->getStore();print_r($store);
+    $datas = $store->get_datas();echo "toto";print_r($datas);
+
     $status = new stdClass;
 
-    $status->courseId = $courseId;
-    $status->userId = $userId;
-    $status->quiz_attempts = array(
+    $status->courseId = $context->getCourseId();
+    $status->userId = $context->getUser();
+
+
+    /*$currentpage = optional_param('page', 0, PARAM_INT);
+    $previouspage = $datas->quiz_attempts('previouspage');
+    $retry_answer = ($currentpage < $previouspage) ? true : false;*/
+
+    /*$status->quiz_attempts = array(
         array(
             'quizid' => '',
-            'attempt' => '',
+            'attempt' => optional_param('attempt', 0, PARAM_INT),
+            'layout' => '',
+            'previouspage' => '',
             'currentpage' => '',
+            'retryanswer' => $retry_answer,
             'state' => '',
             'timestart' => '',
             'timefinish' => '',
             'sumgrades' => '',
         ),
-    );
+    );*/
 
-    switch ($moderator) {
+    switch ($status->moderator) {
         case 'avatar':
             return get_avatar_achievement_status($status);
             break;
@@ -158,10 +191,10 @@ function get_badges_achievement_status(stdClass $status) {
         'newly_obtained' => 7,
     );
 
-    // Array containing the step indice
+    // Array containing the layer name as presetted in the configuration file
     $status->global_badges = array(
-        'previously_obtained' => array(1,2,3),
-        'newly_obtained' => 3,
+        'previously_obtained' => array('calque01','calque02','calque03'),
+        'newly_obtained' => 'calque03',
     );
 
     return $status;
@@ -173,7 +206,7 @@ function get_timer_achievement_status(stdClass $status) {
     $status->max_duration_timer = 45;
 
     // Array containing the timing in seconds
-    $status->timing = array(
+    $status->timer = array(
         'previously_timers' => array(1200,2400,1800),
         'previously_timestamps' => array(123456789,123456789,123456789),
         'current_timer' => 500,
@@ -227,48 +260,92 @@ function get_progress_achievement_status(stdClass $status) {
  *
  * @return true or false.
  */
-function set_achievement_status($moderator, $courseId, array $newValue) {
-    $status = get_achievement_status($moderator, $courseId);
+function set_achievement_status(context $context, $moderator) {
+
+    // Get the data from the database
+    $store = $context->getStore();
+    $datas = $store->get_datas();
+
+    if (empty($datas)) {
+        $status = init_status($context, $moderator);
+    } else {
+        $status = $datas;
+    }
+    //print_r($status);
+
+    // Get the quiz attempt data from the database
+    $attempt = optional_param('attempt', 0, PARAM_INT);
+    $store = $context->getStore();
+    $quiz_attempt = $store->get_quiz_attempt($attempt_id);echo 'itit';print_r($quiz_attempt);
+
+
+    //$previousStatus = get_achievement_status($context, $moderator);
+
+    //$previousStatus->courseId = $context->getCourseId();
+    //$previousStatus->userId = $context->getUser();
+
+    //$currentpage = optional_param('page', 0, PARAM_INT);
+    //$previouspage = $previousStatus->quiz_attempts('previouspage');
+    //$retry_answer = ($currentpage < $previouspage) ? true : false;
+
+    /*$previousStatus->quiz_attempts = array(
+        array(
+            'quizid' => '',
+            'attempt' => optional_param('attempt', 0, PARAM_INT),
+            'layout' => '',
+            'previouspage' => '',
+            'currentpage' => '',
+            'retryanswer' => $retry_answer,
+            'state' => '',
+            'timestart' => '',
+            'timefinish' => '',
+            'sumgrades' => '',
+        ),
+    );*/
+
+    $newValue = array();
 
     switch ($moderator) {
         case 'avatar':
-            return set_avatar_achievement_status($status, $newValue);
+            $newStatus = set_avatar_achievement_status($status, $newValue);
             break;
 
         case 'score':
-            return set_score_achievement_status($status, $newValue);
+            $newStatus =  set_score_achievement_status($status, $newValue);
             break;
 
         case 'goals':
-            return set_goals_achievement_status($status, $newValue);
+            $newStatus =  set_goals_achievement_status($status, $newValue);
             break;
 
         case 'ranking':
-            return set_ranking_achievement_status($status, $newValue);
+            $newStatus =  set_ranking_achievement_status($status, $newValue);
             break;
 
         case 'badge':
-            return set_badge_achievement_status($status, $newValue);
+            $newStatus =  set_badge_achievement_status($status, $newValue);
             break;
 
         case 'timer':
-            return set_timer_achievement_status($status, $newValue);
+            $newStatus =  set_timer_achievement_status($status, $newValue);
             break;
 
         case 'progress':
-            return set_progress_achievement_status($status, $newValue);
+            $newStatus =  set_progress_achievement_status($status, $newValue);
             break;
 
         default:
-            # code...
+            // code...
             break;
     }
 
-    return $rec;
+    // Save the new status in the database
+    // code...
+
+    return true;
 }
 
 function set_avatar_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
 
     $status->avatar['previously_obtained'][] = $newValue['newly_obtained'];
     $status->avatar['newly_obtained'] = $newValue['newly_obtained'];
@@ -277,7 +354,6 @@ function set_avatar_achievement_status(stdClass $status, array $newValue) {
 }
 
 function set_score_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
 
     $status->score['previously_obtained'][] = $newValue['score']['newly_obtained'];
     $status->score['newly_obtained'] = $newValue['score']['newly_obtained'];
@@ -289,7 +365,6 @@ function set_score_achievement_status(stdClass $status, array $newValue) {
 }
 
 function set_goals_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
 
     $status->goals['previously_obtained'][] = $newValue['newly_obtained'];
     $status->goals['newly_obtained'] = $newValue['newly_obtained'];
@@ -298,7 +373,6 @@ function set_goals_achievement_status(stdClass $status, array $newValue) {
 }
 
 function set_ranking_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
     $new_score = $newValue['new_score'];
 
     // Compute and store the new best score according to the new score
@@ -322,34 +396,54 @@ function set_ranking_achievement_status(stdClass $status, array $newValue) {
 }
 
 function set_badges_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
 
-    $status->avatar['previously_obtained'][] = $newValue['newly_obtained'];
-    $status->avatar['newly_obtained'] = $newValue['newly_obtained'];
+    $status->course_badges['previously_obtained'][] = $newValue['newly_obtained'];
+    $status->course_badges['newly_obtained'] = $newValue['newly_obtained'];
+
+    // Store the badge new value in the global course
+    $courseId = $status->courseId;
+    $status->global_badges['previously_obtained'][$courseId][] = $newValue['newly_obtained'];
+    $status->global_badges['newly_obtained'][$courseId] = $newValue['newly_obtained'];
+
+    // Array containing the badge id as presetted in the configuration file
+    $status->courses_badges = array(
+        'previously_obtained' => array(1,2,7),
+        'newly_obtained' => 7,
+    );
+
+    // Array containing the step indice
+    $status->global_badges = array(
+        'previously_obtained' => array(1,2,3),
+        'newly_obtained' => 3,
+    );
 
     return true;
 }
 
 function set_timer_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
 
-    $status->avatar['previously_obtained'][] = $newValue['newly_obtained'];
-    $status->avatar['newly_obtained'] = $newValue['newly_obtained'];
+    $status->timer['previously_timers'][] = $newValue['new_timer'];
+    $status->timer['previously_timestamps'][] = $newValue['new_timestamp'];
+    $status->timer['current_timer'] = $newValue['new_timer'];
+    $status->timer['current_timestamp'] = $newValue['new_timestamp'];
 
     return true;
 }
 
 function set_progress_achievement_status(stdClass $status, array $newValue) {
-    global $DB;
 
-    $status->avatar['previously_obtained'][] = $newValue['newly_obtained'];
-    $status->avatar['newly_obtained'] = $newValue['newly_obtained'];
+    // Store the progress new value in the current course
+    $status->course_progress['previously_obtained'][] = $newValue['newly_obtained'];
+    $status->course_progress['newly_obtained'] = $newValue['newly_obtained'];
+
+    // Store the progress new value in the global course
+    $courseId = $status->courseId;
+    $status->global_progress['newly_obtained'][$courseId] = $newValue['newly_obtained'];
 
     return true;
 }
 
 function get_best_score($courseId) {
-    global $DB;
 
     // Get the best score for the $courseId for the class the current user is in
     // Faire un select retournant la valeur max des sumgrades des quiz_attempts
@@ -362,7 +456,6 @@ function get_best_score($courseId) {
 }
 
 function get_all_scores($courseId) {
-    global $DB;
 
     // Get all the scores obtained for the $courseId for the class the current user is in
     // Faire un select retournant toutes les valeurs des sumgrades des quiz_attempts
@@ -372,4 +465,29 @@ function get_all_scores($courseId) {
     if (true) {
         return array(18,9,4,6,12,15,10);
     }
+}
+
+function init_status(context $context, $moderator) {
+    $status = new stdClass;
+
+    $status->courseId = $context->getCourseId();
+    $status->userId = $context->getUser();
+    $motivator = $context->getMotivatorName();
+    $status->$motivator = array();
+
+    $currentpage = optional_param('page', 0, PARAM_INT);
+    $status->quiz_attempts[] = array(
+            'quizid' => '',
+            'attempt' => '',
+            'layout' => '',
+            'previouspage' => $currentpage,
+            'currentpage' => $currentpage,
+            'retryanswer' => false,
+            'state' => '',
+            'timestart' => '',
+            'timefinish' => '',
+            'sumgrades' => '',
+    );
+
+    return $status;
 }
