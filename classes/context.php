@@ -31,13 +31,15 @@ class context {
     var $user;
     var $page;
     var $courseid;
+    var $motivator;
     var $store;
 
     public function __construct($userid, \moodle_page $page) {
         global $DB;
-        $this->user     = $DB->get_record('user', array('id' => $userid));
-        $this->page     = $page;
-        $this->courseid = $page->course->id;
+        $this->user      = $DB->get_record('user', array('id' => $userid));
+        $this->page      = $page;
+        $this->courseid  = $page->course->id;
+        $this->motivator = optional_param('motivator', 'avatar', PARAM_TEXT);
 
         //$this->groups = groups_get_user_groups($this->courseid, $this->user->id);
 
@@ -54,6 +56,10 @@ class context {
 
     public function getCourseId() {
         return $this->courseid;
+    }
+
+    public function getMotivatorName() {
+        return $this->motivator;
     }
 
     public function getStore() {
