@@ -46,14 +46,17 @@ class block_ludic_motivators extends block_base {
     function get_content() {
         global $CFG;
 
-        $motivator_name = optional_param('motivator', 'avatar', PARAM_TEXT);
+        $context = $this->get_context();
+
+        //$motivator_name = optional_param('motivator', 'avatar', PARAM_TEXT);
+        $motivator_name = $context->getMotivatorName();
 
         require_once __DIR__ . '/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
         require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
 
         $class_name = '\\block_ludic_motivators\\' . $motivator_name;
 
-        $context = $this->get_context();
+        //$context = $this->get_context();
 
         $this->motivator = new $class_name($context);
 
