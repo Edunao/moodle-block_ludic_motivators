@@ -30,7 +30,12 @@ class real_store extends \block_ludic_motivators\iStore {
     public function store_datas($datas, $cmid = 0) {
         global $DB;
 
-        if ($stored_datas = $DB->get_record('ludic_motivators_states', array('course' => $this->courseid, 'userid' => $this->userid, 'cmid' => $cmid))) {
+        if ($stored_datas = $DB->get_record(
+                'ludic_motivators_states',
+                array(
+                    'course' => $this->courseid,
+                    'userid' => $this->userid,
+                    'cmid' => $cmid))) {
             $stored_datas->datas        = json_encode($datas);
             $stored_datas->timemodified = time();
             return $DB->update_record('ludic_motivators_states', $stored_datas);
@@ -52,7 +57,12 @@ class real_store extends \block_ludic_motivators\iStore {
     public function get_datas() {
         global $DB;
 
-        if ($datas = $DB->get_record('ludic_motivators_states', array('course' => $this->courseid, 'userid' => $this->userid))) {
+        if ($datas = $DB->get_record(
+                'ludic_motivators_states',
+                array(
+                    'course' => $this->courseid,
+                    'userid' => $this->userid)
+            )) {
             return json_decode($datas->datas);
         }
         return null;
@@ -62,9 +72,26 @@ class real_store extends \block_ludic_motivators\iStore {
         global $DB;
 
         if ($datas = $DB->get_record('quiz_attempts', array('id' => $attempt_id, 'userid' => $this->userid))) {
-            return json_decode($datas->datas);
+            return $datas;
         }
         return null;
     }
 
+    public function get_quiz_info($quiz_id) {
+        global $DB;
+
+        if ($datas = $DB->get_record('quiz', array('id' => $quiz_id))) {
+            return $datas;
+        }
+        return null;
+    }
+
+    public function get_cm_quiz($quiz_id) {
+        global $DB;
+
+        if ($datas = $DB->get_record('course_modules', array('course' => $this->courseid, 'instance' => $quiz_id))) {
+            return $datas;
+        }
+        return null;
+    }
 }

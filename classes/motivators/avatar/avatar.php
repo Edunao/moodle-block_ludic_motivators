@@ -30,7 +30,7 @@ class avatar extends iMotivator {
 
     public function __construct($context) {
         // Initialisation du status du modérateur
-        set_achievement_status($context, 'avatar');
+        set_achievement_status($context);
 
         // Lecture du fichier de configuration
         $preset = array(
@@ -160,6 +160,9 @@ class avatar extends iMotivator {
     }
 
     public function get_content() {
+        // Récupération du status du modérateur
+        //get_achievement_status($this->context);
+
         // Div block showing the image with all of the layers for previously achieved goals unmasked
         $output  = '<div id="avatar-div" style="margin-bottom:15px;border:1px solid">
                         <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Avatar</h4>
