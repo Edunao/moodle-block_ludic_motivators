@@ -21,94 +21,29 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once __DIR__ . '/classes/context.php';
+require_once __DIR__ . '/classes/motivators.class.php';
+require_once __DIR__ . '/classes/execution_environment/execution_environment_mdl.class.php';
+
+use \block_ludic_motivators\motivators;
 
 class block_ludic_motivators extends block_base {
 
-    var $motivator;
+    private $motivator;
 
-    function init() {
+    public function init() {
         $this->title = get_string('pluginname', 'block_ludic_motivators');
     }
 
-    function has_config() {
+    public function has_config() {
         return false;
     }
 
-    function applicable_formats() {
-        return array('course-view' => true, 'mod' => 'true', 'my' => true);
+    public function applicable_formats() {
+        return array('course-view' => true, 'mod' => true, 'my' => true);
     }
 
-    function instance_allow_multiple() {
+    public function instance_allow_multiple() {
         return false;
-    }
-
-    function get_content() {
-        global $CFG;
-
-        $context = $this->get_context();
-
-        //$motivator_name = optional_param('motivator', 'avatar', PARAM_TEXT);
-        $motivator_name = $context->getMotivatorName();
-
-        require_once __DIR__ . '/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
-        require_once $CFG->dirroot . '/blocks/ludic_motivators/classes/motivators/' . $motivator_name . '/' . $motivator_name . '.php';
-
-        $class_name = '\\block_ludic_motivators\\' . $motivator_name;
-
-        //$context = $this->get_context();
-
-        $this->motivator = new $class_name($context);
-
-        if ($this->content !== NULL) {
-            return $this->content;
-        }
-
-        $this->title = $this->motivator->getTitle();
-        $this->content         = new stdClass;
-        $this->content->footer = '';
-
-        // Motivators selector
-        $motivators = $this->get_motivators();
-
-        $this->content->text  =
-                '<div style="margin-bottom:15px;">
-                    <form id="motivator_form" method="POST">
-                        <select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
-                    foreach ($motivators as $motivatorid => $motivatorvalue) {
-                        $selected = $motivator_name == $motivatorid ? 'selected' : '';
-                        $this->content->text .= '<option value="' . $motivatorid . '" ' . $selected . '>' . $motivatorvalue . '</option>';
-                    }
-        $this->content->text .=
-                        '</select>
-                    </form>
-                </div>';
-
-
-        $this->page->requires->jquery_plugin('ui-css');
-
-        // Require motivator css
-        $css_url = '/blocks/ludic_motivators/classes/motivators/' . $motivator_name . '/styles.css';
-        if (file_exists($CFG->dirroot . $css_url)) {
-            $this->page->requires->css($css_url);
-        }
-
-        // Add motivator HTML
-        $this->content->text .= $this->motivator->get_content();
-
-        return $this->content;
-    }
-
-    function get_required_javascript() {
-        parent::get_required_javascript();
-        $this->page->requires->js_call_amd(
-            'block_ludic_motivators/ludic_motivators',
-            'init',
-            array(
-                $this->motivator->getMotivatorName(),
-                $this->motivator->getJsParams()
-            )
-        );
     }
 
     public function instance_can_be_docked() {
@@ -116,40 +51,98 @@ class block_ludic_motivators extends block_base {
         return (!empty($this->config->title) && parent::instance_can_be_docked());
     }
 
-    function content_is_trusted() {
+    public function content_is_trusted() {
         return true;
     }
 
-    function get_context() {
-        global $USER;
-        $userid = optional_param('userid', $USER->id, PARAM_INT);
-
-        $context = new \block_ludic_motivators\context($userid, $this->page);
-
-        return $context;
+    public function get_required_javascript() {
+        parent::get_required_javascript();
+        $this->page->requires->js_call_amd(
+            'block_ludic_motivators/ludic_motivators',
+            'init',
+            array(
+                $this->motivator->get_motivator_name(),
+                $this->motivator->get_js_params()
+            )
+        );
     }
 
-    function get_motivators() {
-        global $CFG;
-        $motivator_path = __DIR__ . '/classes/motivators';
+    public function get_content() {
+        // prime a variable to hold the rendered output
+        $result='';
 
-        $motivators = array();
+        // start with debug render_debug_menus
+        $result .= $this->render_debug_menus();
 
-        $dir = new DirectoryIterator($motivator_path);
-        foreach ($dir as $fileinfo) {
-            if ($fileinfo->isDir() && !$fileinfo->isDot()) {
-                $motivator_name  = $fileinfo->getFilename();
-                $langfile_url = $motivator_path . '/' . $motivator_name . '/lang/en/' . $motivator_name . '.php';
-                if (!file_exists($langfile_url)) {
-                    print_error('Lang file does not exist : ' . $langfile_url);
-                }
-                require_once $langfile_url;
-                $str_name              = $string['pluginname'];
-                $motivators[$motivator_name] = $str_name;
-            }
+        // add different block content depending on whether we're half way through an activity or not
+        $attempt = optional_param('attempt', 0, PARAM_INT);
+        if ($attempt){
+            $result .= $this->get_content_in_quiz($attempt);
+        }else{
+            $result .= $this->get_content_default();
         }
 
-        return $motivators;
+        // return the result
+        return $result;
     }
 
+    private function render_debug_menus() {
+        // lookup the current motivator
+        $env = $this->get_execution_environment();
+        $currentmotivator  = $env->get_current_motivator();
+
+        // Motivators selector
+        $result->text  .= '<div style="margin-bottom:15px;">';
+        $result->text  .= '<form id="motivator_form" method="POST">';
+        $result->text  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+        $motivators     = motivators::get_motivator_names();
+        foreach ($motivators as $motivatorid => $name) {
+            $selected = ( $currentmotivator == $motivatorid )? 'selected' : '';
+            $result->text .= '<option value="' . $motivatorid . '" ' . $selected . '>' . $motivatorvalue . '</option>';
+        }
+        $result->text   .= '</select>';
+        $result->text   .= '</form>';
+        $result->text   .= '</div>';
+
+    }
+
+    private function get_content_default($attempt) {
+    }
+
+    private function get_content_in_quiz($attempt) {
+        global $CFG;
+
+        // lookup the current motivator
+        $env = $this->get_execution_environment();
+        $currentmotivator  = $env->get_current_motivator();
+
+        $this->motivator= $this->env->get_current_motivator();
+        $this->title    = $this->motivator->getTitle();
+        $result         = new stdClass;
+        $result->footer = '';
+        $result->text   = '';
+
+        //
+//        $this->page->requires->jquery_plugin('ui-css');
+        $env->page_requires_jquery_plugin('ui-css');
+
+        // Require motivator css
+        $css_url = '/blocks/ludic_motivators/classes/motivators/css/' . $motivator_name . '.css';
+        if (file_exists($CFG->dirroot . $css_url)) {
+//            $this->page->requires->css($css_url);
+            $env->page_requires_css($css_url);
+        }
+
+        // Add motivator HTML
+        $result->text .= $this->motivator->get_content();
+
+        return $result;
+    }
+
+    private function get_execution_environment() {
+        global $USER;
+        $userid = optional_param('userid', $USER->id, PARAM_INT);
+        $context = new \block_ludic_motivators\execution_environment_mdl($userid, $this->page);
+        return $context;
+    }
 }

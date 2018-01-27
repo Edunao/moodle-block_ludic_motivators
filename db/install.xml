@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="blocks/ludic_motivators/db" VERSION="20171120" COMMENT="XMLDB file for ludic_motivators block"
+<XMLDB PATH="blocks/ludic_motivators/db" VERSION="20180101" COMMENT="XMLDB file for ludic_motivators block"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
     <TABLES>
+        <TABLE NAME="ludic_motivators_achievements" COMMENT="User achievment records for block_ludic_motivators">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" SEQUENCE="true"/>
+                <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="activity" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="achievement" TYPE="varchar" LENGTH="64" NOTNULL="true" COMMENT="Achievement signature"/>
+                <FIELD NAME="value" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+            <INDEXES>
+                <INDEX NAME="user" UNIQUE="false" FIELDS="user"/>
+                <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+                <INDEX NAME="courseuser" UNIQUE="false" FIELDS="user,course"/>
+            </INDEXES>
+        </TABLE>
+    </TABLES>
+    <!--TABLES>
         <TABLE NAME="ludic_motivators_states" COMMENT="each record is one ludic_motivators block state">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
@@ -20,5 +41,5 @@
                 <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
             </INDEXES>
         </TABLE>
-    </TABLES>
+    </TABLES-->
 </XMLDB>

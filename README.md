@@ -1,8 +1,8 @@
 # moodle-block_ludic_motivators
-Moodle block developed for the ludic_motivators research project
+Moodle block plugin developed by Edunao for the ludic_motivators research project
 
 
-# Motivator specs are as follows:
+# Motivator Specs
 
 ## Avatar
 This widget is effectively the graphical version of the GOALS widget described below.
@@ -75,6 +75,7 @@ For reasons of future flexibility the php should pass down to the javascript:
   * bonus name
   * bonus value
   * bonus state (0=not achieved, 1=previously achieved, 2=just achieved)
+
 For the initial implementation the javascript should display:
 * A first div containing:
   * The latest total score
@@ -90,5 +91,8 @@ The javascript should display the difference between the current time and the st
 The motivator should only be displayed if the current exercise has already been attempted once previously.
 The previous attempt times should be listed beneath the timer.
 ### NOTE:
-    The graphic design suggests drawing a histogram of previous attempt times but for an initial implementation it will be ok to simply
-    show the best time so far as a single line of text beneath the timer
+The graphic design suggests drawing a histogram of previous attempt times but for an initial implementation it will be ok to simply show the best time so far as a single line of text beneath the timer
+
+
+# Configuration
+Configuration currently via JSON file only

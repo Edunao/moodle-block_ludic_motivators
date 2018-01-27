@@ -27,9 +27,10 @@
  *
  */
 
+namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
-use \block_ludic_motivators\real_store;
-use \block_ludic_motivators\context;
+// use \block_ludic_motivators\real_store;
+// use \block_ludic_motivators\context;
 
 /**
  * This return achievement status for the motivator passed in parameter.
@@ -111,7 +112,7 @@ function get_score_achievement_status(stdClass $status) {
     );
 
     // Array containing the bonus id as presetted in the configuration file
-        $status->bonus = array(
+    $status->bonus = array(
         'previously_obtained' => array(1,3),
         'newly_obtained' => array(2,4),
     );

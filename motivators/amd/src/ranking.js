@@ -21,11 +21,20 @@
  */
 
 define(['jquery', 'core/tree'], function ($, Tree) {
-    return {
-        init: function (motivator, params) {
-            require(['../motivators/'+motivator+'/amd/src/'+motivator], function(motivator) {
-                motivator.init(params);
-            });
+    var score = {
+        init: function () {
+            console.log('Ranking init');
+            var that = this;
+
+//             $({someValue: 136}).animate({someValue: 143}, {
+//                 duration: 1000,
+//                 easing:'swing', // can be anything
+//                 step: function() { // called on every steps
+//                     $('.score-number').text(Math.ceil(this.someValue));
+//                 }
+//             });
+
         }
     };
+    return score;
 });

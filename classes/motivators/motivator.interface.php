@@ -1,3 +1,4 @@
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -20,12 +21,24 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/tree'], function ($, Tree) {
-    return {
-        init: function (motivator, params) {
-            require(['../motivators/'+motivator+'/amd/src/'+motivator], function(motivator) {
-                motivator.init(params);
-            });
-        }
-    };
-});
+namespace block_ludic_motivators;
+defined('MOODLE_INTERNAL') || die();
+
+define('block_ludic_motivators\STATE_NOTACHIEVED', 0);
+define('block_ludic_motivators\STATE_PREVIOUSLYACHIEVED', 1);
+define('block_ludic_motivators\STATE_JUSTACHIEVED', 2);
+
+interface motivator {
+
+    public function get_loca_strings();
+    public function get_content();
+//     public function image_url($image);
+//     {
+//         global $CFG;
+//
+//         //return __DIR__ . '/' . $this->getMotivatorName() . '/pix/' . $image;
+//         return $CFG->wwwroot . BLOCK_LUDICMOTIVATORS_PATH . $this->getMotivatorName() . '/pix/' . $image;
+//
+//     }
+
+}

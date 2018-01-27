@@ -21,6 +21,14 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['ludic_motivators:addinstance']     = 'Add a new LudicMotivators block';
-$string['newludic_motivatorsblock']         = '(new LudicMotivators block)';
-$string['pluginname']                 = 'LudicMotivators';
+$string['ludic_motivators:addinstance']     = 'Add a new Ludic Motivators block';
+$string['newludic_motivatorsblock']         = '(new Ludic Motivators block)';
+$string['pluginname']                       = 'Ludic Motivators';
+
+// loadup the string tables for the motivators
+require_once __DIR__ . '/../../motivators/motivators.class.php';
+foreach (\block_ludic_motivators\motivators::get_instances() as $motivator){
+    foreach($motivator->get_loca_strings() as $stringid => $value){
+        $string[$motivator->get_short_name() . '.' . $stringid] = $value;
+    }
+}

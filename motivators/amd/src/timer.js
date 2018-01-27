@@ -21,11 +21,11 @@
  */
 
 define(['jquery', 'core/tree'], function ($, Tree) {
-    return {
-        init: function (motivator, params) {
-            require(['../motivators/'+motivator+'/amd/src/'+motivator], function(motivator) {
-                motivator.init(params);
-            });
+    var timer = {
+        init: function () {
+            console.log('Timer init');
+            var that = this;
         }
     };
+    return timer;
 });

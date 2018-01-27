@@ -1,3 +1,4 @@
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -20,12 +21,21 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/tree'], function ($, Tree) {
-    return {
-        init: function (motivator, params) {
-            require(['../motivators/'+motivator+'/amd/src/'+motivator], function(motivator) {
-                motivator.init(params);
-            });
-        }
-    };
-});
+namespace block_ludic_motivators;
+
+/**
+*  The goal of this class is to provide issolation from the outside world.
+*  It should be possible to implement the different units behind this class as stubs for testing purposes
+*/
+interface execution_environment{
+    public function bomb($message);
+    public function bomb_if($condition,$message);
+//    public function get_user();
+//    public function get_page();
+    public function get_userid();
+    public function get_courseid();
+    public function get_motivator_name();
+    public function set_motivator_name($name);
+    public function get_achievements();
+}
+
