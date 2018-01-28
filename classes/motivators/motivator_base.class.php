@@ -24,13 +24,16 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
+// include all of the common stuff that we need in all motivator type implementations
+require_once dirname(__DIR__, 1) . '/motivators/motivator.interface.php';
+require_once dirname(__DIR__, 1) . '/execution_environment/execution_environment.interface.php';
+require_once dirname(__DIR__, 2) . '/locallib.php';
+
 abstract class motivator_base {
     protected $env;
-    protected $jsparams;
 
-    public function __construct(execution_environment $env, $jsparams) {
+    public function __construct(execution_environment $env) {
         $this->env = $env;
-        $this->jsparams = array($jsparams);
     }
 
     public function get_class_name() {
@@ -38,7 +41,7 @@ abstract class motivator_base {
     }
 
     public function get_short_name() {
-        return preg_replace(,'/motivator_/','',$this->get_class_name());
+        return preg_replace('/motivator_/','',$this->get_class_name());
     }
 
     public function get_string($stringid) {
@@ -58,14 +61,14 @@ abstract class motivator_base {
     }
 
     public function image_url($image) {
-        return __DIR__ . '/pix/' . $this->get_class_name() . '/' . $image;
+        return dirname(__DIR__, 2) . '/motivators/' . $this->get_short_name() . '/pix/' . $image;
     }
 
-    public function env() {
-        return $this->env;
+    public function render($title,$content) {
+        $this->env->render($this->get_string('title'),$content);
     }
 
-    public function get_js_params() {
-        return $this->jsparams;
+    public function set_block_classes($classes) {
+        $this->env->set_block_classes($classes);
     }
 }

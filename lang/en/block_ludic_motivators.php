@@ -26,8 +26,12 @@ $string['newludic_motivatorsblock']         = '(new Ludic Motivators block)';
 $string['pluginname']                       = 'Ludic Motivators';
 
 // loadup the string tables for the motivators
-require_once __DIR__ . '/../../motivators/motivators.class.php';
-foreach (\block_ludic_motivators\motivators::get_instances() as $motivator){
+require_once dirname(__DIR__, 2) . '/classes/motivators.class.php';
+
+$motivators = \block_ludic_motivators\motivators::get_instances(false);
+\print_object($motivators);
+
+foreach (motivators as $motivator){
     foreach($motivator->get_loca_strings() as $stringid => $value){
         $string[$motivator->get_short_name() . '.' . $stringid] = $value;
     }

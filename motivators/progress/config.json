@@ -1,0 +1,11 @@
+[
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque00" }, "achievment": { "type": "progress", "step": 0, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque01" }, "achievment": { "type": "progress", "step": 1, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque02" }, "achievment": { "type": "progress", "step": 2, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque03" }, "achievment": { "type": "progress", "step": 3, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque04" }, "achievment": { "type": "progress", "step": 4, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque05" }, "achievment": { "type": "progress", "step": 5, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque06" }, "achievment": { "type": "progress", "step": 6, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque07" }, "achievment": { "type": "progress", "step": 7, "steps": 8 } },
+  { "course": "*", "motivator": { "type": "progress", "layer": "calque08" }, "achievment": { "type": "progress", "step": 8, "steps": 8 } }
+]

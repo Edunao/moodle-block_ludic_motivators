@@ -1,0 +1,14 @@
+{
+    "none":{
+        "besttime":0,
+        "currenttime":10
+    },
+    "20s":{
+        "besttime":20,
+        "currenttime":10
+    },
+    "20m":{
+        "besttime":120,
+        "currenttime":100
+    }
+}

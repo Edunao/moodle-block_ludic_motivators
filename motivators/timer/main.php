@@ -23,9 +23,30 @@
 
 namespace block_ludic_motivators;
 
-require_once dirname( __DIR__ ) . '/motivator_interface.php';
+require_once dirname(__DIR__, 2) . '/classes/motivators/motivator.interface.php';
+require_once dirname(__DIR__, 2) . '/classes/motivators/motivator_base.class.php';
+require_once dirname(__DIR__, 2) . '/locallib.php';
 
-class timer extends iMotivator {
+class motivator_timer extends motivator_base implements motivator {
+
+    public function __construct(execution_environment $env) {
+        parent::__construct($env);
+    }
+
+    public function get_loca_strings(){
+        return [
+            'name'  => 'Timer',
+            'title' => 'My Time'
+        ];
+    }
+
+    public function get_content() {
+        return "";
+    }
+
+    public function get_js_data() {
+        return [];
+    }
 
     public function __construct($context) {
         $preset = array(
@@ -40,13 +61,6 @@ class timer extends iMotivator {
             ]
         );
         parent::__construct($context, $preset);
-    }
-
-    public function get_loca_strings(){
-        return [
-            'name'  => 'Timer',
-            'title' => 'My Time'
-        ];
     }
 
     public function get_content() {

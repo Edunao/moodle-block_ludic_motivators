@@ -1,0 +1,26 @@
+{
+    "none":{
+        "score":10,
+        "newscore":0,
+        "bonus":0
+    },
+    "old":{
+        "score":10,
+        "newscore":0,
+        "bonus":0
+    },
+    "new":{
+        "score":10,
+        "newscore":2,
+        "bonus":0
+    },
+    "bonus":{
+        "score":10,
+        "bonus":5
+    },
+    "new+bonus":{
+        "score":10,
+        "newscore":2,
+        "bonus":5
+    }
+}

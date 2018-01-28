@@ -4,13 +4,13 @@
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
     <TABLES>
-        <TABLE NAME="ludic_motivators_achievements" COMMENT="User achievment records for block_ludic_motivators">
+        <TABLE NAME="ludic_motivator_achievements" COMMENT="User achievment records for block_ludic_motivators">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" SEQUENCE="true"/>
                 <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="activity" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="achievement" TYPE="varchar" LENGTH="64" NOTNULL="true" COMMENT="Achievement signature"/>
+                <FIELD NAME="achievement" TYPE="char" LENGTH="64" NOTNULL="true" COMMENT="Achievement signature"/>
                 <FIELD NAME="value" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>

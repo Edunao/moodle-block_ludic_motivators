@@ -28,8 +28,9 @@ require_once __DIR__ . '/log_miner.interface.php';
 
 class log_miner_mdl implements log_miner {
     private $env;
-    protected $courseid;
-    protected $userid;
+    private $achievements   = [];
+//     protected $courseid;
+//     protected $userid;
 
     public function __construct(execution_environment $env) {
 //     public function __construct(, $userid, \moodle_page $page) {
@@ -38,7 +39,12 @@ class log_miner_mdl implements log_miner {
 //         $this->courseid     = $courseid;
 //         $this->userid       = empty($userid) ? $USER->id : $userid;
         $this->env      = $env;
-        $this->achievements = [];
+    }
+
+    public function get_full_state_data(){
+    }
+
+    public function get_course_state_data($courseid){
     }
 
     public function get_achievements(){

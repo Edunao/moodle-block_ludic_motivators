@@ -29,16 +29,7 @@ define('block_ludic_motivators\STATE_PREVIOUSLYACHIEVED', 1);
 define('block_ludic_motivators\STATE_JUSTACHIEVED', 2);
 
 interface motivator {
-
     public function get_loca_strings();
     public function get_content();
-//     public function image_url($image);
-//     {
-//         global $CFG;
-//
-//         //return __DIR__ . '/' . $this->getMotivatorName() . '/pix/' . $image;
-//         return $CFG->wwwroot . BLOCK_LUDICMOTIVATORS_PATH . $this->getMotivatorName() . '/pix/' . $image;
-//
-//     }
-
+    public function get_js_data();
 }

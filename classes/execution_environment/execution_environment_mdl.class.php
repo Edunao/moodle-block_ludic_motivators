@@ -22,6 +22,10 @@
  */
 
 namespace block_ludic_motivators;
+defined('MOODLE_INTERNAL') || die();
+
+require_once __DIR__ . '/execution_environment.interface.php';
+require_once dirname(__DIR__) . '/log_miner/log_miner_mdl.class.php';
 
 /**
 *  The goal of this class is to provide issolation from the outside world.
@@ -32,15 +36,52 @@ class execution_environment_mdl implements execution_environment{
     private $user;
     private $page;
     private $courseid;
-    private $currentmotivator = null;
-    private $logminer;
+    private $currentmotivator   = null;
+    private $miner;
+    private $output             = "";
+    private $blockclasses       = "ludi-block";
+    private $config             = ["courses" => [], "achievements" => []];
+    private $presets            = [];
 
-    public function __construct($userid, \moodle_page $page) {
-        global $DB;
-        $this->user     = $DB->get_record('user', array('id' => $userid));
-        $this->page     = $page;
-        $this->courseid = $page->course->id;
-        $this->logminer = new log_miner_mdl($this);
+    public function __construct($userid, \moodle_page $page, $testmode) {
+        global $DB, $CFG;
+
+        $this->user         = $DB->get_record('user', array('id' => $userid));
+        $this->page         = $page;
+        $this->coursename   = $page->course->shortname;
+        $this->miner        = new log_miner_mdl($this);
+
+        // load configuration data
+        $configfile     = $CFG->dataroot . '/filedir/ludic-motivators-config.json';
+        if (file_exists($configfile)){
+            $jsonconfigdata = file_get_contents($configfile);
+            $this->config   = json_decode($jsonconfigdata, true);
+        }
+
+        // load testing data as required
+        if ($testmode === true){
+            $motivator      = $this->get_current_motivator();
+            $testdatafile   = dirname(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
+            if (file_exists($testdatafile)){
+                $jsontestdata   = file_get_contents($testdatafile);
+                $testdata       = json_decode($jsontestdata, true);
+                if (isset($testsdata['config']) && isset($testsdata['config']['courses'])){
+                    $this->config['courses'] += $testsdata['config']['courses'];
+                }
+                if (isset($testsdata['config']) && isset($testsdata['config']['achievements'])){
+                    $this->config['courses'] += $testsdata['config']['achievements'];
+                }
+                if (isset($testsdata['presets-full'])){
+                    $this->presets['fullpreset'] = $testsdata['presets-full'];
+                }
+                if (isset($testsdata['presets-course'])){
+                    $this->presets['coursepreset'] = $testsdata['presets-course'];
+                }
+                if (isset($testsdata['presets'])){
+                    $this->presets['preset'] = $testsdata['presets'];
+                }
+            }
+        }
     }
 
     public function bomb($message){
@@ -53,16 +94,12 @@ class execution_environment_mdl implements execution_environment{
         }
     }
 
-    public function get_user() {
-        return $this->user;
+    public function get_userid() {
+        return $this->user->id;
     }
 
-    public function get_page() {
-        return $this->page;
-    }
-
-    public function get_courseid() {
-        return $this->courseid;
+    public function get_coursename() {
+        return $this->coursename;
     }
 
     public function get_current_motivator(){
@@ -84,7 +121,7 @@ class execution_environment_mdl implements execution_environment{
         }
 
         // if all else fails fall back to the first valid motivator available
-        $this->set_current_motivator(array_keys(motivators::get_instances())[0]);
+        $this->set_current_motivator(array_keys(motivators::get_instances($this))[0]);
         return $this->currentmotivator;
     }
 
@@ -95,7 +132,7 @@ class execution_environment_mdl implements execution_environment{
         }
 
         // check that the motivator name that we have is valid
-        $motivators = motivators::get_instances();
+        $motivators = motivators::get_instances($this);
         return array_key_exists($motivatortype, $motivators)? $motivators[$motivatortype]: null;
     }
 
@@ -108,8 +145,79 @@ class execution_environment_mdl implements execution_environment{
         $this->write_motivator_selection($name);
     }
 
-    public function get_achievements() {
-        return $this->logminer->get_achievements();
+    public function get_full_config($motivatorname){
+        // filter the course list to match the requird motivator and course
+        $result=[];
+        foreach ($this->config['achievements'] as $item){
+            // check for motivator mismatch
+            if ($item['motivator']['name'] != $motivatorname){
+                continue;
+            }
+
+            // check for course name missmatch
+            if ($item['course'] == '*'){
+                continue;
+            }
+
+            // add item to result
+            $result[] = $item;
+        }
+        return $result;
+    }
+
+    public function get_course_config($motivatorname,$coursename){
+        // check whether this is configured in the system as a wildcard course
+        $wildcard = array_key_exists($coursename, array_flip($this->config['courses'])) ? '*' : null;
+
+        // filter the course list to match the requird motivator and course
+        $result=[];
+        foreach ($this->config['achievements'] as $item){
+            // check for motivator mismatch
+            if ($item['motivator']['name'] !== $motivatorname){
+                continue;
+            }
+
+            // check for course name missmatch
+            if ($item['course'] !== $coursename && $item['course'] !== $wildcard){
+                continue;
+            }
+
+            // add item to result
+            $result[] = $item;
+        }
+        return $result;
+    }
+
+    public function get_presets(){
+        return $this->presets;
+    }
+
+    public function get_full_state_data() {
+        // lookout for overrides used for testing
+        foreach (['presets', 'fullpresets'] as $overridename){
+            if ($this->presets && isset($this->presets[$overridename])){
+                $override = optional_param($overridename, null, PARAM_TEXT);
+                if ($override && isset($this->presets[$overridename][$override])){
+                    return $this->presets[$overridename][$override];
+                }
+            }
+        }
+        // default to calculated values
+        return $this->miner->get_full_state_data();
+    }
+
+    public function get_course_state_data() {
+        // lookout for overrides used for testing
+        foreach (['presets', 'coursepresets'] as $overridename){
+            if ($this->presets && isset($this->presets[$overridename])){
+                $override = optional_param($overridename, null, PARAM_TEXT);
+                if ($override && isset($this->presets[$overridename][$override])){
+                    return $this->presets[$overridename][$override];
+                }
+            }
+        }
+        // default to calculated values
+        return $this->miner->get_course_state_data($this->courseid);
     }
 
     private function read_motivator_selection(){
@@ -120,12 +228,12 @@ class execution_environment_mdl implements execution_environment{
             SELECT uif.id
             FROM {user_info_field} uif
             JOIN {user_info_category} uic ON uif.categoryid = uic.id
-            WHERE uic.name="block_ludimotivators" AND uif.shortname="motivator"
+            WHERE uic.name="block_ludic_motivators" AND uif.shortname="motivator"
         ';
         $fieldid = $DB->get_field_sql($query);
 
         // sanity check
-        $this->bomb_if(!$fieldid, 'Missing user infor field definition');
+        $this->bomb_if(!$fieldid, 'Missing user info field definition');
         $this->bomb_if(!$this->user, 'Missing "USER" object');
         $this->bomb_if(!property_exists($this->user, 'id'), 'Missing "USER->id" property');
 
@@ -143,7 +251,7 @@ class execution_environment_mdl implements execution_environment{
             SELECT uif.id
             FROM {user_info_field} uif
             JOIN {user_info_category} uic ON uif.categoryid = uic.id
-            WHERE uic.name="block_ludimotivators" AND uif.shortname="motivator"
+            WHERE uic.name="block_ludic_motivators" AND uif.shortname="motivator"
         ';
         $fieldid = $DB->get_field_sql($value);
 
@@ -171,5 +279,42 @@ class execution_environment_mdl implements execution_environment{
             ];
             $DB->insert_record('user_info_data', $record);
         }
+    }
+
+    public function page_requires_jquery_plugin($pluginname){
+        $this->page->requires->jquery_plugin($pluginname);
+    }
+
+    public function page_requires_css($cssurl){
+        $this->page->requires->css($cssurl);
+    }
+
+    public function set_block_classes($classes) {
+        $this->blockclasses .= " $classes";
+    }
+
+    public function render($title,$content){
+        # use a panel div to house the titel and content neetly
+        $this->output .= "<div class='ludi-pane'>";
+
+        # write the title in a header div
+        $this->output .= "<div class='ludi-header'>";
+        $this->output .= "<span class='ludi-title'>$title</span>";
+        $this->output .= "</div'>";
+
+        # write the content in a body div
+        $this->output .= "<div class='ludi-body'>";
+        $this->output .= "<span class='ludi-content'>$content</span>";
+        $this->output .= "</div'>";
+
+        $this->output .= "</div'>";
+    }
+
+    public function get_rendered_output(){
+        return "
+            <div class='$this->blockclasses'>
+            $this->output
+            </div>
+        ";
     }
 }

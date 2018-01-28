@@ -21,6 +21,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once __DIR__ . '/classes/motivators.class.php';
 require_once __DIR__ . '/classes/execution_environment/execution_environment_mdl.class.php';
 
@@ -29,6 +31,7 @@ use \block_ludic_motivators\motivators;
 class block_ludic_motivators extends block_base {
 
     private $motivator;
+    private $testmode = true;
 
     public function init() {
         $this->title = get_string('pluginname', 'block_ludic_motivators');
@@ -68,68 +71,90 @@ class block_ludic_motivators extends block_base {
     }
 
     public function get_content() {
+        // setup the execution environment
+        $env = $this->get_execution_environment();
+
         // prime a variable to hold the rendered output
         $result='';
 
         // start with debug render_debug_menus
-        $result .= $this->render_debug_menus();
+        if ($this->testmode===true){
+            $result .= $this->render_debug_menus($env);
+        }
 
         // add different block content depending on whether we're half way through an activity or not
         $attempt = optional_param('attempt', 0, PARAM_INT);
         if ($attempt){
-            $result .= $this->get_content_in_quiz($attempt);
+            $result .= $this->get_content_in_quiz($env, $attempt);
         }else{
-            $result .= $this->get_content_default();
+            $result .= $this->get_content_default($env);
         }
 
         // return the result
         return $result;
     }
 
-    private function render_debug_menus() {
+    private function render_debug_menus($env) {
         // lookup the current motivator
-        $env = $this->get_execution_environment();
-        $currentmotivator  = $env->get_current_motivator();
+        $currentmotivator   = $env->get_current_motivator();
 
-        // Motivators selector
+        // Render motivators selector
         $result->text  .= '<div style="margin-bottom:15px;">';
-        $result->text  .= '<form id="motivator_form" method="POST">';
-        $result->text  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+        $result->text  .= '<form id="motivator_form" method="GET">';
+//        $result->text  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+        $result->text  .= '<select name="motivator" onChange="submit()">';
         $motivators     = motivators::get_motivator_names();
         foreach ($motivators as $motivatorid => $name) {
-            $selected = ( $currentmotivator == $motivatorid )? 'selected' : '';
-            $result->text .= '<option value="' . $motivatorid . '" ' . $selected . '>' . $motivatorvalue . '</option>';
+            $selected = ( $currentmotivator == $motivatorid )? ' selected' : '';
+            $result->text .= '<option value="' . $motivatorid . '"' . $selected . '>' . $motivatorvalue . '</option>';
         }
         $result->text   .= '</select>';
         $result->text   .= '</form>';
         $result->text   .= '</div>';
 
+        // Load presets for the current motivator
+//         $presetfile     = __DIR__ . '/motivators/' . $currentmotivator . '/testdata.json';
+//         $jsonpresets    = file_get_contents( $presetfile );
+//         $presets        = json_decode( $jsonpresets );
+        foreach ($env->get_presets() as $presettype => $presets){
+            $currentpreset  = optional_param($presettype, null, PARAM_TEXT);
+
+            // Render preset selector
+            $result->text  .= '<div style="margin-bottom:15px;">';
+            $result->text  .= '<form id="motivator_form" method="GET">';
+//            $result->text  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+            $result->text  .= '<select name="preset" onChange="submit()">';
+            foreach ($presets as $name => $presetdata) {
+                $selected = ( $name === $currentpreset)? ' selected' : '';
+                $result->text .= '<option value="' . $name . '"' . $selected . '>' . $name . '</option>';
+            }
+            $result->text   .= '</select>';
+            $result->text   .= '</form>';
+            $result->text   .= '</div>';
+        }
     }
 
-    private function get_content_default($attempt) {
+    private function get_content_default($env) {
     }
 
-    private function get_content_in_quiz($attempt) {
+    private function get_content_in_quiz($env, $attempt) {
         global $CFG;
 
-        // lookup the current motivator
-        $env = $this->get_execution_environment();
-        $currentmotivator  = $env->get_current_motivator();
+        // lookup the current motivator and set the block title
+        $this->motivator    = $env->get_current_motivator();
+        $this->title        = $this->motivator->get_string('title');
 
-        $this->motivator= $this->env->get_current_motivator();
-        $this->title    = $this->motivator->getTitle();
+        // Prime the result container
         $result         = new stdClass;
         $result->footer = '';
         $result->text   = '';
 
-        //
-//        $this->page->requires->jquery_plugin('ui-css');
+        // Ensure that required external JS plugins are loaded
         $env->page_requires_jquery_plugin('ui-css');
 
-        // Require motivator css
-        $css_url = '/blocks/ludic_motivators/classes/motivators/css/' . $motivator_name . '.css';
+        // Include motivator css
+        $css_url = '/blocks/ludic_motivators/motivators/' . $motivator_name . '/styles.css';
         if (file_exists($CFG->dirroot . $css_url)) {
-//            $this->page->requires->css($css_url);
             $env->page_requires_css($css_url);
         }
 
@@ -142,7 +167,7 @@ class block_ludic_motivators extends block_base {
     private function get_execution_environment() {
         global $USER;
         $userid = optional_param('userid', $USER->id, PARAM_INT);
-        $context = new \block_ludic_motivators\execution_environment_mdl($userid, $this->page);
+        $context = new \block_ludic_motivators\execution_environment_mdl($userid, $this->page, $this->testmode);
         return $context;
     }
 }

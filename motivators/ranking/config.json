@@ -1,0 +1,20 @@
+[
+  {
+    "course": "*",
+    "motivator": {
+      "type": "ranking",
+    },
+    "achievment": {
+      "type": "ranking_score",
+    }
+  },
+  {
+    "course": "*",
+    "motivator": {
+      "type": "ranking",
+    },
+    "achievment": {
+      "type": "ranking_position",
+    }
+  }
+]

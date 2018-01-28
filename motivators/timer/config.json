@@ -1,0 +1,11 @@
+[
+    {
+        "course": "*",
+        "motivator": {
+            "type": "timer",
+        },
+        "achievment": {
+            "type": "timer_time",
+        }
+    }
+]
