@@ -65,7 +65,7 @@ class motivator_avatar extends motivator_base implements motivator {
         ];
     }
 
-    public function get_content($env) {
+    public function get_content( /* $env */ ) {
         // Construct content blocks for rendering
         $imageurl       = $this->image_url('avatar.svg');
         $fullimage      = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-full'/>";
@@ -107,34 +107,62 @@ class motivator_avatar extends motivator_base implements motivator {
 //         return $output;
     }
 
-    public function get_js_data($env) {
-        //get_achievement_status($this->context);
-        $config     = $env->get_full_config($this->get_short_name());
-        $statedata  = $env->get_full_state_data($config);
+    public function get_js_data( /* $env */ ) {
+        // prime a result object with the different tables that we're going to projide to the JS script
+        $result=[
+            'obtained'       => [],
+            'newly_obtained' => [],
+            'new_names'      => []
+        ];
+
+        // fetch config and associated achievement data
+        $config     = $this->env->get_full_config($this->get_short_name());
+        $statedata  = $this->env->get_full_state_data($config);
+
 echo "<h1>config</h1>";
 \print_object($config);
 echo "<h1>state data</h1>";
-\print_object($config);
+\print_object($statedata);
 
-//        $datas = $this->context->store->get_datas();
-        $params = array();
-
-        //$params['newly_obtained'][] = optional_param('element', 'avatar', PARAM_TEXT);
-
-        foreach ($this->preset['layers'] as $key => $value) {
-            if ($value['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
-                $params['obtained'][] = $value['layerName'];
-            }
-            if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED) {
-                $params['newly_obtained'][] = $value['layerName'];
+        foreach ($config['elements'] as $element){
+            $dataname = $element['course'] . '/done';
+echo "Checking $dataname<br>";
+            if (isset($statedata[$dataname])){
+                $statevalue = $statedata[$dataname];
+                switch ($statevalue){
+                case 1:
+echo "- obtained<br>";
+                    $params['obtained'][] = $element['motivator']['layer'];
+                    break;
+                case 2:
+echo "- newly obtained<br>";
+                    $params['newly_obtained'][] = $element['motivator']['layer'];
+                    break;
+                }
             }
         }
 
-        if (isset($datas->avatar)) {
-            $params = $datas->avatar;
-        }
+        return $result;
 
-        return $params;
+// //        $datas = $this->context->store->get_datas();
+//         $params = array();
+//
+//         //$params['newly_obtained'][] = optional_param('element', 'avatar', PARAM_TEXT);
+//
+//         foreach ($this->preset['layers'] as $key => $value) {
+//             if ($value['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+//                 $params['obtained'][] = $value['layerName'];
+//             }
+//             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED) {
+//                 $params['newly_obtained'][] = $value['layerName'];
+//             }
+//         }
+//
+//         if (isset($datas->avatar)) {
+//             $params = $datas->avatar;
+//         }
+//
+//         return $params;
     }
 
 }

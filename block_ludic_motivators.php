@@ -75,19 +75,21 @@ class block_ludic_motivators extends block_base {
         $env = $this->get_execution_environment();
 
         // prime a variable to hold the rendered output
-        $result='';
+        $result         = new stdClass;
+        $result->footer = '';
+        $result->text   = '';
 
         // start with debug render_debug_menus
         if ($this->testmode===true){
-            $result .= $this->render_debug_menus($env);
+            $result->text .= $this->render_debug_menus($env);
         }
 
         // add different block content depending on whether we're half way through an activity or not
         $attempt = optional_param('attempt', 0, PARAM_INT);
         if ($attempt){
-            $result .= $this->get_content_in_quiz($env, $attempt);
+            $result->text .= $this->get_content_in_quiz($env, $attempt);
         }else{
-            $result .= $this->get_content_default($env);
+            $result->text .= $this->get_content_default($env);
         }
 
         // return the result
@@ -98,19 +100,22 @@ class block_ludic_motivators extends block_base {
         // lookup the current motivator
         $currentmotivator   = $env->get_current_motivator();
 
+        // prime result accumulator
+        $result = '';
+
         // Render motivators selector
-        $result->text  .= '<div style="margin-bottom:15px;">';
-        $result->text  .= '<form id="motivator_form" method="GET">';
-//        $result->text  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
-        $result->text  .= '<select name="motivator" onChange="submit()">';
-        $motivators     = motivators::get_motivator_names();
+        $result  .= '<div style="margin-bottom:15px;">';
+        $result  .= '<form id="motivator_form" method="GET">';
+//        $result  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+        $result  .= '<select name="motivator" onChange="submit()">';
+        $motivators = motivators::get_names();
         foreach ($motivators as $motivatorid => $name) {
             $selected = ( $currentmotivator == $motivatorid )? ' selected' : '';
-            $result->text .= '<option value="' . $motivatorid . '"' . $selected . '>' . $motivatorvalue . '</option>';
+            $result .= '<option value="' . $motivatorid . '"' . $selected . '>' . $name . '</option>';
         }
-        $result->text   .= '</select>';
-        $result->text   .= '</form>';
-        $result->text   .= '</div>';
+        $result   .= '</select>';
+        $result   .= '</form>';
+        $result   .= '</div>';
 
         // Load presets for the current motivator
 //         $presetfile     = __DIR__ . '/motivators/' . $currentmotivator . '/testdata.json';
@@ -120,18 +125,19 @@ class block_ludic_motivators extends block_base {
             $currentpreset  = optional_param($presettype, null, PARAM_TEXT);
 
             // Render preset selector
-            $result->text  .= '<div style="margin-bottom:15px;">';
-            $result->text  .= '<form id="motivator_form" method="GET">';
-//            $result->text  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
-            $result->text  .= '<select name="preset" onChange="submit()">';
+            $result  .= '<div style="margin-bottom:15px;">';
+            $result  .= '<form id="motivator_form" method="GET">';
+//            $result  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
+            $result  .= '<select name="preset" onChange="submit()">';
             foreach ($presets as $name => $presetdata) {
                 $selected = ( $name === $currentpreset)? ' selected' : '';
-                $result->text .= '<option value="' . $name . '"' . $selected . '>' . $name . '</option>';
+                $result .= '<option value="' . $name . '"' . $selected . '>' . $name . '</option>';
             }
-            $result->text   .= '</select>';
-            $result->text   .= '</form>';
-            $result->text   .= '</div>';
+            $result   .= '</select>';
+            $result   .= '</form>';
+            $result   .= '</div>';
         }
+        return $result;
     }
 
     private function get_content_default($env) {
@@ -144,11 +150,6 @@ class block_ludic_motivators extends block_base {
         $this->motivator    = $env->get_current_motivator();
         $this->title        = $this->motivator->get_string('title');
 
-        // Prime the result container
-        $result         = new stdClass;
-        $result->footer = '';
-        $result->text   = '';
-
         // Ensure that required external JS plugins are loaded
         $env->page_requires_jquery_plugin('ui-css');
 
@@ -159,9 +160,7 @@ class block_ludic_motivators extends block_base {
         }
 
         // Add motivator HTML
-        $result->text .= $this->motivator->get_content();
-
-        return $result;
+        return $this->motivator->get_content();
     }
 
     private function get_execution_environment() {

@@ -121,7 +121,7 @@ class execution_environment_mdl implements execution_environment{
         }
 
         // if all else fails fall back to the first valid motivator available
-        $this->set_current_motivator(array_keys(motivators::get_instances($this))[0]);
+        $this->set_current_motivator(array_values(motivators::get_instances($this))[0]->get_short_name());
         return $this->currentmotivator;
     }
 
@@ -253,7 +253,7 @@ class execution_environment_mdl implements execution_environment{
             JOIN {user_info_category} uic ON uif.categoryid = uic.id
             WHERE uic.name="block_ludic_motivators" AND uif.shortname="motivator"
         ';
-        $fieldid = $DB->get_field_sql($value);
+        $fieldid = $DB->get_field_sql($query);
 
         // sanity check
         $this->bomb_if(!$fieldid, 'Missing user infor field definition');

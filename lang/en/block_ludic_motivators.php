@@ -29,9 +29,7 @@ $string['pluginname']                       = 'Ludic Motivators';
 require_once dirname(__DIR__, 2) . '/classes/motivators.class.php';
 
 $motivators = \block_ludic_motivators\motivators::get_instances(false);
-\print_object($motivators);
-
-foreach (motivators as $motivator){
+foreach ($motivators as $motivator){
     foreach($motivator->get_loca_strings() as $stringid => $value){
         $string[$motivator->get_short_name() . '.' . $stringid] = $value;
     }

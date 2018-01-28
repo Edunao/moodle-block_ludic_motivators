@@ -40,6 +40,10 @@ class motivator_ranking extends motivator_base implements motivator {
         ];
     }
 
+    public function get_content() {
+        return "";
+    }
+
     public function get_js_data() {
         return [];
     }

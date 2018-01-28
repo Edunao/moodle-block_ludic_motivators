@@ -50,36 +50,30 @@ class motivators{
 
     public static function get_names() {
         $result = [];
-        $instances = $this->get_instances( false );
+        $instances = self::get_instances( false );
         foreach ($instances as $classname => $instance){
             $result[$classname] = $instance->get_name();
-//echo "- Added ok with full name: $fullname<br>";
         }
         return $result;
     }
 
     private static function identify_motivators($env) {
-echo "Loading Motivators<br>";
         $rootpath = dirname(__DIR__) . '/motivators';
         foreach (glob($rootpath . '/*/main.php') as $srcfile) {
             $shortname = preg_replace('%.*/(.*)/main.php%', '${1}', $srcfile);
             $classname = "block_ludic_motivators\\motivator_" . $shortname;
-echo "Loading: $srcfile => $shortname => $classname<br>";
             if (!$classname){
-echo "- Class name not found<br>";
                 continue;
             }
 
             // try loading the source file and check that it includes the motivator class that we're expecting
             require_once $srcfile;
             if (!class_exists($classname)){
-echo "- Class not found<br>";
                 continue;
             }
 
             // store away a new instance of the loaded class in our internal container
             $result[$classname] = new $classname($env);
-echo "- Added ok<br>";
         }
         return $result;
     }
