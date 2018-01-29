@@ -1,11 +1,17 @@
-.svg {
-    position:absolute;
+/*.svg {
+    width: 100%;
+    max-width: 250px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display:block
     top:0;
     left:0;
     width : 180px;
     height : 180px;
-}
-
+}*/
+/*
 #congratulation {
     display : none;
     font-weight : bold;
@@ -13,7 +19,8 @@
     text-align : center;
     margin-top: 10px;
 }
-
+*/
+/*
 #avatar-container, #element-container {
     position : relative;
     overflow: auto;
@@ -25,17 +32,21 @@
 #avatar-div, #element-div {
     display: none;
 }
-
-#avatar-picture [id^=calque]:not(#calque00) {
+*/
+#ludi-avatar-full [id^=calque]:not(#calque00),
+#ludi-avatar-changes [id^=calque]:not(#calque01) {
     visibility: hidden;
 }
-
-#element-picture [id^=calque]:not(#calque01) {
-    visibility: hidden;
-}
-
+/*
 #next-piece {
     display : block;
     margin : auto;
     margin-top : 3px;
+}
+*/
+
+#ludi-avatar-full,
+#ludi-avatar-changes {
+    width: 200px;
+    height: 235px;
 }

@@ -30,6 +30,5 @@ define('block_ludic_motivators\STATE_JUSTACHIEVED', 2);
 
 interface motivator {
     public function get_loca_strings();
-    public function get_content();
-    public function get_js_data();
+    public function render($env);
 }

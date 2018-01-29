@@ -30,11 +30,6 @@ require_once dirname(__DIR__, 1) . '/execution_environment/execution_environment
 require_once dirname(__DIR__, 2) . '/locallib.php';
 
 abstract class motivator_base {
-    protected $env;
-
-    public function __construct(execution_environment $env) {
-        $this->env = $env;
-    }
 
     public function get_class_name() {
         return (new \ReflectionClass($this))->getShortName();
@@ -61,14 +56,7 @@ abstract class motivator_base {
     }
 
     public function image_url($image) {
-        return dirname(__DIR__, 2) . '/motivators/' . $this->get_short_name() . '/pix/' . $image;
-    }
-
-    public function render($title,$content) {
-        $this->env->render($this->get_string('title'),$content);
-    }
-
-    public function set_block_classes($classes) {
-        $this->env->set_block_classes($classes);
+        $blockname = basename(dirname(__DIR__, 2));
+        return new \moodle_url("/blocks/$blockname/motivators/" . $this->get_short_name() . "/pix/$image");
     }
 }

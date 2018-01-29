@@ -29,10 +29,6 @@ require_once dirname(__DIR__, 2) . '/locallib.php';
 
 class motivator_progress extends motivator_base implements motivator {
 
-    public function __construct(execution_environment $env) {
-        parent::__construct($env);
-    }
-
     public function get_loca_strings(){
         return [
             'name'  => 'Progress',
@@ -40,12 +36,7 @@ class motivator_progress extends motivator_base implements motivator {
         ];
     }
 
-    public function get_content() {
-        return "";
-    }
-
-    public function get_js_data() {
-        return [];
+    public function render($env) {
     }
 
 //     public function __construct($context) {

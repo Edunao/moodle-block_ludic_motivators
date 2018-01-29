@@ -27,7 +27,7 @@ require_once dirname(__DIR__, 2) . '/classes/motivators/motivator_base.class.php
 
 class motivator_avatar extends motivator_base implements motivator {
 
-    public function __construct(execution_environment $env) {
+//    public function __construct(execution_environment $env) {
 //         // Initialisation du status du modérateur
 //         set_achievement_status($context);
 //
@@ -41,8 +41,8 @@ class motivator_avatar extends motivator_base implements motivator {
 //
 //             }
 //         }
-        parent::__construct($env);
-    }
+//        parent::__construct($env);
+//    }
 
 //     function getElementSelect($selectedLayer){
 //         $textSelect  = '';
@@ -65,16 +65,16 @@ class motivator_avatar extends motivator_base implements motivator {
         ];
     }
 
-    public function get_content( /* $env */ ) {
+    public function render($env) {
         // Construct content blocks for rendering
         $imageurl       = $this->image_url('avatar.svg');
         $fullimage      = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-full'/>";
         $changesimage   = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-changes'/>";
 
         // render the output
-        $this->set_block_classes('show-changes');
-        $this->render('full_title',$fullimage);
-        $this->render('changes_title',$changeimage);
+        $env->set_block_classes('show-changes');
+        $env->render($this->get_string('full_title'), $fullimage);
+       $env->render($this->get_string('changes_title'), $changesimage);
 
 //         // Div block showing the image with all of the layers for previously achieved goals unmasked
 //         $output  = '<div id="avatar-div" style="margin-bottom:15px;border:1px solid">
@@ -105,26 +105,25 @@ class motivator_avatar extends motivator_base implements motivator {
 //         }
 
 //         return $output;
-    }
-
-    public function get_js_data( /* $env */ ) {
+//    }
+//
+//    private function get_js_data( /* $env */ ) {
         // prime a result object with the different tables that we're going to projide to the JS script
-        $result=[
+        $jsdata = [
             'obtained'       => [],
             'newly_obtained' => [],
             'new_names'      => []
         ];
 
         // fetch config and associated achievement data
-        $config     = $this->env->get_full_config($this->get_short_name());
-        $statedata  = $this->env->get_full_state_data($config);
+        $config     = $env->get_full_config($this->get_short_name());
+        $statedata  = $env->get_full_state_data($config);
 
-echo "<h1>config</h1>";
-\print_object($config);
 echo "<h1>state data</h1>";
 \print_object($statedata);
 
-        foreach ($config['elements'] as $element){
+        // match up the config elements and state data to determine the set of information to pass to the javascript
+        foreach ($config as $element){
             $dataname = $element['course'] . '/done';
 echo "Checking $dataname<br>";
             if (isset($statedata[$dataname])){
@@ -132,17 +131,17 @@ echo "Checking $dataname<br>";
                 switch ($statevalue){
                 case 1:
 echo "- obtained<br>";
-                    $params['obtained'][] = $element['motivator']['layer'];
+                    $jsdata['obtained'][] = $element['motivator']['layer'];
                     break;
                 case 2:
 echo "- newly obtained<br>";
-                    $params['newly_obtained'][] = $element['motivator']['layer'];
+                    $jsdata['newly_obtained'][] = $element['motivator']['layer'];
                     break;
                 }
             }
         }
 
-        return $result;
+        $env->set_js_init_data($this->get_short_name(), $jsdata);
 
 // //        $datas = $this->context->store->get_datas();
 //         $params = array();

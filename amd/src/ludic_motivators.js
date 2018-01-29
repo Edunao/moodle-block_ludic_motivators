@@ -21,11 +21,38 @@
  */
 
 define(['jquery', 'core/tree'], function ($, Tree) {
-    return {
+    ludicMotivators = {
         init: function (motivator, params) {
-            require(['../motivators/'+motivator+'/amd/src/'+motivator], function(motivator) {
+            require(['/blocks/ludic_motivators/motivators/'+motivator+'/amd/src/'+motivator+'.js'], function(motivator) {
                 motivator.init(params);
             });
-        }
+        },
+
+        /*
+         * Convert SVG (<img>) in to raw SVG code (<svg>)
+         */
+        convert_svg : function(selector) {
+            $(selector).each(function () {
+                var $img = $(this);
+                var imgID = $img.attr('id');
+                var imgClass = $img.attr('class');
+                var imgURL = $img.attr('src');
+                console.log("cleaning svg: ", imgURL);
+
+                $.get({url : imgURL, async : false}, function (data) {
+                    var $svg = $(data).find('svg');
+                    if (typeof imgID !== 'undefined') {
+                        $svg = $svg.attr('id', imgID);
+                    }
+                    if (typeof imgClass !== 'undefined') {
+                        $svg = $svg.attr('class', imgClass + ' replaced-svg');
+                    }
+                    $svg = $svg.removeAttr('xmlns:a');
+                    $img.replaceWith($svg);
+                });
+            });
+        },
     };
+
+    return ludicMotivators;
 });

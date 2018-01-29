@@ -25,41 +25,35 @@ namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
 class motivators{
-    private static $instances = [];
+    private static $motivatorclasses = [];
 
-    public static function get_instances($env) {
-        $result = self::$instances;
-
-        // if we don't have a cached instance table then generate a new one
-        if (empty($result)){
-            if ($env === false){
-                // generate a temporary instance set and don't cache it
-                require_once __DIR__ . '/execution_environment/execution_environment_stub.class.php';
-                $env = new execution_environment_stub;
-                $result = self::identify_motivators($env);
-            } else {
-                // generate and cache the instance set
-                $result = self::identify_motivators($env);
-                self::$instances = $result;
-            }
+    public static function get_instances() {
+        if (!self::$motivatorclasses){
+            self::init();
         }
 
-        // return the result
+        // generate and return an array of motivator instances
+        $result = [];
+        foreach (self::$motivatorclasses as $classname){
+            $result[$classname] = new $classname;
+        }
         return $result;
     }
 
     public static function get_names() {
+        $instances = self::get_instances();
         $result = [];
-        $instances = self::get_instances( false );
         foreach ($instances as $classname => $instance){
-            $result[$classname] = $instance->get_name();
+            $result[$instance->get_short_name()] = $instance->get_name();
         }
         return $result;
     }
 
-    private static function identify_motivators($env) {
-        $rootpath = dirname(__DIR__) . '/motivators';
-        foreach (glob($rootpath . '/*/main.php') as $srcfile) {
+    private static function init() {
+        $rootpath   = dirname(__DIR__) . '/motivators';
+        $filespec   = $rootpath . '/*/main.php';
+        $srcfiles   = glob($filespec);
+        foreach ($srcfiles as $srcfile) {
             $shortname = preg_replace('%.*/(.*)/main.php%', '${1}', $srcfile);
             $classname = "block_ludic_motivators\\motivator_" . $shortname;
             if (!$classname){
@@ -72,9 +66,13 @@ class motivators{
                 continue;
             }
 
-            // store away a new instance of the loaded class in our internal container
-            $result[$classname] = new $classname($env);
+            // the class exists so register it
+            self::$motivatorclasses[] = $classname;
         }
-        return $result;
+
+        // sanity check
+        if (!self::$motivatorclasses){
+            throw new \Excpetion('No motivator types found!');
+        }
     }
 }

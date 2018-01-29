@@ -28,22 +28,28 @@
 .ludi-pane {
     margin-bottom: 15px;
     border: 1px solid;
-    width: 190px;
-    padding: 5px;
+    width: 100%;
+    padding: 3px;
+    display: block;
 }
 
 .ludi-header {
     background-color: #6F5499;
     color: #CDBFE3;
     text-align: center;
-}
-
-.ludi-title {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 1px;
 }
 
 .ludi-body {
+    width: 100%;
+    display: block;
 }
 
-.ludi-content {
-    align: center;
+.ludi-body .svg {
+    width: 180px;
+    height: 180px;
+    display: none;
+    margin: auto;
 }

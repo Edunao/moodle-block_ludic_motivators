@@ -68,4 +68,5 @@ class execution_environment_stub implements execution_environment{
     public function set_block_classes($classes) {}
     public function render($title,$content) {}
     public function get_rendered_output() {}
+    public function get_js_init_data() {}
 }

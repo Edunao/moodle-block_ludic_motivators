@@ -67,5 +67,10 @@ interface execution_environment{
     public function page_requires_css($cssurl);
     public function set_block_classes($classes);
     public function render($title,$content);
+
+    //-------------------------------------------------------------------------
+    // getters for result from rendering
+
+    public function get_js_init_data();
     public function get_rendered_output();
 }

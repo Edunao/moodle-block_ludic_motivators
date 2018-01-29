@@ -38,9 +38,10 @@ class execution_environment_mdl implements execution_environment{
     private $courseid;
     private $currentmotivator   = null;
     private $miner;
-    private $output             = "";
-    private $blockclasses       = "ludi-block";
-    private $config             = ["courses" => [], "achievements" => []];
+    private $output             = '';
+    private $jsinitdata         = [];
+    private $blockclasses       = 'ludi-block';
+    private $config             = ['courses' => [], 'elements' => []];
     private $presets            = [];
 
     public function __construct($userid, \moodle_page $page, $testmode) {
@@ -56,6 +57,9 @@ class execution_environment_mdl implements execution_environment{
         if (file_exists($configfile)){
             $jsonconfigdata = file_get_contents($configfile);
             $this->config   = json_decode($jsonconfigdata, true);
+            $this->bomb_if(!$this->config, 'Failed to JSON decode config file: ' . $configfile);
+            $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config file: ' . $configfile);
+            $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
         }
 
         // load testing data as required
@@ -65,20 +69,21 @@ class execution_environment_mdl implements execution_environment{
             if (file_exists($testdatafile)){
                 $jsontestdata   = file_get_contents($testdatafile);
                 $testdata       = json_decode($jsontestdata, true);
-                if (isset($testsdata['config']) && isset($testsdata['config']['courses'])){
-                    $this->config['courses'] += $testsdata['config']['courses'];
+                $this->bomb_if(!$testdata, 'Failed to JSON decode test data file: ' . $testdatafile );
+                if (isset($testdata['config']) && isset($testdata['config']['courses'])){
+                    $this->config['courses'] += $testdata['config']['courses'];
                 }
-                if (isset($testsdata['config']) && isset($testsdata['config']['achievements'])){
-                    $this->config['courses'] += $testsdata['config']['achievements'];
+                if (isset($testdata['config']) && isset($testdata['config']['elements'])){
+                    $this->config['elements'] += $testdata['config']['elements'];
                 }
-                if (isset($testsdata['presets-full'])){
-                    $this->presets['fullpreset'] = $testsdata['presets-full'];
+                if (isset($testdata['presets-full'])){
+                    $this->presets['fullpreset'] = $testdata['presets-full'];
                 }
-                if (isset($testsdata['presets-course'])){
-                    $this->presets['coursepreset'] = $testsdata['presets-course'];
+                if (isset($testdata['presets-course'])){
+                    $this->presets['coursepreset'] = $testdata['presets-course'];
                 }
-                if (isset($testsdata['presets'])){
-                    $this->presets['preset'] = $testsdata['presets'];
+                if (isset($testdata['presets'])){
+                    $this->presets['preset'] = $testdata['presets'];
                 }
             }
         }
@@ -148,9 +153,10 @@ class execution_environment_mdl implements execution_environment{
     public function get_full_config($motivatorname){
         // filter the course list to match the requird motivator and course
         $result=[];
-        foreach ($this->config['achievements'] as $item){
+
+        foreach ($this->config['elements'] as $item){
             // check for motivator mismatch
-            if ($item['motivator']['name'] != $motivatorname){
+            if ($item['motivator']['type'] != $motivatorname){
                 continue;
             }
 
@@ -171,9 +177,9 @@ class execution_environment_mdl implements execution_environment{
 
         // filter the course list to match the requird motivator and course
         $result=[];
-        foreach ($this->config['achievements'] as $item){
+        foreach ($this->config['elements'] as $item){
             // check for motivator mismatch
-            if ($item['motivator']['name'] !== $motivatorname){
+            if ($item['motivator']['type'] !== $motivatorname){
                 continue;
             }
 
@@ -299,15 +305,15 @@ class execution_environment_mdl implements execution_environment{
 
         # write the title in a header div
         $this->output .= "<div class='ludi-header'>";
-        $this->output .= "<span class='ludi-title'>$title</span>";
-        $this->output .= "</div'>";
+        $this->output .= "<h4 class='ludi-title'>$title</h4>";
+        $this->output .= "</div>";
 
         # write the content in a body div
         $this->output .= "<div class='ludi-body'>";
-        $this->output .= "<span class='ludi-content'>$content</span>";
-        $this->output .= "</div'>";
+        $this->output .= "<div class='ludi-content'>$content</div>";
+        $this->output .= "</div>";
 
-        $this->output .= "</div'>";
+        $this->output .= "</div>";
     }
 
     public function get_rendered_output(){
@@ -316,5 +322,13 @@ class execution_environment_mdl implements execution_environment{
             $this->output
             </div>
         ";
+    }
+
+    public function set_js_init_data($motivatorname, $data){
+        $this->jsinitdata = [$motivatorname, $data];
+    }
+
+    public function get_js_init_data(){
+        return $this->jsinitdata;
     }
 }
