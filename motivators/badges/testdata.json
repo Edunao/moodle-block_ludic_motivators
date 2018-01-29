@@ -1,31 +1,46 @@
 {
-    "none":{
+    "config":{
+        "courses": ["Ludi01", "Ludi02", "Ludi03"],
+        "elements":[
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 1", "icon": "badge1" }, "stats": { "goal01": { "type": "correct_run", "threshold": 3 } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 2", "icon": "badge2" }, "stats": { "goal02": { "type": "correct_run", "threshold": 10 } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 3", "icon": "badge3" }, "stats": { "goal03": { "type": "auto_correct" } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 4", "icon": "badge4" }, "stats": { "goal04": { "type": "auto_correct" } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 5", "icon": "badge5" }, "stats": { "goal05": { "type": "auto_correct" } } },
+
+            { "course": "Ludi01", "motivator": { "type": "badges", "subtype": "global", "layer": "calque00" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi02", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi03", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi04", "motivator": { "type": "badges", "subtype": "global", "layer": "calque03" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi05", "motivator": { "type": "badges", "subtype": "global", "layer": "calque04" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } }
+        ]
     },
-    "one-new":{
-        "one":2
+
+    "fullpreset":{
+        "done 0/0":     { "/count":0 },
+        "done 0/1":     { "/count":1 },
+        "done 1/1":     { "/count":1, "Ludi01/done":2 },
+        "done 1/2":     { "/count":2, "Ludi01/done":0, "Ludi02/done":1 },
+        "done 2/2":     { "/count":2, "Ludi01/done":1, "Ludi02/done":2 },
+        "done 0/5":     { "/count":5, "Ludi01/done":0, "Ludi02/done":0, "Ludi03/done":0, "Ludi04/done":0, "Ludi05/done":0 },
+        "done 5/5":     { "/count":5, "Ludi01/done":1, "Ludi02/done":1, "Ludi03/done":1, "Ludi04/done":1, "Ludi05/done":1 }
     },
-    "one-old":{
-        "one":1
-    },
-    "two-new":{
-        "one":1,
-        "two":2
-    },
-    "two-old":{
-        "one":1,
-        "two":1
-    },
-    "all":{
-        "one":1,
-        "two":1,
-        "three":1,
-        "four":1,
-        "five":1,
-        "six":1,
-        "seven":1,
-        "eight":1,
-        "nine":1,
-        "ten":1,
-        "eleven":1
+
+    "coursepreset":{
+
+        "no badges":    { },
+
+        "Ludi01-1":     { "Ludi01/goal01":2 },
+        "Ludi01-2":     { "Ludi01/goal02":1 },
+        "Ludi01-3":     { "Ludi01/goal03":2 },
+        "Ludi01-4":     { "Ludi01/goal04":1 },
+        "Ludi01-5":     { "Ludi01/goal05":2 },
+        "Ludi01-all":   { "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":1 },
+
+        "Ludi02-1":     { "Ludi02/goal01":2, "Ludi02/goal02":0, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
+        "Ludi02-2":     { "Ludi02/goal01":1, "Ludi02/goal02":2, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
+        "Ludi02-3":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":2, "Ludi02/goal04":0, "Ludi02/goal05":0 },
+        "Ludi02-4":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":2, "Ludi02/goal05":0 },
+        "Ludi02-5":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":1, "Ludi02/goal05":2 }
     }
 }

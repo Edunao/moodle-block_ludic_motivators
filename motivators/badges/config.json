@@ -1,26 +1,17 @@
-[
-  {
-    "course": "*",
-    "motivator": {
-      "type": "badges",
-      "title": "5 correct",
-      "icon": "image01"
-    },
-    "achievment": {
-      "type": "correct_answer_run",
-      "count": 5
-    }
-  },
-  {
-    "course": "*",
-    "motivator": {
-      "type": "badges",
-      "title": "3 correct",
-      "icon": "image02"
-    },
-    "achievment": {
-      "type": "correct_answer_run",
-      "count": 3
-    }
-  }
-]
+{
+    "elements": [
+        {
+            "course": "",
+            "motivator": {
+                "type": "badges",
+                "subtype": "count"
+            },
+            "stats": {
+                "course_count": {
+                    "type": "course_count",
+                    "threshold": 0
+                }
+            }
+        }
+    ]
+}

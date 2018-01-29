@@ -1,49 +1,30 @@
-/*.svg {
-    width: 100%;
-    max-width: 250px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display:block
-    top:0;
-    left:0;
-    width : 180px;
-    height : 180px;
-}*/
 /*
-#congratulation {
-    display : none;
-    font-weight : bold;
-    color : red;
-    text-align : center;
-    margin-top: 10px;
-}
-*/
-/*
-#avatar-container, #element-container {
-    position : relative;
-    overflow: auto;
-    width : 180px;
-    height: 180px;
-    margin : auto;
-}
+ This file is part of Moodle - http://moodle.org/
 
-#avatar-div, #element-div {
-    display: none;
-}
+ Moodle is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Moodle is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 */
+/**
+ * @copyright  2018 Edunao SAS (contact@edunao.com)
+ * @author     Sadge (daniel@edunao.com)
+ * @package    block_ludic_motivators
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 #ludi-avatar-full [id^=calque]:not(#calque00),
 #ludi-avatar-changes [id^=calque]:not(#calque01) {
     visibility: hidden;
 }
-/*
-#next-piece {
-    display : block;
-    margin : auto;
-    margin-top : 3px;
-}
-*/
 
 #ludi-avatar-full,
 #ludi-avatar-changes {

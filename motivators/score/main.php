@@ -65,7 +65,7 @@ class motivator_score extends motivator_base implements motivator {
 //                     'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                 ],
 //             ],
-//             'globalAchievements' => [
+//             'globalstats' => [
 //                 'session1Objectives' => 0,
 //                 'session2Objectives' => 1
 //             ]

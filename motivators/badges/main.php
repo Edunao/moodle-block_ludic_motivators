@@ -32,11 +32,107 @@ class motivator_badges extends motivator_base implements motivator {
     public function get_loca_strings(){
         return [
             'name'          => 'Badge',
-            'title'         => 'My badges',
+            'title'         => 'Badges',
+            'full_title'    => 'Course Badges',
+            'changes_title' => 'New Badges',
+            'pyramid_title' => 'Acquired Competencies',
         ];
     }
 
     public function render($env) {
+        // prime a jsdata object with the different tables that we're going to provide to the JS script
+        $jsdata = [
+            'pyramid_layers' => []
+        ];
+
+        // fetch config and associated stat data
+        $coursename     = $env->get_course_name();
+        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
+        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+        $fullconfig     = $env->get_full_config($this->get_short_name());
+        $fulldata       = $env->get_full_state_data($fullconfig);
+
+echo "<h1>Full Data</h1>";
+// print_object($fullconfig);
+// print_object($fulldata);
+        // match up the config elements and state data to determine the set of information to pass to the javascript
+        foreach ($fullconfig as $element){
+            if ($element['motivator']['subtype'] !== 'global'){
+                continue;
+            }
+            $dataname = $element['course'] . '/' . array_keys($element['stats'])[0];
+echo "Checking $dataname<br>";
+            if (isset($fulldata[$dataname])){
+                $statevalue = $fulldata[$dataname];
+                switch ($statevalue){
+                case STATE_JUST_ACHIEVED:
+                case STATE_ACHIEVED:
+echo "- achieved<br>";
+                    $jsdata['pyramid_layers'][] = $element['motivator']['layer'];
+                    break;
+                }
+            }
+        }
+
+        // lookup the course count which we configure via a fake stat
+        $env->bomb_if(!isset($fulldata['/course_count']),"/course_count not found in state data");
+        $coursecount = $fulldata['/course_count'];
+
+echo "<h1>Course Data</h1>";
+// print_object($courseconfig);
+// print_object($coursedata);
+        $badgeicons = '';
+        $newbadgeicons = '';
+        // match up the config elements and state data to determine the set of information to pass to the javascript
+        foreach ($courseconfig as $element){
+            if ($element['motivator']['subtype'] !== 'course'){
+                continue;
+            }
+            $dataname = $coursename . '/' . array_keys($element['stats'])[0];
+echo "Checking $dataname<br>";
+            if (isset($coursedata[$dataname])){
+                $imageurl = $this->image_url($element['motivator']['icon']);
+                $statevalue = $coursedata[$dataname];
+                switch ($statevalue){
+                case STATE_JUST_ACHIEVED:
+echo "- newly obtained<br>";
+                    $newbadgeicons  .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
+                    $badgeicons     .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
+                    break;
+                case STATE_ACHIEVED:
+echo "- obtained<br>";
+                    $badgeicons     .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-old'/>";
+                    break;
+                case STATE_NOT_ACHIEVED:
+echo "- not obtained<br>";
+                    $badgeicons     .= "<img src='" . $imageurl . "_inactif.svg' class='ludi-badge ludi-todo'/>";
+                    break;
+                }
+            }
+        }
+
+        // register the js data
+        $env->set_js_init_data($this->get_short_name(), $jsdata);
+
+        // Construct content blocks for rendering
+        $imageurl       = $this->image_url('avatar.svg');
+        $fullimage      = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-full'/>";
+        $changesimage   = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-changes'/>";
+
+        // prepare to start rendering content
+        $env->set_block_classes('luditype-badges');
+
+        // render the badge images
+        $env->render($this->get_string('full_title'), '<div class="ludi-course-badges">' . $badgeicons . '</div>');
+        if (!empty($newbadgeicons)){
+            $env->render($this->get_string('changes_title'), '<div class="ludi-course-badges">' . $newbadgeicons . '</div>');
+        }
+
+        // render the pyramid image
+        $pyramidname    = sprintf("pyramide_%02d.svg", $coursecount);
+        $imageurl       = $this->image_url($pyramidname);
+        $imagehtml      = "<div class='ludi-pyramid-container'><img src='$imageurl' class='svg' id='ludi-pyramid'/></div>";
+        $env->render($this->get_string('pyramid_title'), $imagehtml);
     }
 
 
@@ -46,7 +142,7 @@ class motivator_badges extends motivator_base implements motivator {
 //         if (($newBadge = optional_param('badge', '', PARAM_TEXT)) !== '') {
 //             foreach ($preset['coursesBadges'] as $key => $badge) {
 //                 if ($badge['badgeName'] === $newBadge) {
-//                     $preset['coursesBadges'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+//                     $preset['coursesBadges'][$key]['stat'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
 //                 }
 //             }
 //         }
@@ -55,7 +151,7 @@ class motivator_badges extends motivator_base implements motivator {
 //         if (($globalBadge = optional_param('globalBadge', 0, PARAM_TEXT)) !== 0) {
 //             $i = 1;
 //             do {
-//                 $preset['globalBadges'][$i]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED;
+//                 $preset['globalBadges'][$i]['stat'] = $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED;
 //                 $i++;
 //             } while ($i <= $globalBadge);
 //         }
@@ -73,7 +169,7 @@ class motivator_badges extends motivator_base implements motivator {
 //         $resultHtml = '';
 //
 //         foreach ($this->preset['globalBadges'] as $key => $badge) {
-//             if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+//             if ($badge['stat'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
 //                 $resultHtml .=
 //                 '<li style="opacity:' . $opacity . '">
 //                     <figure>
@@ -91,7 +187,7 @@ class motivator_badges extends motivator_base implements motivator {
 //         $globalBadges = $this->preset['globalBadges'];
 //         $textSelect  = '<option value="' . $selectedBadge . '" selected> Etape ' . $selectedBadge . '</option>';
 //         foreach ($globalBadges as $key => $badge) {
-//             if ($badge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+//             if ($badge['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
 //                 $textSelect .= '<option value="' . $key . '""> Etape ' . $key . '</option>';
 //             }
 //         }
@@ -104,8 +200,8 @@ class motivator_badges extends motivator_base implements motivator {
 //         $resultHtml = '';
 //
 //         foreach ($this->preset['coursesBadges'] as $key => $badge) {
-//             if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-//                 $opacity = ($badge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) ? "0.5" : "1";
+//             if ($badge['stat'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+//                 $opacity = ($badge['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) ? "0.5" : "1";
 //                 $resultHtml .=
 //                 '<li style="opacity:' . $opacity . '">
 //                     <figure>
@@ -124,7 +220,7 @@ class motivator_badges extends motivator_base implements motivator {
 //         $resultHtml = '';
 //
 //         foreach ($this->preset['coursesBadges'] as $key => $badge) {
-//             if ($badge['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+//             if ($badge['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
 //                 $resultHtml .=
 //                 '<li>
 //                     <figure>
@@ -141,7 +237,7 @@ class motivator_badges extends motivator_base implements motivator {
 //     function getJustAchievedBadgesSelect($selectedBadge){
 //         $textSelect  = '';
 //         foreach ($this->preset['coursesBadges'] as $key => $badge) {
-//             if ($badge['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+//             if ($badge['stat'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
 //                 $selected = $badge['badgeName'] == $selectedBadge ? 'selected' : '';
 //                 $textSelect .= '<option value="' . $badge['badgeName'] . '" ' . $selected . '>' . $badge['badgeName'] . '</option>';
 //             }
@@ -231,10 +327,10 @@ class motivator_badges extends motivator_base implements motivator {
 //         $params = array('previously_obtained' => array());
 //
 //         foreach ($this->preset['globalBadges'] as $key => $value) {
-//             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+//             if ($value['stat'] == $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
 //                 $params['previously_obtained'][] = $value['layerName'];
 //             }
-//             if ($value['achievement'] == $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
+//             if ($value['stat'] == $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED) {
 //                 $params['not_obtained'][] = $value['layerName'];
 //             }
 //         }
@@ -261,89 +357,89 @@ class motivator_badges extends motivator_base implements motivator {
 //                 [
 //                     'badgeName' => '3 bonnes réponses',
 //                     'iconId' => 'course_badge1',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                 ],
 //                 [
 //                     'badgeName' => 'Course Goal 2',
 //                     'iconId' => 'course_badge2',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'badgeName' => '10 bonnes réponses',
 //                     'iconId' => 'course_badge2',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                 ],
 //                 [
 //                     'badgeName' => 'Course Goal 4',
 //                     'iconId' => 'course_badge1',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'badgeName' => 'Course Goal 5',
 //                     'iconId' => 'course_badge1',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ]
 //             ],
 //             'globalBadges' => [
 //                 [
 //                     'layerName' => 'calque00',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque01',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque02',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque03',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque04',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque05',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque06',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque07',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque08',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque09',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque10',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque11',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque12',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque13',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'layerName' => 'calque14',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //             ],
 //         );

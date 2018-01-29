@@ -25,6 +25,6 @@ namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
 interface log_miner{
-    public function get_full_state_data();
-    public function get_course_state_data($courseid);
+    public function get_full_state_data($config);
+    public function get_course_state_data($config, $coursename);
 }

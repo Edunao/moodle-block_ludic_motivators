@@ -39,7 +39,7 @@ class execution_environment_stub implements execution_environment{
     // Moodle context
 
     public function get_userid() {}
-    public function get_coursename() {}
+    public function get_course_name() {}
 
     //-------------------------------------------------------------------------
     // Motivator management
@@ -55,10 +55,10 @@ class execution_environment_stub implements execution_environment{
     public function get_course_config($motivatorname, $coursename) {}
 
     //-------------------------------------------------------------------------
-    // Evaluation of achievements and suchlike for use by motivators
+    // Evaluation of stats and suchlike for use by motivators
 
-    public function get_full_state_data() {}
-    public function get_course_state_data() {}
+    public function get_full_state_data($config) {}
+    public function get_course_state_data($config, $coursename) {}
 
     //-------------------------------------------------------------------------
     // rendering

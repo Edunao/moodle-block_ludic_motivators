@@ -24,9 +24,9 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
-define('block_ludic_motivators\STATE_NOTACHIEVED', 0);
-define('block_ludic_motivators\STATE_PREVIOUSLYACHIEVED', 1);
-define('block_ludic_motivators\STATE_JUSTACHIEVED', 2);
+define('block_ludic_motivators\STATE_NOT_ACHIEVED', 0);
+define('block_ludic_motivators\STATE_ACHIEVED', 1);
+define('block_ludic_motivators\STATE_JUST_ACHIEVED', 2);
 
 interface motivator {
     public function get_loca_strings();

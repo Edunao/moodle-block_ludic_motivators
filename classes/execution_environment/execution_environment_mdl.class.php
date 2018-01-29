@@ -52,7 +52,7 @@ class execution_environment_mdl implements execution_environment{
         $this->coursename   = $page->course->shortname;
         $this->miner        = new log_miner_mdl($this);
 
-        // load configuration data
+        // load global configuration data
         $configfile     = $CFG->dataroot . '/filedir/ludic-motivators-config.json';
         if (file_exists($configfile)){
             $jsonconfigdata = file_get_contents($configfile);
@@ -62,19 +62,38 @@ class execution_environment_mdl implements execution_environment{
             $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
         }
 
+        // determine names of motivator's config files
+        $motivator      = $this->get_current_motivator();
+        $configfile     = dirname(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/config.json';
+        $testdatafile   = dirname(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
+
+        // load motivator configuration data
+        if (file_exists($configfile)){
+            $jsonconfigdata = file_get_contents($configfile);
+            $motivatorconfig = json_decode($jsonconfigdata, true);
+            $this->bomb_if(!$this->config, 'Failed to JSON decode config file: ' . $configfile);
+            $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config file: ' . $configfile);
+            $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
+            foreach ($motivatorconfig as $key => $data){
+                if (array_key_exists($key, $this->config)){
+                    $this->config[$key] = array_merge($this->config[$key], $data);
+                }else{
+                    $this->config[$key] = $data;
+                }
+            }
+        }
+
         // load testing data as required
         if ($testmode === true){
-            $motivator      = $this->get_current_motivator();
-            $testdatafile   = dirname(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
             if (file_exists($testdatafile)){
                 $jsontestdata   = file_get_contents($testdatafile);
                 $testdata       = json_decode($jsontestdata, true);
                 $this->bomb_if(!$testdata, 'Failed to JSON decode test data file: ' . $testdatafile );
                 if (isset($testdata['config']) && isset($testdata['config']['courses'])){
-                    $this->config['courses'] += $testdata['config']['courses'];
+                    $this->config['courses'] = array_merge($this->config['courses'], $testdata['config']['courses']);
                 }
                 if (isset($testdata['config']) && isset($testdata['config']['elements'])){
-                    $this->config['elements'] += $testdata['config']['elements'];
+                    $this->config['elements'] = array_merge($this->config['elements'], $testdata['config']['elements']);
                 }
                 if (isset($testdata['fullpreset'])){
                     $this->presets['fullpreset'] = $testdata['fullpreset'];
@@ -103,7 +122,7 @@ class execution_environment_mdl implements execution_environment{
         return $this->user->id;
     }
 
-    public function get_coursename() {
+    public function get_course_name() {
         return $this->coursename;
     }
 
@@ -180,16 +199,19 @@ class execution_environment_mdl implements execution_environment{
         foreach ($this->config['elements'] as $item){
             // check for motivator mismatch
             if ($item['motivator']['type'] !== $motivatorname){
+echo "Course config: SKIPPING: motivator type != $motivatorname :" . $item['motivator']['type'] . /*json_encode($item) .*/ "<br>";
                 continue;
             }
 
             // check for course name missmatch
             if ($item['course'] !== $coursename && $item['course'] !== $wildcard){
+echo "Course config: SKIPPING: coursename != $coursename || $wildcard :" . $item['course'] . /*json_encode($item) .*/ "<br>";
                 continue;
             }
 
             // add item to result
             $result[] = $item;
+echo "Course config: ADDING: " . json_encode($item) . "<br>";
         }
         return $result;
     }
@@ -198,7 +220,7 @@ class execution_environment_mdl implements execution_environment{
         return $this->presets;
     }
 
-    public function get_full_state_data() {
+    public function get_full_state_data($config) {
         // lookout for overrides used for testing
         foreach (['preset', 'fullpreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
@@ -209,10 +231,10 @@ class execution_environment_mdl implements execution_environment{
             }
         }
         // default to calculated values
-        return $this->miner->get_full_state_data();
+        return $this->miner->get_full_state_data($config);
     }
 
-    public function get_course_state_data() {
+    public function get_course_state_data($config, $coursename) {
         // lookout for overrides used for testing
         foreach (['preset', 'coursepreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
@@ -223,7 +245,7 @@ class execution_environment_mdl implements execution_environment{
             }
         }
         // default to calculated values
-        return $this->miner->get_course_state_data($this->courseid);
+        return $this->miner->get_course_state_data($config, $coursename);
     }
 
     private function read_motivator_selection(){

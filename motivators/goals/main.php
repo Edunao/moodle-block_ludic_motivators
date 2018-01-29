@@ -45,44 +45,44 @@ class motivator_goals extends motivator_base implements motivator {
 //                 [
 //                     'title' => 'Répondre à 3 questions',
 //                     'percentToPass' => '70',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'title' => 'Terminer un quiz',
 //                     'percentToPass' => '65',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                 ],
 //                 [
 //                     'title' => 'Réponse à une question en moins de 20 secondes',
 //                     'percentToPass' => '70',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'title' => 'Objective4',
 //                     'percentToPass' => '65',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                 ],
 //                 [
 //                     'title' => 'Objective5',
 //                     'percentToPass' => '75',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ]
 //             ],
-//             'globalAchievements' => [
+//             'globalstats' => [
 //                 [
 //                     'title' => 'session1Objectives',
 //                     'percentToPass' => '70',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'title' => 'session2Objectives',
 //                     'percentToPass' => '65',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //                 [
 //                     'title' => 'session3Objectives',
 //                     'percentToPass' => '70',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                 ],
 //             ]
 //         );
@@ -91,7 +91,7 @@ class motivator_goals extends motivator_base implements motivator {
 //         if (($bonus = optional_param('goals', '', PARAM_TEXT)) !== '') {
 //             foreach ($preset['objectives'] as $key => $layer) {
 //                 if ($layer['title'] === $bonus) {
-//                     $preset['objectives'][$key]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+//                     $preset['objectives'][$key]['stat'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
 //                 }
 //
 //             }
@@ -107,7 +107,7 @@ class motivator_goals extends motivator_base implements motivator {
 //
 //     function isGoalsJustAchieved() {
 //         foreach ($this->preset['objectives'] as $key => $objective) {
-//             if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+//             if ($objective['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
 //                 return true;
 //             }
 //         }
@@ -118,7 +118,7 @@ class motivator_goals extends motivator_base implements motivator {
 //     function getPreviouslyAchievedGoals() {
 //         $textHtml = '';
 //         foreach ($this->preset['objectives'] as $key => $objective) {
-//             if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED){
+//             if ($objective['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED){
 //                 $textHtml .= '<li>' . $objective['title'] . '</li>';
 //             }
 //         }
@@ -129,7 +129,7 @@ class motivator_goals extends motivator_base implements motivator {
 //     function getJustAchievedGoals() {
 //         $textHtml = '';
 //         foreach ($this->preset['objectives'] as $key => $objective) {
-//             if ($objective['achievement'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
+//             if ($objective['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
 //                 $textHtml .= "<li>" . $objective['title'] . "</li>";
 //             }
 //         }
@@ -141,7 +141,7 @@ class motivator_goals extends motivator_base implements motivator {
 //
 //         $textSelect  = '';
 //         foreach ($this->preset['objectives'] as $key => $layer) {
-//             if ($layer['achievement'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
+//             if ($layer['stat'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
 //                 $selected = $layer['title'] == $selectedLayer ? 'selected' : '';
 //                 $textSelect .= '<option value="' . $layer['title'] . '" ' . $selected . '>' . $layer['title'] . '</option>';
 //             }

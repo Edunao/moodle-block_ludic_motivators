@@ -46,7 +46,7 @@ class motivator_timer extends motivator_base implements motivator {
 //             'maxNumberAttempts' => 5,
 //             'numberPreviousAttempts' => 3,
 //             'timingAttempts' => [40, 60, 30],
-//             'globalAchievements' => [
+//             'globalstats' => [
 //                 'session1Objectives' => 0,
 //                 'session2Objectives' => 1
 //             ]

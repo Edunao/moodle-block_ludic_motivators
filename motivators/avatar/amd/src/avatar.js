@@ -25,13 +25,6 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         init: function (params) {
             console.log('Avatar init', params);
 
-//            var that = this;
-//
-//             this.params = params;
-//
-//             this.obtained = this.params.obtained;
-//             this.newly_obtained = this.params.newly_obtained;
-
             // Convert SVG (<img>) in to raw SVG code (<svg>)
             ludicMotivators.convert_svg('img.svg.avatar');
 

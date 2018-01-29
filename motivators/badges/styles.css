@@ -1,29 +1,30 @@
-#badges-container {
-    /*margin-top : 15px;*/
+.ludi-course-badges {
+    width: 100%;
+    text-align: center;
+    display: block;
 }
 
-#course-badge {
-    margin : 0px;
-    list-style: none;
+img.ludi-badge {
+    margin : 0;
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+}
+
+img.ludi-badge.ludi-new img {
+    width: 60px;
+    height: 60px;
     padding: 0;
 }
 
-#course-badge {
-    display: inline-block;
-}
-
-#course-badge li {
+.ludi-pyramid-container{
+    width:100%;
+    padding:2px;
     text-align: center;
-    display: inline;
-    list-style: none;
 }
 
-#course-badge img {
-    width : 45px;
-    height : 45px;
-}
-
-#course-badge figure {
+/*.ludi-course-badges figure {
     display: inline-block;
     vertical-align: top;
     width: 32%;
@@ -33,26 +34,21 @@
     margin: 0 0 0.3rem;
 }
 
-#course-badge figcaption {
+.ludi-course-badges figcaption {
     font-size: 8px;
-}
-
-#new-badge  {
+}*/
+/*
+.ludi-badge-new {
     margin-top: 15px;
 }
 
-#new-badge li {
+.ludi-badge.ludi-new li {
     text-align: center;
     display: inline;
     list-style: none;
 }
-
-#new-badge img {
-    width : 50px;
-    height : 50px;
-}
-
-#global-badge {
+*/
+/*#global-badge {
     display : none;
     width : 40px;
     height : 40px;
@@ -64,10 +60,11 @@
     width : 45px;
     height : 45px;
 }
-
+*/
 /*
  * Definition for the displaying GI
  */
+/*
 .svg {
     position:absolute;
     top:0;
@@ -97,3 +94,4 @@
     margin : auto;
     margin-top : 3px;
 }
+*/

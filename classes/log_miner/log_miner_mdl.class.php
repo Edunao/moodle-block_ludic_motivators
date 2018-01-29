@@ -25,10 +25,11 @@ namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
 require_once __DIR__ . '/log_miner.interface.php';
+require_once dirname(__DIR__) . '/motivators/motivator.interface.php';
 
 class log_miner_mdl implements log_miner {
     private $env;
-    private $achievements   = [];
+    private $stats   = [];
 //     protected $courseid;
 //     protected $userid;
 
@@ -41,24 +42,46 @@ class log_miner_mdl implements log_miner {
         $this->env      = $env;
     }
 
-    public function get_full_state_data(){
-    }
-
-    public function get_course_state_data($courseid){
-    }
-
-    public function get_achievements(){
-        if (! $this->achievements){
-            $this->calculate_achievements();
+    public function get_full_state_data($config){
+        $result=[];
+        foreach ($config as $element){
+            $elementcourse = $element['course'];
+            if (array_key_exists('stats', $element)){
+                foreach ($element['stats'] as $key => $dfn){
+                    $resultkey = $elementcourse . '/' . $key;
+                    $result[$resultkey] = 0;
+                }
+            }
         }
-        return $this->achievements();
+        return $result;
+//return [ '/course_count' => 1 ];
     }
 
-    protected function calculate_achievements(){
-        // load achievements description file
-        // for each achievement
+    public function get_course_state_data($config,$coursename){
+        $result=[];
+        foreach ($config as $element){
+            if (array_key_exists('stats', $element)){
+                foreach ($element['stats'] as $key => $dfn){
+                    $resultkey = $coursename . '/' . $key;
+                    $result[$resultkey] = 0;
+                }
+            }
+        }
+        return $result;
+    }
+
+    public function get_stats(){
+        if (! $this->stats){
+            $this->calculate_stats();
+        }
+        return $this->stats();
+    }
+
+    protected function calculate_stats(){
+        // load stats description file
+        // for each stat
             // if not applicable to the current course then skip it
-            // delegate to the appropriate data processing routine to evaluate the achievement
+            // delegate to the appropriate data processing routine to evaluate the stat
             // store the result in the results container
     }
 

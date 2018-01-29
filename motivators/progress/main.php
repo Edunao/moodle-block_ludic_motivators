@@ -44,113 +44,113 @@ class motivator_progress extends motivator_base implements motivator {
 //             'branches' => [
 //                 [
 //                     'courseId' => '1',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                     'layers' => [
 //                         [
 //                             'layerName' => 'calque00',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque01',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque02',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque03',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque04',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque05',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque06',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque07',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque08',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                     ]
 //                 ],
 //                 [
 //                     'courseId' => '2',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                     'layers' => [
 //                         [
 //                             'layerName' => 'calque00',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque01',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque02',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque03',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque04',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque05',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque06',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque07',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque08',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                     ]
 //                 ],
 //                 [
 //                     'courseId' => '3',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                     'layers' => [
 //                         [
 //                             'layerName' => 'calque00',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                     ]
 //                 ],
 //                 [
 //                     'courseId' => '4',
-//                     'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                     'layers' => [
 //                         [
 //                             'layerName' => 'calque00',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque01',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
 //                         ],
 //                         [
 //                             'layerName' => 'calque02',
-//                             'achievement' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
+//                             'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
 //                         ],
 //                     ]
 //                 ],
@@ -164,7 +164,7 @@ class motivator_progress extends motivator_base implements motivator {
 //                 // Check whether the course is presetted in the course layers array
 //                 foreach ($preset['branches'] as $branchKey => $branch) {
 //                     if ($branch['courseId'] == $courseId) {
-//                         $preset['branches'][$branchKey]['layers'][$branchParam]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
+//                         $preset['branches'][$branchKey]['layers'][$branchParam]['stat'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
 //                     }
 //
 //                 }
@@ -174,7 +174,7 @@ class motivator_progress extends motivator_base implements motivator {
 //                 for ($i=0; $i <= $layerParam ; $i++) {
 //                     $branch = floor($i/9);
 //                     $layer = $i % 9;
-//                     $preset['branches'][$branch]['layers'][$layer]['achievement'] = $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED;
+//                     $preset['branches'][$branch]['layers'][$layer]['stat'] = $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED;
 //                     if (!isset($preset['branches'][$branch]['layers'][$layer]['layerName'])){
 //                         $preset['branches'][$branch]['layers'][$layer]['layerName'] = 'calque' . str_pad($layer, 2, '0', STR_PAD_LEFT);
 //                     }
@@ -210,7 +210,7 @@ class motivator_progress extends motivator_base implements motivator {
 //         $revealedLayers = array();
 //
 //         foreach ($layers as $key => $layer) {
-//             if ($layer['achievement'] === $state) {
+//             if ($layer['stat'] === $state) {
 //                 $revealedLayers = $layer['layerName'];
 //             }
 //         }
