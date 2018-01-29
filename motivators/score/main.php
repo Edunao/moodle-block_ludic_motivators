@@ -32,181 +32,76 @@ class motivator_score extends motivator_base implements motivator {
     public function get_loca_strings(){
         return [
             'name'  => 'Score',
-            'title' => 'My score'
+            'title' => 'Score',
+            'full_title'    => 'Score',
+            'changes_title' => 'New Points',
+            'bonus_title' => 'New Bonus !!',
         ];
     }
 
     public function render($env) {
-    }
+        // fetch config and associated stat data
+        $coursename     = $env->get_course_name();
+        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
+        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
 
-//     public function __construct($context) {
-//         $preset = array(
-//             'previousTotalScore' => 0,
-//             'newTotalScore' => 0,
-//             'bonuses' => [
-//                 [
-//                     'nameOfBonus' => 'répondu correctement après 3 tentatives',
-//                     'valueOfBonus' => '3',
-//                     'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//                 [
-//                     'nameOfBonus' => 'terminé le quiz',
-//                     'valueOfBonus' => '2',
-//                     'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-//                 ],
-//                 [
-//                     'nameOfBonus' => 'répondu à une question en moins de 20 secondes',
-//                     'valueOfBonus' => '5',
-//                     'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//                 [
-//                     'nameOfBonus' => 'bonus1',
-//                     'valueOfBonus' => '1',
-//                     'stateOfBonus' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-//                 ],
-//             ],
-//             'globalstats' => [
-//                 'session1Objectives' => 0,
-//                 'session2Objectives' => 1
-//             ]
-//         );
-//
-//         // Updating bonus array in the preset array when a bonus is selected
-//         if (($newBonus = optional_param('bonus', '', PARAM_TEXT)) !== '') {
-//             foreach ($preset['bonuses'] as $key => $bonus) {
-//                 if ($bonus['nameOfBonus'] === $newBonus) {
-//                     $preset['bonuses'][$key]['stateOfBonus'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
-//                 }
-//
-//             }
-//         }
-//
-//         // Updating points array in the preset array when new points is selected
-//
-//         if (($newScore = optional_param('newScore', '', PARAM_TEXT)) !== '') {
-//             $preset['previousTotalScore'] = $preset['newTotalScore'];
-//             $preset['newTotalScore'] = $newScore;
-//         }
-//
-//         parent::__construct($context, $preset);
-//     }
-//
-//     function getBonusList() {
-//         $resultHtml = '';
-//         foreach ($this->preset['bonuses'] as $key => $bonus) {
-//             if ($bonus['stateOfBonus'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-//                 $resultHtml .= '<li><b>' . $bonus['valueOfBonus'] . ' points</b></li>';
-//             }
-//         }
-//
-//         return $resultHtml;
-//     }
-//
-//     function getBonusSelect($selectedBonus){
-//
-//         $textSelect  = '';
-//         foreach ($this->preset['bonuses'] as $key => $bonus) {
-//             if ($bonus['stateOfBonus'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-//                 $selected = $bonus['nameOfBonus'] == $selectedBonus ? 'selected' : '';
-//                 $textSelect .= '<option value="' . $bonus['nameOfBonus'] . '" ' . $selected . '>' . $bonus['nameOfBonus'] . '</option>';
-//             }
-//         }
-//
-//         return $textSelect;
-//     }
-//
-//     function getPreviousScore() {
-//         return $this->preset['previousTotalScore'];
-//     }
-//
-//     function getNewScore() {
-//         return $this->preset['newTotalScore'];
-//     }
-//     function isNewBonus() {
-//         return optional_param('bonus', '', PARAM_TEXT) !== '';
-//     }
-//
-//     public function get_content() {
-//
-//         // Div block displaying the latest total score with an animation
-//         // showing in first the previous and progressively the new score
-//         $output   = '<div id="score-container" style="margin-bottom:15px;border:1px solid">
-//                         <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Score</h4>
-//                         <div class="score">
-//                             <span class="score-number">' . $this->preset['newTotalScore'] . '</span>
-//                             <span class="points">pts</span>
-//                         </div>
-//                     </div>';
-//
-//         // Div block showing the points to win (or lose) selector for the purpose of test
-//         $output .= '<div style="margin-bottom:15px;">
-//                         <form id="score_form" method="POST">
-//                             <input id="motivator" name="motivator" type="hidden" value="score">
-//                             <input id="previousScore" name="previousScore" type="hidden" value='. $this->getPreviousScore() .'>
-//                             <select name="newScore" onChange="document.getElementById(\'score_form\').submit()">
-//                                 <option value="" selected>Points à gagner</option>
-//                                 <option value=' . ($this->getPreviousScore()+1) . '>+1 points</option>
-//                                 <option value=' . ($this->getPreviousScore()+2) . '>+2 points</option>
-//                                 <option value=' . ($this->getPreviousScore()+3) . '>+3 points</option>
-//                                 <option value=' . ($this->getPreviousScore()+4) . '>+4 points</option>
-//                                 <option value=' . ($this->getPreviousScore()+5) . '>+5 points</option>
-//                                 <option value=' . ($this->getPreviousScore()+6) . '>+6 points</option>
-//                             </select>
-//                         </form>
-//                     </div>';
-//
-//         // Div block that appears only if the score progresses containing the number of
-//         // new points obtained from the last quiz
-//         if ($this->preset['newTotalScore'] > $this->preset['previousTotalScore']) {
-//             $output .= '<div id="score-container" style="margin-bottom:15px;border:1px solid">
-//                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
-//                             <div>
-//                                 <ul id="bonus">
-//                                     <li>
-//                                         <b>'. ($this->getNewScore()-$this->getPreviousScore()) . ' points </b>
-//                                     </li>
-//                                 </ul>
-//                             </div>
-//                         </div>';
-//         }
-//
-//         // Div block showing the bonus selector for the purpose of test
-//         $output .= '<div style="margin-bottom:15px;">
-//                         <form id="bonus_form" method="POST">
-//                             <input id="motivator" name="motivator" type="hidden" value="score">
-//                             <select name="bonus" onChange="document.getElementById(\'bonus_form\').submit()">
-//                                 <option value="" selected>Bonus à gagner</option>'
-//                                 . $this->getBonusSelect(optional_param('bonus', 'calque01', PARAM_TEXT)) .
-//                             '</select>
-//                         </form>
-//                     </div>';
-//
-//         // Div block that appears only on any bonuses obtained with the last quiz
-//         if ($this->isNewBonus()) {
-//             $output .= '<div id="score-container" style="border:1px solid">
-//                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bonus</h4>
-//                             <div>
-//                                 <ul id="bonus">'
-//                                     . $this->getBonusList() .
-//                                 '</ul>
-//                             </div>
-//                         </div>';
-//         }
-//
-//         return $output;
-//     }
-//
-//     public function getJsParams() {
-//         //$datas = $this->context->store->get_datas();
-//         $params = array(
-//             'previous_score' => $this->getPreviousScore(),
-//             'new_score' => $this->preset['newTotalScore'],
-//         );
-//
-//         if (isset($datas->avatar)) {
-//             $params = $datas->avatar;
-//         }
-//
-//         return $params;
-//     }
+        // lookup base properties that should always always exist
+        $statnamescore      = $coursename . '/score';
+        $statnamenewscore   = $coursename . '/new_score';
+        foreach ([$statnamescore, $statnamenewscore] as $dataname){
+            $env->bomb_if(!array_key_exists($dataname, $coursedata), "Failed to locate stat: $dataname");
+        }
+        $score      = $coursedata[$statnamescore];
+        $newscore   = $coursedata[$statnamenewscore];
+
+        // match up the config elements and state data to determine the set of information to pass to the javascript
+        $totalbonus = 0;
+        $newbonus   = 0;
+        foreach ($courseconfig as $element){
+            $elementtype = $element['motivator']['subtype'];
+            if($elementtype != 'bonus'){
+                continue;
+            }
+            $dataname = $coursename . '/' . array_keys($element['stats'])[0];
+            if (!array_key_exists($dataname,$coursedata)){
+                continue;
+            }
+            $bonusvalue = $element['motivator']['bonus'];
+            $statevalue = $coursedata[$dataname];
+            switch ($statevalue){
+            case STATE_JUST_ACHIEVED:
+                $newbonus   += $bonusvalue;
+            case STATE_ACHIEVED:
+                $totalbonus += $bonusvalue;
+                break;
+            }
+        }
+
+        // prepare to start rendering content
+        $env->set_block_classes('luditype-score');
+
+        // render the score pane
+        $scorehtml = '';
+        $scorehtml .= '<div class="ludi-score-pane">';
+        $scorehtml .= '<span class="ludi-score-total">' . ( $score + $totalbonus ) . '</span>';
+        $scorehtml .= '</div>';
+        $env->render('ludi-main', $this->get_string('full_title'), $scorehtml);
+
+        // render the new points pane
+        if ($newscore){
+            $titleid = 'changes_title';
+            $newscorehtml = '';
+            $newscorehtml .= '<div class="ludi-score-pane">';
+            $newscorehtml .= '<span class="ludi-score-new">+ ' . $newscore . '</span>';
+            // add bonus points as required
+            if ($newbonus){
+                $titleid = 'bonus_title';
+                $newscorehtml .= '&nbsp;';
+                $newscorehtml .= '<span class="ludi-score-bonus">+' . $newbonus . '</span>';
+            }
+            $newscorehtml .= '</div>';
+            $env->render('ludi-change', $this->get_string($titleid), $newscorehtml);
+        }
+
+    }
 }

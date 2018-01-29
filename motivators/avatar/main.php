@@ -48,23 +48,16 @@ class motivator_avatar extends motivator_base implements motivator {
         $config     = $env->get_full_config($this->get_short_name());
         $statedata  = $env->get_full_state_data($config);
 
-echo "<h1>state data</h1>";
-
         // match up the config elements and state data to determine the set of information to pass to the javascript
         foreach ($config as $element){
             $dataname = $element['course'] . '/' . array_keys($element['stats'])[0];
-echo "Checking $dataname<br>";
             if (isset($statedata[$dataname])){
                 $statevalue = $statedata[$dataname];
                 switch ($statevalue){
-//                case $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED:
-                case 2:
-echo "- newly obtained<br>";
+                case STATE_JUST_ACHIEVED:
                     $jsdata['newly_obtained'][] = $element['motivator']['layer'];
                     // drop through ... don't break here!
-//                case $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED:
-                case 1:
-echo "- obtained<br>";
+                case STATE_ACHIEVED:
                     $jsdata['obtained'][] = $element['motivator']['layer'];
                     break;
                 }
@@ -81,9 +74,9 @@ echo "- obtained<br>";
 
         // render the output
         $env->set_block_classes('luditype-avatar');
-        $env->render($this->get_string('full_title'), $fullimage);
+        $env->render('ludi-main', $this->get_string('full_title'), $fullimage);
         if (!empty($jsdata['newly_obtained'])){
-            $env->render($this->get_string('changes_title'), $changesimage);
+            $env->render('ludi-change', $this->get_string('changes_title'), $changesimage);
         }
     }
 }

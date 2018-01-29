@@ -165,9 +165,8 @@ echo "<h1><br><br>Init</h1>";
         }
 
         // Render motivators selector
-        $result .= '<div>';
+        $result .= '<div class="ludi-debug-menu">';
         $result .= '<select name="motivator" onChange="submit()">';
-        $result .= '<option value=""></option>';
         $motivators = motivators::get_names();
         foreach ($motivators as $motivatorid => $name) {
             $selected = ( $currentmotivator == $motivatorid )? ' selected' : '';
@@ -181,9 +180,10 @@ echo "<h1><br><br>Init</h1>";
             $currentpreset  = optional_param($presettype, null, PARAM_TEXT);
 
             // Render preset selector
-            $result .= '<div>';
+            $result .= '<div class="ludi-debug-menu">';
             $result .= '<select name="' . $presettype . '" onChange="submit()">';
-            $result .= '<option value=""></option>';
+            $selected = ($currentpreset === null)? ' selected' : '';
+            $result .= '<option value="">-- real values --</option>';
             foreach ($presets as $name => $presetdata) {
                 $selected = ( $name === $currentpreset)? ' selected' : '';
                 $result .= '<option value="' . $name . '"' . $selected . '>' . $name . '</option>';

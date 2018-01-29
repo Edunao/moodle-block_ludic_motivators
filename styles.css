@@ -45,6 +45,8 @@
 .ludi-body {
     width: 100%;
     display: block;
+    padding-left:2px;
+    padding-right:2px;
 }
 
 .ludi-body .svg {
@@ -52,4 +54,16 @@
     height: 180px;
     display: none;
     margin: auto;
+    padding-left:4px;
+    padding-right:4px;
+}
+
+.ludi-debug-menu{
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.ludi-debug-menu select{
+    width: 100%;
 }

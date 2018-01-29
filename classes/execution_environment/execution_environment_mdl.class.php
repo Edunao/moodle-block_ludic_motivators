@@ -199,19 +199,19 @@ class execution_environment_mdl implements execution_environment{
         foreach ($this->config['elements'] as $item){
             // check for motivator mismatch
             if ($item['motivator']['type'] !== $motivatorname){
-echo "Course config: SKIPPING: motivator type != $motivatorname :" . $item['motivator']['type'] . /*json_encode($item) .*/ "<br>";
+// echo "Course config: SKIPPING: motivator type != $motivatorname :" . $item['motivator']['type'] . /*json_encode($item) .*/ "<br>";
                 continue;
             }
 
             // check for course name missmatch
             if ($item['course'] !== $coursename && $item['course'] !== $wildcard){
-echo "Course config: SKIPPING: coursename != $coursename || $wildcard :" . $item['course'] . /*json_encode($item) .*/ "<br>";
+// echo "Course config: SKIPPING: coursename != $coursename || $wildcard :" . $item['course'] . /*json_encode($item) .*/ "<br>";
                 continue;
             }
 
             // add item to result
             $result[] = $item;
-echo "Course config: ADDING: " . json_encode($item) . "<br>";
+// echo "Course config: ADDING: " . json_encode($item) . "<br>";
         }
         return $result;
     }
@@ -321,9 +321,9 @@ echo "Course config: ADDING: " . json_encode($item) . "<br>";
         $this->blockclasses .= " $classes";
     }
 
-    public function render($title,$content){
+    public function render($cssclass,$title,$content){
         # use a panel div to house the titel and content neetly
-        $this->output .= "<div class='ludi-pane'>";
+        $this->output .= "<div class='ludi-pane $cssclass'>";
 
         # write the title in a header div
         $this->output .= "<div class='ludi-header'>";

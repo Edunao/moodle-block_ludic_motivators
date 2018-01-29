@@ -39,20 +39,13 @@ class motivator_goals extends motivator_base implements motivator {
     }
 
     public function render($env) {
-        // prime a jsdata object with the different tables that we're going to provide to the JS script
-        $jsdata = [
-            'pyramid_layers' => []
-        ];
-
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
         $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
         $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
 
-        $badgeicons = '';
-        $newbadgeicons = '';
-
         // match up the config elements and state data to determine the set of information to pass to the javascript
+        $havechanges = false;
         $goalhtml = '';
         foreach ($courseconfig as $element){
             $dataname = $coursename . '/' . array_keys($element['stats'])[0];
@@ -60,16 +53,17 @@ class motivator_goals extends motivator_base implements motivator {
                 $statevalue = $coursedata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
-                    $cssclasses = 'ludi-done ludi-new';
-                    $checked = ' checked';
+                    $cssclasses     = 'ludi-done ludi-new';
+                    $checked        = ' checked';
+                    $havechanges    = true;
                     break;
                 case STATE_ACHIEVED:
-                    $cssclasses = 'ludi-done ludi-old';
-                    $checked = ' checked';
+                    $cssclasses     = 'ludi-done ludi-old';
+                    $checked        = ' checked';
                     break;
                 case STATE_NOT_ACHIEVED:
-                    $cssclasses = 'ludi-todo';
-                    $checked = '';
+                    $cssclasses     = 'ludi-todo';
+                    $checked        = '';
                     break;
                 }
                 $title = $element['motivator']['title'];
@@ -80,174 +74,13 @@ class motivator_goals extends motivator_base implements motivator {
             }
         }
 
-        // register the js data
-//        $env->set_js_init_data($this->get_short_name(), $jsdata);
-
         // prepare to start rendering content
         $env->set_block_classes('luditype-goals');
 
         // render the goal list
-        $env->render($this->get_string('full_title'), '<div class="ludi-goals">' . $goalhtml . '</div>');
-        if (!empty($newbadgeicons)){
-            $env->render($this->get_string('changes_title'), "");
+        $env->render('ludi-main', $this->get_string('full_title'), '<div class="ludi-goals">' . $goalhtml . '</div>');
+        if ($havechanges === true){
+            $env->render('ludi-change', $this->get_string('changes_title'), "");
         }
     }
-
-
-//     public function __construct($context) {
-//         $preset = array(
-//             'objectives' => [
-//                 [
-//                     'title' => 'Répondre à 3 questions',
-//                     'percentToPass' => '70',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//                 [
-//                     'title' => 'Terminer un quiz',
-//                     'percentToPass' => '65',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-//                 ],
-//                 [
-//                     'title' => 'Réponse à une question en moins de 20 secondes',
-//                     'percentToPass' => '70',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//                 [
-//                     'title' => 'Objective4',
-//                     'percentToPass' => '65',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED,
-//                 ],
-//                 [
-//                     'title' => 'Objective5',
-//                     'percentToPass' => '75',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ]
-//             ],
-//             'globalstats' => [
-//                 [
-//                     'title' => 'session1Objectives',
-//                     'percentToPass' => '70',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//                 [
-//                     'title' => 'session2Objectives',
-//                     'percentToPass' => '65',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//                 [
-//                     'title' => 'session3Objectives',
-//                     'percentToPass' => '70',
-//                     'stat' => $this::BLOCK_LUDICMOTIVATORS_STATE_NOTACHIEVED,
-//                 ],
-//             ]
-//         );
-//
-//         // Updating objectivs array in the preset array when a goals is selected
-//         if (($bonus = optional_param('goals', '', PARAM_TEXT)) !== '') {
-//             foreach ($preset['objectives'] as $key => $layer) {
-//                 if ($layer['title'] === $bonus) {
-//                     $preset['objectives'][$key]['stat'] = $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED;
-//                 }
-//
-//             }
-//         }
-//
-//         parent::__construct($context, $preset);
-//     }
-//
-//     public function getTitle() {
-//
-//         return 'Mes objectifs';
-//     }
-//
-//     function isGoalsJustAchieved() {
-//         foreach ($this->preset['objectives'] as $key => $objective) {
-//             if ($objective['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-//                 return true;
-//             }
-//         }
-//
-//         return false;
-//     }
-//
-//     function getPreviouslyAchievedGoals() {
-//         $textHtml = '';
-//         foreach ($this->preset['objectives'] as $key => $objective) {
-//             if ($objective['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED){
-//                 $textHtml .= '<li>' . $objective['title'] . '</li>';
-//             }
-//         }
-//
-//         return $textHtml;
-//     }
-//
-//     function getJustAchievedGoals() {
-//         $textHtml = '';
-//         foreach ($this->preset['objectives'] as $key => $objective) {
-//             if ($objective['stat'] === $this::BLOCK_LUDICMOTIVATORS_STATE_JUSTACHIEVED){
-//                 $textHtml .= "<li>" . $objective['title'] . "</li>";
-//             }
-//         }
-//
-//         return $textHtml;
-//     }
-//
-//     function getGoalsSelect($selectedLayer){
-//
-//         $textSelect  = '';
-//         foreach ($this->preset['objectives'] as $key => $layer) {
-//             if ($layer['stat'] !== $this::BLOCK_LUDICMOTIVATORS_STATE_PREVIOUSLYACHIEVED) {
-//                 $selected = $layer['title'] == $selectedLayer ? 'selected' : '';
-//                 $textSelect .= '<option value="' . $layer['title'] . '" ' . $selected . '>' . $layer['title'] . '</option>';
-//             }
-//         }
-//
-//         return $textSelect;
-//     }
-//
-//     public function get_loca_strings(){
-//         return [
-//             'name' => 'Objectives'
-//         ];
-//     }
-//
-//     public function get_content() {
-//
-//         // Div block listing all goals with checkboxes next to those that have been achieved
-//         $output  = '<div id="goals-container">
-//                         <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Objectifs</h4>
-//                         <div>
-//                             <ul id="goals">'
-//                             . $this->getPreviouslyAchievedGoals() .
-//                             '</ul>
-//                         </div>
-//                     </div>';
-//
-//         // Div block showing the goals selector for the purpose of test
-//         $output .= '<div style="margin-bottom:15px;">
-//                         <form id="goals_form" method="POST">
-//                             <input id="motivator" name="motivator" type="hidden" value="goals">
-//                             <select name="goals" onChange="document.getElementById(\'goals_form\').submit()">
-//                                 <option value="" selected>Objectifs à atteindre</option>'
-//                                 . $this->getGoalsSelect(optional_param('goals', '', PARAM_TEXT)) .
-//                             '</select>
-//                         </form>
-//                     </div>';
-//
-//         // Div block that appears when there are goals that have just been achieved listing these goals
-//         // Determining if there is at once one goal just achieved
-//         if ($this->isGoalsJustAchieved() === true) {
-//             $output .= '<div id="goals-container">
-//                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
-//                             <div>
-//                                 <ul id="goals">'
-//                                     . $this->getJustAchievedGoals() .
-//                                 '</ul>
-//                             </div>
-//                         </div>';
-//         }
-//
-//         return $output;
-//     }
-
 }

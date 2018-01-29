@@ -66,7 +66,7 @@ class execution_environment_stub implements execution_environment{
     public function page_requires_jquery_plugin($pluginname) {}
     public function page_requires_css($cssurl) {}
     public function set_block_classes($classes) {}
-    public function render($title,$content) {}
+    public function render($cssclass,$title,$content) {}
     public function get_rendered_output() {}
     public function get_js_init_data() {}
 }

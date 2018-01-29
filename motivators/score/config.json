@@ -1,25 +1,19 @@
-[
-  {
-    "course": "*",
-    "motivator": {
-      "type": "score",
-      "title": "Bonus for 5 in a row",
-      "bonus": 2
-    },
-    "achievment": {
-      "type": "correct_answer_run_by_quiz",
-      "count": 5
-    }
-  },
-  {
-    "course": "*",
-    "motivator": {
-      "type": "score",
-      "title":"Bonus for auto-correction",
-      "bonus": 5
-    },
-    "achievment": {
-      "type": "auto_correction_by_quiz"
-    }
-  }
-]
+{
+    "elements":[
+        {
+            "course": "*",
+            "motivator": {
+                "type": "score",
+                "subtype": "system"
+            },
+            "stats": {
+                "score": {
+                    "type": "current_quiz_score"
+                },
+                "new_score": {
+                    "type": "current_quiz_score_gain"
+                }
+            }
+        }
+    ]
+}

@@ -66,7 +66,7 @@ interface execution_environment{
     public function page_requires_jquery_plugin($pluginname);
     public function page_requires_css($cssurl);
     public function set_block_classes($classes);
-    public function render($title,$content);
+    public function render($cssclass,$title,$content);
 
     //-------------------------------------------------------------------------
     // getters for result from rendering
