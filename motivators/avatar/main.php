@@ -61,21 +61,11 @@ class motivator_avatar extends motivator_base implements motivator {
             'name'          => 'Avatar',
             'title'         => 'Représentation de soi',
             'full_title'    => 'Moi même',
-            'changes_title' => 'Nouveautés',
+            'changes_title' => 'Du nouveau !',
         ];
     }
 
     public function render($env) {
-        // Construct content blocks for rendering
-        $imageurl       = $this->image_url('avatar.svg');
-        $fullimage      = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-full'/>";
-        $changesimage   = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-changes'/>";
-
-        // render the output
-        $env->set_block_classes('show-changes');
-        $env->render($this->get_string('full_title'), $fullimage);
-       $env->render($this->get_string('changes_title'), $changesimage);
-
 //         // Div block showing the image with all of the layers for previously achieved goals unmasked
 //         $output  = '<div id="avatar-div" style="margin-bottom:15px;border:1px solid">
 //                         <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Avatar</h4>
@@ -108,7 +98,7 @@ class motivator_avatar extends motivator_base implements motivator {
 //    }
 //
 //    private function get_js_data( /* $env */ ) {
-        // prime a result object with the different tables that we're going to projide to the JS script
+        // prime a jsdata object with the different tables that we're going to projide to the JS script
         $jsdata = [
             'obtained'       => [],
             'newly_obtained' => [],
@@ -120,7 +110,6 @@ class motivator_avatar extends motivator_base implements motivator {
         $statedata  = $env->get_full_state_data($config);
 
 echo "<h1>state data</h1>";
-\print_object($statedata);
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         foreach ($config as $element){
@@ -129,19 +118,32 @@ echo "Checking $dataname<br>";
             if (isset($statedata[$dataname])){
                 $statevalue = $statedata[$dataname];
                 switch ($statevalue){
-                case 1:
-echo "- obtained<br>";
-                    $jsdata['obtained'][] = $element['motivator']['layer'];
-                    break;
                 case 2:
 echo "- newly obtained<br>";
                     $jsdata['newly_obtained'][] = $element['motivator']['layer'];
+                    // drop through ... don't break here!
+                case 1:
+echo "- obtained<br>";
+                    $jsdata['obtained'][] = $element['motivator']['layer'];
                     break;
                 }
             }
         }
 
+        // register the js data
         $env->set_js_init_data($this->get_short_name(), $jsdata);
+
+        // Construct content blocks for rendering
+        $imageurl       = $this->image_url('avatar.svg');
+        $fullimage      = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-full'/>";
+        $changesimage   = "<img src='$imageurl' class='avatar svg' id='ludi-avatar-changes'/>";
+
+        // render the output
+//        $env->set_block_classes('show-changes');
+        $env->render($this->get_string('full_title'), $fullimage);
+        if (!empty($jsdata['newly_obtained'])){
+            $env->render($this->get_string('changes_title'), $changesimage);
+        }
 
 // //        $datas = $this->context->store->get_datas();
 //         $params = array();

@@ -35,7 +35,8 @@ class motivators{
         // generate and return an array of motivator instances
         $result = [];
         foreach (self::$motivatorclasses as $classname){
-            $result[$classname] = new $classname;
+            $instance = new $classname;
+            $result[$instance->get_short_name()] = $instance;
         }
         return $result;
     }
@@ -43,8 +44,8 @@ class motivators{
     public static function get_names() {
         $instances = self::get_instances();
         $result = [];
-        foreach ($instances as $classname => $instance){
-            $result[$instance->get_short_name()] = $instance->get_name();
+        foreach ($instances as $shortname => $instance){
+            $result[$shortname] = $instance->get_name();
         }
         return $result;
     }

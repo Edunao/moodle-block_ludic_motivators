@@ -64,8 +64,8 @@ echo "<h1><br><br>Init</h1>";
 
         // retrieve a handle to the execution environment, initialising it on the fly if required
         $env = $this->get_execution_environment();
-echo "<h1><br><br>Getting JS data</h1>";
-print_object($env->get_js_init_data());
+// echo "<h1><br><br>Getting JS data</h1>";
+// print_object($env->get_js_init_data());
 
         // add an intialisation call for the motivator
         $this->page->requires->js_call_amd(

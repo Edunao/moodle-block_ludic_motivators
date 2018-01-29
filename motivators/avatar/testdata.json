@@ -9,7 +9,7 @@
             { "course": "Ludi05", "motivator": { "type": "avatar", "title": "Course 5 completed", "layer": "calque06" }, "achievments": { "done": { "type": "course_complete", "threshold": 70 } } }
         ]
     },
-    "presets":{
+    "preset":{
         "none":{
         },
         "one-new":{

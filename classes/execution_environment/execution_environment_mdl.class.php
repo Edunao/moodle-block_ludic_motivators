@@ -76,14 +76,14 @@ class execution_environment_mdl implements execution_environment{
                 if (isset($testdata['config']) && isset($testdata['config']['elements'])){
                     $this->config['elements'] += $testdata['config']['elements'];
                 }
-                if (isset($testdata['presets-full'])){
-                    $this->presets['fullpreset'] = $testdata['presets-full'];
+                if (isset($testdata['fullpreset'])){
+                    $this->presets['fullpreset'] = $testdata['fullpreset'];
                 }
-                if (isset($testdata['presets-course'])){
-                    $this->presets['coursepreset'] = $testdata['presets-course'];
+                if (isset($testdata['coursepreset'])){
+                    $this->presets['coursepreset'] = $testdata['coursepreset'];
                 }
-                if (isset($testdata['presets'])){
-                    $this->presets['preset'] = $testdata['presets'];
+                if (isset($testdata['preset'])){
+                    $this->presets['preset'] = $testdata['preset'];
                 }
             }
         }
@@ -200,7 +200,7 @@ class execution_environment_mdl implements execution_environment{
 
     public function get_full_state_data() {
         // lookout for overrides used for testing
-        foreach (['presets', 'fullpresets'] as $overridename){
+        foreach (['preset', 'fullpreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
                 $override = optional_param($overridename, null, PARAM_TEXT);
                 if ($override && isset($this->presets[$overridename][$override])){
@@ -214,7 +214,7 @@ class execution_environment_mdl implements execution_environment{
 
     public function get_course_state_data() {
         // lookout for overrides used for testing
-        foreach (['presets', 'coursepresets'] as $overridename){
+        foreach (['preset', 'coursepreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
                 $override = optional_param($overridename, null, PARAM_TEXT);
                 if ($override && isset($this->presets[$overridename][$override])){
