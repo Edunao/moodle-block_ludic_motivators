@@ -1,24 +1,19 @@
+.luditype-goals input[type="checkbox"]{
+    margin-right : 3px;
+}
+
+/*
 #goals-container {
-    /*margin-top : 15px;*/
     margin-bottom: 15px;
     border: 1px solid;
 }
 
 #goals-container #goals {
-    /*list-style-type: none;*/
     padding-left: 2rem;
 }
 
 #goals-container #goals li {
     margin-bottom : 6px;
-}
-
-#goals-container #goals li input[type="checkbox"]{
-    margin-right : 3px;
-}
-
-#goals-container #goals li label {
-    /*cursor : pointer;*/
 }
 
 #new-goal {
@@ -31,3 +26,4 @@
     display : block;
     margin : auto;
 }
+*/

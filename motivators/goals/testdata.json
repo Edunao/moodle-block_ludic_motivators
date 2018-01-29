@@ -1,31 +1,30 @@
 {
-    "none":{
+    "config":{
+        "courses": ["Ludi01", "Ludi02", "Ludi03"],
+        "elements":[
+            { "course": "*", "motivator": { "type": "goals", "title": "Goal 1" }, "stats": { "goal01": { "type": "correct_run", "threshold": 3 } } },
+            { "course": "*", "motivator": { "type": "goals", "title": "Goal 2" }, "stats": { "goal02": { "type": "correct_run", "threshold": 10 } } },
+            { "course": "*", "motivator": { "type": "goals", "title": "Goal 3" }, "stats": { "goal03": { "type": "auto_correct" } } },
+            { "course": "*", "motivator": { "type": "goals", "title": "Goal 4" }, "stats": { "goal04": { "type": "auto_correct" } } },
+            { "course": "*", "motivator": { "type": "goals", "title": "Goal 5" }, "stats": { "goal05": { "type": "auto_correct" } } }
+        ]
     },
-    "one-new":{
-        "one":2
-    },
-    "one-old":{
-        "one":1
-    },
-    "two-new":{
-        "one":1,
-        "two":2
-    },
-    "two-old":{
-        "one":1,
-        "two":1
-    },
-    "all":{
-        "one":1,
-        "two":1,
-        "three":1,
-        "four":1,
-        "five":1,
-        "six":1,
-        "seven":1,
-        "eight":1,
-        "nine":1,
-        "ten":1,
-        "eleven":1
+
+    "preset":{
+
+        "none":    { },
+
+        "Ludi01-1":     { "Ludi01/goal01":2, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
+        "Ludi01-2":     { "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
+        "Ludi01-3":     { "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":2, "Ludi01/goal04":0, "Ludi01/goal05":0 },
+        "Ludi01-4":     { "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":0 },
+        "Ludi01-5":     { "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":1, "Ludi01/goal04":1, "Ludi01/goal05":2 },
+        "Ludi01-all":   { "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":1 },
+
+        "Ludi02-1":     { "Ludi02/goal01":2, "Ludi02/goal02":0, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
+        "Ludi02-2":     { "Ludi02/goal01":1, "Ludi02/goal02":2, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
+        "Ludi02-3":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":2, "Ludi02/goal04":0, "Ludi02/goal05":0 },
+        "Ludi02-4":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":2, "Ludi02/goal05":0 },
+        "Ludi02-5":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":1, "Ludi02/goal05":2 }
     }
 }

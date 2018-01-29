@@ -33,11 +33,66 @@ class motivator_goals extends motivator_base implements motivator {
         return [
             'name'          => 'Goals',
             'title'         => 'Mes objectifs',
+            'full_title'    => 'All Goals',
+            'changes_title' => 'Congratulations !!',
         ];
     }
 
     public function render($env) {
+        // prime a jsdata object with the different tables that we're going to provide to the JS script
+        $jsdata = [
+            'pyramid_layers' => []
+        ];
+
+        // fetch config and associated stat data
+        $coursename     = $env->get_course_name();
+        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
+        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+
+        $badgeicons = '';
+        $newbadgeicons = '';
+
+        // match up the config elements and state data to determine the set of information to pass to the javascript
+        $goalhtml = '';
+        foreach ($courseconfig as $element){
+            $dataname = $coursename . '/' . array_keys($element['stats'])[0];
+            if (array_key_exists($dataname,$coursedata)){
+                $statevalue = $coursedata[$dataname];
+                switch ($statevalue){
+                case STATE_JUST_ACHIEVED:
+                    $cssclasses = 'ludi-done ludi-new';
+                    $checked = ' checked';
+                    break;
+                case STATE_ACHIEVED:
+                    $cssclasses = 'ludi-done ludi-old';
+                    $checked = ' checked';
+                    break;
+                case STATE_NOT_ACHIEVED:
+                    $cssclasses = 'ludi-todo';
+                    $checked = '';
+                    break;
+                }
+                $title = $element['motivator']['title'];
+                $goalhtml .= "<div class='ludi-goal $cssclasses'>";
+                $goalhtml .= "<input type='checkbox' onclick='event.preventDefault()'$checked>";
+                $goalhtml .= "<span>$title<span>";
+                $goalhtml .= "</div>";
+            }
+        }
+
+        // register the js data
+//        $env->set_js_init_data($this->get_short_name(), $jsdata);
+
+        // prepare to start rendering content
+        $env->set_block_classes('luditype-goals');
+
+        // render the goal list
+        $env->render($this->get_string('full_title'), '<div class="ludi-goals">' . $goalhtml . '</div>');
+        if (!empty($newbadgeicons)){
+            $env->render($this->get_string('changes_title'), "");
+        }
     }
+
 
 //     public function __construct($context) {
 //         $preset = array(
