@@ -166,8 +166,6 @@ echo "<h1><br><br>Init</h1>";
 
         // Render motivators selector
         $result .= '<div>';
-//                             <input id="motivator" name="motivator" type="hidden" value="avatar">
-//        $result  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
         $result .= '<select name="motivator" onChange="submit()">';
         $result .= '<option value=""></option>';
         $motivators = motivators::get_names();
@@ -179,16 +177,12 @@ echo "<h1><br><br>Init</h1>";
         $result .= '</div>';
 
         // Load presets for the current motivator
-//         $presetfile     = __DIR__ . '/motivators/' . $currentmotivator . '/testdata.json';
-//         $jsonpresets    = file_get_contents( $presetfile );
-//         $presets        = json_decode( $jsonpresets );
         foreach ($env->get_presets() as $presettype => $presets){
             $currentpreset  = optional_param($presettype, null, PARAM_TEXT);
 
             // Render preset selector
             $result .= '<div>';
-//            $result  .= '<select name="motivator" onChange="document.getElementById(\'motivator_form\').submit()">';
-            $result .= '<select name="preset" onChange="submit()">';
+            $result .= '<select name="' . $presettype . '" onChange="submit()">';
             $result .= '<option value=""></option>';
             foreach ($presets as $name => $presetdata) {
                 $selected = ( $name === $currentpreset)? ' selected' : '';

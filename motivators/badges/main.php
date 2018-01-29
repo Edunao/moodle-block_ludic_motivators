@@ -52,7 +52,7 @@ class motivator_badges extends motivator_base implements motivator {
         $fullconfig     = $env->get_full_config($this->get_short_name());
         $fulldata       = $env->get_full_state_data($fullconfig);
 
-echo "<h1>Full Data</h1>";
+// echo "<h1>Full Data</h1>";
 // print_object($fullconfig);
 // print_object($fulldata);
         // match up the config elements and state data to determine the set of information to pass to the javascript
@@ -61,14 +61,18 @@ echo "<h1>Full Data</h1>";
                 continue;
             }
             $dataname = $element['course'] . '/' . array_keys($element['stats'])[0];
-echo "Checking $dataname<br>";
+// echo "Checking $dataname<br>";
             if (isset($fulldata[$dataname])){
                 $statevalue = $fulldata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
                 case STATE_ACHIEVED:
-echo "- achieved<br>";
-                    $jsdata['pyramid_layers'][] = $element['motivator']['layer'];
+// echo "- achieved<br>";
+                    $jsdata['pyramid_done'][] = $element['motivator']['layer'];
+                    break;
+                default:
+// echo "- not achieved<br>";
+                    $jsdata['pyramid_todo'][] = $element['motivator']['layer'];
                     break;
                 }
             }
@@ -78,7 +82,7 @@ echo "- achieved<br>";
         $env->bomb_if(!isset($fulldata['/course_count']),"/course_count not found in state data");
         $coursecount = $fulldata['/course_count'];
 
-echo "<h1>Course Data</h1>";
+// echo "<h1>Course Data</h1>";
 // print_object($courseconfig);
 // print_object($coursedata);
         $badgeicons = '';
@@ -89,22 +93,23 @@ echo "<h1>Course Data</h1>";
                 continue;
             }
             $dataname = $coursename . '/' . array_keys($element['stats'])[0];
-echo "Checking $dataname<br>";
-            if (isset($coursedata[$dataname])){
+// echo "Checking $dataname<br>";
+            if (array_key_exists($dataname,$coursedata)){
                 $imageurl = $this->image_url($element['motivator']['icon']);
                 $statevalue = $coursedata[$dataname];
+// echo "@ $statevalue ";
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
-echo "- newly obtained<br>";
+// echo "- newly obtained<br>";
                     $newbadgeicons  .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
                     $badgeicons     .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
                     break;
                 case STATE_ACHIEVED:
-echo "- obtained<br>";
+// echo "- obtained<br>";
                     $badgeicons     .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-old'/>";
                     break;
                 case STATE_NOT_ACHIEVED:
-echo "- not obtained<br>";
+// echo "- not obtained<br>";
                     $badgeicons     .= "<img src='" . $imageurl . "_inactif.svg' class='ludi-badge ludi-todo'/>";
                     break;
                 }

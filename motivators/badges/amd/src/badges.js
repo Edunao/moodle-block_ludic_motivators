@@ -36,13 +36,13 @@ define(['jquery', 'core/tree'], function ($, Tree) {
             ludicMotivators.convert_svg('.ludi-body img.svg');
 
             // Set visible the layer (badges) that are previously obtained
-            $.each(this.previously_obtained, function( index, value ) {
+            $.each(this.pyramid_done, function( index, value ) {
                 layer = $('#ludi-pyramid #'+value);
                 layer.css('visibility', 'visible');
             });
 
             // Set not visible the layer (badges) that are not obtained
-            $.each(this.not_obtained, function( index, value ) {
+            $.each(this.pyramid_todo, function( index, value ) {
                 layer = $('#ludi-pyramid #'+value);
                 layer.css('visibility', 'hidden');
             });

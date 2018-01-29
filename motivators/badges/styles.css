@@ -24,6 +24,10 @@ img.ludi-badge.ludi-new img {
     text-align: center;
 }
 
+.ludi-pyramid-container [id^=calque]:not(#calque00),
+    visibility: hidden;
+}
+
 /*.ludi-course-badges figure {
     display: inline-block;
     vertical-align: top;
