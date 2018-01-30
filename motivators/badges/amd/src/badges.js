@@ -25,29 +25,17 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         init: function (params) {
             console.log('Badges init', params);
 
-            var that = this;
-
-            this.params = params;
-
-            this.previously_obtained = this.params.previously_obtained;
-            this.not_obtained = this.params.not_obtained;
-
             // Convert SVG (<img>) in to raw SVG code (<svg>)
             ludicMotivators.convert_svg('.ludi-body img.svg');
 
             // Set visible the layer (badges) that are previously obtained
-            $.each(this.pyramid_done, function( index, value ) {
+            $.each(params.pyramid_done, function( index, value ) {
                 layer = $('#ludi-pyramid #'+value);
                 layer.css('visibility', 'visible');
             });
 
-            // Set not visible the layer (badges) that are not obtained
-            $.each(this.pyramid_todo, function( index, value ) {
-                layer = $('#ludi-pyramid #'+value);
-                layer.css('visibility', 'hidden');
-            });
-
-            $('#ludi-pyramid').css('display', 'block');
+            // unhide the image
+            $('#ludi-pyramid').slideDown();
         },
     };
 

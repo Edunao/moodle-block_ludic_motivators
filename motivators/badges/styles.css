@@ -24,7 +24,7 @@ img.ludi-badge.ludi-new img {
     text-align: center;
 }
 
-.ludi-pyramid-container [id^=calque]:not(#calque00),
+.ludi-pyramid-container .svg [id^=calque]:not(#calque00){
     visibility: hidden;
 }
 

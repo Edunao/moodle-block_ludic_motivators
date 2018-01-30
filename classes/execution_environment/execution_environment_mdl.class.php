@@ -41,7 +41,7 @@ class execution_environment_mdl implements execution_environment{
     private $output             = '';
     private $jsinitdata         = [];
     private $blockclasses       = 'ludi-block';
-    private $config             = ['courses' => [], 'elements' => []];
+    private $config             = ['courses' => [], 'elements' => [], 'motivators' => []];
     private $presets            = [];
 
     public function __construct($userid, \moodle_page $page, $testmode) {
@@ -74,13 +74,14 @@ class execution_environment_mdl implements execution_environment{
             $this->bomb_if(!$this->config, 'Failed to JSON decode config file: ' . $configfile);
             $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config file: ' . $configfile);
             $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
-            foreach ($motivatorconfig as $key => $data){
-                if (array_key_exists($key, $this->config)){
-                    $this->config[$key] = array_merge($this->config[$key], $data);
-                }else{
-                    $this->config[$key] = $data;
-                }
-            }
+//             foreach ($motivatorconfig as $key => $data){
+//                 if (array_key_exists($key, $this->config)){
+//                     $this->config[$key] = array_merge($this->config[$key], $data);
+//                 }else{
+//                     $this->config[$key] = $data;
+//                 }
+//             }
+            $this->config = array_merge_recursive($this->config, $motivatorconfig);
         }
 
         // load testing data as required
@@ -89,11 +90,14 @@ class execution_environment_mdl implements execution_environment{
                 $jsontestdata   = file_get_contents($testdatafile);
                 $testdata       = json_decode($jsontestdata, true);
                 $this->bomb_if(!$testdata, 'Failed to JSON decode test data file: ' . $testdatafile );
-                if (isset($testdata['config']) && isset($testdata['config']['courses'])){
-                    $this->config['courses'] = array_merge($this->config['courses'], $testdata['config']['courses']);
-                }
-                if (isset($testdata['config']) && isset($testdata['config']['elements'])){
-                    $this->config['elements'] = array_merge($this->config['elements'], $testdata['config']['elements']);
+//                 if (isset($testdata['config']) && isset($testdata['config']['courses'])){
+//                     $this->config['courses'] = array_merge($this->config['courses'], $testdata['config']['courses']);
+//                 }
+//                 if (isset($testdata['config']) && isset($testdata['config']['elements'])){
+//                     $this->config['elements'] = array_merge($this->config['elements'], $testdata['config']['elements']);
+//                 }
+                if (isset($testdata['config'])){
+                    $this->config = array_merge_recursive($this->config, $testdata['config']);
                 }
                 if (isset($testdata['fullpreset'])){
                     $this->presets['fullpreset'] = $testdata['fullpreset'];
@@ -169,6 +173,10 @@ class execution_environment_mdl implements execution_environment{
         $this->write_motivator_selection($name);
     }
 
+    public function get_courses(){
+        return $this->config['courses'];
+    }
+
     public function get_full_config($motivatorname){
         // filter the course list to match the requird motivator and course
         $result=[];
@@ -181,6 +189,16 @@ class execution_environment_mdl implements execution_environment{
 
             // check for course name missmatch
             if ($item['course'] == '*'){
+                continue;
+            }
+
+            // check for course name missmatch
+            if ($item['course'] == '#'){
+                $newitem = $item;
+                foreach($this->config['courses'] as $course){
+                    $newitem['course'] = $course;
+                    $result[] = $newitem;
+                }
                 continue;
             }
 
@@ -199,21 +217,27 @@ class execution_environment_mdl implements execution_environment{
         foreach ($this->config['elements'] as $item){
             // check for motivator mismatch
             if ($item['motivator']['type'] !== $motivatorname){
-// echo "Course config: SKIPPING: motivator type != $motivatorname :" . $item['motivator']['type'] . /*json_encode($item) .*/ "<br>";
                 continue;
             }
 
             // check for course name missmatch
             if ($item['course'] !== $coursename && $item['course'] !== $wildcard){
-// echo "Course config: SKIPPING: coursename != $coursename || $wildcard :" . $item['course'] . /*json_encode($item) .*/ "<br>";
+                continue;
+            }
+
+            // check for course name missmatch
+            if ($item['course'] == '#'){
                 continue;
             }
 
             // add item to result
             $result[] = $item;
-// echo "Course config: ADDING: " . json_encode($item) . "<br>";
         }
         return $result;
+    }
+
+    public function get_motivator_config($motivatorname){
+        return isset($this->config['motivators'][$motivatorname]) ? $this->config['motivators'][$motivatorname]: [];
     }
 
     public function get_presets(){
@@ -240,7 +264,14 @@ class execution_environment_mdl implements execution_environment{
             if ($this->presets && isset($this->presets[$overridename])){
                 $override = optional_param($overridename, null, PARAM_TEXT);
                 if ($override && isset($this->presets[$overridename][$override])){
-                    return $this->presets[$overridename][$override];
+                    // expand out any '#' identifiers in the presets
+                    $result = [];
+                    foreach ($this->presets[$overridename][$override] as $key => $value){
+                        $resultkey = preg_replace('/^#/',$coursename,$key);
+                        $result[$resultkey] = $value;
+                    }
+print_object($result);
+                    return $result;
                 }
             }
         }

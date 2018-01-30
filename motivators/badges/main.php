@@ -42,7 +42,7 @@ class motivator_badges extends motivator_base implements motivator {
     public function render($env) {
         // prime a jsdata object with the different tables that we're going to provide to the JS script
         $jsdata = [
-            'pyramid_layers' => []
+            'pyramid_done' => []
         ];
 
         // fetch config and associated stat data
@@ -65,9 +65,9 @@ class motivator_badges extends motivator_base implements motivator {
                 case STATE_ACHIEVED:
                     $jsdata['pyramid_done'][] = $element['motivator']['layer'];
                     break;
-                default:
-                    $jsdata['pyramid_todo'][] = $element['motivator']['layer'];
-                    break;
+//                 default:
+//                     $jsdata['pyramid_todo'][] = $element['motivator']['layer'];
+//                     break;
                 }
             }
         }

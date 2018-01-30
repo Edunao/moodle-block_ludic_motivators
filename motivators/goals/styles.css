@@ -1,29 +1,9 @@
-.luditype-goals input[type="checkbox"]{
-    margin-right : 3px;
-}
-
 /*
-#goals-container {
-    margin-bottom: 15px;
-    border: 1px solid;
-}
+ * .luditype-goals input[type="checkbox"]{
+}*/
 
-#goals-container #goals {
-    padding-left: 2rem;
+.ludi-bullet{
+    margin-right : 5px;
+    width: 13px;
+    padding-bottom: 3px;
 }
-
-#goals-container #goals li {
-    margin-bottom : 6px;
-}
-
-#new-goal {
-    display : block;
-    width : 100%;
-    height : 50px;
-}
-
-#add-goal {
-    display : block;
-    margin : auto;
-}
-*/

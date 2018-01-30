@@ -37,6 +37,171 @@ class motivator_progress extends motivator_base implements motivator {
     }
 
     public function render($env) {
+        // fetch config and associated stat data
+        $courses        = $env->get_courses();
+        $systemconfig   = $env->get_motivator_config($this->get_short_name());
+
+        // perform a few sanity tests on config data
+        $env->bomb_if(empty($courses),'No course list has been defined');
+        foreach(['course_layers', 'global_background_images', 'global_course_images', 'local_course_images'] as $nodename){
+            $env->bomb_if(!isset($systemconfig[$nodename]),'Node not found in configuration: ' . $nodename);
+        }
+        $env->bomb_if(count($systemconfig['global_course_images']) < count($courses), 'Too few global_course_image definitions found for course list');
+// print_object($systemconfig);
+
+        // prime the jsdata and images result containers
+        $jsdata         = [];
+        $images         = [];
+        $backgrounds    = [];
+
+        // lookup the current course to see if we're in a tracked course page or not
+        $coursename     = $env->get_course_name();
+        $courseindex    = array_search($coursename, $courses);
+
+        // deal with the in-course view
+        if ($courseindex !== false){
+            // lookup and evaluate the course configuration
+            $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
+            $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+            $progress       = $coursedata[$coursename . '/current_progress'];
+// print_object($coursedata);
+
+            // determine the local image file name
+            $localimages    = $systemconfig['local_course_images'];
+            $localimageidx  = $courseindex % count($localimages);
+            $localimage     = $localimages[$localimageidx];
+
+            // determine the progression step
+            $best       = -1;
+            $layername  = '';
+            foreach ($systemconfig['course_layers'] as $lyr => $threshold){
+                if ($threshold > $best && $threshold <= $progress){
+                    $best       = $threshold;
+                    $layername  = $lyr;
+                }
+            }
+
+            // store away the jsdata and image list
+            $images = ['ludi_course_image' => $localimage];
+            $jsdata = ['ludi_course_image' => $layername];
+// print_object(['course_info',$layername,$progress,$localimage]);
+        }
+
+        // deal with the out-of-course view
+        if ($courseindex === false){
+            // lookup and evaluate the global configuration
+            $fullconfig     = $env->get_full_config($this->get_short_name());
+            $fulldata       = $env->get_full_state_data($fullconfig);
+            $backgrounds    = $systemconfig['global_background_images'];
+// print_object($fulldata);
+
+            // iterate over the
+            for ($i=0; $i < count($courses); ++$i){
+                // lookup the course basics
+                $course         = $courses[$i];
+                $progresskey    = $course . '/progress';
+                $progress       = array_key_exists($progresskey, $fulldata) ? $fulldata[$progresskey] : 0;
+                $courseimages   = $systemconfig['global_course_images'];
+                $courseimage    = $courseimages[$i];
+
+                // determine the progression step
+                $best       = -1;
+                $layername  = '';
+                foreach ($systemconfig['course_layers'] as $lyr => $threshold){
+                    if ($threshold > $best && $threshold <= $progress){
+                        $best       = $threshold;
+                        $layername  = $lyr;
+                    }
+                }
+
+                // store away the jsdata and image list
+                $imageid = sprintf('ludi_progress_part_%02d', $i);
+                $images[$imageid] = $courseimage;
+                $jsdata[$imageid] = $layername;
+            }
+        }
+
+        // render the output
+        $env->set_block_classes('luditype-progress');
+        $html = '';
+        foreach ($backgrounds as $filename){
+            $imageurl = $this->image_url($filename);
+            $html .= "<img src='" . $imageurl . "' class='ludi-progress-background ludi-progress-image'/>";
+        }
+        foreach ($images as $imageid => $filename){
+            $imageurl = $this->image_url($filename);
+            $html .= "<img src='" . $imageurl . "' class='svg ludi-progress-image' id='$imageid'/>";
+        }
+        $env->render('ludi-progress', $this->get_string('title'), $html);
+
+        // register the js data
+        $env->set_js_init_data($this->get_short_name(), ['revealed_layers' => $jsdata ]);
+
+        // construct the js data
+//
+//         // The view for the /my/ page shows an image of trees with 8 optional layers per course
+//         // (making 14 x 8 = 112 optional layers in all)
+//         if ($this->isMyPage()) {
+//             $layerParam = optional_param('layer', '', PARAM_TEXT);
+//             $courseId = optional_param('courseId', 0, PARAM_TEXT);
+//
+//             // Div block showing the tree items selector for the purpose of test
+//             $output  = '<div style="margin-bottom:15px;">
+//                             <form id="branch_form" method="POST">
+//                                 <input id="motivator" name="motivator" type="hidden" value="progress">
+//                                 <input id="courseid" name="courseid" type="hidden" value="' . $courseId .'">
+//                                 <select name="layer" onChange="document.getElementById(\'branch_form\').submit()">'
+//                                     . $this->getTreeOptionsSelect($courseId, $layerParam) .
+//                                 '</select>
+//                             </form>
+//                         </div>';
+//
+//             $output .= '<div id="branch-div" style="border:1px solid">
+//                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Tree</h4>
+//                             <div id="progress-container">
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_01.svg').'" class="avatar svg" id="branch-picture1"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_02.svg').'" class="avatar svg" id="branch-picture2"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_03.svg').'" class="avatar svg" id="branch-picture3"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_04.svg').'" class="avatar svg" id="branch-picture4"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_05.svg').'" class="avatar svg" id="branch-picture5"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_06.svg').'" class="avatar svg" id="branch-picture6"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_07.svg').'" class="avatar svg" id="branch-picture7"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_08.svg').'" class="avatar svg" id="branch-picture8"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_09.svg').'" class="avatar svg" id="branch-picture9"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_10.svg').'" class="avatar svg" id="branch-picture10"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_11.svg').'" class="avatar svg" id="branch-picture11"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_12.svg').'" class="avatar svg" id="branch-picture12"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_13.svg').'" class="avatar svg" id="branch-picture13"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_branche_14.svg').'" class="avatar svg" id="branch-picture14"/>
+//                                 <img src="'.$this->image_url('LudiMoodle_arbre_troncs.svg').'" class="avatar svg"/>
+//                             </div>
+//                         </div>';
+//
+//         // The view within a course shows a tree branch as an SVG with 8 optional layers.
+//         // The progress value (0..8) determines which of the layers will be hidden and which revealed
+//         } else {
+//             $courseId = $this->context->getCourseId();
+//             $branchParam = optional_param('branch', 0, PARAM_TEXT);
+//
+//             // Div block showing the branch items selector for the purpose of test
+//             $output  = '<div style="margin-bottom:15px;">
+//                             <form id="branch_form" method="POST">
+//                                 <input id="motivator" name="motivator" type="hidden" value="progress">
+//                                 <input id="courseid" name="courseid" type="hidden" value="' . $courseId .'">
+//                                 <select name="branch" onChange="document.getElementById(\'branch_form\').submit()">'
+//                                     . $this->getBranchOptionsSelect($courseId, $branchParam) .
+//                                 '</select>
+//                             </form>
+//                         </div>';
+//
+//             $output .= '<div id="branch-div" style="border:1px solid">
+//                             <h4 style="background-color: #6F5499;color: #CDBFE3;text-align: center;">Bravo !</h4>
+//                             <div id="branch-container">
+//                                 <img src="' . $this->image_url('LudiMoodle_branche_1.svg') . '" width="180px" height="180px" class="avatar svg" id="branch-picture1"/>
+//                             </div>
+//                         </div>';
+//         }
+//
     }
 
 //     public function __construct($context) {

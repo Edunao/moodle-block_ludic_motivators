@@ -42,7 +42,8 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 layer.css('visibility', 'visible');
             });
 
-            $('#ludi-avatar-changes').css('display', 'block')
+            // unhide the image
+            $('#ludi-avatar-changes').slideDown();
         },
     };
 
