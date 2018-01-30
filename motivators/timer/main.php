@@ -31,63 +31,57 @@ class motivator_timer extends motivator_base implements motivator {
 
     public function get_loca_strings(){
         return [
-            'name'  => 'Timer',
-            'title' => 'My Time'
+            'name'          => 'Timer',
+            'title'         => 'Best Times',
+            'first_attempt' => 'This is your first attempt at this exercise. You will be able to retry the exercise again later to try to improve your best time',
+            'history_title' => 'Attempt history',
         ];
     }
 
     public function render($env) {
-    }
+        // fetch config and associated stat data
+        $coursename     = $env->get_course_name();
+        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
+        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
 
-//     public function __construct($context) {
-//         $preset = array(
-//             'introductionMessage' => 'Bravo, tu as réussi, maintenant avec un chrono, essaie de faire de ton mieux',
-//             'maxDurationTimer' => 90,
-//             'maxNumberAttempts' => 5,
-//             'numberPreviousAttempts' => 3,
-//             'timingAttempts' => [40, 60, 30],
-//             'globalstats' => [
-//                 'session1Objectives' => 0,
-//                 'session2Objectives' => 1
-//             ]
-//         );
-//         parent::__construct($context, $preset);
-//     }
-//
-//     public function get_content() {
-//         global $CFG;
-//
-//         $output = '';
-//
-//         if ($this->preset['numberPreviousAttempts'] != 0) {
-//             $output = '<div id="timer-container">';
-//
-//             // Passing to the iFrame the timestamps and the last attempts timing
-//             $output .= '<script type="text/javascript">' . PHP_EOL;
-//             $output .= '    var timingAttempts = ' . json_encode($this->preset['timingAttempts']) . ';' . PHP_EOL;
-//             $output .= '    var timestamp = ' . time() . ';' . PHP_EOL;
-//             $output .= '</script>';
-//
-//             // Calling the iFrame file generating the gauge and the bargraph showing the classe average,
-//             // the class best and the user's own level
-//             $output .= '<iframe id="timer-iframe" frameBorder="0" src="'.$CFG->wwwroot.'/blocks/ludic_motivators/classes/motivators/timer/iframe.php"></iframe>';
-//             $output .= '</div>';
-//         }
-//
-//         return $output;
-//     }
-//
-//         public function getJsParams() {
-//         $datas = $this->context->store->get_datas();
-//         $params = array();
-//
-//         $params['timingAttempts'] = $this->preset['timingAttempts'];
-//         $params['timestamp'] = time();
-//
-//         if (isset($datas->avatar)) {
-//             $params = $datas->avatar;
-//         }
-//
-//         return $params;
-//     }
+        // lookup base properties that should always always exist
+        $statnames      = $coursename . '/time';
+        $env->bomb_if(!array_key_exists($statnames, $coursedata), "Failed to locate stat: $statnames");
+        $timetodate     = $coursedata[$statnames];
+
+        // match up the config elements and state data to determine the set of information to pass to the javascript
+        $pasttimes = [];
+        foreach ($courseconfig as $element){
+            $elementtype = $element['motivator']['subtype'];
+            if($elementtype != 'past_time'){
+                continue;
+            }
+            $index = $element['motivator']['index'];
+            $statname = $coursename . '/' . array_keys($element['stats'])[0];
+            $pasttimes[$index] = array_key_exists($statname, $coursedata)? $coursedata[$statname]: 0;
+        }
+        $env->bomb_if(empty($pasttimes), "Failed to locate any past_times stats");
+
+        // prepare to start rendering content
+        $env->set_block_classes('luditype-timer');
+
+        // if we have at least one valid past time value then rendder it otherwise render the place-holder text
+        if ($pasttimes[0]){
+            // prepare the js data
+            $jsdata = [
+                'time_to_date'      => $timetodate,
+                'past_times'        => $pasttimes,
+                'past_times_key'    => $this->get_string('history_title')
+            ];
+            $timerhtml = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
+
+            // render the timer pane
+            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/timer/iframe_main.php');
+            $timerhtml .= '<iframe id="timer-iframe" frameBorder="0" src="'.$iframeurl.'"></iframe>';
+            $env->render('ludi-main', $this->get_string('title'), $timerhtml);
+        }else{
+            // render a place-holder text
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('first_attempt'));
+        }
+    }
 }

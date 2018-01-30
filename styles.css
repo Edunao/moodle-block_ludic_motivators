@@ -42,6 +42,10 @@
     padding: 1px;
 }
 
+.ludi-content {
+    overflow: hidden;
+}
+
 .ludi-body {
     width: 100%;
     display: block;
@@ -57,6 +61,11 @@
     padding-left:4px;
     padding-right:4px;
 }
+
+
+/*-----------------------------------------
+  Debug menus
+*/
 
 .ludi-debug-menu{
     width: 100%;

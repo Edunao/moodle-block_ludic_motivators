@@ -1,14 +1,23 @@
 {
-    "none":{
-        "besttime":0,
-        "currenttime":10
+    "config":{
+        "courses": ["Ludi01", "Ludi02", "Ludi03"],
+        "elements":[
+            { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 0 }, "stats": { "past_time_01": { "type": "past_quiz_time", "index": 0 } } },
+            { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 1 }, "stats": { "past_time_02": { "type": "past_quiz_time", "index": 1 } } },
+            { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 2 }, "stats": { "past_time_03": { "type": "past_quiz_time", "index": 2 } } },
+            { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 3 }, "stats": { "past_time_04": { "type": "past_quiz_time", "index": 3 } } },
+            { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 4 }, "stats": { "past_time_05": { "type": "past_quiz_time", "index": 4 } } }
+        ]
     },
-    "20s":{
-        "besttime":20,
-        "currenttime":10
-    },
-    "20m":{
-        "besttime":120,
-        "currenttime":100
+
+    "preset":{
+        "Ludi01-00":    { "Ludi01/time":   0, "Ludi01/past_time_01":   0, "Ludi01/past_time_02":   0, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-01":    { "Ludi01/time":  20, "Ludi01/past_time_01":   0, "Ludi01/past_time_02":   0, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-02":    { "Ludi01/time": 120, "Ludi01/past_time_01":   0, "Ludi01/past_time_02":   0, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-03":    { "Ludi01/time": 550, "Ludi01/past_time_01":   0, "Ludi01/past_time_02":   0, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-04":    { "Ludi01/time":   0, "Ludi01/past_time_01": 600, "Ludi01/past_time_02":   0, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-05":    { "Ludi01/time":  40, "Ludi01/past_time_01": 600, "Ludi01/past_time_02":   0, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-06":    { "Ludi01/time": 400, "Ludi01/past_time_01": 600, "Ludi01/past_time_02": 567, "Ludi01/past_time_03":   0, "Ludi01/past_time_04":   0, "Ludi01/past_time_05":   0 },
+        "Ludi01-all":   { "Ludi01/time": 500, "Ludi01/past_time_01": 600, "Ludi01/past_time_02": 567, "Ludi01/past_time_03": 600, "Ludi01/past_time_04": 580, "Ludi01/past_time_05": 541 }
     }
 }

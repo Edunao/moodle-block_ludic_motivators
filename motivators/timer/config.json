@@ -1,11 +1,16 @@
-[
-    {
-        "course": "*",
-        "motivator": {
-            "type": "timer",
-        },
-        "achievment": {
-            "type": "timer_time",
+{
+    "elements":[
+        {
+            "course": "*",
+            "motivator": {
+                "type": "timer",
+                "subtype": "system"
+            },
+            "stats": {
+                "time":{
+                    "type": "quiz_time"
+                }
+            }
         }
-    }
-]
+    ]
+}

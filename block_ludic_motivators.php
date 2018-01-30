@@ -62,16 +62,20 @@ echo "<h1><br><br>Init</h1>";
     public function get_required_javascript() {
         parent::get_required_javascript();
 
-        // retrieve a handle to the execution environment, initialising it on the fly if required
+        // retrieve a handle to the execution environment, initialising it on the fly if required, and get hold of the js data (if there is any)
         $env = $this->get_execution_environment();
-// echo "<h1><br><br>Getting JS data</h1>";
-// print_object($env->get_js_init_data());
+        $jsdata = $env->get_js_init_data();
+
+        // if there is no js data then we're done
+        if (empty($jsdata)){
+            return;
+        }
 
         // add an intialisation call for the motivator
         $this->page->requires->js_call_amd(
             'block_ludic_motivators/ludic_motivators',
             'init',
-            $env->get_js_init_data()
+            $jsdata
         );
     }
 
