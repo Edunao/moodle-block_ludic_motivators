@@ -29,16 +29,8 @@ require_once dirname(__DIR__) . '/motivators/motivator.interface.php';
 
 class log_miner_mdl implements log_miner {
     private $env;
-    private $stats   = [];
-//     protected $courseid;
-//     protected $userid;
 
     public function __construct(execution_environment $env) {
-//     public function __construct(, $userid, \moodle_page $page) {
-
-//         global $USER;
-//         $this->courseid     = $courseid;
-//         $this->userid       = empty($userid) ? $USER->id : $userid;
         $this->env      = $env;
     }
 
@@ -49,41 +41,142 @@ class log_miner_mdl implements log_miner {
             if (array_key_exists('stats', $element)){
                 foreach ($element['stats'] as $key => $dfn){
                     $resultkey = $elementcourse . '/' . $key;
-                    $result[$resultkey] = 0;
+                    $result[$resultkey] = $this->evaluate_stat($elementcourse, $dfn);
                 }
             }
         }
         return $result;
-//return [ '/course_count' => 1 ];
     }
 
-    public function get_course_state_data($config,$coursename){
+    public function get_course_state_data($config, $coursename){
         $result=[];
         foreach ($config as $element){
+            $elementcourse = ($element['course'] == '*') ? $coursename : $element['course'];
             if (array_key_exists('stats', $element)){
                 foreach ($element['stats'] as $key => $dfn){
-                    $resultkey = $coursename . '/' . $key;
-                    $result[$resultkey] = 0;
+                    $resultkey = $elementcourse . '/' . $key;
+                    $result[$resultkey] = $this->evaluate_stat($elementcourse, $dfn);
                 }
             }
         }
         return $result;
     }
 
-    public function get_stats(){
-        if (! $this->stats){
-            $this->calculate_stats();
+    private function evaluate_stat($course, $dfn){
+        $this->env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
+        switch($dfn['type']){
+
+        // global stats
+        case 'started_course_count':    return $this->evaluate_started_course_count($course, $dfn);
+
+        // course stats
+        case 'course_progress':         return $this->evaluate_course_progress($course, $dfn);
+        case 'course_complete':         return $this->evaluate_course_complete($course, $dfn);
+        case 'course_score':            return $this->evaluate_course_score($course, $dfn);
+        case 'best_course_score':       return $this->evaluate_best_course_score($course, $dfn);
+        case 'average_course_score':    return $this->evaluate_average_course_score($course, $dfn);
+        case 'course_score_rank':       return $this->evaluate_course_score_rank($course, $dfn);
+        case 'course_score_old_rank':   return $this->evaluate_course_score_old_rank($course, $dfn);
+        case 'course_scored_users':     return $this->evaluate_course_scored_users($course, $dfn);
+        case 'course_auto_correct':     return $this->evaluate_course_auto_correct($course, $dfn);
+        case 'course_correct_run':      return $this->evaluate_course_correct_run($course, $dfn);
+
+        // quiz stats
+        case 'past_quiz_time':          return $this->evaluate_past_quiz_time($course, $dfn);
+        case 'quiz_time':               return $this->evaluate_quiz_time($course, $dfn);
+        case 'quiz_score':              return $this->evaluate_quiz_score($course, $dfn);
+        case 'quiz_score_gain':         return $this->evaluate_quiz_score_gain($course, $dfn);
+        case 'quiz_auto_correct':       return $this->evaluate_quiz_auto_correct($course, $dfn);
+        case 'quiz_correct_run':        return $this->evaluate_quiz_correct_run($course, $dfn);
+
+        default:
+            $this->env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
         }
-        return $this->stats();
     }
 
-    protected function calculate_stats(){
-        // load stats description file
-        // for each stat
-            // if not applicable to the current course then skip it
-            // delegate to the appropriate data processing routine to evaluate the stat
-            // store the result in the results container
+    private function evaluate_started_course_count($course, $dfn){
+        return 0;
     }
+
+    private function evaluate_course_progress($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_complete($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_score($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_best_course_score($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_average_course_score($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_score_rank($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_score_old_rank($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_scored_users($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_auto_correct($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_course_correct_run($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_past_quiz_time($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_time($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_score($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_score_gain($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_auto_correct($course, $dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_correct_run($course, $dfn){
+        return 0;
+    }
+
+
+//     public function get_stats(){
+//         if (! $this->stats){
+//             $this->calculate_stats();
+//         }
+//         return $this->stats();
+//     }
+//
+//     protected function calculate_stats(){
+//         // load stats description file
+//         // for each stat
+//             // if not applicable to the current course then skip it
+//             // delegate to the appropriate data processing routine to evaluate the stat
+//             // store the result in the results container
+//     }
 
 //     public function store_datas($datas, $cmid = 0) {
 //         global $DB;

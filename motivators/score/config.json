@@ -8,10 +8,10 @@
             },
             "stats": {
                 "score": {
-                    "type": "current_quiz_score"
+                    "type": "quiz_score"
                 },
                 "new_score": {
-                    "type": "current_quiz_score_gain"
+                    "type": "quiz_score_gain"
                 }
             }
         }

@@ -2,33 +2,28 @@
     "config":{
         "courses": ["Ludi01", "Ludi02", "Ludi03"],
         "elements":[
-            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 1", "bonus":  5 }, "stats": { "goal01": { "type": "correct_run", "threshold": 3 } } },
-            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 2", "bonus": 10 }, "stats": { "goal02": { "type": "correct_run", "threshold": 10 } } },
-            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 3", "bonus": 15 }, "stats": { "goal03": { "type": "auto_correct" } } },
-            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 4", "bonus": 20 }, "stats": { "goal04": { "type": "auto_correct" } } },
-            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 5", "bonus": 25 }, "stats": { "goal05": { "type": "auto_correct" } } }
+            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 1", "bonus":  5 }, "stats": { "goal01": { "type": "quiz_correct_run", "threshold": 3 } } },
+            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 2", "bonus": 10 }, "stats": { "goal02": { "type": "quiz_correct_run", "threshold": 10 } } },
+            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 3", "bonus": 15 }, "stats": { "goal03": { "type": "quiz_auto_correct" } } },
+            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 4", "bonus": 20 }, "stats": { "goal04": { "type": "quiz_auto_correct" } } },
+            { "course": "*", "motivator": { "type": "score", "subtype": "bonus", "title": "Goal 5", "bonus": 25 }, "stats": { "goal05": { "type": "quiz_auto_correct" } } }
         ]
     },
 
     "preset":{
-        "Ludi01-00":    { "Ludi01/score":   0, "Ludi01/new_score":  0, "Ludi01/goal01":0, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-01":    { "Ludi01/score":  10, "Ludi01/new_score": 10, "Ludi01/goal01":0, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-02":    { "Ludi01/score":  10, "Ludi01/new_score":  0, "Ludi01/goal01":0, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-03":    { "Ludi01/score":  20, "Ludi01/new_score": 10, "Ludi01/goal01":2, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-04":    { "Ludi01/score":  30, "Ludi01/new_score": 10, "Ludi01/goal01":1, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-05":    { "Ludi01/score":  40, "Ludi01/new_score": 10, "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-06":    { "Ludi01/score":  40, "Ludi01/new_score":  0, "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-11":    { "Ludi01/score": 100, "Ludi01/new_score": 15, "Ludi01/goal01":2, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-12":    { "Ludi01/score": 200, "Ludi01/new_score": 25, "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-13":    { "Ludi01/score": 300, "Ludi01/new_score": 35, "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":2, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-14":    { "Ludi01/score": 400, "Ludi01/new_score": 45, "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":0 },
-        "Ludi01-15":    { "Ludi01/score": 500, "Ludi01/new_score": 55, "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":1, "Ludi01/goal04":1, "Ludi01/goal05":2 },
-        "Ludi01-all":   { "Ludi01/score": 600, "Ludi01/new_score": 65, "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":1 },
+        "step-00":    { "#/score":   0, "#/new_score":  0, "#/goal01":0, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-01":    { "#/score":  10, "#/new_score": 10, "#/goal01":0, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-02":    { "#/score":  10, "#/new_score":  0, "#/goal01":0, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-03":    { "#/score":  20, "#/new_score": 10, "#/goal01":2, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-04":    { "#/score":  30, "#/new_score": 10, "#/goal01":1, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-05":    { "#/score":  40, "#/new_score": 10, "#/goal01":1, "#/goal02":2, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-06":    { "#/score":  40, "#/new_score":  0, "#/goal01":1, "#/goal02":1, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-11":    { "#/score": 100, "#/new_score": 15, "#/goal01":2, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-12":    { "#/score": 200, "#/new_score": 25, "#/goal01":1, "#/goal02":2, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-13":    { "#/score": 300, "#/new_score": 35, "#/goal01":1, "#/goal02":1, "#/goal03":2, "#/goal04":0, "#/goal05":0 },
+        "step-14":    { "#/score": 400, "#/new_score": 45, "#/goal01":1, "#/goal02":1, "#/goal03":1, "#/goal04":2, "#/goal05":0 },
+        "step-15":    { "#/score": 500, "#/new_score": 55, "#/goal01":1, "#/goal02":1, "#/goal03":1, "#/goal04":1, "#/goal05":2 },
+        "step-final": { "#/score": 600, "#/new_score": 65, "#/goal01":1, "#/goal02":2, "#/goal03":1, "#/goal04":2, "#/goal05":1 }
 
-        "Ludi02-1":     { "Ludi02/score": 100, "Ludi02/new_score": 10, "Ludi02/goal01":2, "Ludi02/goal02":0, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
-        "Ludi02-2":     { "Ludi02/score": 200, "Ludi02/new_score": 20, "Ludi02/goal01":1, "Ludi02/goal02":2, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
-        "Ludi02-3":     { "Ludi02/score": 300, "Ludi02/new_score": 30, "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":2, "Ludi02/goal04":0, "Ludi02/goal05":0 },
-        "Ludi02-4":     { "Ludi02/score": 400, "Ludi02/new_score": 40, "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":2, "Ludi02/goal05":0 },
-        "Ludi02-5":     { "Ludi02/score": 500, "Ludi02/new_score": 50, "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":1, "Ludi02/goal05":2 }
     }
 }

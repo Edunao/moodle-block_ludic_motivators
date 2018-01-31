@@ -31,12 +31,66 @@ class motivator_ranking extends motivator_base implements motivator {
 
     public function get_loca_strings(){
         return [
-            'name'  => 'Ranking',
-            'title' => 'My Ranking'
+            'name'      => 'Ranking',
+            'title'     => 'My Ranking',
+            'no_rank'   => 'No exercises completed yet',
+            'no_course' => 'Not in a tracked course',
         ];
     }
 
     public function render($env) {
+        // fetch config and associated stat data
+        $coursename     = $env->get_course_name();
+        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
+        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+
+        // if the course isn't in the courses list then display a placeholder message and drop out
+        if (!$coursedata){
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
+            return;
+        }
+
+        // lookup base properties that should always always exist
+echo "<div style='height:60px'/>";
+print_object($this->get_short_name());
+print_object($coursename);
+print_object($courseconfig);
+print_object($coursedata);
+        $score          = self::lookup_stat($env, $coursedata, $coursename, 'current_score');
+        $classbest      = self::lookup_stat($env, $coursedata, $coursename, 'class_best_score');
+        $classaverage   = self::lookup_stat($env, $coursedata, $coursename, 'class_average_score');
+        $rank           = self::lookup_stat($env, $coursedata, $coursename, 'class_rank');
+        $oldrank        = self::lookup_stat($env, $coursedata, $coursename, 'previous_rank');
+        $ranksize       = self::lookup_stat($env, $coursedata, $coursename, 'rank_size');
+
+        // prepare to start rendering content
+        $env->set_block_classes('luditype-ranking');
+
+        // if we have at least one valid course score then render our ranking, otherwise render the place-holder text
+        if ($score){
+            // prepare the js data
+            $jsdata = [
+                'userScore'      => $score,
+                'classAverage'   => $classaverage,
+                'bestScore'      => $classbest,
+                'isFirstRank'    => ($score >= $classbest)
+            ];
+            $html = '<script>ludiRanking=' . json_encode($jsdata) . ';</script>';
+
+            // render the iframe pane
+            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_main.php');
+            $html .= '<iframe id="' . $this->get_short_name() . '-iframe" frameBorder="0" src="' . $iframeurl . '"></iframe>';
+            $env->render('ludi-main', $this->get_string('title'), $html);
+        }else{
+            // render a place-holder text
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_rank'));
+        }
+    }
+
+    private static function lookup_stat($env, $statsdata, $coursename, $statname){
+        $statid = $coursename . '/' . $statname;
+        $env->bomb_if(!array_key_exists($statid, $statsdata), "Failed to locate stat: $statid");
+        return $statsdata[$statid];
     }
 
 //     public function __construct($context) {

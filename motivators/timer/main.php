@@ -35,6 +35,7 @@ class motivator_timer extends motivator_base implements motivator {
             'title'         => 'Best Times',
             'first_attempt' => 'This is your first attempt at this exercise. You will be able to retry the exercise again later to try to improve your best time',
             'history_title' => 'Attempt history',
+            'no_course'     => 'Not in a tracked course',
         ];
     }
 
@@ -44,10 +45,16 @@ class motivator_timer extends motivator_base implements motivator {
         $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
         $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
 
+        // if the course isn't in the courses list then display a placeholder message and drop out
+        if (!$coursedata){
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
+            return;
+        }
+
         // lookup base properties that should always always exist
-        $statnames      = $coursename . '/time';
-        $env->bomb_if(!array_key_exists($statnames, $coursedata), "Failed to locate stat: $statnames");
-        $timetodate     = $coursedata[$statnames];
+        $statname       = $coursename . '/time';
+        $env->bomb_if(!array_key_exists($statname, $coursedata), "Failed to locate stat: $statname");
+        $timetodate     = $coursedata[$statname];
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         $pasttimes = [];
@@ -60,25 +67,25 @@ class motivator_timer extends motivator_base implements motivator {
             $statname = $coursename . '/' . array_keys($element['stats'])[0];
             $pasttimes[$index] = array_key_exists($statname, $coursedata)? $coursedata[$statname]: 0;
         }
-        $env->bomb_if(empty($pasttimes), "Failed to locate any past_times stats");
+//        $env->bomb_if(empty($pasttimes), "Failed to locate any past_times stats");
 
         // prepare to start rendering content
-        $env->set_block_classes('luditype-timer');
+        $env->set_block_classes('luditype-' . $this->get_short_name());
 
-        // if we have at least one valid past time value then rendder it otherwise render the place-holder text
-        if ($pasttimes[0]){
+        // if we have at least one valid past time value then render it otherwise render the place-holder text
+        if (!empty($pasttimes) && $pasttimes[0]){
             // prepare the js data
             $jsdata = [
                 'time_to_date'      => $timetodate,
                 'past_times'        => $pasttimes,
                 'past_times_key'    => $this->get_string('history_title')
             ];
-            $timerhtml = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
+            $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
 
-            // render the timer pane
-            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/timer/iframe_main.php');
-            $timerhtml .= '<iframe id="timer-iframe" frameBorder="0" src="'.$iframeurl.'"></iframe>';
-            $env->render('ludi-main', $this->get_string('title'), $timerhtml);
+            // render the iframe pane
+            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_main.php');
+            $html .= '<iframe id="' . $this->get_short_name() . '-iframe" frameBorder="0" src="' . $iframeurl . '"></iframe>';
+            $env->render('ludi-main', $this->get_string('title'), $html);
         }else{
             // render a place-holder text
             $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('first_attempt'));

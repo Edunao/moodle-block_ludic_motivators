@@ -2,19 +2,34 @@
     "config":{
         "courses": ["Ludi01", "Ludi02", "Ludi03"],
         "elements":[
-            { "course": "Ludi01", "motivator": { "type": "avatar", "title": "Course 1 completed", "layer": "calque02" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi02", "motivator": { "type": "avatar", "title": "Course 2 completed", "layer": "calque03" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi03", "motivator": { "type": "avatar", "title": "Course 3 completed", "layer": "calque04" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi04", "motivator": { "type": "avatar", "title": "Course 4 completed", "layer": "calque05" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi05", "motivator": { "type": "avatar", "title": "Course 5 completed", "layer": "calque06" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } }
+            { "course": "Ludi01", "motivator": { "type": "avatar", "title": "Course 01 completed", "layer": "calque02" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi02", "motivator": { "type": "avatar", "title": "Course 02 completed", "layer": "calque03" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi03", "motivator": { "type": "avatar", "title": "Course 03 completed", "layer": "calque04" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi04", "motivator": { "type": "avatar", "title": "Course 04 completed", "layer": "calque05" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi05", "motivator": { "type": "avatar", "title": "Course 05 completed", "layer": "calque05" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi05", "motivator": { "type": "avatar", "title": "Course 05 completed", "layer": "calque06" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi06", "motivator": { "type": "avatar", "title": "Course 06 completed", "layer": "calque07" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi07", "motivator": { "type": "avatar", "title": "Course 07 completed", "layer": "calque08" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi08", "motivator": { "type": "avatar", "title": "Course 08 completed", "layer": "calque09" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi09", "motivator": { "type": "avatar", "title": "Course 09 completed", "layer": "calque10" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi10", "motivator": { "type": "avatar", "title": "Course 10 completed", "layer": "calque11" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi11", "motivator": { "type": "avatar", "title": "Course 11 completed", "layer": "calque12" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi12", "motivator": { "type": "avatar", "title": "Course 12 completed", "layer": "calque13" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi13", "motivator": { "type": "avatar", "title": "Course 13 completed", "layer": "calque14" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
+            { "course": "Ludi14", "motivator": { "type": "avatar", "title": "Course 14 completed", "layer": "calque15" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } }
         ]
     },
     "preset":{
-        "none":     { },
-        "one-new":  { "Ludi01/done":2 },
-        "one-old":  { "Ludi01/done":1 },
-        "two-new":  { "Ludi01/done":1, "Ludi02/done":2 },
-        "two-old":  { "Ludi01/done":1, "Ludi02/done":1 },
-        "all":      { "Ludi01/done":1, "Ludi02/done":1, "Ludi03/done":1, "Ludi04/done":1, "Ludi05/done":1 }
+        "none": { },
+        "1*":   { "Ludi01/done":2 },
+        "1":    { "Ludi01/done":1 },
+        "2*":   { "Ludi01/done":1, "Ludi02/done":2 },
+        "2":    { "Ludi01/done":1, "Ludi02/done":1 },
+        "5":    { "Ludi01/done":1, "Ludi02/done":1, "Ludi03/done":1, "Ludi04/done":1, "Ludi05/done":1 },
+        "10":   { "Ludi01/done":1, "Ludi02/done":1, "Ludi03/done":1, "Ludi04/done":1, "Ludi05/done":1,
+                  "Ludi06/done":1, "Ludi07/done":1, "Ludi08/done":1, "Ludi09/done":1, "Ludi10/done":1 },
+        "all":  { "Ludi01/done":1, "Ludi02/done":1, "Ludi03/done":1, "Ludi04/done":1, "Ludi05/done":1,
+                  "Ludi06/done":1, "Ludi07/done":1, "Ludi08/done":1, "Ludi09/done":1, "Ludi10/done":1,
+                  "Ludi11/done":1, "Ludi12/done":1, "Ludi13/done":1, "Ludi14/done":1 }
     }
 }

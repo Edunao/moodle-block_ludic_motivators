@@ -66,13 +66,15 @@ class motivator_goals extends motivator_base implements motivator {
                     $checked        = false;
                     break;
                 }
-                $title = $element['motivator']['title'];
-                $bulleturl = new \moodle_url('/blocks/ludic_motivators/motivators/goals/pix/' . ($checked===true ? 'icon_objectif_completed.svg' : 'icon_objectif_uncompleted.svg'));
-                $goalhtml .= "<div class='ludi-goal $cssclasses'>";
+                $title      = $element['motivator']['title'];
+                $detail     = $element['motivator']['detail'];
+                $bulleturl  = new \moodle_url('/blocks/ludic_motivators/motivators/goals/pix/' . ($checked===true ? 'icon_objectif_completed.svg' : 'icon_objectif_uncompleted.svg'));
+                $goalhtml   .= "<div class='ludi-goal $cssclasses'>";
 //                $goalhtml .= "<input type='checkbox' onclick='event.preventDefault()'" . ($checked===true ? ' checked' : '') . ">";
-                $goalhtml .= "<image src='$bulleturl' class='ludi-bullet'>";
-                $goalhtml .= "<span>$title<span>";
-                $goalhtml .= "</div>";
+                $goalhtml   .= "<image src='$bulleturl' class='ludi-bullet'>";
+                $goalhtml   .= "<div class='goal-title'>$title</div>";
+                $goalhtml   .= "<div class='goal-detail'>$detail</div>";
+                $goalhtml   .= "</div>";
             }
         }
 

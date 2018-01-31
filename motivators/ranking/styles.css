@@ -22,17 +22,13 @@
  */
 
 
-#ranking-container {
-    /*margin-top : 30px;*/
-}
-
 .bargraph {
     height: 260px;
 }
 
 #ranking-bravo {
-	display: none;
-	font-size : 26px;
+    display: none;
+    font-size : 26px;
 }
 
 #ranking-container .progress {

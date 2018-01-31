@@ -35,7 +35,7 @@ class block_ludic_motivators extends block_base {
     public function init() {
         // set the block title
         $this->title = get_string('pluginname', 'block_ludic_motivators');
-echo "<h1><br><br>Init</h1>";
+//echo "<h1><br><br>Init</h1>";
     }
 
     public function has_config() {

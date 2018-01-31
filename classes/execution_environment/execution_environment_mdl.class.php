@@ -74,13 +74,6 @@ class execution_environment_mdl implements execution_environment{
             $this->bomb_if(!$this->config, 'Failed to JSON decode config file: ' . $configfile);
             $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config file: ' . $configfile);
             $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
-//             foreach ($motivatorconfig as $key => $data){
-//                 if (array_key_exists($key, $this->config)){
-//                     $this->config[$key] = array_merge($this->config[$key], $data);
-//                 }else{
-//                     $this->config[$key] = $data;
-//                 }
-//             }
             $this->config = array_merge_recursive($this->config, $motivatorconfig);
         }
 
@@ -90,12 +83,6 @@ class execution_environment_mdl implements execution_environment{
                 $jsontestdata   = file_get_contents($testdatafile);
                 $testdata       = json_decode($jsontestdata, true);
                 $this->bomb_if(!$testdata, 'Failed to JSON decode test data file: ' . $testdatafile );
-//                 if (isset($testdata['config']) && isset($testdata['config']['courses'])){
-//                     $this->config['courses'] = array_merge($this->config['courses'], $testdata['config']['courses']);
-//                 }
-//                 if (isset($testdata['config']) && isset($testdata['config']['elements'])){
-//                     $this->config['elements'] = array_merge($this->config['elements'], $testdata['config']['elements']);
-//                 }
                 if (isset($testdata['config'])){
                     $this->config = array_merge_recursive($this->config, $testdata['config']);
                 }
@@ -208,7 +195,7 @@ class execution_environment_mdl implements execution_environment{
         return $result;
     }
 
-    public function get_course_config($motivatorname,$coursename){
+    public function get_course_config($motivatorname, $coursename){
         // check whether this is configured in the system as a wildcard course
         $wildcard = array_key_exists($coursename, array_flip($this->config['courses'])) ? '*' : null;
 
@@ -270,7 +257,7 @@ class execution_environment_mdl implements execution_environment{
                         $resultkey = preg_replace('/^#/',$coursename,$key);
                         $result[$resultkey] = $value;
                     }
-print_object($result);
+//print_object($result);
                     return $result;
                 }
             }

@@ -1,3 +1,27 @@
+/*
+ This file is part of Moodle - http://moodle.org/
+
+ Moodle is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Moodle is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+ * @copyright  2018 Edunao SAS (contact@edunao.com)
+ * @author     Sadge (daniel@edunao.com)
+ * @package    block_ludic_motivators
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+
 .ludi-course-badges {
     width: 100%;
     text-align: center;
@@ -27,75 +51,3 @@ img.ludi-badge.ludi-new img {
 .ludi-pyramid-container .svg [id^=calque]:not(#calque00){
     visibility: hidden;
 }
-
-/*.ludi-course-badges figure {
-    display: inline-block;
-    vertical-align: top;
-    width: 32%;
-    padding: 5px 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 0 0.3rem;
-}
-
-.ludi-course-badges figcaption {
-    font-size: 8px;
-}*/
-/*
-.ludi-badge-new {
-    margin-top: 15px;
-}
-
-.ludi-badge.ludi-new li {
-    text-align: center;
-    display: inline;
-    list-style: none;
-}
-*/
-/*#global-badge {
-    display : none;
-    width : 40px;
-    height : 40px;
-    display : inline-block;
-    margin : 6px;
-}
-
-.ludic_motivators-badge img {
-    width : 45px;
-    height : 45px;
-}
-*/
-/*
- * Definition for the displaying GI
- */
-/*
-.svg {
-    position:absolute;
-    top:0;
-    left:0;
-    width : 180px;
-    height : 180px;
-}
-
-#avatar-container {
-    position : relative;
-    overflow: auto;
-    width : 180px;
-    height: 180px;
-    margin : auto;
-}
-
-#avatar-div {
-    display: none;
-}
-
-#avatar-picture [id^=calque]:not(#calque01) {
-    visibility: hidden;
-}
-
-#next-piece {
-    display : block;
-    margin : auto;
-    margin-top : 3px;
-}
-*/

@@ -2,11 +2,11 @@
     "config":{
         "courses": ["Ludi01", "Ludi02", "Ludi03"],
         "elements":[
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 1", "icon": "badge1" }, "stats": { "goal01": { "type": "correct_run", "threshold": 3 } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 2", "icon": "badge2" }, "stats": { "goal02": { "type": "correct_run", "threshold": 10 } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 3", "icon": "badge3" }, "stats": { "goal03": { "type": "auto_correct" } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 4", "icon": "badge4" }, "stats": { "goal04": { "type": "auto_correct" } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 5", "icon": "badge5" }, "stats": { "goal05": { "type": "auto_correct" } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 1", "icon": "badge1" }, "stats": { "goal01": { "type": "course_correct_run", "threshold": 3 } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 2", "icon": "badge2" }, "stats": { "goal02": { "type": "course_correct_run", "threshold": 10 } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 3", "icon": "badge3" }, "stats": { "goal03": { "type": "course_auto_correct" } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 4", "icon": "badge4" }, "stats": { "goal04": { "type": "course_auto_correct" } } },
+            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 5", "icon": "badge5" }, "stats": { "goal05": { "type": "course_auto_correct" } } },
 
             { "course": "Ludi01", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
             { "course": "Ludi02", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
@@ -28,19 +28,12 @@
 
     "coursepreset":{
 
-        "no badges":    { },
-
-        "Ludi01-1":     { "Ludi01/goal01":2, "Ludi01/goal02":0, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-2":     { "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":0, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-3":     { "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":2, "Ludi01/goal04":0, "Ludi01/goal05":0 },
-        "Ludi01-4":     { "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":0 },
-        "Ludi01-5":     { "Ludi01/goal01":1, "Ludi01/goal02":1, "Ludi01/goal03":1, "Ludi01/goal04":1, "Ludi01/goal05":2 },
-        "Ludi01-all":   { "Ludi01/goal01":1, "Ludi01/goal02":2, "Ludi01/goal03":1, "Ludi01/goal04":2, "Ludi01/goal05":1 },
-
-        "Ludi02-1":     { "Ludi02/goal01":2, "Ludi02/goal02":0, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
-        "Ludi02-2":     { "Ludi02/goal01":1, "Ludi02/goal02":2, "Ludi02/goal03":0, "Ludi02/goal04":0, "Ludi02/goal05":0 },
-        "Ludi02-3":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":2, "Ludi02/goal04":0, "Ludi02/goal05":0 },
-        "Ludi02-4":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":2, "Ludi02/goal05":0 },
-        "Ludi02-5":     { "Ludi02/goal01":1, "Ludi02/goal02":1, "Ludi02/goal03":1, "Ludi02/goal04":1, "Ludi02/goal05":2 }
+        "step-0":     { "#/goal01":0, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-1":     { "#/goal01":2, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-2":     { "#/goal01":1, "#/goal02":2, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
+        "step-3":     { "#/goal01":1, "#/goal02":1, "#/goal03":2, "#/goal04":0, "#/goal05":0 },
+        "step-4":     { "#/goal01":1, "#/goal02":1, "#/goal03":1, "#/goal04":2, "#/goal05":0 },
+        "step-5":     { "#/goal01":1, "#/goal02":1, "#/goal03":1, "#/goal04":1, "#/goal05":2 },
+        "step-all":   { "#/goal01":1, "#/goal02":2, "#/goal03":1, "#/goal04":2, "#/goal05":1 }
     }
 }

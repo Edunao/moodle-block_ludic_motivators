@@ -1,51 +1,56 @@
 {
-    "none":{
-        "currentscore":0,
-        "classbestscore":0,
-        "classaveragescore":0,
-        "classrank":0,
-        "lastrank":0,
-        "classsize":0
+    "config":{
+        "courses": ["Ludi01", "Ludi02", "Ludi03"]
     },
-    "alone":{
-        "currentscore":10,
-        "classbestscore":0,
-        "classaveragescore":0,
-        "classrank":1,
-        "lastrank":0,
-        "newfirst":0,
-        "classsize":1
-    },
-    "second-new":{
-        "currentscore":10,
-        "classbestscore":12,
-        "classaveragescore":5,
-        "classrank":2,
-        "lastrank":1,
-        "classsize":4
-    },
-    "second-old":{
-        "currentscore":10,
-        "classbestscore":12,
-        "classaveragescore":5,
-        "classrank":2,
-        "lastrank":2,
-        "classsize":4
-    },
-    "first-new":{
-        "currentscore":10,
-        "classbestscore":12,
-        "classaveragescore":5,
-        "classrank":1,
-        "lastrank":2,
-        "classsize":4
-    },
-    "first-old":{
-        "currentscore":10,
-        "classbestscore":12,
-        "classaveragescore":5,
-        "classrank":1,
-        "lastrank":1,
-        "classsize":4
+
+    "preset":{
+        "none":{
+            "#/current_score"        : 0,
+            "#/class_best_score"     : 0,
+            "#/class_average_score"  : 0,
+            "#/class_rank"           : 0,
+            "#/previous_rank"        : 0,
+            "#/rank_size"            : 0
+        },
+        "alone":{
+            "#/current_score"        : 10,
+            "#/class_best_score"     : 0,
+            "#/class_average_score"  : 0,
+            "#/class_rank"           : 1,
+            "#/previous_rank"        : 0,
+            "#/rank_size"            : 0
+        },
+        "second-new":{
+            "#/current_score"        : 10,
+            "#/class_best_score"     : 12,
+            "#/class_average_score"  : 5,
+            "#/class_rank"           : 2,
+            "#/previous_rank"        : 1,
+            "#/rank_size"            : 4
+        },
+        "second-old":{
+            "#/current_score"        : 10,
+            "#/class_best_score"     : 12,
+            "#/class_average_score"  : 5,
+            "#/class_rank"           : 2,
+            "#/previous_rank"        : 2,
+            "#/rank_size"            : 4
+        },
+        "first-new":{
+            "#/current_score"        : 10,
+            "#/class_best_score"     : 12,
+            "#/class_average_score"  : 5,
+            "#/class_rank"           : 1,
+            "#/previous_rank"        : 2,
+            "#/rank_size"            : 4
+        },
+        "first-old":{
+            "#/current_score"        : 10,
+            "#/class_best_score"     : 12,
+            "#/class_average_score"  : 5,
+            "#/class_rank"           : 1,
+            "#/previous_rank"        : 1,
+            "#/rank_size"            : 4
+        }
     }
 }

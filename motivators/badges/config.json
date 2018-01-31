@@ -4,11 +4,11 @@
             "course": "",
             "motivator": {
                 "type": "badges",
-                "subtype": "count"
+                "subtype": "system"
             },
             "stats": {
                 "course_count": {
-                    "type": "course_count",
+                    "type": "started_course_count",
                     "threshold": 0
                 }
             }

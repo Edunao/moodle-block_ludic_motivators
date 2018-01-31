@@ -36,6 +36,7 @@ class motivator_score extends motivator_base implements motivator {
             'full_title'    => 'Score',
             'changes_title' => 'New Points',
             'bonus_title' => 'New Bonus !!',
+            'no_course' => 'Not in a tracked course',
         ];
     }
 
@@ -44,6 +45,12 @@ class motivator_score extends motivator_base implements motivator {
         $coursename     = $env->get_course_name();
         $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
         $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+
+        // if the course isn't in the courses list then display a placeholder message and drop out
+        if (!$coursedata){
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
+            return;
+        }
 
         // lookup base properties that should always always exist
         $statnamescore      = $coursename . '/score';
