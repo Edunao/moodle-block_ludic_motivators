@@ -25,9 +25,9 @@ namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
 // include all of the common stuff that we need in all motivator type implementations
-require_once \dirname2(__DIR__, 1) . '/motivators/motivator.interface.php';
-require_once \dirname2(__DIR__, 1) . '/execution_environment/execution_environment.interface.php';
-require_once \dirname2(__DIR__, 2) . '/locallib.php';
+require_once dirname(__DIR__) . '/motivators/motivator.interface.php';
+require_once dirname(__DIR__) . '/execution_environment/execution_environment.interface.php';
+require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
 abstract class motivator_base {
 
@@ -56,7 +56,7 @@ abstract class motivator_base {
     }
 
     public function image_url($image) {
-        $blockname = basename(\dirname2(__DIR__, 2));
+        $blockname = basename(dirname(dirname(__DIR__)));
         return new \moodle_url("/blocks/$blockname/motivators/" . $this->get_short_name() . "/pix/$image");
     }
 }

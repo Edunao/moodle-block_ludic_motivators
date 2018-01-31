@@ -23,9 +23,9 @@
 
 namespace block_ludic_motivators;
 
-require_once \dirname2(__DIR__, 2) . '/classes/motivators/motivator.interface.php';
-require_once \dirname2(__DIR__, 2) . '/classes/motivators/motivator_base.class.php';
-require_once \dirname2(__DIR__, 2) . '/locallib.php';
+require_once dirname(dirname(__DIR__)) . '/classes/motivators/motivator.interface.php';
+require_once dirname(dirname(__DIR__)) . '/classes/motivators/motivator_base.class.php';
+require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
 class motivator_progress extends motivator_base implements motivator {
 

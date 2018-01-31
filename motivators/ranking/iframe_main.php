@@ -21,6 +21,14 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// quick hack to run on php < 7.0
+function dirname2($path, $steps){
+    for ($i=0;$i<$steps;$i++){
+        $path=dirname($path);
+    }
+    return $path;
+}
+
 require_once \dirname2(__DIR__, 5)  . '/config.php';
 global $CFG;
 ?>

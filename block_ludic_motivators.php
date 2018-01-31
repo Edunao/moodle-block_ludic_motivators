@@ -28,14 +28,6 @@ require_once __DIR__ . '/classes/execution_environment/execution_environment_mdl
 
 use \block_ludic_motivators\motivators;
 
-// quick hack to run on php < 7.0
-function dirname2($path, $steps){
-    for ($i=0;$i<$steps;$i++){
-        $path=dirname($path);
-    }
-    return $path;
-}
-
 class block_ludic_motivators extends block_base {
     private $testmode   = true;
     private $env        = null;
