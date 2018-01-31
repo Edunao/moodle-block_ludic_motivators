@@ -64,8 +64,8 @@ class execution_environment_mdl implements execution_environment{
 
         // determine names of motivator's config files
         $motivator      = $this->get_current_motivator();
-        $configfile     = dirname(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/config.json';
-        $testdatafile   = dirname(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
+        $configfile     = \dirname2(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/config.json';
+        $testdatafile   = \dirname2(__DIR__, 2) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
 
         // load motivator configuration data
         if (file_exists($configfile)){
