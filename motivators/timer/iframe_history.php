@@ -28,7 +28,7 @@
         <script type="text/javascript" src="iframe_main.js"></script>
     </head>
     <body>
-        <div id="timer_div" style="height: 190px;"></div>
-        <div id="column_div" style="height: 300px;"></div>
+        <div id="column_div"></div>
+        <script>requestColumnChart();</script>
     </body>
 </html>

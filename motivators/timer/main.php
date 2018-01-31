@@ -32,9 +32,10 @@ class motivator_timer extends motivator_base implements motivator {
     public function get_loca_strings(){
         return [
             'name'          => 'Timer',
-            'title'         => 'Best Times',
+            'title'         => 'Timer',
+            'time_title'    => 'Current Time',
             'first_attempt' => 'This is your first attempt at this exercise. You will be able to retry the exercise again later to try to improve your best time',
-            'history_title' => 'Attempt history',
+            'history_title' => 'Attempt History',
             'no_course'     => 'Not in a tracked course',
         ];
     }
@@ -47,7 +48,7 @@ class motivator_timer extends motivator_base implements motivator {
 
         // if the course isn't in the courses list then display a placeholder message and drop out
         if (!$coursedata){
-            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
+            $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('no_course'));
             return;
         }
 
@@ -80,15 +81,21 @@ class motivator_timer extends motivator_base implements motivator {
                 'past_times'        => $pasttimes,
                 'past_times_key'    => $this->get_string('history_title')
             ];
-            $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
 
-            // render the iframe pane
-            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_main.php');
-            $html .= '<iframe id="' . $this->get_short_name() . '-iframe" frameBorder="0" src="' . $iframeurl . '"></iframe>';
-            $env->render('ludi-main', $this->get_string('title'), $html);
+            // render the first iframe pane
+            $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
+            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_time.php');
+            $html .= '<iframe id="' . $this->get_short_name() . '-iframe-time" frameBorder="0" src="' . $iframeurl . '"></iframe>';
+            $env->render('ludi-main', $this->get_string('time_title'), $html);
+
+            // render the second iframe pane
+            $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
+            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_history.php');
+            $html .= '<iframe id="' . $this->get_short_name() . '-iframe-history" frameBorder="0" src="' . $iframeurl . '"></iframe>';
+            $env->render('ludi-main', $this->get_string('history_title'), $html);
         }else{
             // render a place-holder text
-            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('first_attempt'));
+            $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('first_attempt'));
         }
     }
 }

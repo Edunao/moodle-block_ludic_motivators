@@ -20,13 +20,21 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-google.charts.load('current', {'packages': ['gauge', 'corechart']});
-google.charts.setOnLoadCallback(drawCharts);
 
-function drawCharts() {
-    drawGauge();
-    drawColumnChart();
+function requestGauge(){
+    google.charts.load('current', {'packages': ['gauge', 'corechart']});
+    google.charts.setOnLoadCallback(drawGauge);
 }
+
+function requestColumnChart(){
+    google.charts.load('current', {'packages': ['gauge', 'corechart']});
+    google.charts.setOnLoadCallback(drawColumnChart);
+}
+
+// function drawCharts() {
+//     drawGauge();
+//     drawColumnChart();
+// }
 
 function drawGauge() {
 
@@ -104,7 +112,7 @@ function drawColumnChart() {
     );
 
     var options = {
-        title: parent.ludiTimer.past_times_key,
+//        title: parent.ludiTimer.past_times_key,
         width: 190,
         height: 300,
         bar: {groupWidth: "95%"},

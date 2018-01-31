@@ -349,9 +349,11 @@ class execution_environment_mdl implements execution_environment{
         $this->output .= "</div>";
 
         # write the content in a body div
-        $this->output .= "<div class='ludi-body'>";
-        $this->output .= "<div class='ludi-content'>$content</div>";
-        $this->output .= "</div>";
+        if ($content){
+            $this->output .= "<div class='ludi-body'>";
+            $this->output .= "<div class='ludi-content'>$content</div>";
+            $this->output .= "</div>";
+        }
 
         $this->output .= "</div>";
     }

@@ -114,15 +114,15 @@ class motivator_badges extends motivator_base implements motivator {
         $env->set_block_classes('luditype-badges');
 
         // render the badge images
-        $env->render('ludi-main', $this->get_string('full_title'), '<div class="ludi-course-badges">' . $badgeicons . '</div>');
+        $env->render('ludi-main ludi-detail', $this->get_string('full_title'), '<div class="ludi-course-badges">' . $badgeicons . '</div>');
         if (!empty($newbadgeicons)){
-            $env->render('ludi-change', $this->get_string('changes_title'), '<div class="ludi-course-badges">' . $newbadgeicons . '</div>');
+            $env->render('ludi-change ludi-detail', $this->get_string('changes_title'), '<div class="ludi-course-badges">' . $newbadgeicons . '</div>');
         }
 
         // render the pyramid image
         $pyramidname    = sprintf("pyramide_%02d.svg", $coursecount);
         $imageurl       = $this->image_url($pyramidname);
         $imagehtml      = "<div class='ludi-pyramid-container'><img src='$imageurl' class='svg' id='ludi-pyramid'/></div>";
-        $env->render('ludi-main', $this->get_string('pyramid_title'), $imagehtml);
+        $env->render('ludi-main ludi-overview', $this->get_string('pyramid_title'), $imagehtml);
     }
 }
