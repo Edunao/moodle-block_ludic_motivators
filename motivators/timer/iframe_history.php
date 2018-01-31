@@ -25,10 +25,9 @@
 <html style="overflow: hidden">
     <head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="iframe_main.js"></script>
+        <script type="text/javascript" src="iframe_history.js"></script>
     </head>
     <body>
         <div id="column_div"></div>
-        <script>requestColumnChart();</script>
     </body>
 </html>

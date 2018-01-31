@@ -257,7 +257,6 @@ class execution_environment_mdl implements execution_environment{
                         $resultkey = preg_replace('/^#/',$coursename,$key);
                         $result[$resultkey] = $value;
                     }
-//print_object($result);
                     return $result;
                 }
             }
@@ -340,15 +339,15 @@ class execution_environment_mdl implements execution_environment{
     }
 
     public function render($cssclass,$title,$content){
-        # use a panel div to house the titel and content neetly
+        // use a panel div to house the titel and content neetly
         $this->output .= "<div class='ludi-pane $cssclass'>";
 
-        # write the title in a header div
+        // write the title in a header div
         $this->output .= "<div class='ludi-header'>";
         $this->output .= "<h4 class='ludi-title'>$title</h4>";
         $this->output .= "</div>";
 
-        # write the content in a body div
+        // write the content in a body div
         if ($content){
             $this->output .= "<div class='ludi-body'>";
             $this->output .= "<div class='ludi-content'>$content</div>";

@@ -25,10 +25,9 @@
 <html style="overflow: hidden">
     <head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="iframe_main.js"></script>
+        <script type="text/javascript" src="iframe_time.js"></script>
     </head>
     <body>
         <div id="timer_div"></div>
-        <script>requestGauge();</script>
     </body>
 </html>

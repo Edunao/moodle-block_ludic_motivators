@@ -65,9 +65,6 @@ class motivator_badges extends motivator_base implements motivator {
                 case STATE_ACHIEVED:
                     $jsdata['pyramid_done'][] = $element['motivator']['layer'];
                     break;
-//                 default:
-//                     $jsdata['pyramid_todo'][] = $element['motivator']['layer'];
-//                     break;
                 }
             }
         }

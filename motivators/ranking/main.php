@@ -35,6 +35,7 @@ class motivator_ranking extends motivator_base implements motivator {
             'title'     => 'My Ranking',
             'no_rank'   => 'No exercises completed yet',
             'no_course' => 'Not in a tracked course',
+            'bravo'     => 'Bravo!',
         ];
     }
 
@@ -51,11 +52,6 @@ class motivator_ranking extends motivator_base implements motivator {
         }
 
         // lookup base properties that should always always exist
-echo "<div style='height:60px'/>";
-print_object($this->get_short_name());
-print_object($coursename);
-print_object($courseconfig);
-print_object($coursedata);
         $score          = self::lookup_stat($env, $coursedata, $coursename, 'current_score');
         $classbest      = self::lookup_stat($env, $coursedata, $coursename, 'class_best_score');
         $classaverage   = self::lookup_stat($env, $coursedata, $coursename, 'class_average_score');
@@ -81,6 +77,11 @@ print_object($coursedata);
             $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_main.php');
             $html .= '<iframe id="' . $this->get_short_name() . '-iframe" frameBorder="0" src="' . $iframeurl . '"></iframe>';
             $env->render('ludi-main', $this->get_string('title'), $html);
+
+            // consider rendering a Bravo text
+            if($score >= $classbest && $oldrank > $rank){
+                $env->render('ludi-change', $this->get_string('bravo'), '');
+            }
         }else{
             // render a place-holder text
             $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_rank'));
@@ -92,94 +93,4 @@ print_object($coursedata);
         $env->bomb_if(!array_key_exists($statid, $statsdata), "Failed to locate stat: $statid");
         return $statsdata[$statid];
     }
-
-//     public function __construct($context) {
-//         $preset = array(
-//             'maxScore' => 20,
-//             'userScore' => 0,
-//             'classAverage' => 11,
-//             'bestScore' => 20,
-//             'userRank' => 3,
-//             'numberOfCorrectAnswer' => 4,
-//             'numberOfQuestions' => 5,
-//             'otherScores' => [12, 18, 16, 15, 3, 8, 14, 18, 13, 15],
-//         );
-//
-//         // Updating preset array when a user score is selected
-//         if (($userScore = optional_param('userScore', '', PARAM_TEXT)) !== '') {
-//             $scores = $preset['otherScores'];
-//             array_push($scores, $userScore);
-//             $preset['bestScore'] = max($scores);
-//             $preset['classAverage'] = number_format(array_sum($scores) / count($scores), 2);
-//             $preset['userScore'] = $userScore;
-//         }
-//
-//         parent::__construct($context, $preset);
-//     }
-//
-//
-//     public function getTitle() {
-//
-//         return 'Mon ranking';
-//     }
-//
-//     function getUserScore() {
-//         return $this->preset['userScore'];
-//     }
-//
-//     function getClassAverage() {
-//         return $this->preset['classAverage'];
-//     }
-//
-//     function getBestScore() {
-//         return $this->preset['bestScore'];
-//     }
-//
-//     function isFirstRank() {
-//         if ($this->preset['userScore'] >= $this->preset['bestScore']) {
-//             return true;
-//         }
-//
-//         return false;
-//     }
-//
-//     public function get_content() {
-//         global $CFG;
-//
-//         $output  = '<div id="ranking-container">';
-//
-//         // Div block selecting the points to win selector for the purpose of test
-//         $output .= '<div style="margin-bottom:15px;">
-//                         <form id="ranking_form" method="POST">
-//                             <input id="motivator" name="motivator" type="hidden" value="ranking">
-//                             <select name="userScore" onChange="document.getElementById(\'ranking_form\').submit()">
-//                                 <option value="" selected>Note à obtenir</option>
-//                                 <option value="5">5</option>
-//                                 <option value="8">8</option>
-//                                 <option value="10">10</option>
-//                                 <option value="12">12</option>
-//                                 <option value="14">14</option>
-//                                 <option value="16">16</option>
-//                                 <option value="18">18</option>
-//                                 <option value="20">20</option>
-//                             </select>
-//                         </form>
-//                     </div>';
-//
-//         // Passing to the iFrame the user's score, the class average and the best score
-//         $output .= '<script type="text/javascript">
-//                         var userScore = ' . $this->getUserScore() . ';
-//                         var classAverage = ' . $this->getClassAverage() . ';
-//                         var bestScore = ' . $this->getBestScore() . ';
-//                         var isFirstRank = ' . var_export($this->isFirstRank(), true) . ';
-//                     </script>';
-//
-//         // Calling the iFrame file generating the bargraph showing the classe average,
-//         // the class best and the user's own level
-//         $output .= '<iframe id="ranking-iframe" frameBorder="0" src="' .$CFG->wwwroot. '/blocks/ludic_motivators/classes/motivators/ranking/iframe.php"></iframe>';
-//
-//         $output .= '</div>';
-//
-//         return $output;
-//     }
 }

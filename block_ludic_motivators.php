@@ -29,13 +29,18 @@ require_once __DIR__ . '/classes/execution_environment/execution_environment_mdl
 use \block_ludic_motivators\motivators;
 
 class block_ludic_motivators extends block_base {
-    private $testmode   = true;
+    private $testmode   = false;
     private $env        = null;
 
     public function init() {
+        global $USER, $CFG;
+        // enable or disable testing morde
+        $this->testmode = (isset($CFG->ludimoodledebug) && $CFG->ludimoodledebug) ? true : false;
+        if ($this->testmode){
+            echo "<h1><br><br>Running in Test Mode</h1>";
+        }
         // set the block title
         $this->title = get_string('pluginname', 'block_ludic_motivators');
-//echo "<h1><br><br>Init</h1>";
     }
 
     public function has_config() {
@@ -109,7 +114,7 @@ class block_ludic_motivators extends block_base {
         $result->text   = '';
 
         // start with debug render_debug_menus
-        if ($this->testmode===true){
+        if ($this->testmode){
             $result->text .= $this->render_debug_menus($env);
         }
 

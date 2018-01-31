@@ -35,7 +35,7 @@ class motivator_score extends motivator_base implements motivator {
             'title' => 'Score',
             'full_title'    => 'Score',
             'changes_title' => 'New Points',
-            'bonus_title' => 'New Bonus !!',
+            'bonus_title' => 'Bonus !!',
             'no_course' => 'Not in a tracked course',
         ];
     }
@@ -96,18 +96,19 @@ class motivator_score extends motivator_base implements motivator {
 
         // render the new points pane
         if ($newscore){
-            $titleid = 'changes_title';
             $newscorehtml = '';
             $newscorehtml .= '<div class="ludi-score-pane">';
             $newscorehtml .= '<span class="ludi-score-new">+ ' . $newscore . '</span>';
             // add bonus points as required
             if ($newbonus){
-                $titleid = 'bonus_title';
-                $newscorehtml .= '&nbsp;';
+                $newscorehtml .= '&nbsp;&nbsp;';
                 $newscorehtml .= '<span class="ludi-score-bonus">+' . $newbonus . '</span>';
             }
             $newscorehtml .= '</div>';
-            $env->render('ludi-change', $this->get_string($titleid), $newscorehtml);
+            $env->render('ludi-change', $this->get_string('changes_title'), $newscorehtml);
+            if ($newbonus){
+                $env->render('ludi-change ludi-bonus', $this->get_string('bonus_title'), '');
+            }
         }
 
     }

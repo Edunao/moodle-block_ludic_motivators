@@ -1,0 +1,38 @@
+{
+    "config":{
+        "courses":[ "puissances", "calcul-litteral" ],
+        "elements":[
+            { "course": "*:*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 1", "icon": "badge1" }, "stats": { "goal01": { "type": "course_correct_run", "threshold": 3 } } },
+            { "course": "*:*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 2", "icon": "badge2" }, "stats": { "goal02": { "type": "course_correct_run", "threshold": 10 } } },
+            { "course": "*:*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 3", "icon": "badge3" }, "stats": { "goal03": { "type": "course_auto_correct" } } },
+            { "course": "*:*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 4", "icon": "badge4" }, "stats": { "goal04": { "type": "course_auto_correct" } } },
+            { "course": "*:*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 5", "icon": "badge5" }, "stats": { "goal05": { "type": "course_auto_correct" } } },
+
+            { "course": "Puissances:1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:2", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:3", "motivator": { "type": "badges", "subtype": "global", "layer": "calque03" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:4", "motivator": { "type": "badges", "subtype": "global", "layer": "calque04" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:5", "motivator": { "type": "badges", "subtype": "global", "layer": "calque05" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:6", "motivator": { "type": "badges", "subtype": "global", "layer": "calque06" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:7", "motivator": { "type": "badges", "subtype": "global", "layer": "calque07" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Puissances:8", "motivator": { "type": "badges", "subtype": "global", "layer": "calque08" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+
+            { "course": "Calcul-litteral:1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque09" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Calcul-litteral:2", "motivator": { "type": "badges", "subtype": "global", "layer": "calque10" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Calcul-litteral:3", "motivator": { "type": "badges", "subtype": "global", "layer": "calque11" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Calcul-litteral:4", "motivator": { "type": "badges", "subtype": "global", "layer": "calque12" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Calcul-litteral:5", "motivator": { "type": "badges", "subtype": "global", "layer": "calque13" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Calcul-litteral:6", "motivator": { "type": "badges", "subtype": "global", "layer": "calque14" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+        ]
+    },
+
+    "motivators":{
+        "avatar":{
+            "avatar_image": "avatar.svg"
+        },
+        "badges":{
+            "overview_image_fmt": "pyramide_%02d.svg",
+            "overview_image_fmt": "pyramide_%02d.svg"
+        }
+    }
+}

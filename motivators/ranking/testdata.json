@@ -37,7 +37,7 @@
             "#/rank_size"            : 4
         },
         "first-new":{
-            "#/current_score"        : 10,
+            "#/current_score"        : 12,
             "#/class_best_score"     : 12,
             "#/class_average_score"  : 5,
             "#/class_rank"           : 1,
@@ -45,7 +45,7 @@
             "#/rank_size"            : 4
         },
         "first-old":{
-            "#/current_score"        : 10,
+            "#/current_score"        : 14,
             "#/class_best_score"     : 12,
             "#/class_average_score"  : 5,
             "#/class_rank"           : 1,

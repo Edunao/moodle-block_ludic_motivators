@@ -11,6 +11,9 @@
         "step-04":    { "#/time":   0, "#/past_time_01": 600, "#/past_time_02":   0, "#/past_time_03":   0, "#/past_time_04":   0, "#/past_time_05":   0 },
         "step-05":    { "#/time":  40, "#/past_time_01": 600, "#/past_time_02":   0, "#/past_time_03":   0, "#/past_time_04":   0, "#/past_time_05":   0 },
         "step-06":    { "#/time": 400, "#/past_time_01": 600, "#/past_time_02": 567, "#/past_time_03":   0, "#/past_time_04":   0, "#/past_time_05":   0 },
-        "step-final": { "#/time": 500, "#/past_time_01": 600, "#/past_time_02": 567, "#/past_time_03": 600, "#/past_time_04": 580, "#/past_time_05": 541 }
+        "step-07":    { "#/time": 500, "#/past_time_01": 600, "#/past_time_02": 567, "#/past_time_03": 600, "#/past_time_04": 580, "#/past_time_05": 541 },
+        "step-best":  { "#/time": 540, "#/past_time_01": 600, "#/past_time_02": 567, "#/past_time_03": 600, "#/past_time_04": 580, "#/past_time_05": 541 },
+        "step-late":  { "#/time":1075, "#/past_time_01": 600, "#/past_time_02": 567, "#/past_time_03": 600, "#/past_time_04": 580, "#/past_time_05": 541 },
+        "step-vlate": { "#/time":1500, "#/past_time_01": 600, "#/past_time_02": 567, "#/past_time_03": 600, "#/past_time_04": 580, "#/past_time_05": 541 }
     }
 }

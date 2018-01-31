@@ -68,7 +68,6 @@ class motivator_timer extends motivator_base implements motivator {
             $statname = $coursename . '/' . array_keys($element['stats'])[0];
             $pasttimes[$index] = array_key_exists($statname, $coursedata)? $coursedata[$statname]: 0;
         }
-//        $env->bomb_if(empty($pasttimes), "Failed to locate any past_times stats");
 
         // prepare to start rendering content
         $env->set_block_classes('luditype-' . $this->get_short_name());
