@@ -28,45 +28,49 @@ defined('MOODLE_INTERNAL') || die();
 *  The goal of this class is to provide issolation from the outside world.
 *  It should be possible to implement the different units behind this class as stubs for testing purposes
 */
-class execution_environment_stub implements execution_environment{
+interface execution_environment{
     //-------------------------------------------------------------------------
     // logging and error management
 
-    public function bomb($message) {}
-    public function bomb_if($condition,$message) {}
+    public function bomb($message);
+    public function bomb_if($condition,$message);
 
     //-------------------------------------------------------------------------
     // Moodle context
 
-    public function get_userid() {}
-    public function get_course_name() {}
+    public function get_userid();
+    public function get_course_name();
 
     //-------------------------------------------------------------------------
     // Motivator management
 
-    public function get_current_motivator() {}
-    public function set_current_motivator($name) {}
+    public function get_current_motivator();
+    public function set_current_motivator($name);
 
     //-------------------------------------------------------------------------
     // Config management
 
-    public function get_presets() {}
-    public function get_full_config($motivatorname) {}
-    public function get_course_config($motivatorname, $coursename) {}
+    public function get_presets();
+    public function get_global_config($motivatorname);
+    public function get_contextual_config($motivatorname, $coursename);
 
     //-------------------------------------------------------------------------
     // Evaluation of stats and suchlike for use by motivators
 
-    public function get_full_state_data($config) {}
-    public function get_course_state_data($config, $coursename) {}
+    public function get_global_state_data($config);
+    public function get_contextual_state_data($config, $coursename);
 
     //-------------------------------------------------------------------------
     // rendering
 
-    public function page_requires_jquery_plugin($pluginname) {}
-    public function page_requires_css($cssurl) {}
-    public function set_block_classes($classes) {}
-    public function render($cssclass,$title,$content) {}
-    public function get_rendered_output() {}
-    public function get_js_init_data() {}
+    public function page_requires_jquery_plugin($pluginname);
+    public function page_requires_css($cssurl);
+    public function set_block_classes($classes);
+    public function render($cssclass,$title,$content);
+
+    //-------------------------------------------------------------------------
+    // getters for result from rendering
+
+    public function get_js_init_data();
+    public function get_rendered_output();
 }

@@ -42,22 +42,22 @@ class motivator_ranking extends motivator_base implements motivator {
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
-        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
 
         // if the course isn't in the courses list then display a placeholder message and drop out
-        if (!$coursedata){
+        if (!$ctxtdata){
             $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
             return;
         }
 
         // lookup base properties that should always always exist
-        $score          = self::lookup_stat($env, $coursedata, $coursename, 'current_score');
-        $classbest      = self::lookup_stat($env, $coursedata, $coursename, 'class_best_score');
-        $classaverage   = self::lookup_stat($env, $coursedata, $coursename, 'class_average_score');
-        $rank           = self::lookup_stat($env, $coursedata, $coursename, 'class_rank');
-        $oldrank        = self::lookup_stat($env, $coursedata, $coursename, 'previous_rank');
-        $ranksize       = self::lookup_stat($env, $coursedata, $coursename, 'rank_size');
+        $score          = self::lookup_stat($env, $ctxtdata, $coursename, 'current_score');
+        $classbest      = self::lookup_stat($env, $ctxtdata, $coursename, 'class_best_score');
+        $classaverage   = self::lookup_stat($env, $ctxtdata, $coursename, 'class_average_score');
+        $rank           = self::lookup_stat($env, $ctxtdata, $coursename, 'class_rank');
+        $oldrank        = self::lookup_stat($env, $ctxtdata, $coursename, 'previous_rank');
+        $ranksize       = self::lookup_stat($env, $ctxtdata, $coursename, 'rank_size');
 
         // prepare to start rendering content
         $env->set_block_classes('luditype-ranking');

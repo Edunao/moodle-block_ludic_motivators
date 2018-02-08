@@ -45,8 +45,8 @@ class motivator_avatar extends motivator_base implements motivator {
         ];
 
         // fetch config and associated stat data
-        $config     = $env->get_full_config($this->get_short_name());
-        $statedata  = $env->get_full_state_data($config);
+        $config     = $env->get_global_config($this->get_short_name());
+        $statedata  = $env->get_global_state_data($config);
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         foreach ($config as $element){

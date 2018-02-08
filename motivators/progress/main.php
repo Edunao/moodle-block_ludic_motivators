@@ -60,9 +60,9 @@ class motivator_progress extends motivator_base implements motivator {
         // deal with the in-course view
         if ($courseindex !== false){
             // lookup and evaluate the course configuration
-            $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
-            $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
-            $progress       = $coursedata[$coursename . '/current_progress'];
+            $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
+            $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+            $progress       = $ctxtdata[$coursename . '/current_progress'];
 
             // determine the local image file name
             $localimages    = $systemconfig['local_course_images'];
@@ -87,8 +87,8 @@ class motivator_progress extends motivator_base implements motivator {
         // deal with the out-of-course view
         if ($courseindex === false){
             // lookup and evaluate the global configuration
-            $fullconfig     = $env->get_full_config($this->get_short_name());
-            $fulldata       = $env->get_full_state_data($fullconfig);
+            $globalconfig   = $env->get_global_config($this->get_short_name());
+            $globaldata     = $env->get_global_state_data($globalconfig);
             $backgrounds    = $systemconfig['global_background_images'];
 
             // iterate over the
@@ -96,7 +96,7 @@ class motivator_progress extends motivator_base implements motivator {
                 // lookup the course basics
                 $course         = $courses[$i];
                 $progresskey    = $course . '/progress';
-                $progress       = array_key_exists($progresskey, $fulldata) ? $fulldata[$progresskey] : 0;
+                $progress       = array_key_exists($progresskey, $globaldata) ? $globaldata[$progresskey] : 0;
                 $courseimages   = $systemconfig['global_course_images'];
                 $courseimage    = $courseimages[$i];
 

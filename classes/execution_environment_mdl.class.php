@@ -164,7 +164,7 @@ class execution_environment_mdl implements execution_environment{
         return $this->config['courses'];
     }
 
-    public function get_full_config($motivatorname){
+    public function get_global_config($motivatorname){
         // filter the course list to match the requird motivator and course
         $result=[];
 
@@ -195,7 +195,7 @@ class execution_environment_mdl implements execution_environment{
         return $result;
     }
 
-    public function get_course_config($motivatorname, $coursename){
+    public function get_contextual_config($motivatorname, $coursename){
         // check whether this is configured in the system as a wildcard course
         $wildcard = array_key_exists($coursename, array_flip($this->config['courses'])) ? '*' : null;
 
@@ -231,7 +231,7 @@ class execution_environment_mdl implements execution_environment{
         return $this->presets;
     }
 
-    public function get_full_state_data($config) {
+    public function get_global_state_data($config) {
         // lookout for overrides used for testing
         foreach (['preset', 'fullpreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
@@ -242,10 +242,10 @@ class execution_environment_mdl implements execution_environment{
             }
         }
         // default to calculated values
-        return $this->miner->get_full_state_data($config);
+        return $this->miner->get_global_state_data($config);
     }
 
-    public function get_course_state_data($config, $coursename) {
+    public function get_contextual_state_data($config, $coursename) {
         // lookout for overrides used for testing
         foreach (['preset', 'coursepreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
@@ -262,7 +262,7 @@ class execution_environment_mdl implements execution_environment{
             }
         }
         // default to calculated values
-        return $this->miner->get_course_state_data($config, $coursename);
+        return $this->miner->get_contextual_state_data($config, $coursename);
     }
 
     private function read_motivator_selection(){

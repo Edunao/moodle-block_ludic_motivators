@@ -47,19 +47,19 @@ class motivator_badges extends motivator_base implements motivator {
 
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
-        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
-        $fullconfig     = $env->get_full_config($this->get_short_name());
-        $fulldata       = $env->get_full_state_data($fullconfig);
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        $globalconfig   = $env->get_global_config($this->get_short_name());
+        $globaldata     = $env->get_global_state_data($globalconfig);
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
-        foreach ($fullconfig as $element){
+        foreach ($globalconfig as $element){
             if ($element['motivator']['subtype'] !== 'global'){
                 continue;
             }
             $dataname = $element['course'] . '/' . array_keys($element['stats'])[0];
-            if (isset($fulldata[$dataname])){
-                $statevalue = $fulldata[$dataname];
+            if (isset($globaldata[$dataname])){
+                $statevalue = $globaldata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
                 case STATE_ACHIEVED:
@@ -70,20 +70,20 @@ class motivator_badges extends motivator_base implements motivator {
         }
 
         // lookup the course count which we configure via a fake stat
-        $env->bomb_if(!isset($fulldata['/course_count']),"/course_count not found in state data");
-        $coursecount = $fulldata['/course_count'];
+        $env->bomb_if(!isset($globaldata['/course_count']),"/course_count not found in state data");
+        $coursecount = $globaldata['/course_count'];
 
         $badgeicons = '';
         $newbadgeicons = '';
         // match up the config elements and state data to determine the set of information to pass to the javascript
-        foreach ($courseconfig as $element){
+        foreach ($ctxtconfig as $element){
             if ($element['motivator']['subtype'] !== 'course'){
                 continue;
             }
             $dataname = $coursename . '/' . array_keys($element['stats'])[0];
-            if (array_key_exists($dataname,$coursedata)){
+            if (array_key_exists($dataname,$ctxtdata)){
                 $imageurl = $this->image_url($element['motivator']['icon']);
-                $statevalue = $coursedata[$dataname];
+                $statevalue = $ctxtdata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
                     $newbadgeicons  .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";

@@ -15,8 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  2017 Edunao SAS (contact@edunao.com)
- * @author     Adrien JAMOT (adrien@edunao.com)
+ * @copyright  2018 Edunao SAS (contact@edunao.com)
+ * @author     Sadge (daniel@edunao.com)
  * @package    block_ludic_motivators
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -24,7 +24,7 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
-interface log_miner{
-    public function get_full_state_data($config);
-    public function get_course_state_data($config, $coursename);
+require_once __DIR__ . '/data_store.interface.php';
+
+class data_store_test implements data_store {
 }

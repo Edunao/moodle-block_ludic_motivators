@@ -43,30 +43,30 @@ class motivator_timer extends motivator_base implements motivator {
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
-        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
 
         // if the course isn't in the courses list then display a placeholder message and drop out
-        if (!$coursedata){
+        if (!$ctxtdata){
             $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('no_course'));
             return;
         }
 
         // lookup base properties that should always always exist
         $statname       = $coursename . '/time';
-        $env->bomb_if(!array_key_exists($statname, $coursedata), "Failed to locate stat: $statname");
-        $timetodate     = $coursedata[$statname];
+        $env->bomb_if(!array_key_exists($statname, $ctxtdata), "Failed to locate stat: $statname");
+        $timetodate     = $ctxtdata[$statname];
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         $pasttimes = [];
-        foreach ($courseconfig as $element){
+        foreach ($ctxtconfig as $element){
             $elementtype = $element['motivator']['subtype'];
             if($elementtype != 'past_time'){
                 continue;
             }
             $index = $element['motivator']['index'];
             $statname = $coursename . '/' . array_keys($element['stats'])[0];
-            $pasttimes[$index] = array_key_exists($statname, $coursedata)? $coursedata[$statname]: 0;
+            $pasttimes[$index] = array_key_exists($statname, $ctxtdata)? $ctxtdata[$statname]: 0;
         }
 
         // prepare to start rendering content

@@ -28,13 +28,8 @@ require_once __DIR__ . '/log_miner.interface.php';
 require_once dirname(__DIR__) . '/motivators/motivator.interface.php';
 
 class log_miner_mdl implements log_miner {
-    private $env;
 
-    public function __construct(execution_environment $env) {
-        $this->env      = $env;
-    }
-
-    public function get_full_state_data($config){
+    public function get_global_state_data($env, $config){
         $result=[];
         foreach ($config as $element){
             $elementcourse = $element['course'];
@@ -48,7 +43,7 @@ class log_miner_mdl implements log_miner {
         return $result;
     }
 
-    public function get_course_state_data($config, $coursename){
+    public function get_contextual_state_data($env, $config, $coursename){
         $result=[];
         foreach ($config as $element){
             $elementcourse = ($element['course'] == '*') ? $coursename : $element['course'];
@@ -62,12 +57,13 @@ class log_miner_mdl implements log_miner {
         return $result;
     }
 
-    private function evaluate_stat($course, $dfn){
-        $this->env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
+    private function evaluate_stat($env, $course, $dfn){
+        $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
         switch($dfn['type']){
 
         // global stats
         case 'started_course_count':    return $this->evaluate_started_course_count($course, $dfn);
+        case 'started_section_count':   return $this->evaluate_started_section_count($course, $dfn);
 
         // course stats
         case 'course_progress':         return $this->evaluate_course_progress($course, $dfn);
@@ -81,22 +77,51 @@ class log_miner_mdl implements log_miner {
         case 'course_auto_correct':     return $this->evaluate_course_auto_correct($course, $dfn);
         case 'course_correct_run':      return $this->evaluate_course_correct_run($course, $dfn);
 
+        // section stats
+        case 'section_progress':        return $this->evaluate_section_progress($course, $section, $dfn);
+        case 'section_complete':        return $this->evaluate_section_complete($course, $section, $dfn);
+        case 'section_score':           return $this->evaluate_section_score($course, $section, $dfn);
+        case 'best_section_score':      return $this->evaluate_best_section_score($course, $section, $dfn);
+        case 'average_section_score':   return $this->evaluate_average_section_score($course, $section, $dfn);
+        case 'section_score_rank':      return $this->evaluate_section_score_rank($course, $section, $dfn);
+        case 'section_score_old_rank':  return $this->evaluate_section_score_old_rank($course, $section, $dfn);
+        case 'section_scored_users':    return $this->evaluate_section_scored_users($course, $section, $dfn);
+        case 'section_auto_correct':    return $this->evaluate_section_auto_correct($course, $section, $dfn);
+        case 'section_correct_run':     return $this->evaluate_section_correct_run($course, $section, $dfn);
+
         // quiz stats
-        case 'past_quiz_time':          return $this->evaluate_past_quiz_time($course, $dfn);
-        case 'quiz_time':               return $this->evaluate_quiz_time($course, $dfn);
-        case 'quiz_score':              return $this->evaluate_quiz_score($course, $dfn);
-        case 'quiz_score_gain':         return $this->evaluate_quiz_score_gain($course, $dfn);
-        case 'quiz_auto_correct':       return $this->evaluate_quiz_auto_correct($course, $dfn);
-        case 'quiz_correct_run':        return $this->evaluate_quiz_correct_run($course, $dfn);
+        case 'past_quiz_times':         return $this->evaluate_past_quiz_times($dfn);
+        case 'past_quiz_time':          return $this->evaluate_past_quiz_time($dfn);
+        case 'quiz_time':               return $this->evaluate_quiz_time($dfn);
+        case 'quiz_score':              return $this->evaluate_quiz_score($dfn);
+        case 'quiz_score_gain':         return $this->evaluate_quiz_score_gain($dfn);
+        case 'quiz_auto_correct':       return $this->evaluate_quiz_auto_correct($dfn);
+        case 'quiz_correct_run':        return $this->evaluate_quiz_correct_run($dfn);
 
         default:
-            $this->env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
+            $env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
         }
     }
 
+
+    //-------------------------------------------------------------------------
+    // global stats
+
     private function evaluate_started_course_count($course, $dfn){
+        // number of courses that this user has started
+        // fetch all
         return 0;
     }
+
+    private function evaluate_started_section_count($course, $dfn){
+        // number of courses that this user has started
+        // fetch all
+        return 0;
+    }
+
+
+    //-------------------------------------------------------------------------
+    // course stats
 
     private function evaluate_course_progress($course, $dfn){
         return 0;
@@ -138,30 +163,84 @@ class log_miner_mdl implements log_miner {
         return 0;
     }
 
-    private function evaluate_past_quiz_time($course, $dfn){
+
+    //-------------------------------------------------------------------------
+    // section stats
+
+    private function evaluate_section_progress($course, $section, $dfn){
         return 0;
     }
 
-    private function evaluate_quiz_time($course, $dfn){
+    private function evaluate_section_complete($course, $section, $dfn){
         return 0;
     }
 
-    private function evaluate_quiz_score($course, $dfn){
+    private function evaluate_section_score($course, $section, $dfn){
         return 0;
     }
 
-    private function evaluate_quiz_score_gain($course, $dfn){
+    private function evaluate_best_section_score($course, $section, $dfn){
         return 0;
     }
 
-    private function evaluate_quiz_auto_correct($course, $dfn){
+    private function evaluate_average_section_score($course, $section, $dfn){
         return 0;
     }
 
-    private function evaluate_quiz_correct_run($course, $dfn){
+    private function evaluate_section_score_rank($course, $section, $dfn){
         return 0;
     }
 
+    private function evaluate_section_score_old_rank($course, $section, $dfn){
+        return 0;
+    }
+
+    private function evaluate_section_scored_users($course, $section, $dfn){
+        return 0;
+    }
+
+    private function evaluate_section_auto_correct($course, $section, $dfn){
+        return 0;
+    }
+
+    private function evaluate_section_correct_run($course, $section, $dfn){
+        return 0;
+    }
+
+
+    //-------------------------------------------------------------------------
+    // quiz stats
+
+    private function evaluate_past_quiz_times($dfn){
+        return [];
+    }
+
+    private function evaluate_past_quiz_time($dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_time($dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_score($dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_score_gain($dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_auto_correct($dfn){
+        return 0;
+    }
+
+    private function evaluate_quiz_correct_run($dfn){
+        return 0;
+    }
+
+    //-------------------------------------------------------------------------
+    // data accessors
 
 //     public function get_stats(){
 //         if (! $this->stats){

@@ -67,11 +67,5 @@ function drawGauge() {
         var timeFormatted = minutesFormatted + ':' + secondsFormatted;
         data.setFormattedValue(0, 1, timeFormatted);
         chart.draw(data, options);
-
-//         // Stop the timer after more than 2700 seconds (45 minutes)
-//         if (value >= Math.round( 2 * bestTime ) * 60 ) {
-//             clearInterval(timerId);
-//         }
-//
     }, 1000);
 }

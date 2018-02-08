@@ -41,16 +41,16 @@ class motivator_goals extends motivator_base implements motivator {
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $courseconfig   = $env->get_course_config($this->get_short_name(), $coursename);
-        $coursedata     = $env->get_course_state_data($courseconfig, $coursename);
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         $havechanges = false;
         $goalhtml = '';
-        foreach ($courseconfig as $element){
+        foreach ($ctxtconfig as $element){
             $dataname = $coursename . '/' . array_keys($element['stats'])[0];
-            if (array_key_exists($dataname,$coursedata)){
-                $statevalue = $coursedata[$dataname];
+            if (array_key_exists($dataname,$ctxtdata)){
+                $statevalue = $ctxtdata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
                     $cssclasses     = 'ludi-done ludi-new';
