@@ -24,72 +24,80 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
-require_once __DIR__ . '/log_miner_base.class.php';
+require_once dirname(__DIR__) . '/classes/base_classes/stat_mine_base.class.php';
 
-class log_miner_course extends log_miner_base {
+class stat_mine_course extends stat_mine_base {
 
-    protected function evaluate_stat($env, $course, $dfn){
+    public function evaluate_stat($env, $coursename, $sectionid, $key, $dfn){
         $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
         switch($dfn['type']){
-
-        // course stats
-        case 'course_progress':         return $this->evaluate_course_progress($course, $dfn);
-        case 'course_complete':         return $this->evaluate_course_complete($course, $dfn);
-        case 'course_score':            return $this->evaluate_course_score($course, $dfn);
-        case 'best_course_score':       return $this->evaluate_best_course_score($course, $dfn);
-        case 'average_course_score':    return $this->evaluate_average_course_score($course, $dfn);
-        case 'course_score_rank':       return $this->evaluate_course_score_rank($course, $dfn);
-        case 'course_score_old_rank':   return $this->evaluate_course_score_old_rank($course, $dfn);
-        case 'course_scored_users':     return $this->evaluate_course_scored_users($course, $dfn);
-        case 'course_auto_correct':     return $this->evaluate_course_auto_correct($course, $dfn);
-        case 'course_correct_run':      return $this->evaluate_course_correct_run($course, $dfn);
-
-        default:
-            $env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
+        case 'course_progress':         return $this->evaluate_course_progress($env, $course, $dfn);
+        case 'course_complete':         return $this->evaluate_course_complete($env, $course, $dfn);
+        case 'course_score':            return $this->evaluate_course_score($env, $course, $dfn);
+        case 'best_course_score':       return $this->evaluate_best_course_score($env, $course, $dfn);
+        case 'average_course_score':    return $this->evaluate_average_course_score($env, $course, $dfn);
+        case 'course_score_rank':       return $this->evaluate_course_score_rank($env, $course, $dfn);
+        case 'course_score_old_rank':   return $this->evaluate_course_score_old_rank($env, $course, $dfn);
+        case 'course_scored_users':     return $this->evaluate_course_scored_users($env, $course, $dfn);
+        case 'course_auto_correct':     return $this->evaluate_course_auto_correct($env, $course, $dfn);
+        case 'course_correct_run':      return $this->evaluate_course_correct_run($env, $course, $dfn);
         }
+
+        // if no match was found then return null to signify that this one was not for us
+        return null;
     }
 
 
     //-------------------------------------------------------------------------
     // course stats
 
-    private function evaluate_course_progress($course, $dfn){
+    private function evaluate_course_progress($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_complete($course, $dfn){
+    private function evaluate_course_complete($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_score($course, $dfn){
+    private function evaluate_course_score($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_best_course_score($course, $dfn){
+    private function evaluate_best_course_score($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_average_course_score($course, $dfn){
+    private function evaluate_average_course_score($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_score_rank($course, $dfn){
+    private function evaluate_course_score_rank($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_score_old_rank($course, $dfn){
+    private function evaluate_course_score_old_rank($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_scored_users($course, $dfn){
+    private function evaluate_course_scored_users($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_auto_correct($course, $dfn){
+    private function evaluate_course_auto_correct($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 
-    private function evaluate_course_correct_run($course, $dfn){
+    private function evaluate_course_correct_run($env, $course, $dfn){
+        $datamine = $env->get_data_mine();
         return 0;
     }
 }

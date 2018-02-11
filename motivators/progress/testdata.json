@@ -16,22 +16,22 @@
                 "global_background_images": [
                     "arbre_troncs.svg"
                 ],
-                "global_course_images": [
-                    "arbre_branche_01.svg",
-                    "arbre_branche_02.svg",
-                    "arbre_branche_03.svg",
-                    "arbre_branche_04.svg",
-                    "arbre_branche_05.svg",
-                    "arbre_branche_06.svg",
-                    "arbre_branche_07.svg",
-                    "arbre_branche_08.svg",
-                    "arbre_branche_09.svg",
-                    "arbre_branche_10.svg",
-                    "arbre_branche_11.svg",
-                    "arbre_branche_12.svg",
-                    "arbre_branche_13.svg",
-                    "arbre_branche_14.svg"
-                ],
+                "global_course_images": {
+                    "Ludi01#1": "arbre_branche_01.svg",
+                    "Ludi02#1": "arbre_branche_02.svg",
+                    "Ludi03#1": "arbre_branche_03.svg",
+                    "Ludi03#2": "arbre_branche_04.svg",
+                    "Ludi03#3": "arbre_branche_05.svg",
+                    "Ludi04#1": "arbre_branche_06.svg",
+                    "Ludi05#1": "arbre_branche_07.svg",
+                    "Ludi06#1": "arbre_branche_08.svg",
+                    "Ludi07#1": "arbre_branche_09.svg",
+                    "Ludi08#1": "arbre_branche_10.svg",
+                    "Ludi09#1": "arbre_branche_11.svg",
+                    "Ludi10#1": "arbre_branche_12.svg",
+                    "Ludi11#1": "arbre_branche_13.svg",
+                    "Ludi12#1": "arbre_branche_14.svg"
+                },
                 "local_course_images": [
                     "branche_1.svg",
                     "branche_2.svg",
@@ -43,52 +43,52 @@
     },
 
     "fullpreset":{
-        "Single-0":     { "Ludi01/progress":  10 },
-        "Single-10":    { "Ludi01/progress":  10 },
-        "Single-20":    { "Ludi01/progress":  20 },
-        "Single-30":    { "Ludi01/progress":  30 },
-        "Single-40":    { "Ludi01/progress":  40 },
-        "Single-50":    { "Ludi01/progress":  50 },
-        "Single-60":    { "Ludi01/progress":  60 },
-        "Single-70":    { "Ludi01/progress":  70 },
-        "Single-80":    { "Ludi01/progress":  80 },
-        "Single-90":    { "Ludi01/progress":  90 },
-        "Single-100":   { "Ludi01/progress": 100 },
+        "Single-0":     { "Ludi01#1/progress":  10 },
+        "Single-10":    { "Ludi01#1/progress":  10 },
+        "Single-20":    { "Ludi01#1/progress":  20 },
+        "Single-30":    { "Ludi01#1/progress":  30 },
+        "Single-40":    { "Ludi01#1/progress":  40 },
+        "Single-50":    { "Ludi01#1/progress":  50 },
+        "Single-60":    { "Ludi01#1/progress":  60 },
+        "Single-70":    { "Ludi01#1/progress":  70 },
+        "Single-80":    { "Ludi01#1/progress":  80 },
+        "Single-90":    { "Ludi01#1/progress":  90 },
+        "Single-100":   { "Ludi01#1/progress": 100 },
 
         "Five-Poor":      {
-            "Ludi01/progress": 20, "Ludi02/progress": 30, "Ludi03/progress": 50, "Ludi04/progress": 20, "Ludi05/progress": 30
+            "Ludi01#1/progress": 20, "Ludi02#1/progress": 30, "Ludi03#1/progress": 50, "Ludi04#1/progress": 20, "Ludi05#1/progress": 30
         },
 
         "Five-Fair":      {
-            "Ludi01/progress": 20, "Ludi02/progress": 50, "Ludi03/progress": 70, "Ludi04/progress": 30, "Ludi05/progress": 60
+            "Ludi01#1/progress": 20, "Ludi02#1/progress": 50, "Ludi03#1/progress": 70, "Ludi04#1/progress": 30, "Ludi05#1/progress": 60
         },
 
         "Five-Strong":      {
-            "Ludi01/progress": 80, "Ludi02/progress": 70, "Ludi03/progress": 50, "Ludi04/progress": 80, "Ludi05/progress": 70
+            "Ludi01#1/progress": 80, "Ludi02#1/progress": 70, "Ludi03#1/progress": 50, "Ludi04#1/progress": 80, "Ludi05#1/progress": 70
         },
 
         "Set-25":      {
-            "Ludi01/progress": 25, "Ludi02/progress": 25, "Ludi03/progress": 25, "Ludi04/progress": 25, "Ludi05/progress": 25,
-            "Ludi06/progress": 25, "Ludi07/progress": 25, "Ludi08/progress": 25, "Ludi09/progress": 25, "Ludi10/progress": 25,
-            "Ludi11/progress": 25, "Ludi12/progress": 25, "Ludi13/progress": 25, "Ludi14/progress": 25
+            "Ludi01#1/progress": 25, "Ludi02#1/progress": 25, "Ludi03#1/progress": 25, "Ludi04#1/progress": 25, "Ludi05#1/progress": 25,
+            "Ludi06#1/progress": 25, "Ludi07#1/progress": 25, "Ludi08#1/progress": 25, "Ludi09#1/progress": 25, "Ludi10#1/progress": 25,
+            "Ludi11#1/progress": 25, "Ludi12#1/progress": 25, "Ludi13#1/progress": 25, "Ludi14#1/progress": 25
         },
 
         "Set-50":      {
-            "Ludi01/progress": 50, "Ludi02/progress": 50, "Ludi03/progress": 50, "Ludi04/progress": 50, "Ludi05/progress": 50,
-            "Ludi06/progress": 50, "Ludi07/progress": 50, "Ludi08/progress": 50, "Ludi09/progress": 50, "Ludi10/progress": 50,
-            "Ludi11/progress": 50, "Ludi12/progress": 50, "Ludi13/progress": 50, "Ludi14/progress": 50
+            "Ludi01#1/progress": 50, "Ludi02#1/progress": 50, "Ludi03#1/progress": 50, "Ludi04#1/progress": 50, "Ludi05#1/progress": 50,
+            "Ludi06#1/progress": 50, "Ludi07#1/progress": 50, "Ludi08#1/progress": 50, "Ludi09#1/progress": 50, "Ludi10#1/progress": 50,
+            "Ludi11#1/progress": 50, "Ludi12#1/progress": 50, "Ludi13#1/progress": 50, "Ludi14#1/progress": 50
         },
 
         "Set-75":      {
-            "Ludi01/progress": 75, "Ludi02/progress": 75, "Ludi03/progress": 75, "Ludi04/progress": 75, "Ludi05/progress": 75,
-            "Ludi06/progress": 75, "Ludi07/progress": 75, "Ludi08/progress": 75, "Ludi09/progress": 75, "Ludi10/progress": 75,
-            "Ludi11/progress": 75, "Ludi12/progress": 75, "Ludi13/progress": 75, "Ludi14/progress": 75
+            "Ludi01#1/progress": 75, "Ludi02#1/progress": 75, "Ludi03#1/progress": 75, "Ludi04#1/progress": 75, "Ludi05#1/progress": 75,
+            "Ludi06#1/progress": 75, "Ludi07#1/progress": 75, "Ludi08#1/progress": 75, "Ludi09#1/progress": 75, "Ludi10#1/progress": 75,
+            "Ludi11#1/progress": 75, "Ludi12#1/progress": 75, "Ludi13#1/progress": 75, "Ludi14#1/progress": 75
         },
 
         "Set-100":      {
-            "Ludi01/progress": 100, "Ludi02/progress": 100, "Ludi03/progress": 100, "Ludi04/progress": 100, "Ludi05/progress": 100,
-            "Ludi06/progress": 100, "Ludi07/progress": 100, "Ludi08/progress": 100, "Ludi09/progress": 100, "Ludi10/progress": 100,
-            "Ludi11/progress": 100, "Ludi12/progress": 100, "Ludi13/progress": 100, "Ludi14/progress": 100
+            "Ludi01#1/progress": 100, "Ludi02#1/progress": 100, "Ludi03#1/progress": 100, "Ludi04#1/progress": 100, "Ludi05#1/progress": 100,
+            "Ludi06#1/progress": 100, "Ludi07#1/progress": 100, "Ludi08#1/progress": 100, "Ludi09#1/progress": 100, "Ludi10#1/progress": 100,
+            "Ludi11#1/progress": 100, "Ludi12#1/progress": 100, "Ludi13#1/progress": 100, "Ludi14#1/progress": 100
         }
     },
 

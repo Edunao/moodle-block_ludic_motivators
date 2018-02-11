@@ -23,9 +23,9 @@
 
 namespace block_ludic_motivators;
 
-require_once dirname(dirname(__DIR__)) . '/classes/motivators/motivator_base.class.php';
+require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator_base.class.php';
 
-class motivator_avatar extends motivator_base implements motivator {
+class motivator_avatar extends motivator_base implements i_motivator {
 
     public function get_loca_strings(){
         return [

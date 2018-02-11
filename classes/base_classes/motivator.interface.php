@@ -28,7 +28,7 @@ define('block_ludic_motivators\STATE_NOT_ACHIEVED', 0);
 define('block_ludic_motivators\STATE_ACHIEVED', 1);
 define('block_ludic_motivators\STATE_JUST_ACHIEVED', 2);
 
-interface motivator {
+interface i_motivator {
     public function get_loca_strings();
     public function render($env);
 }

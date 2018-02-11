@@ -29,72 +29,81 @@ class stat_mine{
     private $instances = [];
 
     public function get_global_state_data($env, $config){
-        $mines = get_instances();
+        $mines = $this->get_instances();
         $result=[];
 
         // for each configuration item
         foreach ($config as $element){
-            $elementcourse = $element['course'];
-            if (array_key_exists('stats', $element)){
+            list($elementcourse, $elementsection) = explode('#', $element['course']);
+            if (! array_key_exists('stats', $element)){
+                continue;
+            }
 
-                // for each stat required by the configuration item
-                foreach ($element['stats'] as $key => $dfn){
+            // for each stat required by the configuration item
+            foreach ($element['stats'] as $key => $dfn){
 
-                    // for each stat evaluator
-                    foreach ($mines as $mine){
-                        $statvlaue = $mine->evaluate_stat($elementcourse, $dfn);
+                // for each stat evaluator
+                foreach ($mines as $mineclass => $mine){
+                    $statvlaue = $mine->evaluate_stat($env, $elementcourse, $elementsection, $key, $dfn);
 
-                        // if the evaluator gave us a value for the stat then use it (otherwise iterate)
-                        if ($statvlaue !== null){
-                            $resultkey = $elementcourse . '/' . $key;
-                            $result[$resultkey] = $statvlaue;
-                            continue 2;
-                        }
+                    // if the evaluator gave us a value for the stat then use it (otherwise iterate)
+                    if ($statvlaue !== null){
+                        $resultkey = $element['course'] . '/' . $key;
+                        $result[$resultkey] = $statvlaue;
+                        continue 2;
                     }
-
-                    // if no match was found for the stat that we're trying to evaluate then cry about it
-                    $env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
                 }
+
+                // if no match was found for the stat that we're trying to evaluate then cry about it
+                $env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
             }
         }
 
         return $result;
     }
 
-    public function get_contextual_state_data($env, $config, $coursename){
-        $mines = self::get_instances();
+    public function get_contextual_state_data($env, $config, $coursename, $sectionid){
+        $mines = $this->get_instances();
         $result=[];
 
         // for each configuration item
         foreach ($config as $element){
-            $elementcourse = ($element['course'] == '*') ? $coursename : $element['course'];
-            if (array_key_exists('stats', $element)){
+            if (! array_key_exists('stats', $element)){
+                continue;
+            }
+            if ($element['course'] == '*'){
+                $elementcourse  = $coursename;
+                $elementsection = null;
+            } else if ($element['course'] == '*#*'){
+                $elementcourse  = $coursename;
+                $elementsection = $sectionid;
+            } else {
+                list($elementcourse, $elementsection) = explode('#', $element['course']);
+            }
+            // for each stat required by the configuration item
+            foreach ($element['stats'] as $key => $dfn){
 
-                // for each stat required by the configuration item
-                foreach ($element['stats'] as $key => $dfn){
+                // for each stat evaluator
+                foreach ($mines as $mineclass => $mine){
+                    $statvlaue = $mine->evaluate_stat($env, $elementcourse, $elementsection, $key, $dfn);
 
-                    // for each stat evaluator
-                    foreach ($mines as $mine){
-                        $statvlaue = $mine->evaluate_stat($elementcourse, $dfn);
-
-                        // if the evaluator gave us a value for the stat then use it (otherwise iterate)
-                        if ($statvlaue !== null){
-                            $resultkey = $elementcourse . '/' . $key;
-                            $result[$resultkey] = $statvlaue;
-                            continue 2;
-                        }
+                    // if the evaluator gave us a value for the stat then use it (otherwise iterate)
+                    if ($statvlaue !== null){
+                        $resultkey = $elementcourse . ($elementsection ? "#$elementsection" : '') . '/' . $key;
+                        $result[$resultkey] = $statvlaue;
+                        continue 2;
                     }
-
-                    // if no match was found for the stat that we're trying to evaluate then cry about it
-                    $env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
                 }
+
+                // if no match was found for the stat that we're trying to evaluate then cry about it
+                $env->bomb("Unrecognised type in stats definition: " . json_encode($dfn));
             }
         }
 
         return $result;
     }
 
-    protected static function get_instances() {
+    protected function get_instances() {
         // if we already have the instances that we need then just return them
         if (!empty($this->instances)){
             return $this->instances;
@@ -108,7 +117,7 @@ class stat_mine{
         // return an array of new mine instances
         foreach (self::$mineclasses as $classname){
             $mine = new $classname;
-            $this->instances[] = $mine;
+            $this->instances[$classname] = $mine;
         }
         return $this->instances;
     }
@@ -118,11 +127,12 @@ class stat_mine{
         $filespec   = $rootpath . '/stat_mine_*.class.php';
         $srcfiles   = glob($filespec);
         foreach ($srcfiles as $srcfile) {
-            $classname = preg_replace('%.*/(.*).php%', '${1}', $srcfile);
+            $classname = 'block_ludic_motivators\\' . preg_replace('%.*/(.*).class.php%', '${1}', $srcfile);
 
-            // try loading the source file and check that it includes the log mine class that we're expecting
+            // try loading the source file and check that it includes the stat mine class that we're expecting
             require_once $srcfile;
             if (!class_exists($classname)){
+                // echo "Skipping: $classname<br>";
                 continue;
             }
 
@@ -132,7 +142,7 @@ class stat_mine{
 
         // sanity check
         if (!self::$mineclasses){
-            throw new \Excpetion('No log mine types found!');
+            throw new \Exception('No stat mine types found!');
         }
     }
 }

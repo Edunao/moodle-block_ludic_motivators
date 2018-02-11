@@ -23,11 +23,11 @@
 
 namespace block_ludic_motivators;
 
-require_once dirname(dirname(__DIR__)) . '/classes/motivators/motivator.interface.php';
-require_once dirname(dirname(__DIR__)) . '/classes/motivators/motivator_base.class.php';
+require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator.interface.php';
+require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator_base.class.php';
 require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
-class motivator_progress extends motivator_base implements motivator {
+class motivator_progress extends motivator_base implements i_motivator {
 
     public function get_loca_strings(){
         return [
@@ -53,15 +53,17 @@ class motivator_progress extends motivator_base implements motivator {
         $images         = [];
         $backgrounds    = [];
 
-        // lookup the current course to see if we're in a tracked course page or not
+        // lookup the current course & section to see if we're in a tracked course page or not
         $coursename     = $env->get_course_name();
         $courseindex    = array_search($coursename, $courses);
+        $sectionid      = ($courseindex === false) ? 0 : $env->get_section_id();
 
-        // deal with the in-course view
-        if ($courseindex !== false){
-            // lookup and evaluate the course configuration
-            $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
-            $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        if ($sectionid){
+            // deal with the detail view ...
+
+            // lookup and evaluate the contextual configuration
+            $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionid);
+            $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionid);
             $progress       = $ctxtdata[$coursename . '/current_progress'];
 
             // determine the local image file name
@@ -82,12 +84,12 @@ class motivator_progress extends motivator_base implements motivator {
             // store away the jsdata and image list
             $images = ['ludi_course_image' => $localimage];
             $jsdata = ['ludi_course_image' => $layername];
-        }
+        } else {
+            // deal with the global view ...
 
-        // deal with the out-of-course view
-        if ($courseindex === false){
             // lookup and evaluate the global configuration
             $globalconfig   = $env->get_global_config($this->get_short_name());
+print_object($globalconfig);
             $globaldata     = $env->get_global_state_data($globalconfig);
             $backgrounds    = $systemconfig['global_background_images'];
 

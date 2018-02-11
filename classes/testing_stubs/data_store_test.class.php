@@ -26,5 +26,5 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once __DIR__ . '/data_store.interface.php';
 
-class data_store_test implements data_store {
+class data_store_test implements i_data_store {
 }

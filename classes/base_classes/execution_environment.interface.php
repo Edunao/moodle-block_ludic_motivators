@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 *  The goal of this class is to provide issolation from the outside world.
 *  It should be possible to implement the different units behind this class as stubs for testing purposes
 */
-interface execution_environment{
+interface i_execution_environment{
     //-------------------------------------------------------------------------
     // logging and error management
 
@@ -40,6 +40,7 @@ interface execution_environment{
 
     public function get_userid();
     public function get_course_name();
+    public function is_page_type_in($pagetypes);
 
     //-------------------------------------------------------------------------
     // Motivator management
@@ -57,6 +58,7 @@ interface execution_environment{
     //-------------------------------------------------------------------------
     // Evaluation of stats and suchlike for use by motivators
 
+    public function get_data_mine();
     public function get_global_state_data($config);
     public function get_contextual_state_data($config, $coursename);
 

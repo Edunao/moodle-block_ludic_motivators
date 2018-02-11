@@ -24,7 +24,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once __DIR__ . '/classes/motivators.class.php';
-require_once __DIR__ . '/classes/execution_environment/execution_environment_mdl.class.php';
+require_once __DIR__ . '/classes/execution_environment.class.php';
 
 use \block_ludic_motivators\motivators;
 
@@ -82,6 +82,9 @@ class block_ludic_motivators extends block_base {
             'init',
             $jsdata
         );
+
+        // flush any environment changes to the database
+        $env->get_data_mine()->flush_changes_to_database();
     }
 
     public function get_content() {
@@ -126,6 +129,9 @@ class block_ludic_motivators extends block_base {
             $result->text .= $this->get_content_default($env, $motivator);
         }
 
+        // flush any environment changes
+        $env->get_data_mine()->flush_changes_to_database();
+
         // cache the result for reuse as required and return it
         $this->content = $result;
         return $result;
@@ -147,7 +153,7 @@ class block_ludic_motivators extends block_base {
         if (!$this->env){
             global $USER;
             $userid = optional_param('userid', $USER->id, PARAM_INT);
-            $this->env = new \block_ludic_motivators\execution_environment_mdl($userid, $this->page, $this->testmode);
+            $this->env = new \block_ludic_motivators\execution_environment($userid, $this->page, $this->testmode);
         }
         return $this->env;
     }

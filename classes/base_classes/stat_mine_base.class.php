@@ -24,7 +24,6 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
-interface log_miner{
-    public function get_global_state_data($env, $config);
-    public function get_contextual_state_data($env, $config, $coursename);
+abstract class stat_mine_base{
+    abstract public function evaluate_stat($env, $coursename, $sectionid, $key, $dfn);
 }

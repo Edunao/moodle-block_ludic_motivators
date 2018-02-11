@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 *  The goal of this class is to provide issolation from the outside world.
 *  It should be possible to implement the different units behind this class as stubs for testing purposes
 */
-class execution_environment_stub implements execution_environment{
+class execution_environment_stub implements i_execution_environment{
     //-------------------------------------------------------------------------
     // logging and error management
 

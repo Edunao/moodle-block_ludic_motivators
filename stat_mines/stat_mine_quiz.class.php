@@ -24,20 +24,20 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
-require_once __DIR__ . '/log_miner_base.class.php';
+require_once dirname(__DIR__) . '/classes/base_classes/stat_mine_base.class.php';
 
-class log_miner_quiz extends log_miner_base {
+class stat_mine_quiz extends stat_mine_base {
 
-    protected function evaluate_stat($env, $course, $dfn){
+    public function evaluate_stat($env, $coursename, $sectionid, $key, $dfn){
         $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
         switch($dfn['type']){
-        case 'past_quiz_times':         return $this->evaluate_past_quiz_times($dfn);
-        case 'past_quiz_time':          return $this->evaluate_past_quiz_time($dfn);
-        case 'quiz_time':               return $this->evaluate_quiz_time($dfn);
-        case 'quiz_score':              return $this->evaluate_quiz_score($dfn);
-        case 'quiz_score_gain':         return $this->evaluate_quiz_score_gain($dfn);
-        case 'quiz_auto_correct':       return $this->evaluate_quiz_auto_correct($dfn);
-        case 'quiz_correct_run':        return $this->evaluate_quiz_correct_run($dfn);
+        case 'past_quiz_times':         return $this->evaluate_past_quiz_times($env, $dfn);
+        case 'past_quiz_time':          return $this->evaluate_past_quiz_time($env, $dfn);
+        case 'quiz_time':               return $this->evaluate_quiz_time($env, $dfn);
+        case 'quiz_score':              return $this->evaluate_quiz_score($env, $dfn);
+        case 'quiz_score_gain':         return $this->evaluate_quiz_score_gain($env, $dfn);
+        case 'quiz_auto_correct':       return $this->evaluate_quiz_auto_correct($env, $dfn);
+        case 'quiz_correct_run':        return $this->evaluate_quiz_correct_run($env, $dfn);
         }
 
         // if no match was found then return null to signify that this one was not for us
@@ -48,37 +48,83 @@ class log_miner_quiz extends log_miner_base {
     //-------------------------------------------------------------------------
     // quiz stats
 
-    private function evaluate_past_quiz_times($dfn){
+    /**
+    * @return vector of past attempt times for the given quiz
+    */
+    private function evaluate_past_quiz_times($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_attempt_times($userid);
         return [];
     }
 
-    private function evaluate_past_quiz_time($dfn){
+    /**
+    * @return nth past attempt times for the given quiz, where 'n' counts backwards in time, so n=1 is most recent past attempt
+    */
+    private function evaluate_past_quiz_time($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_attempt_times($userid);
         return 0;
     }
 
-    private function evaluate_quiz_time($dfn){
+    /**
+    * @return time in seconds since the start of the current quiz attempt
+    */
+    private function evaluate_quiz_time($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_attempt_times($userid);
         return 0;
     }
 
-    private function evaluate_quiz_score($dfn){
+    /**
+    * @return current quiz score
+    */
+    private function evaluate_quiz_score($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_question_stats($userid);
         return 0;
     }
 
-    private function evaluate_quiz_score_gain($dfn){
+    /**
+    * @return quiz points acquired since last check
+    */
+    private function evaluate_quiz_score_gain($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_question_stats($userid);
         return 0;
     }
 
-    private function evaluate_quiz_auto_correct($dfn){
+    /**
+    * @return true if the student has auto-corrrected themself in the current quiz
+    */
+    private function evaluate_quiz_auto_correct($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_question_stats($userid);
         return 0;
     }
 
-    private function evaluate_quiz_correct_run($dfn){
+    /**
+    * @return true if the student has complteed the quiz with correct answers to all questions on the first attempt
+    */
+    private function evaluate_quiz_perfect($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_question_stats($userid);
         return 0;
     }
 
-
-    //-------------------------------------------------------------------------
-    // quiz data fetching
-
-
+    /**
+    * @return true if the student has completed a given number of questions in a run correctly, without a single error
+    */
+    private function evaluate_quiz_correct_run($env, $dfn){
+        $datamine       = $env->get_data_mine();
+        $userid         = $env->get_userid();
+        $data           = $datamine->get_quiz_question_stats($userid);
+        return 0;
+    }
 }

@@ -24,20 +24,23 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
-require_once __DIR__ . '/execution_environment.interface.php';
-require_once dirname(__DIR__) . '/log_miner/log_miner_mdl.class.php';
+require_once __DIR__ . '/base_classes/execution_environment.interface.php';
+require_once __DIR__ . '/stat_mine.class.php';
+require_once __DIR__ . '/data_mine.class.php';
 
 /**
 *  The goal of this class is to provide issolation from the outside world.
 *  It should be possible to implement the different units behind this class as stubs for testing purposes
 */
-class execution_environment_mdl implements execution_environment{
+class execution_environment implements i_execution_environment{
 
-    private $user;
-    private $page;
-    private $courseid;
+    private $user               = null;
+    private $page               = null;
+    private $courseid           = null;
+    private $sectionid          = null;
     private $currentmotivator   = null;
-    private $miner;
+    private $datamine           = null;
+    private $statmine           = null;
     private $output             = '';
     private $jsinitdata         = [];
     private $blockclasses       = 'ludi-block';
@@ -45,12 +48,12 @@ class execution_environment_mdl implements execution_environment{
     private $presets            = [];
 
     public function __construct($userid, \moodle_page $page, $testmode) {
-        global $DB, $CFG;
+        global $DB, $CFG, $USER;
 
-        $this->user         = $DB->get_record('user', array('id' => $userid));
+        $this->user         = ($userid === $USER->id) ? $USER : $DB->get_record('user', array('id' => $userid));
         $this->page         = $page;
         $this->coursename   = $page->course->shortname;
-        $this->miner        = new log_miner_mdl($this);
+        $this->statmine     = new stat_mine($this);
 
         // load global configuration data
         $configfile     = $CFG->dataroot . '/filedir/ludic-motivators-config.json';
@@ -64,8 +67,8 @@ class execution_environment_mdl implements execution_environment{
 
         // determine names of motivator's config files
         $motivator      = $this->get_current_motivator();
-        $configfile     = dirname(dirname(__DIR__)) . '/motivators/' . $motivator->get_short_name() . '/config.json';
-        $testdatafile   = dirname(dirname(__DIR__)) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
+        $configfile     = dirname(__DIR__) . '/motivators/' . $motivator->get_short_name() . '/config.json';
+        $testdatafile   = dirname(__DIR__) . '/motivators/' . $motivator->get_short_name() . '/testdata.json';
 
         // load motivator configuration data
         if (file_exists($configfile)){
@@ -97,6 +100,50 @@ class execution_environment_mdl implements execution_environment{
                 }
             }
         }
+// foreach (['activityname', 'activityrecord', 'context', 'pagetype'] as $prop){
+//     echo "$prop : ";
+//     print_object($page->$prop);
+// }
+        /*
+            NOTE: $page contains magic getters for:
+                * activityname              // like 'quiz'
+                * activityrecord            // actually the module { sumgrades, }
+                . alternateversions
+                . blockmanipulations
+                . blocks
+                . bodyclasses
+                . bodyid
+                . button
+                . cacheable
+                * categories                // array on category objects in top to bottom order
+                * category                  // the category object
+                * cm                        // the course module
+                * context
+                * course
+                . devicetypeinuse
+                . docspath
+                . flatnav
+                . focuscontrol
+                . headerprinted
+                . heading
+                . headingmenu
+                . options
+                . navbar
+                . navigation
+                . opencontainers
+                . pagelayout
+                * pagetype                  // like 'my-index', 'course-view-topics', 'mod-quiz-view', 'mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-review'
+                . periodicrefreshdelay
+                . requestip
+                . requestorigin
+                . requires
+                . settingsnav
+                . state
+                . subpage
+                . theme
+                . title
+                . url
+        */
     }
 
     public function bomb($message){
@@ -115,6 +162,37 @@ class execution_environment_mdl implements execution_environment{
 
     public function get_course_name() {
         return $this->coursename;
+    }
+
+    public function is_page_type_in($pagetypes){
+        $currenttype = $this->page->pagetype;
+        foreach ($pagetypes as $type){
+            if ($type === $currenttype){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function get_section_id() {
+        // if we haven't got a stored section id then try generating one
+        if ($this->sectionid === null){
+            if ($this->page->pagetype == 'course-view-topics'){
+                // we're on a course view page and the course-relative section number is provided so lookup the real section id
+                global $DB;
+                $coursesection = optional_param('section',0,PARAM_INT);
+                $this->sectionid = $coursesection ? $DB->get_field('course_sections', 'id', ['course'=>$this->page->course->id,'section'=>$coursesection]) : 0;
+            } else if (isset($this->page->cm->section)) {
+                // we're in an activity that is declaring its section id so we're in luck
+                $this->sectionid = $this->page->cm->section;
+            } else {
+                // no luck so replace the null with a 0 to avoid wasting times on trying to re-evaluate next time round
+                $this->sectionid = 0;
+            }
+        }
+
+        // return the stored result
+        return $this->sectionid;
     }
 
     public function get_current_motivator(){
@@ -231,6 +309,13 @@ class execution_environment_mdl implements execution_environment{
         return $this->presets;
     }
 
+    public function get_data_mine(){
+        if (! $this->datamine){
+            $this->datamine = new data_mine;
+        }
+        return $this->datamine;
+    }
+
     public function get_global_state_data($config) {
         // lookout for overrides used for testing
         foreach (['preset', 'fullpreset'] as $overridename){
@@ -242,7 +327,7 @@ class execution_environment_mdl implements execution_environment{
             }
         }
         // default to calculated values
-        return $this->miner->get_global_state_data($config);
+        return $this->statmine->get_global_state_data($this, $config);
     }
 
     public function get_contextual_state_data($config, $coursename) {
@@ -262,7 +347,7 @@ class execution_environment_mdl implements execution_environment{
             }
         }
         // default to calculated values
-        return $this->miner->get_contextual_state_data($config, $coursename);
+        return $this->statmine->get_contextual_state_data($this, $config, $coursename);
     }
 
     private function read_motivator_selection(){

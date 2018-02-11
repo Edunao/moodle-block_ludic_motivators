@@ -8,9 +8,9 @@
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" SEQUENCE="true"/>
                 <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="activity" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="achievement" TYPE="char" LENGTH="64" NOTNULL="true" COMMENT="Achievement signature"/>
+                <!--FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/-->
+                <!--FIELD NAME="activity" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/-->
+                <FIELD NAME="achievement" TYPE="char" LENGTH="100" NOTNULL="true" COMMENT="Achievement signature"/>
                 <FIELD NAME="value" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>
@@ -19,8 +19,8 @@
             </KEYS>
             <INDEXES>
                 <INDEX NAME="user" UNIQUE="false" FIELDS="user"/>
-                <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
-                <INDEX NAME="courseuser" UNIQUE="false" FIELDS="user,course"/>
+                <!--INDEX NAME="course" UNIQUE="false" FIELDS="course"/-->
+                <!--INDEX NAME="courseuser" UNIQUE="false" FIELDS="user,course"/-->
             </INDEXES>
         </TABLE>
     </TABLES>
