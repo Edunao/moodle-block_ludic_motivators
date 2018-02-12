@@ -68,12 +68,12 @@ class stat_mine{
         return $result;
     }
 
-    public function get_contextual_state_data($env, $config, $coursename, $sectionid){
+    public function get_contextual_state_data($env, $config, $coursename, $sectionidx){
         $mines = $this->get_instances();
         $result=[];
 
         // for each configuration item
-        foreach ($config as $element){
+        foreach ($config as &$element){
             if (! array_key_exists('stats', $element)){
                 continue;
             }
@@ -82,7 +82,7 @@ class stat_mine{
                 $elementsection = null;
             } else if ($element['course'] == '*#*'){
                 $elementcourse  = $coursename;
-                $elementsection = $sectionid;
+                $elementsection = $sectionidx;
             } else {
                 list($elementcourse, $elementsection) = explode('#', $element['course']);
             }
@@ -95,7 +95,7 @@ class stat_mine{
 
                     // if the evaluator gave us a value for the stat then use it (otherwise iterate)
                     if ($statvlaue !== null){
-                        $resultkey = $elementcourse . ($elementsection ? "#$elementsection" : '') . '/' . $key;
+                        $resultkey = $elementcourse . (($elementsection > -1) ? "#$elementsection" : '') . '/' . $key;
                         $result[$resultkey] = $statvlaue;
                         continue 2;
                     }

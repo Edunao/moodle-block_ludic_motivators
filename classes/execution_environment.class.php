@@ -297,23 +297,32 @@ class execution_environment implements i_execution_environment{
 
     public function get_contextual_config($motivatorname, $coursename, $sectionidx){
         // check whether this is configured in the system as a wildcard course
-        $wildcard = array_key_exists($coursename, array_flip($this->config['courses'])) ? '*' : null;
+        $sectionkey = $coursename . '#' . $sectionidx;
+        $patterns = array_key_exists($coursename, array_flip($this->config['courses'])) ? ['*', '*#*', $coursename, $sectionkey] : [$coursename, $sectionkey];
 
         // filter the course list to match the requird motivator and course
         $result=[];
-        foreach ($this->config['elements'] as $item){
+        foreach ($this->config['elements'] as $idx => $item){
             // check for motivator mismatch
             if ($item['motivator']['type'] !== $motivatorname){
                 continue;
             }
 
             // check for course name missmatch
-            if ($item['course'] !== $coursename && $item['course'] !== ($coursename . '#' . $sectionidx) && $item['course'] !== $wildcard){
+            if (! array_key_exists($item['course'], array_flip($patterns))){
                 continue;
             }
 
             // add item to result
-            $result[] = $item;
+            $newitem = $item;
+            if ($newitem['course'][0] === '*' && array_key_exists('stats', $newitem)){
+                $newitem['stats'] = [];
+                foreach ($item['stats'] as $statid => &$stat){
+                    $newstatid = sprintf('%03d/%s', $idx, $statid);
+                    $newitem['stats'][$newstatid] = $stat;
+                }
+            }
+            $result[] = $newitem;
         }
         return $result;
     }

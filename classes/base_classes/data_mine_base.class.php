@@ -126,13 +126,13 @@ abstract class data_mine_base {
      * Section Context : get stats sbout all of the quizzes available and attempted by the user in the section
      * @return vector of { available score, attemps as vector of score }
      */
-    public function get_section_quiz_stats($userid, $sectionid){
+    public function get_section_quiz_stats($userid, $coursename, $sectionid){
         // generate an appropriate unique cache key
-        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $course . '#' . $sectionid;
+        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $coursename . '#' . $sectionid;
 
         // if the item doesn't exist yet in the cache then generate it and store it away
         if (! array_key_exists($cachekey, $this->cache)){
-            $this->cache[$cachekey] = $this->fetch_section_quiz_stats($userid, $sectionid);
+            $this->cache[$cachekey] = $this->fetch_section_quiz_stats($userid, $coursename, $sectionid);
         }
 
         // return the result
@@ -143,13 +143,13 @@ abstract class data_mine_base {
      * Section Context : get scores for all questions answered by the user in the current section in chronological order
      * @return vector of score-fraction
      */
-    public function get_section_answer_stats($userid, $sectionid){
+    public function get_section_answer_stats($userid, $coursename, $sectionid){
         // generate an appropriate unique cache key
-        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $course . '#' . $sectionid;
+        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $coursename . '#' . $sectionid;
 
         // if the item doesn't exist yet in the cache then generate it and store it away
         if (! array_key_exists($cachekey, $this->cache)){
-            $this->cache[$cachekey] = fetch_section_answer_stats($userid, $sectionid);
+            $this->cache[$cachekey] = $this->fetch_section_answer_stats($userid, $coursename, $sectionid);
         }
 
         // return the result
@@ -170,7 +170,7 @@ abstract class data_mine_base {
 
         // if the item doesn't exist yet in the cache then generate it and store it away
         if (! array_key_exists($cachekey, $this->cache)){
-            $this->cache[$cachekey] = fetch_global_section_progress($userid, $coursenames);
+            $this->cache[$cachekey] = $this->fetch_global_section_progress($userid, $coursenames);
         }
 
         // return the result

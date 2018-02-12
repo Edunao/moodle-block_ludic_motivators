@@ -25,12 +25,13 @@ namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
 require_once __DIR__ . '/base_classes/data_mine_base.class.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/question/engine/bank.php';
 
 class data_mine extends data_mine_base {
 
     private $achievements   = [];
-    private $fixedupgrades  = null;  // this value is null untill correctly initialised, after which it will be an array
-    private $rawludigrades  = null;  // this value is null untill correctly initialised, after which it will be an array
+    private $fixedupgrades  = [];  // array indexed by coursename#sectionidx
+    private $rawludigrades  = [];  // array indexed by coursename#sectionidx
 
     /**
      * Basics : flush changes to database (to be called at end of processing to allow inserts to ba batched and suchlike
@@ -45,7 +46,7 @@ class data_mine extends data_mine_base {
      */
     protected function fetch_quiz_question_stats($userid, $questionusageid){
         // fetch the latest grade set, calculating new grades as required
-        $ludigrades = fetch_raw_ludigrades($userid);
+        $ludigrades = $this->fetch_raw_ludigrades($userid);
 
         // compose and return the result
         $result = [];
@@ -277,7 +278,7 @@ class data_mine extends data_mine_base {
      */
     protected function fetch_section_answer_stats($userid, $course, $sectionid){
         // fetch the latest grade set, calculating new grades as required
-        $ludigrades = fetch_raw_ludigrades($userid);
+        $ludigrades = $this->fetch_raw_ludigrades($userid, $course, $sectionid);
 
         // construct and return the result
         $result = [];
@@ -315,7 +316,7 @@ class data_mine extends data_mine_base {
     }
 
 
-    private function fetch_raw_ludigrades($userid, $coursenames){
+    private function fetch_raw_ludigrades($userid, $coursename, $sectionidx){
         /*
             mysql> SELECT qasd.id, qas.state, qas.fraction, qasd.name, qasd.value
                 -> FROM mdl_modules m
@@ -372,8 +373,9 @@ class data_mine extends data_mine_base {
             +----+---------------+-----------+---------------+-------------+
         */
         // make sure the fetch is only run the once - this is a big query so not to be run more often thn necessary
-        if ($this->rawludigrades !== null){
-            return $this->rawludigrades;
+        $sectionkey = $coursename . '#' . $sectionidx;
+        if (array_key_exists($sectionkey, $this->rawludigrades)){
+            return $this->rawludigrades[$sectionkey];
         }
 
         // TODO : we should be organising the grades by course and verifying the overlap between courses already processed and courses requested
@@ -384,36 +386,39 @@ class data_mine extends data_mine_base {
         //  d. 2 requests come in for different courses
 
         // make sure that grade table has been fixed up as required
-        $this->fixup_ludigrades($userid);
+        $this->fixup_ludigrades($userid, $coursename, $sectionidx);
 
         // fetch the appropriate grade data from sql
-        $coursenamestr = '"' . join('","', $coursenames) . '"';
+        global $DB;
         $query = '
             SELECT qasd.id, c.shortname as coursename, qa.id, qa.questionusageid, qa.questionid, qa.maxmark as maxgrade, qasd.value as grade
             FROM {course} c
             JOIN {course_modules} cm ON cm.course = c.id
+            JOIN {course_sections} cs ON cs.id = cm.section
             JOIN {modules} m ON cm.module=m.id
             JOIN {context} ctxt ON ctxt.instanceid = cm.id AND ctxt.contextlevel = 70
             JOIN {question_usages} qu ON qu.contextid = ctxt.id
             JOIN {question_attempts} qa ON qa.questionusageid = qu.id
             JOIN {question_attempt_steps} qas ON qas.questionattemptid = qa.id AND qas.userid = :userid AND qas.state = "complete"
             JOIN {question_attempt_step_data} qasd ON qasd.attemptstepid = qas.id AND qasd.name = "-ludigrade"
-            WHERE m.name="quiz"
-            AND c.shortname in (' . $coursenamestr . ')
+            WHERE c.shortname=:course
+            AND cs.section=:section
+            AND m.name="quiz"
             ORDER BY qasd.id
         ';
-        $this->rawludigrades = $DB->get_records_sql($query,['userid'=>$userid]);
+        $this->rawludigrades[$sectionkey] = $DB->get_records_sql($query,['userid' => $userid, 'course' => $coursename, 'section' => $sectionidx]);
 
         // return the result
-        return $this->rawludigrades;
+        return $this->rawludigrades[$sectionkey];
     }
 
-    private function fixup_ludigrades($userid, $coursenames){
-        // make sure the fixup is only run the once - it's expensive and identifies the list of changes as an important side-effect
-        if ($this->fixedupgrades !== null){
-            return;
-        }
-        $this->fixedupgrades = [];
+    private function fixup_ludigrades($userid, $coursename, $sectionidx){
+echo __FUNCTION__ . "<br>";
+//         // make sure the fixup is only run the once - it's expensive and identifies the list of changes as an important side-effect
+//         if ($this->fixedupgrades !== null){
+//             return;
+//         }
+//         $this->fixedupgrades = [];
 
         // TODO : we should be organising the grades by course and verifying the overlap between courses already processed and courses requested
         // Typical use cases:
@@ -423,35 +428,43 @@ class data_mine extends data_mine_base {
         //  d. 2 requests come in for different courses
 
         // put in a database request fo the set of attempt step data fields for completed questions that have yet to be ludigraded
-        $coursenamestr = '"' . join('","', $coursenames) . '"';
+        global $DB;
         $query = '
-            SELECT qasd2.id, c.shortname as coursename, qa.questionid, qas.questionattemptid, qasd2.name, qasd2.value
-            FROM {course} c
-            JOIN {course_modules} cm ON cm.course = c.id
-            JOIN {modules} m ON cm.module=m.id
-            JOIN {context} ctxt ON ctxt.instanceid = cm.id AND ctxt.contextlevel=70
-            JOIN {question_usages} qu ON qu.contextid = ctxt.id
-            JOIN {question_attempts} qa ON qa.questionusageid = qu.id
-            JOIN {question_attempt_steps} qas ON qas.questionattemptid = qa.id AND qas.state="complete"
-            LEFT JOIN {question_attempt_step_data} qasd1 ON qasd1.attemptstepid=qas.id AND qasd1.name="-ludigrade"
-            JOIN {question_attempt_step_data} qasd2 ON qasd2.attemptstepid=qas.id
-            WHERE m.name="quiz"
-            AND c.shortname in (' . $coursenamestr . ')
-            AND qas.userid = :userid
-            AND qasd1.value is null
+            SELECT qasd.id, l.coursename, l.questionid, l.maxgrade, l.attemptstepid, qas.questionattemptid, qasd.name, qasd.value
+            FROM (
+                SELECT qa.id, c.shortname as coursename, qa.questionid, qa.maxmark as maxgrade, qas.id as attemptstepid
+                FROM {course} c
+                JOIN {course_modules} cm ON cm.course = c.id
+                JOIN {course_sections} cs ON cs.id = cm.section
+                JOIN {modules} m ON cm.module=m.id
+                JOIN {context} ctxt ON ctxt.instanceid = cm.id AND ctxt.contextlevel=70
+                JOIN {question_usages} qu ON qu.contextid = ctxt.id
+                JOIN {question_attempts} qa ON qa.questionusageid = qu.id
+                JOIN {question_attempt_steps} qas ON qas.questionattemptid = qa.id AND qas.state="complete"
+                LEFT JOIN {question_attempt_step_data} qasd ON qasd.attemptstepid=qas.id AND qasd.name="-ludigrade"
+                WHERE c.shortname=:course
+                AND cs.section=:section
+                AND m.name="quiz"
+                AND qas.userid = :userid
+                AND qasd.id is null
+                GROUP BY qa.id
+            ) l
+            JOIN {question_attempt_steps} qas ON qas.questionattemptid = l.id
+            JOIN {question_attempt_step_data} qasd ON qasd.attemptstepid=qas.id
             ORDER BY qas.id
         ';
-        $sqlresult = $DB->get_records_sql($query,['userid'=>$userid]);
+        $sqlresult = $DB->get_records_sql($query, ['userid'=>$userid, 'course' => $coursename, 'section' => $sectionidx]);
 
         // organise the data records by question attempt
         $attemptdata = [];
         $attemptrecords = [];
         foreach ($sqlresult as $record){
             // ignore non-question-type data
-            if ($item->name[0]===":") continue;
-            if ($item->name[0]==="-") continue;
+            if ($record->name[0]===":" || $record->name[0]==="-"){
+                continue;
+            }
             // store the field away as required
-            $attempt = $record->questionattemptid;
+            $attempt = $record->attemptstepid;
             if (!array_key_exists($attempt, $attemptdata)){
                 $attemptdata[$attempt] = [$record->name => $record->value];
                 $attemptrecords[$attempt] = $record;
@@ -464,12 +477,11 @@ class data_mine extends data_mine_base {
         $newrecords = [];
         foreach ($attemptdata as $attemptid => $qtdata){
             $questionid = $attemptrecords[$attemptid]->questionid;
-            $maxmark    = $attemptrecords[$attemptid]->maxmark;
+            $maxgrade   = $attemptrecords[$attemptid]->maxgrade;
 
             // calculate the score for the question
-            require_once __DIR__ . '/../../question/engine/bank.php';
-            $question       = question_bank::load_question($questionid);
-            $attemptstep    = new question_attempt_step($qtdata);
+            $question       = \question_bank::load_question($questionid);
+            $attemptstep    = new \question_attempt_step($qtdata);
             $question->apply_attempt_state($attemptstep);
             list($gradefraction, $gradestate) = $question->grade_response($qtdata);
             $newgrade = $gradefraction * $maxgrade;
@@ -487,7 +499,7 @@ class data_mine extends data_mine_base {
 
         // write any calculated scores back to the database
         if ($newrecords){
-            $DB->insert_records('question_attempt_step_data',$newrecords);
+            $DB->insert_records('question_attempt_step_data', $newrecords);
         }
     }
 

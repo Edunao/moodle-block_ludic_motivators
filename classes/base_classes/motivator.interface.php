@@ -24,6 +24,8 @@
 namespace block_ludic_motivators;
 defined('MOODLE_INTERNAL') || die();
 
+define('block_ludic_motivators\STATE_NO_LONGER_ACHIEVABLE', -2); // eg: perfect run no longer achievable as an error has been made
+define('block_ludic_motivators\STATE_NOT_YET_ACHIEVABLE', -1);   // eg: auto-correct not-yet available as no errors have been made
 define('block_ludic_motivators\STATE_NOT_ACHIEVED', 0);
 define('block_ludic_motivators\STATE_ACHIEVED', 1);
 define('block_ludic_motivators\STATE_JUST_ACHIEVED', 2);

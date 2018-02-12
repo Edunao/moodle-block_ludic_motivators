@@ -41,6 +41,7 @@ class stat_mine_section extends stat_mine_base {
         case 'section_scored_users':    return $this->evaluate_section_scored_users($env, $coursename, $sectionid, $key, $dfn);
         case 'section_auto_correct':    return $this->evaluate_section_auto_correct($env, $coursename, $sectionid, $key, $dfn);
         case 'section_correct_run':     return $this->evaluate_section_correct_run($env, $coursename, $sectionid, $key, $dfn);
+        case 'section_perfect':         return $this->evaluate_section_perfect($env, $coursename, $sectionid, $key, $dfn);
         }
 
         // if no match was found then return null to signify that this one was not for us
@@ -89,8 +90,8 @@ class stat_mine_section extends stat_mine_base {
             $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
             $progressValue  = (isset($data->maxgrade) && $data->maxgrade) ? ($data->grade * 100 / $data->maxgrade) : 0;
             if ( $progressValue >= $threshold ){
-                $result = 2;
-                $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, 1);
+                $result = STATE_JUST_ACHIEVED;
+                $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_ACHIEVED);
             }
         }
 
@@ -102,9 +103,9 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
@@ -113,9 +114,9 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
@@ -124,9 +125,9 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
@@ -135,9 +136,9 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
@@ -146,9 +147,9 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
@@ -157,9 +158,9 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
@@ -168,20 +169,53 @@ class stat_mine_section extends stat_mine_base {
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
 //         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+        $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
     }
 
     private function evaluate_section_correct_run($env, $coursename, $sectionid, $key, $dfn){
+        // sanity checks
+        foreach (['threshold'] as $fieldname){
+            $env->bomb_if(! array_key_exists($fieldname, $dfn), "Missing field: $fieldname IN " . json_encode($dfn));
+        }
+        $targetrunlength = $dfn['threshold'];
+
+        // lookup the achievement to see if it has already been met
+        $userid         = $env->get_userid();
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_ACHIEVED);
+
+        // if not previously achieved then check for progress
+        if ($result === STATE_NOT_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary'])){
+            // look for a long enough run
+            $grades = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
+            $count  = 0;
+            foreach ($grades as $grade){
+                if ($grade == 1){
+                    ++$count;
+                    if ($count >= $targetrunlength){
+                        $result = STATE_JUST_ACHIEVED;
+                        $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_ACHIEVED);
+                        break;
+                    }
+                } else {
+                    $count = 0;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    private function evaluate_section_perfect($env, $coursename, $sectionid, $key, $dfn){
         echo __FUNCTION__ . "($coursename, $sectionid, " . json_encode($dfn) . ')<br>';
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
-//         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
+        $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+print_object($data);
         return 0;
     }
 }

@@ -41,14 +41,17 @@ class motivator_goals extends motivator_base implements i_motivator {
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
-        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        $sectionidx     = $env->get_section_idx();
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
+echo "Data";
+print_object($ctxtdata);
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         $havechanges = false;
         $goalhtml = '';
         foreach ($ctxtconfig as $element){
-            $dataname = $coursename . '/' . array_keys($element['stats'])[0];
+            $dataname = $coursename . ($sectionidx > -1 ? "#$sectionidx": '') . '/' . (array_keys($element['stats'])[0]);
             if (array_key_exists($dataname,$ctxtdata)){
                 $statevalue = $ctxtdata[$dataname];
                 switch ($statevalue){
