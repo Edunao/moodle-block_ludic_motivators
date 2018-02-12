@@ -42,11 +42,10 @@ class motivator_progress extends motivator_base implements i_motivator {
         $systemconfig   = $env->get_motivator_config($this->get_short_name());
 
         // perform a few sanity tests on config data
-        $env->bomb_if(empty($courses),'No course list has been defined');
-        foreach(['course_layers', 'global_background_images', 'global_course_images', 'local_course_images'] as $nodename){
+        $env->bomb_if(empty($courses), 'No course list has been defined');
+        foreach(['course_layers', 'global_background_images', 'local_course_images'] as $nodename){
             $env->bomb_if(!isset($systemconfig[$nodename]),'Node not found in configuration: ' . $nodename);
         }
-        $env->bomb_if(count($systemconfig['global_course_images']) < count($courses), 'Too few global_course_image definitions found for course list');
 
         // prime the jsdata and images result containers
         $jsdata         = [];
@@ -56,51 +55,28 @@ class motivator_progress extends motivator_base implements i_motivator {
         // lookup the current course & section to see if we're in a tracked course page or not
         $coursename     = $env->get_course_name();
         $courseindex    = array_search($coursename, $courses);
-        $sectionid      = ($courseindex === false) ? 0 : $env->get_section_id();
+        $sectionidx     = ($courseindex === false) ? -1 : $env->get_section_idx();
 
-        if ($sectionid){
+        if ($sectionidx != -1){
             // deal with the detail view ...
 
-            // lookup and evaluate the contextual configuration
-            $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionid);
-            $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionid);
-            $progress       = $ctxtdata[$coursename . '/current_progress'];
-
-            // determine the local image file name
-            $localimages    = $systemconfig['local_course_images'];
-            $localimageidx  = $courseindex % count($localimages);
-            $localimage     = $localimages[$localimageidx];
-
-            // determine the progression step
-            $best       = -1;
-            $layername  = '';
-            foreach ($systemconfig['course_layers'] as $lyr => $threshold){
-                if ($threshold > $best && $threshold <= $progress){
-                    $best       = $threshold;
-                    $layername  = $lyr;
+            // use a do... while (false) loop to make a breakable code block
+            do {
+                // lookup and evaluate the contextual configuration
+                $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
+                $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
+                $statid         = $coursename . '#' . $sectionidx . '/progress';
+                if (!array_key_exists($statid, $ctxtdata)){
+                    // we're somewhere strange (like section 0) so give up trying to display the detailed view and request a global view instead
+                    $sectionidx = -1;
+                    break;
                 }
-            }
+                $progress       = $ctxtdata[$statid];
 
-            // store away the jsdata and image list
-            $images = ['ludi_course_image' => $localimage];
-            $jsdata = ['ludi_course_image' => $layername];
-        } else {
-            // deal with the global view ...
-
-            // lookup and evaluate the global configuration
-            $globalconfig   = $env->get_global_config($this->get_short_name());
-print_object($globalconfig);
-            $globaldata     = $env->get_global_state_data($globalconfig);
-            $backgrounds    = $systemconfig['global_background_images'];
-
-            // iterate over the
-            for ($i=0; $i < count($courses); ++$i){
-                // lookup the course basics
-                $course         = $courses[$i];
-                $progresskey    = $course . '/progress';
-                $progress       = array_key_exists($progresskey, $globaldata) ? $globaldata[$progresskey] : 0;
-                $courseimages   = $systemconfig['global_course_images'];
-                $courseimage    = $courseimages[$i];
+                // determine the local image file name
+                $localimages    = $systemconfig['local_course_images'];
+                $localimageidx  = $sectionidx % count($localimages);
+                $localimage     = $localimages[$localimageidx];
 
                 // determine the progression step
                 $best       = -1;
@@ -113,9 +89,45 @@ print_object($globalconfig);
                 }
 
                 // store away the jsdata and image list
-                $imageid = sprintf('ludi_progress_part_%02d', $i);
+                $images = ['ludi_course_image' => $localimage];
+                $jsdata = ['ludi_course_image' => $layername];
+            } while (false);
+        }
+
+        if ($sectionidx == -1){
+            // deal with the global view ...
+
+            // lookup and evaluate the global configuration
+            $globalconfig   = $env->get_global_config($this->get_short_name(), ['full_config' => true]);
+            $globaldata     = $env->get_global_state_data($globalconfig);
+            $backgrounds    = $systemconfig['global_background_images'];
+
+            // match up the config elements and state data
+            $htmlidx = 0;
+            foreach ($globalconfig as $element){
+                $dataname = $element['course'] . '/' . array_keys($element['stats'])[0];
+                if (! isset($globaldata[$dataname])){
+                    continue;
+                }
+                $progress       = $globaldata[$dataname];
+                $courseimage    = $element['motivator']['image'];
+
+                // determine the progression step
+                $best       = -1;
+                $layername  = '';
+                foreach ($systemconfig['course_layers'] as $lyr => $threshold){
+                    if ($threshold > $best && $threshold <= $progress){
+                        $best       = $threshold;
+                        $layername  = $lyr;
+                    }
+                }
+
+
+                // store away the jsdata and image list
+                $imageid = sprintf('ludi_progress_part_%02d', $htmlidx);
                 $images[$imageid] = $courseimage;
                 $jsdata[$imageid] = $layername;
+                ++$htmlidx;
             }
         }
 

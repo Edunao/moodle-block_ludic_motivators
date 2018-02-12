@@ -53,39 +53,44 @@ class stat_mine_section extends stat_mine_base {
     // section stats
 
     private function evaluate_section_progress($env, $coursename, $sectionid, $key, $dfn){
-        echo __FUNCTION__ . "($coursename, $sectionid, " . json_encode($dfn) . ')<br>';
-        $datamine       = $env->get_data_mine();
+        // lookupt the achievement value
         $userid         = $env->get_userid();
-//         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $sectionid);
-        return 0;
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $progress       = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, 0);
+
+        if ($env->is_page_type_in(['my-index', 'mod-quiz-review']) || $progress === null){
+            $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
+            $grade          = ($data? $data->grade: 0);
+            $maxgrade       = ($data? $data->maxgrade: 0);
+            $progress       = $maxgrade ? (int)(100 * $grade / $maxgrade) : 0;
+            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $progress);
+        }
+
+        return $progress;
     }
 
     private function evaluate_section_complete($env, $coursename, $sectionid, $key, $dfn){
-echo __FUNCTION__ . "($coursename, $sectionid, " . json_encode($dfn) . ')<br>';
-
         // sanity checks
         foreach (['threshold'] as $fieldname){
             $env->bomb_if(! array_key_exists($fieldname, $dfn), "Missing field: $fieldname IN " . json_encode($dfn));
         }
 
         // lookup the achievement to see if it has already been met
-        $userid     = $env->get_userid();
-        $datamine   = $env->get_data_mine();
-        $result     = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $key, 0);
+        $userid         = $env->get_userid();
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, 0);
 
         // if not previously achieved then check for progress
         if (! $result && $env->is_page_type_in(['my-index', 'mod-quiz-review'])){
             // lookup the data
             $threshold      = $dfn['threshold'];
             $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
-print_object($data);
             $progressValue  = (isset($data->maxgrade) && $data->maxgrade) ? ($data->grade * 100 / $data->maxgrade) : 0;
             if ( $progressValue >= $threshold ){
                 $result = 2;
-                $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $key, 1);
+                $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, 1);
             }
         }
 

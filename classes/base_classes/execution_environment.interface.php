@@ -40,6 +40,8 @@ interface i_execution_environment{
 
     public function get_userid();
     public function get_course_name();
+    public function get_section_idx();  // course-relative section id (counting from 0)
+    public function get_section_id();   // index into course_sections table
     public function is_page_type_in($pagetypes);
 
     //-------------------------------------------------------------------------
@@ -53,7 +55,7 @@ interface i_execution_environment{
 
     public function get_presets();
     public function get_global_config($motivatorname);
-    public function get_contextual_config($motivatorname, $coursename);
+    public function get_contextual_config($motivatorname, $coursename, $sectionidx);
 
     //-------------------------------------------------------------------------
     // Evaluation of stats and suchlike for use by motivators

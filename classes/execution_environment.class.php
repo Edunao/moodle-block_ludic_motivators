@@ -38,6 +38,7 @@ class execution_environment implements i_execution_environment{
     private $page               = null;
     private $courseid           = null;
     private $sectionid          = null;
+    private $sectionidx         = null;
     private $currentmotivator   = null;
     private $datamine           = null;
     private $statmine           = null;
@@ -164,14 +165,25 @@ class execution_environment implements i_execution_environment{
         return $this->coursename;
     }
 
-    public function is_page_type_in($pagetypes){
-        $currenttype = $this->page->pagetype;
-        foreach ($pagetypes as $type){
-            if ($type === $currenttype){
-                return true;
+    public function get_section_idx(){
+        // if we haven't got a stored section id then try generating one
+        if ($this->sectionidx === null){
+            if ($this->page->pagetype == 'course-view-topics'){
+                // we're on a course view page and the course-relative section number is provided directly
+                $this->sectionidx = optional_param('section',0,PARAM_INT);
+            } else if (isset($this->page->cm->section)) {
+                // we're in an activity that is declaring its section id so we need to lookup the corresponding course-relative index
+                global $DB;
+                $sectionid = $this->page->cm->section;
+                $this->sectionidx = $sectionid ? $DB->get_field('course_sections', 'section', ['id' => $sectionid ]) : 0;
+            } else {
+                // no luck so replace the null with a -1 to avoid wasting times on trying to re-evaluate next time round
+                $this->sectionidx = -1;
             }
         }
-        return false;
+
+        // return the stored result
+        return $this->sectionidx;
     }
 
     public function get_section_id() {
@@ -181,7 +193,7 @@ class execution_environment implements i_execution_environment{
                 // we're on a course view page and the course-relative section number is provided so lookup the real section id
                 global $DB;
                 $coursesection = optional_param('section',0,PARAM_INT);
-                $this->sectionid = $coursesection ? $DB->get_field('course_sections', 'id', ['course'=>$this->page->course->id,'section'=>$coursesection]) : 0;
+                $this->sectionid = $coursesection ? $DB->get_field('course_sections', 'id', ['course' => $this->page->course->id, 'section' => $coursesection]) : 0;
             } else if (isset($this->page->cm->section)) {
                 // we're in an activity that is declaring its section id so we're in luck
                 $this->sectionid = $this->page->cm->section;
@@ -193,6 +205,16 @@ class execution_environment implements i_execution_environment{
 
         // return the stored result
         return $this->sectionid;
+    }
+
+    public function is_page_type_in($pagetypes){
+        $currenttype = $this->page->pagetype;
+        foreach ($pagetypes as $type){
+            if ($type === $currenttype){
+                return true;
+            }
+        }
+        return false;
     }
 
     public function get_current_motivator(){
@@ -273,7 +295,7 @@ class execution_environment implements i_execution_environment{
         return $result;
     }
 
-    public function get_contextual_config($motivatorname, $coursename){
+    public function get_contextual_config($motivatorname, $coursename, $sectionidx){
         // check whether this is configured in the system as a wildcard course
         $wildcard = array_key_exists($coursename, array_flip($this->config['courses'])) ? '*' : null;
 
@@ -286,12 +308,7 @@ class execution_environment implements i_execution_environment{
             }
 
             // check for course name missmatch
-            if ($item['course'] !== $coursename && $item['course'] !== $wildcard){
-                continue;
-            }
-
-            // check for course name missmatch
-            if ($item['course'] == '#'){
+            if ($item['course'] !== $coursename && $item['course'] !== ($coursename . '#' . $sectionidx) && $item['course'] !== $wildcard){
                 continue;
             }
 
@@ -347,7 +364,7 @@ class execution_environment implements i_execution_environment{
             }
         }
         // default to calculated values
-        return $this->statmine->get_contextual_state_data($this, $config, $coursename);
+        return $this->statmine->get_contextual_state_data($this, $config, $coursename, $this->get_section_idx());
     }
 
     private function read_motivator_selection(){

@@ -186,11 +186,10 @@ class data_mine extends data_mine_base {
     }
 
     /**
-     * Section Context : get a progress rating for the dsection based on its quiz questions
+     * Section Context : get a progress rating for the section based on its quiz questions
      * @return { maxgrade, grade }
      */
     protected function fetch_section_progress($userid, $course, $sectionid){
-echo __FUNCTION__ . ": $userid / $course / $sectionid<br>";
         $query='
             SELECT sum(qg.maxgrade) AS maxgrade, sum(qg.grade) AS grade
             FROM (
@@ -552,7 +551,6 @@ echo __FUNCTION__ . ": $userid / $course / $sectionid<br>";
      * Achievement Store : Flush any new achievement values to DB
      */
     private function flush_achievements(){
-echo __FUNCTION__ . '<br>';
         global $DB;
         $timenow = time();
         $inserts = [];

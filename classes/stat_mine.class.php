@@ -34,7 +34,13 @@ class stat_mine{
 
         // for each configuration item
         foreach ($config as $element){
-            list($elementcourse, $elementsection) = explode('#', $element['course']);
+            $elementparts = explode('#', $element['course']);
+            switch (count($elementparts)){
+            case 1: list($elementcourse, $elementsection) = [$elementparts[0], 0]; break;
+            case 2: list($elementcourse, $elementsection) = $elementparts; break;
+            default:
+                $env->bomb("Bad configuration course entry: " . $element['course']);
+            }
             if (! array_key_exists('stats', $element)){
                 continue;
             }
