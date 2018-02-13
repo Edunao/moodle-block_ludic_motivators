@@ -23,9 +23,7 @@
 
 namespace block_ludic_motivators;
 
-require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator.interface.php';
 require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator_base.class.php';
-require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
 class motivator_goals extends motivator_base implements i_motivator {
 
@@ -35,6 +33,7 @@ class motivator_goals extends motivator_base implements i_motivator {
             'title'         => 'Mes objectifs',
             'full_title'    => 'All Goals',
             'changes_title' => 'Congratulations !!',
+            'no_goals'      => 'Des objectifs seront définis lorsque vous commencerez un exercice',
         ];
     }
 
@@ -82,6 +81,11 @@ class motivator_goals extends motivator_base implements i_motivator {
             $goalhtml   .= "<div class='goal-title'>$title</div>";
             $goalhtml   .= "<div class='goal-detail'>$detail</div>";
             $goalhtml   .= "</div>";
+        }
+
+        // if we found no goals then display a placeholder text
+        if (empty($goalhtml)){
+            $goalhtml = $this->get_string('no_goals');
         }
 
         // prepare to start rendering content

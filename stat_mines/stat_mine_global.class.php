@@ -28,11 +28,11 @@ require_once dirname(__DIR__) . '/classes/base_classes/stat_mine_base.class.php'
 
 class stat_mine_global extends stat_mine_base {
 
-    public function evaluate_stat($env, $coursename, $sectionid, $key, $dfn){
+    public function evaluate_stat($env, $coursename, $sectionidx, $key, $dfn){
         $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
         switch($dfn['type']){
-        case 'started_course_count':    return $this->evaluate_started_course_count($course, $dfn);
-        case 'started_section_count':   return $this->evaluate_started_section_count($course, $dfn);
+        case 'started_course_count':    return $this->evaluate_started_course_count($env, $coursename, $sectionidx, $key, $dfn);
+        case 'started_section_count':   return $this->evaluate_started_section_count($env, $coursename, $sectionidx, $key, $dfn);
         }
 
         // if no match was found then return null to signify that this one was not for us
@@ -44,43 +44,53 @@ class stat_mine_global extends stat_mine_base {
     // global stats
 
     // number of courses that this user has started
-    private function evaluate_started_course_count($course, $dfn){
-        $datamine       = $env->get_data_mine();
+    private function evaluate_started_course_count($env, $coursename, $sectionidx, $key, $dfn){
+        // lookup the achievement to see if it has already been met
         $userid         = $env->get_userid();
-        $coursenames    = $env->get_course_names();
-        $progressdata   = $datamine->fetch_global_course_progress($userid, $coursenames);
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $result         = $datamine->get_user_global_achievement($userid, $achievement, 0);
 
-        // calculate the result
-        $result = 0;
-        foreach ($progressdata as $record){
-            $result += (($record->grade != null) ? 1 : 0);
+        // if this is one of the key pages for updating the stat then go ahead and update it
+        if ($env->is_page_type_in(['my-index', 'mod-quiz-review', 'course-view-topics'])){
+            $coursenames    = $env->get_courses();
+            $progressdata   = $datamine->get_global_course_progress($userid, $coursenames);
+
+            // calculate the result
+            $result = 0;
+            foreach ($progressdata as $record){
+                $result += (($record->grade != null) ? 1 : 0);
+            }
+
+            // store away as an achievement
+            $datamine->set_user_global_achievement($userid, $achievement, $result);
         }
-
-        // store away as an achievement
-        $datamine->set_user_global_achievement($userid, 'started_courses', $result);
-
-        // TODO : Evaluate this stat on login or on quiz submitted and just return the achievement value otherwise
 
         return $result;
     }
 
     // number of sections that this user has started
-    private function evaluate_started_section_count($course, $dfn){
-        $datamine       = $env->get_data_mine();
+    private function evaluate_started_section_count($env, $coursename, $sectionidx, $key, $dfn){
+        // lookup the achievement to see if it has already been met
         $userid         = $env->get_userid();
-        $coursenames    = $env->get_course_names();
-        $progressdata   = $datamine->fetch_global_section_progress($userid, $coursenames);
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $result         = $datamine->get_user_global_achievement($userid, $achievement, 0);
 
-        // calculate the result
-        $result = 0;
-        foreach ($progressdata as $record){
-            $result += (($record->grade != null) ? 1 : 0);
+        // if this is one of the key pages for updating the stat then go ahead and update it
+        if ($env->is_page_type_in(['my-index', 'mod-quiz-review', 'course-view-topics'])){
+            $coursenames    = $env->get_courses();
+            $progressdata   = $datamine->get_global_section_progress($userid, $coursenames);
+
+            // calculate the result
+            $result = 0;
+            foreach ($progressdata as $record){
+                $result += (($record->grade != null) ? 1 : 0);
+            }
+
+            // store away as an achievement
+            $datamine->set_user_global_achievement($userid, $achievement, $result);
         }
-
-        // store away as an achievement
-        $datamine->set_user_global_achievement($userid, 'started_sections', $result);
-
-        // TODO : Evaluate this stat on login or on quiz submitted and just return the achievement value otherwise
 
         return $result;
     }

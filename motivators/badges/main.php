@@ -25,7 +25,6 @@ namespace block_ludic_motivators;
 
 require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator.interface.php';
 require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator_base.class.php';
-require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
 class motivator_badges extends motivator_base implements i_motivator {
 
@@ -33,7 +32,7 @@ class motivator_badges extends motivator_base implements i_motivator {
         return [
             'name'          => 'Badge',
             'title'         => 'Badges',
-            'full_title'    => 'Course Badges',
+            'full_title'    => 'Contextual Badges',
             'changes_title' => 'New Badges',
             'pyramid_title' => 'Acquired Competencies',
         ];
@@ -47,8 +46,9 @@ class motivator_badges extends motivator_base implements i_motivator {
 
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
-        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        $sectionidx     = $env->get_section_idx();
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
         $globalconfig   = $env->get_global_config($this->get_short_name());
         $globaldata     = $env->get_global_state_data($globalconfig);
 
@@ -70,17 +70,17 @@ class motivator_badges extends motivator_base implements i_motivator {
         }
 
         // lookup the course count which we configure via a fake stat
-        $env->bomb_if(!isset($globaldata['/course_count']),"/course_count not found in state data");
-        $coursecount = $globaldata['/course_count'];
+        $env->bomb_if(!isset($globaldata['/context_count']),"/context_count not found in state data");
+        $contextcount = $globaldata['/context_count'];
 
         $badgeicons = '';
         $newbadgeicons = '';
         // match up the config elements and state data to determine the set of information to pass to the javascript
         foreach ($ctxtconfig as $element){
-            if ($element['motivator']['subtype'] !== 'course'){
+            if ($element['motivator']['subtype'] !== 'local'){
                 continue;
             }
-            $dataname = $coursename . '/' . array_keys($element['stats'])[0];
+            $dataname = $coursename . ($sectionidx ? "#$sectionidx" : '') . '/' . array_keys($element['stats'])[0];
             if (array_key_exists($dataname,$ctxtdata)){
                 $imageurl = $this->image_url($element['motivator']['icon']);
                 $statevalue = $ctxtdata[$dataname];
@@ -111,13 +111,15 @@ class motivator_badges extends motivator_base implements i_motivator {
         $env->set_block_classes('luditype-badges');
 
         // render the badge images
-        $env->render('ludi-main ludi-detail', $this->get_string('full_title'), '<div class="ludi-course-badges">' . $badgeicons . '</div>');
+        if (!empty($badgeicons)){
+            $env->render('ludi-main ludi-detail', $this->get_string('full_title'), '<div class="ludi-course-badges">' . $badgeicons . '</div>');
+        }
         if (!empty($newbadgeicons)){
             $env->render('ludi-change ludi-detail', $this->get_string('changes_title'), '<div class="ludi-course-badges">' . $newbadgeicons . '</div>');
         }
 
         // render the pyramid image
-        $pyramidname    = sprintf("pyramide_%02d.svg", $coursecount);
+        $pyramidname    = sprintf("pyramide_%02d.svg", $contextcount);
         $imageurl       = $this->image_url($pyramidname);
         $imagehtml      = "<div class='ludi-pyramid-container'><img src='$imageurl' class='svg' id='ludi-pyramid'/></div>";
         $env->render('ludi-main ludi-overview', $this->get_string('pyramid_title'), $imagehtml);

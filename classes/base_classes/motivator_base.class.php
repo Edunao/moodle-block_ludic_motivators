@@ -27,7 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 // include all of the common stuff that we need in all motivator type implementations
 require_once __DIR__ . '/motivator.interface.php';
 require_once __DIR__ . '/execution_environment.interface.php';
-require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
 abstract class motivator_base {
 

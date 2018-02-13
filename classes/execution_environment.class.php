@@ -101,50 +101,6 @@ class execution_environment implements i_execution_environment{
                 }
             }
         }
-// foreach (['activityname', 'activityrecord', 'context', 'pagetype'] as $prop){
-//     echo "$prop : ";
-//     print_object($page->$prop);
-// }
-        /*
-            NOTE: $page contains magic getters for:
-                * activityname              // like 'quiz'
-                * activityrecord            // actually the module { sumgrades, }
-                . alternateversions
-                . blockmanipulations
-                . blocks
-                . bodyclasses
-                . bodyid
-                . button
-                . cacheable
-                * categories                // array on category objects in top to bottom order
-                * category                  // the category object
-                * cm                        // the course module
-                * context
-                * course
-                . devicetypeinuse
-                . docspath
-                . flatnav
-                . focuscontrol
-                . headerprinted
-                . heading
-                . headingmenu
-                . options
-                . navbar
-                . navigation
-                . opencontainers
-                . pagelayout
-                * pagetype                  // like 'my-index', 'course-view-topics', 'mod-quiz-view', 'mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-review'
-                . periodicrefreshdelay
-                . requestip
-                . requestorigin
-                . requires
-                . settingsnav
-                . state
-                . subpage
-                . theme
-                . title
-                . url
-        */
     }
 
     public function bomb($message){
@@ -275,7 +231,7 @@ class execution_environment implements i_execution_environment{
             }
 
             // check for course name missmatch
-            if ($item['course'] == '*'){
+            if ($item['course'] == '*' || $item['course'] == '**'){
                 continue;
             }
 
@@ -298,7 +254,7 @@ class execution_environment implements i_execution_environment{
     public function get_contextual_config($motivatorname, $coursename, $sectionidx){
         // check whether this is configured in the system as a wildcard course
         $sectionkey = $coursename . '#' . $sectionidx;
-        $patterns = array_key_exists($coursename, array_flip($this->config['courses'])) ? ['*', '*#*', $coursename, $sectionkey] : [$coursename, $sectionkey];
+        $patterns = array_key_exists($coursename, array_flip($this->config['courses'])) ? ['*', '**', $coursename, $sectionkey] : [$coursename, $sectionkey];
 
         // filter the course list to match the requird motivator and course
         $result=[];

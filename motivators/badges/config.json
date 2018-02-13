@@ -7,8 +7,8 @@
                 "subtype": "system"
             },
             "stats": {
-                "course_count": {
-                    "type": "started_course_count",
+                "context_count": {
+                    "type": "started_section_count",
                     "threshold": 0
                 }
             }

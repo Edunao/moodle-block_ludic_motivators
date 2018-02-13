@@ -53,6 +53,7 @@ interface i_execution_environment{
     //-------------------------------------------------------------------------
     // Config management
 
+    public function get_courses();
     public function get_presets();
     public function get_global_config($motivatorname);
     public function get_contextual_config($motivatorname, $coursename, $sectionidx);

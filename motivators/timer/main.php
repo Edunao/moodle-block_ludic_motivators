@@ -23,9 +23,7 @@
 
 namespace block_ludic_motivators;
 
-require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator.interface.php';
 require_once dirname(dirname(__DIR__)) . '/classes/base_classes/motivator_base.class.php';
-require_once dirname(dirname(__DIR__)) . '/locallib.php';
 
 class motivator_timer extends motivator_base implements i_motivator {
 

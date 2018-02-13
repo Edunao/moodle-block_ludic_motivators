@@ -211,19 +211,24 @@ class stat_mine_section extends stat_mine_base {
 
     private function evaluate_section_correct_run($env, $coursename, $sectionid, $key, $dfn){
         // sanity checks
-        foreach (['threshold'] as $fieldname){
+        foreach (['min', 'threshold'] as $fieldname){
             $env->bomb_if(! array_key_exists($fieldname, $dfn), "Missing field: $fieldname IN " . json_encode($dfn));
         }
         $targetrunlength = $dfn['threshold'];
+        $minrunlength    = $dfn['min'];
 
         // lookup the achievement to see if it has already been met
         $userid         = $env->get_userid();
         $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
         $datamine       = $env->get_data_mine();
-        $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_ACHIEVED);
+        $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_YET_ACHIEVABLE);
 
         // if not previously achieved then check for progress
-        if ($result === STATE_NOT_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary'])){
+        if ($result < STATE_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-view'])){
+            // assume that we're not yet achievable until we have at least one answer attempt behind us
+            $result = STATE_NOT_YET_ACHIEVABLE;
+            $value  = STATE_NOT_YET_ACHIEVABLE;
+
             // look for a long enough run
             $grades = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
             $count  = 0;
@@ -232,13 +237,18 @@ class stat_mine_section extends stat_mine_base {
                     ++$count;
                     if ($count >= $targetrunlength){
                         $result = STATE_JUST_ACHIEVED;
-                        $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_ACHIEVED);
+                        $value  = STATE_ACHIEVED;
                         break;
+                    } else if ($count >= $minrunlength){
+                        $result = STATE_NOT_ACHIEVED;
+                        $value  = STATE_NOT_ACHIEVED;
                     }
                 } else {
                     $count = 0;
                 }
             }
+            // store away the current state in the achievements container
+            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $value);
         }
 
         return $result;

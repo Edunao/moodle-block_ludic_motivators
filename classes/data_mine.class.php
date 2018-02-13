@@ -321,61 +321,6 @@ class data_mine extends data_mine_base {
 
 
     private function fetch_raw_ludigrades($userid, $coursename, $sectionidx){
-        /*
-            mysql> SELECT qasd.id, qas.state, qas.fraction, qasd.name, qasd.value
-                -> FROM mdl_modules m
-                -> JOIN mdl_course_modules cm ON cm.module=m.id
-                -> JOIN mdl_course c ON c.id = cm.course
-                -> JOIN mdl_context ctxt ON ctxt.instanceid = cm.id
-                -> JOIN mdl_question_usages qu ON qu.contextid = ctxt.id
-                -> JOIN mdl_question_attempts qa ON qa.questionusageid = qu.id
-                -> JOIN mdl_question_attempt_steps qas ON qas.questionattemptid = qa.id
-                -> JOIN mdl_question_attempt_step_data qasd ON qasd.attemptstepid = qas.id
-                -> WHERE ctxt.contextlevel=70
-                -> AND c.shortname in ("Ludi01","Ludi02","Ludi03")
-                -> AND qas.userid = 5
-                -> ORDER BY qasd.id
-                -> ;
-            +----+---------------+-----------+---------------+-------------+
-            | id | state         | fraction  | name          | value       |
-            +----+---------------+-----------+---------------+-------------+
-            | 52 | todo          |      NULL | _order        | 29,30,31,32 |
-            | 53 | todo          |      NULL | _stemorder    | 9,8,7       |
-            | 54 | todo          |      NULL | _choiceorder  | 9,8,7       |
-            | 55 | complete      |      NULL | answer        | 0           |
-            | 56 | todo          |      NULL | _order        | 1,4,3,2     |
-            | 57 | todo          |      NULL | _stemorder    | 3,2,1       |
-            | 58 | todo          |      NULL | _choiceorder  | 3,2,1       |
-            | 59 | complete      |      NULL | answer        | 0           |
-            | 60 | todo          |      NULL | _order        | 17,15,16,18 |
-            | 61 | todo          |      NULL | _stemorder    | 6,4,5       |
-            | 62 | todo          |      NULL | _choiceorder  | 4,6,5       |
-            | 63 | complete      |      NULL | answer        | 1           |
-            | 67 | todo          |      NULL | _separators   | ,$          |
-            | 68 | todo          |      NULL | _choiceorder1 | 4,5,1,2,3   |
-            | 69 | todo          |      NULL | _separators   | ,$          |
-            | 70 | todo          |      NULL | _choiceorder1 | 1,2,5,4,3   |
-            | 71 | complete      |      NULL | answer        | oui         |
-            | 72 | complete      |      NULL | answer        | 2           |
-            | 73 | complete      |      NULL | p1            | 1           |
-            | 74 | complete      |      NULL | p2            | 2           |
-            | 75 | complete      |      NULL | answer        | 1           |
-            | 76 | complete      |      NULL | sub0          | 2           |
-            | 77 | complete      |      NULL | sub1          | 1           |
-            | 78 | complete      |      NULL | sub2          | 3           |
-            | 79 | gradedright   | 1.0000000 | -finish       | 1           |
-            | 80 | gradedright   | 1.0000000 | -finish       | 1           |
-            | 81 | gradedpartial | 0.3333333 | -finish       | 1           |
-            | 82 | todo          |      NULL | _order        | 2,4,1,3     |
-            | 83 | todo          |      NULL | _stemorder    | 2,1,3       |
-            | 84 | todo          |      NULL | _choiceorder  | 3,1,2       |
-            | 85 | complete      |      NULL | answer        | 2           |
-            | 86 | complete      |      NULL | answer        | 1           |
-            | 87 | complete      |      NULL | sub0          | 1           |
-            | 88 | complete      |      NULL | sub1          | 2           |
-            | 89 | complete      |      NULL | sub2          | 3           |
-            +----+---------------+-----------+---------------+-------------+
-        */
         // make sure the fetch is only run the once - this is a big query so not to be run more often thn necessary
         $sectionkey = $coursename . '#' . $sectionidx;
         if (array_key_exists($sectionkey, $this->rawludigrades)){
@@ -417,13 +362,6 @@ class data_mine extends data_mine_base {
     }
 
     private function fixup_ludigrades($userid, $coursename, $sectionidx){
-echo __FUNCTION__ . "<br>";
-//         // make sure the fixup is only run the once - it's expensive and identifies the list of changes as an important side-effect
-//         if ($this->fixedupgrades !== null){
-//             return;
-//         }
-//         $this->fixedupgrades = [];
-
         // TODO : we should be organising the grades by course and verifying the overlap between courses already processed and courses requested
         // Typical use cases:
         //  a. First request comes in for global data, then request comes in for course-context data

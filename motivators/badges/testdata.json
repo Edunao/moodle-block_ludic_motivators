@@ -2,38 +2,38 @@
     "config":{
         "courses": ["Ludi01", "Ludi02", "Ludi03"],
         "elements":[
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 1", "icon": "badge1" }, "stats": { "goal01": { "type": "course_correct_run", "threshold": 3 } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 2", "icon": "badge2" }, "stats": { "goal02": { "type": "course_correct_run", "threshold": 10 } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 3", "icon": "badge3" }, "stats": { "goal03": { "type": "course_auto_correct" } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 4", "icon": "badge4" }, "stats": { "goal04": { "type": "course_auto_correct" } } },
-            { "course": "*", "motivator": { "type": "badges", "subtype": "course", "title": "Goal 5", "icon": "badge5" }, "stats": { "goal05": { "type": "course_auto_correct" } } },
+            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "Test Parfait",  "icon": "badge1" }, "stats": { "goal": { "type": "section_perfect" } } },
+            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "Test corrigé",  "icon": "badge5" }, "stats": { "goal": { "type": "section_auto_correct" } } },
+            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "5 sans-faute",  "icon": "badge2" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 2 } } },
+            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "10 sans-faute", "icon": "badge3" }, "stats": { "goal": { "type": "section_correct_run", "min": 1, "threshold": 4 } } },
+            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "15 sans-faute", "icon": "badge4" }, "stats": { "goal": { "type": "section_correct_run", "min": 3, "threshold": 6 } } },
 
-            { "course": "Ludi01", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi02", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi03", "motivator": { "type": "badges", "subtype": "global", "layer": "calque03" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi04", "motivator": { "type": "badges", "subtype": "global", "layer": "calque04" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } },
-            { "course": "Ludi05", "motivator": { "type": "badges", "subtype": "global", "layer": "calque05" }, "stats": { "done": { "type": "course_complete", "threshold": 70 } } }
+            { "course": "Ludi01#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi02#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi03#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque03" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi03#2", "motivator": { "type": "badges", "subtype": "global", "layer": "calque04" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi03#3", "motivator": { "type": "badges", "subtype": "global", "layer": "calque05" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } }
         ]
     },
 
     "fullpreset":{
         "done 0/0":     { "/course_count":0 },
         "done 0/1":     { "/course_count":1 },
-        "done 1/1":     { "/course_count":1, "Ludi01/done":2 },
-        "done 1/2":     { "/course_count":2, "Ludi01/done":0, "Ludi02/done":1 },
-        "done 2/2":     { "/course_count":2, "Ludi01/done":1, "Ludi02/done":2 },
-        "done 0/5":     { "/course_count":5, "Ludi01/done":0, "Ludi02/done":0, "Ludi03/done":0, "Ludi04/done":0, "Ludi05/done":0 },
-        "done 5/5":     { "/course_count":5, "Ludi01/done":1, "Ludi02/done":1, "Ludi03/done":1, "Ludi04/done":1, "Ludi05/done":1 }
+        "done 1/1":     { "/course_count":1, "Ludi01#1/done":2 },
+        "done 1/2":     { "/course_count":2, "Ludi01#1/done":0, "Ludi02#1/done":1 },
+        "done 2/2":     { "/course_count":2, "Ludi01#1/done":1, "Ludi02#1/done":2 },
+        "done 0/5":     { "/course_count":5, "Ludi01#1/done":0, "Ludi02#1/done":0, "Ludi03#1/done":0, "Ludi03#2/done":0, "Ludi03#3/done":0 },
+        "done 5/5":     { "/course_count":5, "Ludi01#1/done":1, "Ludi02#1/done":1, "Ludi03#1/done":1, "Ludi03#2/done":1, "Ludi03#3/done":1 }
     },
 
     "coursepreset":{
 
-        "step-0":     { "#/goal01":0, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
-        "step-1":     { "#/goal01":2, "#/goal02":0, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
-        "step-2":     { "#/goal01":1, "#/goal02":2, "#/goal03":0, "#/goal04":0, "#/goal05":0 },
-        "step-3":     { "#/goal01":1, "#/goal02":1, "#/goal03":2, "#/goal04":0, "#/goal05":0 },
-        "step-4":     { "#/goal01":1, "#/goal02":1, "#/goal03":1, "#/goal04":2, "#/goal05":0 },
-        "step-5":     { "#/goal01":1, "#/goal02":1, "#/goal03":1, "#/goal04":1, "#/goal05":2 },
-        "step-all":   { "#/goal01":1, "#/goal02":2, "#/goal03":1, "#/goal04":2, "#/goal05":1 }
+        "step-0":     { "##1/001/goal":0, "##1/002/goal":0, "##1/003/goal":0, "##1/004/goal":0, "##1/005/goal":0 },
+        "step-1":     { "##1/001/goal":2, "##1/002/goal":0, "##1/003/goal":0, "##1/004/goal":0, "##1/005/goal":0 },
+        "step-2":     { "##1/001/goal":1, "##1/002/goal":2, "##1/003/goal":0, "##1/004/goal":0, "##1/005/goal":0 },
+        "step-3":     { "##1/001/goal":1, "##1/002/goal":1, "##1/003/goal":2, "##1/004/goal":0, "##1/005/goal":0 },
+        "step-4":     { "##1/001/goal":1, "##1/002/goal":1, "##1/003/goal":1, "##1/004/goal":2, "##1/005/goal":0 },
+        "step-5":     { "##1/001/goal":1, "##1/002/goal":1, "##1/003/goal":1, "##1/004/goal":1, "##1/005/goal":2 },
+        "step-all":   { "##1/001/goal":1, "##1/002/goal":2, "##1/003/goal":1, "##1/004/goal":2, "##1/005/goal":1 }
     }
 }

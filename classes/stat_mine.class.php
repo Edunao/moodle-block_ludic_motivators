@@ -80,7 +80,7 @@ class stat_mine{
             if ($element['course'] == '*'){
                 $elementcourse  = $coursename;
                 $elementsection = null;
-            } else if ($element['course'] == '*#*'){
+            } else if ($element['course'] == '**'){
                 $elementcourse  = $coursename;
                 $elementsection = $sectionidx;
             } else {
