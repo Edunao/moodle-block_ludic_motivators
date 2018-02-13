@@ -44,40 +44,44 @@ class motivator_goals extends motivator_base implements i_motivator {
         $sectionidx     = $env->get_section_idx();
         $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
         $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
-echo "Data";
-print_object($ctxtdata);
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         $havechanges = false;
         $goalhtml = '';
         foreach ($ctxtconfig as $element){
             $dataname = $coursename . ($sectionidx > -1 ? "#$sectionidx": '') . '/' . (array_keys($element['stats'])[0]);
-            if (array_key_exists($dataname,$ctxtdata)){
-                $statevalue = $ctxtdata[$dataname];
-                switch ($statevalue){
-                case STATE_JUST_ACHIEVED:
-                    $cssclasses     = 'ludi-done ludi-new';
-                    $checked        = true;
-                    $havechanges    = true;
-                    break;
-                case STATE_ACHIEVED:
-                    $cssclasses     = 'ludi-done ludi-old';
-                    $checked        = true;
-                    break;
-                case STATE_NOT_ACHIEVED:
-                    $cssclasses     = 'ludi-todo';
-                    $checked        = false;
-                    break;
-                }
-                $title      = $element['motivator']['title'];
-                $detail     = $element['motivator']['detail'];
-                $bulleturl  = new \moodle_url('/blocks/ludic_motivators/motivators/goals/pix/' . ($checked===true ? 'icon_objectif_completed.svg' : 'icon_objectif_uncompleted.svg'));
-                $goalhtml   .= "<div class='ludi-goal $cssclasses'>";
-                $goalhtml   .= "<image src='$bulleturl' class='ludi-bullet'>";
-                $goalhtml   .= "<div class='goal-title'>$title</div>";
-                $goalhtml   .= "<div class='goal-detail'>$detail</div>";
-                $goalhtml   .= "</div>";
+            if (! array_key_exists($dataname,$ctxtdata)){
+                continue;
             }
+            $statevalue = $ctxtdata[$dataname];
+            switch ($statevalue){
+            case STATE_JUST_ACHIEVED:
+                $cssclasses     = 'ludi-done ludi-new';
+                $checked        = true;
+                $havechanges    = true;
+                break;
+            case STATE_ACHIEVED:
+                $cssclasses     = 'ludi-done ludi-old';
+                $checked        = true;
+                break;
+            case STATE_NOT_ACHIEVED:
+                $cssclasses     = 'ludi-todo';
+                $checked        = false;
+                break;
+            case STATE_NOT_YET_ACHIEVABLE:
+            case STATE_NO_LONGER_ACHIEVABLE:
+                continue 2;
+            default:
+                $env->bomb("Invalid achievement state: $statevalue for: " . json_encode($element));
+            }
+            $title      = $element['motivator']['title'];
+            $detail     = $element['motivator']['detail'];
+            $bulleturl  = new \moodle_url('/blocks/ludic_motivators/motivators/goals/pix/' . ($checked===true ? 'icon_objectif_completed.svg' : 'icon_objectif_uncompleted.svg'));
+            $goalhtml   .= "<div class='ludi-goal $cssclasses'>";
+            $goalhtml   .= "<image src='$bulleturl' class='ludi-bullet'>";
+            $goalhtml   .= "<div class='goal-title'>$title</div>";
+            $goalhtml   .= "<div class='goal-detail'>$detail</div>";
+            $goalhtml   .= "</div>";
         }
 
         // prepare to start rendering content

@@ -220,33 +220,37 @@ class data_mine extends data_mine_base {
      */
     protected function fetch_section_quiz_stats($userid, $course, $sectionid){
         $query='
-            SELECT q.id, qa.attempt, q.sumgrades AS maxgrade, qa.sumgrades AS grade, qa.state, qa.timestart, qa.timemodified, qa.timefinish
-            FROM {modules} m
-            JOIN {course_modules} cm on cm.module=m.id
-            JOIN {quiz} q on q.id = cm.instance
-            LEFT JOIN {quiz_attempts} qa on qa.quiz = cm.instance
-            WHERE m.name="quiz" AND qa.userid = :userid AND cm.section = :sectionid
+            SELECT COALESCE(qa.id,-q.id) AS idx, q.id, qa.attempt, q.sumgrades AS maxgrade, qa.sumgrades AS grade, qa.state, qa.timestart, qa.timemodified, qa.timefinish
+            FROM {course} c
+            JOIN {course_sections} cs ON cs.course = c.id
+            JOIN {course_modules} cm ON cm.section = cs.id
+            JOIN {modules} m ON cm.module=m.id
+            JOIN {quiz} q ON q.id = cm.instance
+            LEFT JOIN {quiz_attempts} qa ON qa.quiz = cm.instance AND qa.userid = :userid
+            WHERE c.shortname = :course
+            AND cs.section = :sectionid
+            AND m.name="quiz"
         ';
         global $DB;
-        $sqlresult = $DB->get_records_sql($query, ['userid' => $userid, 'sectionid' => $sectionid]);
+        $sqlresult = $DB->get_records_sql($query, ['userid' => $userid, 'course' => $course, 'sectionid' => $sectionid]);
 
         // compose and return the result container ...
         $result = [];
         foreach ($sqlresult as $record){
             // get hold of the record for this quiz
             $quizid  = $record->id;
-            if (! array_key_exists($result, $quizid)){
+            if (! array_key_exists($quizid, $result)){
                 $result[$quizid] = (object)[
                     'maxgrade'  => $record->maxgrade,
                     'attempts'  => [],
                     'times'     => [],
-                    'scores'    => [],
+                    'grades'    => [],
                 ];
             }
             $resultrecord = &$result[$quizid];
 
             // if there are no attempts for this quiz then skip on
-            if (qa.state === null){
+            if ($record->state === null){
                 continue;
             }
 
@@ -515,7 +519,7 @@ echo __FUNCTION__ . "<br>";
         $result = [];
         foreach ($allachievements as $key => $value){
             if (substr($key, 0, strlen($prefix)) === $prefix){
-                $result[$key] = $value;
+                $result[$key] = (int)$value;
             }
         }
 
