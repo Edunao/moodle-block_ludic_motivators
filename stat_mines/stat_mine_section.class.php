@@ -94,7 +94,7 @@ class stat_mine_section extends stat_mine_base {
             // lookup the data
             $threshold      = $dfn['threshold'];
             $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
-            $progressValue  = (isset($data->maxgrade) && $data->maxgrade) ? ($data->grade * 100 / $data->maxgrade) : 0;
+            $progressValue  = (isset($data->maxgrade) && $data->maxgrade > 0) ? ($data->grade * 100 / $data->maxgrade) : 0;
             if ( $progressValue >= $threshold ){
                 $result = STATE_JUST_ACHIEVED;
                 $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_ACHIEVED);

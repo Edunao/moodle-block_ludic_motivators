@@ -58,16 +58,6 @@ class execution_environment implements i_execution_environment{
         $this->user         = ($userid === $USER->id) ? $USER : $DB->get_record('user', array('id' => $userid));
         $this->statmine     = new stat_mine($this);
 
-        // load global configuration data
-        $configfile     = $CFG->dataroot . '/filedir/ludic-motivators-config.json';
-        if (file_exists($configfile)){
-            $jsonconfigdata = file_get_contents($configfile);
-            $this->config   = json_decode($jsonconfigdata, true);
-            $this->bomb_if(!$this->config, 'Failed to JSON decode config file: ' . $configfile);
-            $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config file: ' . $configfile);
-            $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
-        }
-
         // determine names of motivator's config files
         $motivator      = $this->get_current_motivator();
         $configfile     = dirname(__DIR__) . '/motivators/' . $motivator->get_short_name() . '/config.json';
@@ -80,6 +70,21 @@ class execution_environment implements i_execution_environment{
             $this->bomb_if(!$motivatorconfig, 'Failed to JSON decode config file: ' . $configfile);
             $this->config = array_merge_recursive($this->config, $motivatorconfig);
         }
+
+        // load global configuration data
+        $configfile = dirname(__DIR__) . '/config.json';
+        $this->bomb_if(! file_exists($configfile), "Core config file not found: $configfile");
+        //$configfile = $CFG->dataroot . '/filedir/ludic-motivators-config.json';
+        if (file_exists($configfile)){
+            $jsonconfigdata = file_get_contents($configfile);
+            $userconfig     = json_decode($jsonconfigdata, true);
+            $this->bomb_if(!$userconfig, 'Failed to JSON decode config file: ' . $configfile);
+            $this->bomb_if(!isset($userconfig['courses']), '"courses" node not found in config file: ' . $configfile);
+            $this->bomb_if(!isset($userconfig['elements']), '"elements" node not found in config file: ' . $configfile);
+            $this->config = array_merge_recursive($this->config, $userconfig);
+        }
+
+        // perform a few quick sanity checks
         $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config files');
         $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config files');
 
