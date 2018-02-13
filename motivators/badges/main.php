@@ -80,7 +80,7 @@ class motivator_badges extends motivator_base implements i_motivator {
             if ($element['motivator']['subtype'] !== 'local'){
                 continue;
             }
-            $dataname = $coursename . ($sectionidx ? "#$sectionidx" : '') . '/' . array_keys($element['stats'])[0];
+            $dataname = $coursename . ($sectionidx > -1 ? "#$sectionidx" : '') . '/' . array_keys($element['stats'])[0];
             if (array_key_exists($dataname,$ctxtdata)){
                 $imageurl = $this->image_url($element['motivator']['icon']);
                 $statevalue = $ctxtdata[$dataname];

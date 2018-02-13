@@ -1,11 +1,16 @@
 {
     "elements":[
-        { "course": "*", "motivator": { "type": "timer", "subtype": "system" }, "stats": { "time":{ "type": "quiz_time" } } },
-        { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 0 }, "stats": { "past_time_01": { "type": "past_quiz_time", "index": 0 } } },
-        { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 1 }, "stats": { "past_time_02": { "type": "past_quiz_time", "index": 1 } } },
-        { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 2 }, "stats": { "past_time_03": { "type": "past_quiz_time", "index": 2 } } },
-        { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 3 }, "stats": { "past_time_04": { "type": "past_quiz_time", "index": 3 } } },
-        { "course": "*", "motivator": { "type": "timer", "subtype": "past_time", "index": 4 }, "stats": { "past_time_05": { "type": "past_quiz_time", "index": 4 } } }
+        {
+            "course": "**",
+            "motivator": {
+                "type": "timer",
+                "subtype": "system"
+            },
+            "stats": {
+                "time":{ "type": "quiz_time" },
+                "past_times":{ "type": "past_quiz_times" }
+            }
+        }
     ]
 }
 

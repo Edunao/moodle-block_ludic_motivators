@@ -32,7 +32,6 @@ class stat_mine_quiz extends stat_mine_base {
         $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
         switch($dfn['type']){
         case 'past_quiz_times':         return $this->evaluate_past_quiz_times($env, $coursename, $sectionid, $key, $dfn);
-        case 'past_quiz_time':          return $this->evaluate_past_quiz_time($env, $coursename, $sectionid, $key, $dfn);
         case 'quiz_time':               return $this->evaluate_quiz_time($env, $coursename, $sectionid, $key, $dfn);
         case 'quiz_score':              return $this->evaluate_quiz_score($env, $coursename, $sectionid, $key, $dfn);
         case 'quiz_score_gain':         return $this->evaluate_quiz_score_gain($env, $coursename, $sectionid, $key, $dfn);
@@ -54,18 +53,9 @@ class stat_mine_quiz extends stat_mine_base {
     private function evaluate_past_quiz_times($env, $coursename, $sectionid, $key, $dfn){
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
-        $data           = $datamine->get_quiz_attempt_times($userid);
-        return [];
-    }
-
-    /**
-    * @return nth past attempt times for the given quiz, where 'n' counts backwards in time, so n=1 is most recent past attempt
-    */
-    private function evaluate_past_quiz_time($env, $coursename, $sectionid, $key, $dfn){
-        $datamine       = $env->get_data_mine();
-        $userid         = $env->get_userid();
-        $data           = $datamine->get_quiz_attempt_times($userid);
-        return 0;
+        $cmid           = $env->get_cm_id();
+        $result         = $datamine->get_quiz_completion_times($userid, $cmid);
+        return $result;
     }
 
     /**
@@ -73,9 +63,9 @@ class stat_mine_quiz extends stat_mine_base {
     */
     private function evaluate_quiz_time($env, $coursename, $sectionid, $key, $dfn){
         $datamine       = $env->get_data_mine();
-        $userid         = $env->get_userid();
-        $data           = $datamine->get_quiz_attempt_times($userid);
-        return 0;
+        $attemptid      = $env->get_attempt_id();
+        $result         = $datamine->get_quiz_attempt_duration($attemptid);
+        return ($result === null) ? -1 : $result;
     }
 
     /**
@@ -84,7 +74,8 @@ class stat_mine_quiz extends stat_mine_base {
     private function evaluate_quiz_score($env, $coursename, $sectionid, $key, $dfn){
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
-        $data           = $datamine->get_quiz_question_stats($userid);
+        $attemptid      = $env->get_attempt_id();
+        $data           = $datamine->get_quiz_question_stats($userid, $attemptid);
         return 0;
     }
 
@@ -94,7 +85,8 @@ class stat_mine_quiz extends stat_mine_base {
     private function evaluate_quiz_score_gain($env, $coursename, $sectionid, $key, $dfn){
         $datamine       = $env->get_data_mine();
         $userid         = $env->get_userid();
-        $data           = $datamine->get_quiz_question_stats($userid);
+        $attemptid      = $env->get_attempt_id();
+        $data           = $datamine->get_quiz_question_stats($userid, $attemptid);
         return 0;
     }
 

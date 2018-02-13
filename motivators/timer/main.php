@@ -32,7 +32,7 @@ class motivator_timer extends motivator_base implements i_motivator {
             'name'          => 'Timer',
             'title'         => 'Timer',
             'time_title'    => 'Current Time',
-            'first_attempt' => 'This is your first attempt at this exercise. You will be able to retry the exercise again later to try to improve your best time',
+            'first_attempt' => 'Times are not shown until an exercise has been completed at least once',
             'history_title' => 'Attempt History',
             'no_course'     => 'Not in a tracked course',
         ];
@@ -41,8 +41,9 @@ class motivator_timer extends motivator_base implements i_motivator {
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
-        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        $sectionidx     = $env->get_section_idx();
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
 
         // if the course isn't in the courses list then display a placeholder message and drop out
         if (!$ctxtdata){
@@ -51,39 +52,35 @@ class motivator_timer extends motivator_base implements i_motivator {
         }
 
         // lookup base properties that should always always exist
-        $statname       = $coursename . '/time';
+        $sectionkey     = $coursename . ($sectionidx > -1 ? "#$sectionidx" : '') . '/000';
+
+        $statname       = $sectionkey . '/time';
         $env->bomb_if(!array_key_exists($statname, $ctxtdata), "Failed to locate stat: $statname");
         $timetodate     = $ctxtdata[$statname];
 
-        // match up the config elements and state data to determine the set of information to pass to the javascript
-        $pasttimes = [];
-        foreach ($ctxtconfig as $element){
-            $elementtype = $element['motivator']['subtype'];
-            if($elementtype != 'past_time'){
-                continue;
-            }
-            $index = $element['motivator']['index'];
-            $statname = $coursename . '/' . array_keys($element['stats'])[0];
-            $pasttimes[$index] = array_key_exists($statname, $ctxtdata)? $ctxtdata[$statname]: 0;
-        }
+        $statname       = $sectionkey . '/past_times';
+        $env->bomb_if(!array_key_exists($statname, $ctxtdata), "Failed to locate stat: $statname");
+        $pasttimes      = $ctxtdata[$statname];
 
         // prepare to start rendering content
         $env->set_block_classes('luditype-' . $this->get_short_name());
 
         // if we have at least one valid past time value then render it otherwise render the place-holder text
-        if (!empty($pasttimes) && $pasttimes[0]){
+        if (!empty($pasttimes)){
             // prepare the js data
             $jsdata = [
                 'time_to_date'      => $timetodate,
-                'past_times'        => $pasttimes,
+                'past_times'        => array_values($pasttimes),
                 'past_times_key'    => $this->get_string('history_title')
             ];
 
-            // render the first iframe pane
-            $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
-            $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_time.php');
-            $html .= '<iframe id="' . $this->get_short_name() . '-iframe-time" frameBorder="0" src="' . $iframeurl . '"></iframe>';
-            $env->render('ludi-main', $this->get_string('time_title'), $html);
+            // if this is a question attempt page then render the first iframe pane
+            if ($env->is_page_type_in(['mod-quiz-attempt'])){
+                $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
+                $iframeurl = new \moodle_url('/blocks/ludic_motivators/motivators/' . $this->get_short_name() . '/iframe_time.php');
+                $html .= '<iframe id="' . $this->get_short_name() . '-iframe-time" frameBorder="0" src="' . $iframeurl . '"></iframe>';
+                $env->render('ludi-main', $this->get_string('time_title'), $html);
+            }
 
             // render the second iframe pane
             $html = '<script>ludiTimer=' . json_encode($jsdata) . ';</script>';
@@ -92,7 +89,9 @@ class motivator_timer extends motivator_base implements i_motivator {
             $env->render('ludi-main', $this->get_string('history_title'), $html);
         }else{
             // render a place-holder text
-            $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('first_attempt'));
+            if ($env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-view'])){
+                $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('first_attempt'));
+            }
         }
     }
 }

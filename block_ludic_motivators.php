@@ -122,12 +122,8 @@ class block_ludic_motivators extends block_base {
         }
 
         // add different block content depending on whether we're half way through an activity or not
-        $attempt = optional_param('attempt', 0, PARAM_INT);
-        if ($attempt){
-            $result->text .= $this->get_content_in_quiz($env, $motivator, $attempt);
-        }else{
-            $result->text .= $this->get_content_default($env, $motivator);
-        }
+        $motivator->render($env);
+        $result->text .= $env->get_rendered_output();
 
         // flush any environment changes
         $env->get_data_mine()->flush_changes_to_database();
@@ -137,23 +133,24 @@ class block_ludic_motivators extends block_base {
         return $result;
     }
 
-    private function get_content_default($env, $motivator) {
-        // Add motivator HTML
-        $motivator->render($env);
-        return $env->get_rendered_output();
-    }
-
-    private function get_content_in_quiz($env, $motivator, $attempt) {
-        // Add motivator HTML
-        $motivator->render($env);
-        return $env->get_rendered_output();
-    }
-
     private function get_execution_environment() {
         if (!$this->env){
             global $USER;
-            $userid = optional_param('userid', $USER->id, PARAM_INT);
-            $this->env = new \block_ludic_motivators\execution_environment($userid, $this->page, $this->testmode);
+            $settings = [
+                'userid'    => optional_param('userid', $USER->id, PARAM_INT),
+                'attemptid' => optional_param('attempt', 0, PARAM_INT),
+                'section'   => optional_param('section',0,PARAM_INT),
+                'testmode'  => $this->testmode,
+            ];
+            if ($this->testmode){
+                $settings += [
+                    'motivator' => optional_param('motivator', null, PARAM_TEXT),
+                    'preset'       => optional_param( 'preset'       , null, PARAM_TEXT),
+                    'fullpreset'   => optional_param( 'fullpreset'   , null, PARAM_TEXT),
+                    'coursepreset' => optional_param( 'coursepreset' , null, PARAM_TEXT),
+                ];
+            }
+            $this->env = new \block_ludic_motivators\execution_environment($this->page, (object)$settings);
         }
         return $this->env;
     }

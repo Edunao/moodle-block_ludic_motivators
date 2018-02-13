@@ -38,9 +38,10 @@ interface i_execution_environment{
     //-------------------------------------------------------------------------
     // Moodle context
 
-    public function get_userid();
-    public function get_cm_id();
-    public function get_course_name();
+    public function get_userid();       // id of the current user
+    public function get_cm_id();        // id of the current course module
+    public function get_attempt_id();   // the attempt argument (actually a question usage id) passed in url for quiz attempts
+    public function get_course_name();  // name of the current course
     public function get_section_idx();  // course-relative section id (counting from 0)
     public function get_section_id();   // index into course_sections table
     public function is_page_type_in($pagetypes);

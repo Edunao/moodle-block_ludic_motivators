@@ -137,22 +137,40 @@ class data_mine extends data_mine_base {
     }
 
     /**
-     * Quiz Context : get times of attampts of current quiz
-     * @return vector of { attempt start time, (end-time|0) }
+     * Quiz Context : get time taken so far in an active quiz attempt
+     * @return time_now - attempt_start_time
      */
-    protected function fetch_quiz_attempt_times($userid, $currentattemptid){
+    protected function fetch_quiz_attempt_duration($attemptid){
+        // Lookup in the database
+        global $DB;
+        $starttime = $DB->get_field('quiz_attempts', 'timestart', ['id' => $attemptid]);
+
+        return time() - $starttime;
+    }
+
+    /**
+     * Quiz Context : get times of completed attempts of current quiz
+     * @return vector of { attempt start time => end-time }
+     */
+    protected function fetch_quiz_completion_times($userid, $cmid){
         // Lookup in the database
         global $DB;
         $query = '
             SELECT qa.id, qa.timestart, qa.timefinish
-            FROM {quiz_attempts} cqa
-            JOIN {mdl_quiz_attempts} qa ON qa.quiz=cqa.quiz
-            WHERE cqa.id = :attemptid
-            AND (qa.id = :attemptid OR qa.timefinish > 0)
+            FROM {modules} m
+            JOIN {course_modules} cm on cm.module=m.id
+            JOIN {quiz_attempts} qa on qa.quiz = cm.instance
+            WHERE m.name = "quiz"
+            AND cm.id = :cmid
             AND qa.userid = :userid
+            AND qa.timefinish > 0
             ORDER BY qa.id
         ';
-        $result = $DB->get_records_sql($query, ['userid' => $userid, 'attemptid' => $attemptid]);
+        $sqlresult = $DB->get_records_sql($query, ['userid' => $userid, 'cmid' => $cmid]);
+        $result = [];
+        foreach ($sqlresult as $record){
+            $result[$record->timestart] = max(0, ($record->timefinish - $record->timestart));
+        }
 
         return $result;
     }
@@ -171,7 +189,8 @@ class data_mine extends data_mine_base {
                 FROM {modules} m
                 JOIN {course_modules} cm on cm.module=m.id
                 LEFT JOIN {quiz_attempts} qa on qa.quiz = cm.instance
-                WHERE m.name="quiz" AND cm.section = :sectionid
+                WHERE m.name="quiz"
+                AND cm.section = :sectionid
                 GROUP BY qa.quiz, qa.userid
             ) AS qug
             GROUP BY qug.quiz

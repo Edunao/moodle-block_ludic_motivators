@@ -34,8 +34,9 @@ require_once __DIR__ . '/data_mine.class.php';
 */
 class execution_environment implements i_execution_environment{
 
-    private $user               = null;
+    private $settings           = null;
     private $page               = null;
+    private $user               = null;
     private $courseid           = null;
     private $sectionid          = null;
     private $sectionidx         = null;
@@ -48,11 +49,13 @@ class execution_environment implements i_execution_environment{
     private $config             = ['courses' => [], 'elements' => [], 'motivators' => []];
     private $presets            = [];
 
-    public function __construct($userid, \moodle_page $page, $testmode) {
+    public function __construct(\moodle_page $page, $settings) {
         global $DB, $CFG, $USER;
 
-        $this->user         = ($userid === $USER->id) ? $USER : $DB->get_record('user', array('id' => $userid));
+        $this->settings     = $settings;
         $this->page         = $page;
+        $userid             = $this->get_setting('userid', 0);
+        $this->user         = ($userid === $USER->id) ? $USER : $DB->get_record('user', array('id' => $userid));
         $this->statmine     = new stat_mine($this);
 
         // load global configuration data
@@ -74,14 +77,14 @@ class execution_environment implements i_execution_environment{
         if (file_exists($configfile)){
             $jsonconfigdata = file_get_contents($configfile);
             $motivatorconfig = json_decode($jsonconfigdata, true);
-            $this->bomb_if(!$this->config, 'Failed to JSON decode config file: ' . $configfile);
-            $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config file: ' . $configfile);
-            $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config file: ' . $configfile);
+            $this->bomb_if(!$motivatorconfig, 'Failed to JSON decode config file: ' . $configfile);
             $this->config = array_merge_recursive($this->config, $motivatorconfig);
         }
+        $this->bomb_if(!isset($this->config['elements']), '"elements" node not found in config files');
+        $this->bomb_if(!isset($this->config['courses']), '"courses" node not found in config files');
 
         // load testing data as required
-        if ($testmode === true){
+        if ($this->get_setting('testmode', false) === true){
             if (file_exists($testdatafile)){
                 $jsontestdata   = file_get_contents($testdatafile);
                 $testdata       = json_decode($jsontestdata, true);
@@ -120,6 +123,10 @@ class execution_environment implements i_execution_environment{
         return isset($this->page->cm->id) ? $this->page->cm->id : 0;
     }
 
+    public function get_attempt_id() {
+        return $this->get_setting('attemptid', 0);
+    }
+
     public function get_course_name() {
         return $this->page->course->shortname;
     }
@@ -129,7 +136,7 @@ class execution_environment implements i_execution_environment{
         if ($this->sectionidx === null){
             if ($this->page->pagetype == 'course-view-topics'){
                 // we're on a course view page and the course-relative section number is provided directly
-                $this->sectionidx = optional_param('section',0,PARAM_INT);
+                $this->sectionidx = $this->get_setting('section',0);
             } else if (isset($this->page->cm->section)) {
                 // we're in an activity that is declaring its section id so we need to lookup the corresponding course-relative index
                 global $DB;
@@ -151,7 +158,7 @@ class execution_environment implements i_execution_environment{
             if ($this->page->pagetype == 'course-view-topics'){
                 // we're on a course view page and the course-relative section number is provided so lookup the real section id
                 global $DB;
-                $coursesection = optional_param('section',0,PARAM_INT);
+                $coursesection = $this->get_setting('section',0);
                 $this->sectionid = $coursesection ? $DB->get_field('course_sections', 'id', ['course' => $this->page->course->id, 'section' => $coursesection]) : 0;
             } else if (isset($this->page->cm->section)) {
                 // we're in an activity that is declaring its section id so we're in luck
@@ -183,7 +190,8 @@ class execution_environment implements i_execution_environment{
         }
 
         // check to see if the motivator is supplied as a parameter (as in if the debug menu is being used)
-        $this->set_current_motivator(optional_param('motivator', null, PARAM_TEXT));
+        $motivator = $this->get_setting('motivator', null);
+        $this->set_current_motivator($motivator);
         if ($this->currentmotivator){
             return $this->currentmotivator;
         }
@@ -305,7 +313,7 @@ class execution_environment implements i_execution_environment{
         // lookout for overrides used for testing
         foreach (['preset', 'fullpreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
-                $override = optional_param($overridename, null, PARAM_TEXT);
+                $override = $this->get_setting($overridename, null);
                 if ($override && isset($this->presets[$overridename][$override])){
                     return $this->presets[$overridename][$override];
                 }
@@ -319,7 +327,7 @@ class execution_environment implements i_execution_environment{
         // lookout for overrides used for testing
         foreach (['preset', 'coursepreset'] as $overridename){
             if ($this->presets && isset($this->presets[$overridename])){
-                $override = optional_param($overridename, null, PARAM_TEXT);
+                $override = $this->get_setting($overridename, null);
                 if ($override && isset($this->presets[$overridename][$override])){
                     // expand out any '#' identifiers in the presets
                     $result = [];
@@ -441,5 +449,10 @@ class execution_environment implements i_execution_environment{
 
     public function get_js_init_data(){
         return $this->jsinitdata;
+    }
+
+    private function get_setting($name, $defaultvalue){
+        $result = isset($this->settings->$name) ? $this->settings->$name : $defaultvalue;
+        return $result;
     }
 }

@@ -39,19 +39,17 @@ abstract class data_mine_base {
      * Quiz Context : get stats for questions in current quiz
      * @return vector of { (done|todo), score }
      */
-    public function get_quiz_question_stats($userid/*, $quizid*/){
+    public function get_quiz_question_stats($userid, $attemptid){
         // generate an appropriate unique cache key
-        $cachekey = __FUNCTION__ . ':' . $userid /*. ':' . $quizid*/;
+        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $attemptid;
 
         // if the item doesn't exist yet in the cache then generate it and store it away
         if (! array_key_exists($cachekey, $this->cache)){
-            // lookup the quiz attempt id and if not found then return an empty set
-            $questionusageid = optional_param('attempt', 0, PARAM_INT);
-            if ( !$questionusageid ){
+            // if no quiz attempt id was provided then return an empty set
+            if (! $attemptid){
                 return [];
             }
-            $this->cache[$cachekey] = $this->fetch_quiz_question_stats($userid, $questionusageid);
-//            $this->cache[$cachekey] = $this->fetch_quiz_question_stats($userid, $quizid);
+            $this->cache[$cachekey] = $this->fetch_quiz_question_stats($userid, $attemptid);
         }
 
         // return the result
@@ -59,22 +57,41 @@ abstract class data_mine_base {
     }
 
     /**
-     * Quiz Context : get times of attampts of current quiz
-     * @return vector of { attempt start time, (end-time|null) }
+     * Quiz Context : get time taken so far in an active quiz attempt
+     * @return time_now - attempt_start_time
      */
-    public function get_quiz_attempt_times($userid, $quizid){
+    public function get_quiz_attempt_duration($attemptid){
         // generate an appropriate unique cache key
-        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $quizid;
+        $cachekey = __FUNCTION__ . ':' . $attemptid;
 
         // if the item doesn't exist yet in the cache then generate it and store it away
         if (! array_key_exists($cachekey, $this->cache)){
-            // lookup the quiz attempt id and if not found then return an empty set
-            $currentattemptid = optional_param('attempt', 0, PARAM_INT);
-            if (! $currentattemptid){
+            // if no quiz attempt id was provided then return a null
+            if (! $attemptid){
+                return null;
+            }
+            $this->cache[$cachekey] = $this->fetch_quiz_attempt_duration($attemptid);
+        }
+
+        // return the result
+        return $this->cache[$cachekey];
+    }
+
+    /**
+     * Quiz Context : get times of completed attempts of current quiz
+     * @return vector of { attempt start time => end-time }
+     */
+    public function get_quiz_completion_times($userid, $cmid){
+        // generate an appropriate unique cache key
+        $cachekey = __FUNCTION__ . ':' . $userid . ':' . $cmid;
+
+        // if the item doesn't exist yet in the cache then generate it and store it away
+        if (! array_key_exists($cachekey, $this->cache)){
+            // if no course module id was provided then return an empty set
+            if (! $cmid){
                 return [];
             }
-
-            $this->cache[$cachekey] = $this->fetch_quiz_attempt_times($userid, $currentattemptid);
+            $this->cache[$cachekey] = $this->fetch_quiz_completion_times($userid, $cmid);
         }
 
         // return the result
@@ -302,7 +319,8 @@ abstract class data_mine_base {
 
     // For Quiz Context
     protected abstract function fetch_quiz_question_stats($userid, $questionusageid);
-    protected abstract function fetch_quiz_attempt_times($userid, $currentattemptid);
+    protected abstract function fetch_quiz_attempt_duration($attemptid);
+    protected abstract function fetch_quiz_completion_times($userid, $cmid);
 
     // For Section Context
     protected abstract function fetch_section_user_scores($course, $sectionid);
