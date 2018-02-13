@@ -29,20 +29,21 @@ class motivator_score extends motivator_base implements i_motivator {
 
     public function get_loca_strings(){
         return [
-            'name'  => 'Score',
-            'title' => 'Score',
+            'name'          => 'Score',
+            'title'         => 'Score',
             'full_title'    => 'Score',
             'changes_title' => 'New Points',
-            'bonus_title' => 'Bonus !!',
-            'no_course' => 'Not in a tracked course',
+            'bonus_title'   => 'Bonus !!',
+            'no_course'     => 'Not in a tracked course',
         ];
     }
 
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
-        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        $sectionidx     = $env->get_section_idx();
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
 
         // if the course isn't in the courses list then display a placeholder message and drop out
         if (!$ctxtdata){
@@ -51,8 +52,9 @@ class motivator_score extends motivator_base implements i_motivator {
         }
 
         // lookup base properties that should always always exist
-        $statnamescore      = $coursename . '/score';
-        $statnamenewscore   = $coursename . '/new_score';
+        $sectionkey         = $coursename . ($sectionidx > -1 ? "#$sectionidx": '');
+        $statnamescore      = $sectionkey . '/000/score';
+        $statnamenewscore   = $sectionkey . '/000/new_score';
         foreach ([$statnamescore, $statnamenewscore] as $dataname){
             $env->bomb_if(!array_key_exists($dataname, $ctxtdata), "Failed to locate stat: $dataname");
         }
@@ -67,7 +69,7 @@ class motivator_score extends motivator_base implements i_motivator {
             if($elementtype != 'bonus'){
                 continue;
             }
-            $dataname = $coursename . '/' . array_keys($element['stats'])[0];
+            $dataname = $sectionkey . '/' . (array_keys($element['stats'])[0]);
             if (!array_key_exists($dataname,$ctxtdata)){
                 continue;
             }

@@ -39,6 +39,7 @@ interface i_execution_environment{
     // Moodle context
 
     public function get_userid();
+    public function get_cm_id();
     public function get_course_name();
     public function get_section_idx();  // course-relative section id (counting from 0)
     public function get_section_id();   // index into course_sections table

@@ -1,17 +1,17 @@
 {
     "elements":[
         {
-            "course": "*",
+            "course": "**",
             "motivator": {
                 "type": "score",
                 "subtype": "system"
             },
             "stats": {
                 "score": {
-                    "type": "quiz_score"
+                    "type": "section_score"
                 },
                 "new_score": {
-                    "type": "quiz_score_gain"
+                    "type": "section_score_gain"
                 }
             }
         }

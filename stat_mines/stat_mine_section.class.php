@@ -28,12 +28,16 @@ require_once dirname(__DIR__) . '/classes/base_classes/stat_mine_base.class.php'
 
 class stat_mine_section extends stat_mine_base {
 
+    private $oldscore   = null;  // score as laoded from achievements table
+    private $newscore   = null;  // score as calculated dynamically
+
     public function evaluate_stat($env, $coursename, $sectionid, $key, $dfn){
         $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
         switch($dfn['type']){
         case 'section_progress':        return $this->evaluate_section_progress($env, $coursename, $sectionid, $key, $dfn);
         case 'section_complete':        return $this->evaluate_section_complete($env, $coursename, $sectionid, $key, $dfn);
         case 'section_score':           return $this->evaluate_section_score($env, $coursename, $sectionid, $key, $dfn);
+        case 'section_score_gain':      return $this->evaluate_section_score_gain($env, $coursename, $sectionid, $key, $dfn);
         case 'best_section_score':      return $this->evaluate_best_section_score($env, $coursename, $sectionid, $key, $dfn);
         case 'average_section_score':   return $this->evaluate_average_section_score($env, $coursename, $sectionid, $key, $dfn);
         case 'section_score_rank':      return $this->evaluate_section_score_rank($env, $coursename, $sectionid, $key, $dfn);
@@ -99,14 +103,42 @@ class stat_mine_section extends stat_mine_base {
     }
 
     private function evaluate_section_score($env, $coursename, $sectionid, $key, $dfn){
-        echo __FUNCTION__ . "($coursename, $sectionid, " . json_encode($dfn) . ')<br>';
-        $datamine       = $env->get_data_mine();
+        // if we've already calculated the score then just return what we have
+        if ($this->newscore !== null){
+            return $this->newscore;
+        }
+
+        // lookup the old score value in the achievement table
         $userid         = $env->get_userid();
-//         $data           = $datamine->get_section_user_scores($sectionid);
-//         $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
-//         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
-//         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
-        return 0;
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $this->oldscore = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, 0);
+        $this->newscore = $this->oldscore;
+
+        // if this is a key course page then recalculate the score
+        if ($env->is_page_type_in(['mod-quiz-review', 'course-view-topics'])){
+            $this->newscore = 0;
+            $sectiondata = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+            foreach ($sectiondata as $quizdata){
+                $bestgrade = 0;
+                foreach ($quizdata->grades as $grade){
+                    $bestgrade = max($bestgrade, $grade);
+                }
+                $this->newscore += $bestgrade;
+            }
+            // record the new score in the achievements table for use next time
+            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $this->newscore);
+        }
+
+        return $this->newscore;
+    }
+
+    private function evaluate_section_score_gain($env, $coursename, $sectionid, $key, $dfn){
+        // call sister method to load calculate and store score values
+        $this->evaluate_section_score($env, $coursename, $sectionid, $key, $dfn);
+
+        // return the difference
+        return $this->newscore - $this->oldscore;
     }
 
     private function evaluate_best_section_score($env, $coursename, $sectionid, $key, $dfn){
@@ -162,6 +194,43 @@ class stat_mine_section extends stat_mine_base {
 //         $data           = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
 //         $data           = $datamine->get_section_answer_stats($userid, $coursename, $sectionid);
         return 0;
+    }
+
+    private function evaluate_section_perfect($env, $coursename, $sectionid, $key, $dfn){
+        // lookup the achievement to see if it has already been met
+        $userid         = $env->get_userid();
+        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
+        $datamine       = $env->get_data_mine();
+        $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_ACHIEVED);
+
+        // if not previously achieved then check for progress
+        $achievable = ($result === STATE_NOT_YET_ACHIEVABLE) || ($result === STATE_NOT_ACHIEVED);
+        if ($achievable && $env->is_page_type_in(['mod-quiz-review', 'course-view-topics'])){
+            $sectiondata = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+            $result  = $sectiondata? STATE_NO_LONGER_ACHIEVABLE : STATE_NOT_YET_ACHIEVABLE;
+            $value   = $sectiondata? STATE_NO_LONGER_ACHIEVABLE : STATE_NOT_YET_ACHIEVABLE;
+            foreach ($sectiondata as $quizdata){
+                if (empty($quizdata->grades)){
+                    // some quizes still to be done so there's still a chance of getting there if we're not there yet
+                    $result = STATE_NOT_ACHIEVED;
+                    $value  = STATE_NOT_ACHIEVED;
+                    continue;
+                }
+                $attempts       = array_keys($quizdata->grades);
+                $firstattempt   = $attempts[0];
+                $firstgrade     = $quizdata->grades[$firstattempt];
+                $maxgrade       = $quizdata->maxgrade;
+                if ($firstgrade == $maxgrade){
+                    // this one's perfect so we're there !
+                    $result = STATE_JUST_ACHIEVED;
+                    $value  = STATE_ACHIEVED;
+                    break;
+                }
+            }
+            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $value);
+        }
+
+        return $result;
     }
 
     private function evaluate_section_auto_correct($env, $coursename, $sectionid, $key, $dfn){
@@ -248,43 +317,6 @@ class stat_mine_section extends stat_mine_base {
                 }
             }
             // store away the current state in the achievements container
-            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $value);
-        }
-
-        return $result;
-    }
-
-    private function evaluate_section_perfect($env, $coursename, $sectionid, $key, $dfn){
-        // lookup the achievement to see if it has already been met
-        $userid         = $env->get_userid();
-        $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
-        $datamine       = $env->get_data_mine();
-        $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_ACHIEVED);
-
-        // if not previously achieved then check for progress
-        $achievable = ($result === STATE_NOT_YET_ACHIEVABLE) || ($result === STATE_NOT_ACHIEVED);
-        if ($achievable && $env->is_page_type_in(['mod-quiz-review', 'course-view-topics'])){
-            $sectiondata = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
-            $result  = $sectiondata? STATE_NO_LONGER_ACHIEVABLE : STATE_NOT_YET_ACHIEVABLE;
-            $value   = $sectiondata? STATE_NO_LONGER_ACHIEVABLE : STATE_NOT_YET_ACHIEVABLE;
-            foreach ($sectiondata as $quizdata){
-                if (empty($quizdata->grades)){
-                    // some quizes still to be done so there's still a chance of getting there if we're not there yet
-                    $result = STATE_NOT_ACHIEVED;
-                    $value  = STATE_NOT_ACHIEVED;
-                    continue;
-                }
-                $attempts       = array_keys($quizdata->grades);
-                $firstattempt   = $attempts[0];
-                $firstgrade     = $quizdata->grades[$firstattempt];
-                $maxgrade       = $quizdata->maxgrade;
-                if ($firstgrade == $maxgrade){
-                    // this one's perfect so we're there !
-                    $result = STATE_JUST_ACHIEVED;
-                    $value  = STATE_ACHIEVED;
-                    break;
-                }
-            }
             $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $value);
         }
 

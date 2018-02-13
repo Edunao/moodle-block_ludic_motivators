@@ -53,7 +53,6 @@ class execution_environment implements i_execution_environment{
 
         $this->user         = ($userid === $USER->id) ? $USER : $DB->get_record('user', array('id' => $userid));
         $this->page         = $page;
-        $this->coursename   = $page->course->shortname;
         $this->statmine     = new stat_mine($this);
 
         // load global configuration data
@@ -117,8 +116,12 @@ class execution_environment implements i_execution_environment{
         return $this->user->id;
     }
 
+    public function get_cm_id() {
+        return isset($this->page->cm->id) ? $this->page->cm->id : 0;
+    }
+
     public function get_course_name() {
-        return $this->coursename;
+        return $this->page->course->shortname;
     }
 
     public function get_section_idx(){
