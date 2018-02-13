@@ -1,15 +1,15 @@
 {
     "elements":[
         {
-            "course": "*",
+            "course": "**",
             "motivator": { "type": "ranking" },
             "stats": {
-                "current_score":        { "type": "course_score"            },
-                "class_best_score":     { "type": "best_course_score"       },
-                "class_average_score":  { "type": "average_course_score"    },
-                "class_rank":           { "type": "course_score_rank"       },
-                "previous_rank":        { "type": "course_score_old_rank"   },
-                "rank_size":            { "type": "course_scored_users"     }
+                "current_score":        { "type": "user_section_score"       },
+                "class_best_score":     { "type": "best_section_score"       },
+                "class_average_score":  { "type": "average_section_score"    },
+                "class_rank":           { "type": "section_score_rank"       },
+                "previous_rank":        { "type": "section_score_old_rank"   },
+                "rank_size":            { "type": "section_scored_users"     }
             }
         }
     ]

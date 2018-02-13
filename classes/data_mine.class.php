@@ -185,17 +185,20 @@ class data_mine extends data_mine_base {
         $query='
             SELECT qug.userid, sum(qug.grade) AS grade
             FROM (
-                SELECT qa.quiz, qa.userid, max(qa.sumgrades) AS grade
-                FROM {modules} m
-                JOIN {course_modules} cm on cm.module=m.id
-                LEFT JOIN {quiz_attempts} qa on qa.quiz = cm.instance
-                WHERE m.name="quiz"
-                AND cm.section = :sectionid
+                SELECT qa.id, qa.quiz, qa.userid, max(qa.sumgrades) AS grade
+                FROM {course} c
+                JOIN {course_sections} cs ON cs.course = c.id
+                JOIN {course_modules} cm ON cm.section = cs.id
+                JOIN {modules} m ON cm.module=m.id
+                JOIN {quiz_attempts} qa on qa.quiz = cm.instance
+                WHERE c.shortname = :course
+                AND cs.section = :sectionid
+                AND m.name="quiz"
                 GROUP BY qa.quiz, qa.userid
             ) AS qug
-            GROUP BY qug.quiz
+            GROUP BY qug.userid
         ';
-        $sqlresult = $DB->get_records_sql($query, ['sectionid' => $sectionid]);
+        $sqlresult = $DB->get_records_sql($query, ['course' =>$course, 'sectionid' => $sectionid]);
 
         // sedtup and return the result
         $result = [];
@@ -346,12 +349,6 @@ class data_mine extends data_mine_base {
             return $this->rawludigrades[$sectionkey];
         }
 
-        // TODO : we should be organising the grades by course and verifying the overlap between courses already processed and courses requested
-        // Typical use cases:
-        //  a. First request comes in for global data, then request comes in for course-context data
-        //  b. First request comes in for course-context data, then request comes in for global data
-        //  c. 2 requests come in for the same course
-        //  d. 2 requests come in for different courses
 
         // make sure that grade table has been fixed up as required
         $this->fixup_ludigrades($userid, $coursename, $sectionidx);
@@ -359,7 +356,7 @@ class data_mine extends data_mine_base {
         // fetch the appropriate grade data from sql
         global $DB;
         $query = '
-            SELECT qasd.id, c.shortname as coursename, qa.id, qa.questionusageid, qa.questionid, qa.maxmark as maxgrade, qasd.value as grade
+            SELECT qasd.id, c.shortname as coursename, qa.id as attemptid, qa.questionusageid, qa.questionid, qa.maxmark as maxgrade, qasd.value as grade
             FROM {course} c
             JOIN {course_modules} cm ON cm.course = c.id
             JOIN {course_sections} cs ON cs.id = cm.section
@@ -381,13 +378,6 @@ class data_mine extends data_mine_base {
     }
 
     private function fixup_ludigrades($userid, $coursename, $sectionidx){
-        // TODO : we should be organising the grades by course and verifying the overlap between courses already processed and courses requested
-        // Typical use cases:
-        //  a. First request comes in for global data, then request comes in for course-context data
-        //  b. First request comes in for course-context data, then request comes in for global data
-        //  c. 2 requests come in for the same course
-        //  d. 2 requests come in for different courses
-
         // put in a database request fo the set of attempt step data fields for completed questions that have yet to be ludigraded
         global $DB;
         $query = '

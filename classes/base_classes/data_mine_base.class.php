@@ -106,13 +106,13 @@ abstract class data_mine_base {
      * Section Context : get scores for all users for the exercises in the current section
      * @return vector of { user id => score }
      */
-    public function get_section_user_scores($sectionid){
+    public function get_section_user_scores($course, $sectionid){
         // generate an appropriate unique cache key
         $cachekey = __FUNCTION__ . ':' . $sectionid;
 
         // if the item doesn't exist yet in the cache then generate it and store it away
         if (! array_key_exists($cachekey, $this->cache)){
-            $this->cache[$cachekey] = $this->fetch_section_user_scores($sectionid);
+            $this->cache[$cachekey] = $this->fetch_section_user_scores($course, $sectionid);
         }
 
         // return the result

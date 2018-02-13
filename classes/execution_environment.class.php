@@ -203,7 +203,11 @@ class execution_environment implements i_execution_environment{
         }
 
         // if all else fails fall back to the first valid motivator available
-        $this->set_current_motivator(array_values(motivators::get_instances($this))[0]->get_short_name());
+        $motivators    = array_values(motivators::get_instances($this));
+        $motivatoridx  = $this->user->id % count($motivators);
+        $motivatorname = $motivators[$motivatoridx]->get_short_name();
+        $this->set_current_motivator($motivatorname);
+        $this->bomb_if(! $this->currentmotivator, 'Failed to initialise motivator');
         return $this->currentmotivator;
     }
 
@@ -223,7 +227,7 @@ class execution_environment implements i_execution_environment{
         if (!$motivator){
             return;
         }
-        $this->motivator = $motivator;
+        $this->currentmotivator = $motivator;
         $this->write_motivator_selection($name);
     }
 

@@ -62,8 +62,9 @@
     padding-right:4px;
 }
 
-.ludi-place-holder {
-    margin: 10px
+.ludi-place-holder .ludi-content {
+    text-align: center;
+    margin: 10px;
 }
 
 
@@ -71,12 +72,12 @@
   Debug menus
 */
 
-.ludi-debug-menu{
+.ludi-debug-menu {
     width: 100%;
     text-align: center;
     margin-top: 15px;
 }
 
-.ludi-debug-menu select{
+.ludi-debug-menu select {
     width: 100%;
 }

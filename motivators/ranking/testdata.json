@@ -5,52 +5,52 @@
 
     "preset":{
         "none":{
-            "#/current_score"        : 0,
-            "#/class_best_score"     : 0,
-            "#/class_average_score"  : 0,
-            "#/class_rank"           : 0,
-            "#/previous_rank"        : 0,
-            "#/rank_size"            : 0
+            "##1/current_score"        : 0,
+            "##1/class_best_score"     : 0,
+            "##1/class_average_score"  : 0,
+            "##1/class_rank"           : 0,
+            "##1/previous_rank"        : 0,
+            "##1/rank_size"            : 0
         },
         "alone":{
-            "#/current_score"        : 10,
-            "#/class_best_score"     : 0,
-            "#/class_average_score"  : 0,
-            "#/class_rank"           : 1,
-            "#/previous_rank"        : 0,
-            "#/rank_size"            : 0
+            "##1/current_score"        : 10,
+            "##1/class_best_score"     : 0,
+            "##1/class_average_score"  : 0,
+            "##1/class_rank"           : 1,
+            "##1/previous_rank"        : 0,
+            "##1/rank_size"            : 0
         },
         "second-new":{
-            "#/current_score"        : 10,
-            "#/class_best_score"     : 12,
-            "#/class_average_score"  : 5,
-            "#/class_rank"           : 2,
-            "#/previous_rank"        : 1,
-            "#/rank_size"            : 4
+            "##1/current_score"        : 10,
+            "##1/class_best_score"     : 12,
+            "##1/class_average_score"  : 5,
+            "##1/class_rank"           : 2,
+            "##1/previous_rank"        : 1,
+            "##1/rank_size"            : 4
         },
         "second-old":{
-            "#/current_score"        : 10,
-            "#/class_best_score"     : 12,
-            "#/class_average_score"  : 5,
-            "#/class_rank"           : 2,
-            "#/previous_rank"        : 2,
-            "#/rank_size"            : 4
+            "##1/current_score"        : 10,
+            "##1/class_best_score"     : 12,
+            "##1/class_average_score"  : 5,
+            "##1/class_rank"           : 2,
+            "##1/previous_rank"        : 2,
+            "##1/rank_size"            : 4
         },
         "first-new":{
-            "#/current_score"        : 12,
-            "#/class_best_score"     : 12,
-            "#/class_average_score"  : 5,
-            "#/class_rank"           : 1,
-            "#/previous_rank"        : 2,
-            "#/rank_size"            : 4
+            "##1/current_score"        : 12,
+            "##1/class_best_score"     : 12,
+            "##1/class_average_score"  : 5,
+            "##1/class_rank"           : 1,
+            "##1/previous_rank"        : 2,
+            "##1/rank_size"            : 4
         },
         "first-old":{
-            "#/current_score"        : 14,
-            "#/class_best_score"     : 12,
-            "#/class_average_score"  : 5,
-            "#/class_rank"           : 1,
-            "#/previous_rank"        : 1,
-            "#/rank_size"            : 4
+            "##1/current_score"        : 14,
+            "##1/class_best_score"     : 12,
+            "##1/class_average_score"  : 5,
+            "##1/class_rank"           : 1,
+            "##1/previous_rank"        : 1,
+            "##1/rank_size"            : 4
         }
     }
 }

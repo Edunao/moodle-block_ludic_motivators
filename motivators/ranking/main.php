@@ -40,8 +40,9 @@ class motivator_ranking extends motivator_base implements i_motivator {
     public function render($env) {
         // fetch config and associated stat data
         $coursename     = $env->get_course_name();
-        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename);
-        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename);
+        $sectionidx     = $env->get_section_idx();
+        $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
+        $ctxtdata       = $env->get_contextual_state_data($ctxtconfig, $coursename, $sectionidx);
 
         // if the course isn't in the courses list then display a placeholder message and drop out
         if (!$ctxtdata){
@@ -50,12 +51,12 @@ class motivator_ranking extends motivator_base implements i_motivator {
         }
 
         // lookup base properties that should always always exist
-        $score          = self::lookup_stat($env, $ctxtdata, $coursename, 'current_score');
-        $classbest      = self::lookup_stat($env, $ctxtdata, $coursename, 'class_best_score');
-        $classaverage   = self::lookup_stat($env, $ctxtdata, $coursename, 'class_average_score');
-        $rank           = self::lookup_stat($env, $ctxtdata, $coursename, 'class_rank');
-        $oldrank        = self::lookup_stat($env, $ctxtdata, $coursename, 'previous_rank');
-        $ranksize       = self::lookup_stat($env, $ctxtdata, $coursename, 'rank_size');
+        $score          = self::lookup_stat($env, $ctxtdata, $coursename, $sectionidx, 'current_score');
+        $classbest      = self::lookup_stat($env, $ctxtdata, $coursename, $sectionidx, 'class_best_score');
+        $classaverage   = self::lookup_stat($env, $ctxtdata, $coursename, $sectionidx, 'class_average_score');
+        $rank           = self::lookup_stat($env, $ctxtdata, $coursename, $sectionidx, 'class_rank');
+        $oldrank        = self::lookup_stat($env, $ctxtdata, $coursename, $sectionidx, 'previous_rank');
+        $ranksize       = self::lookup_stat($env, $ctxtdata, $coursename, $sectionidx, 'rank_size');
 
         // prepare to start rendering content
         $env->set_block_classes('luditype-ranking');
@@ -82,12 +83,12 @@ class motivator_ranking extends motivator_base implements i_motivator {
             }
         }else{
             // render a place-holder text
-            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_rank'));
+//            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_rank'));
         }
     }
 
-    private static function lookup_stat($env, $statsdata, $coursename, $statname){
-        $statid = $coursename . '/' . $statname;
+    private static function lookup_stat($env, $statsdata, $coursename, $sectionidx, $statname){
+        $statid = $coursename . ($sectionidx > -1 ? "#$sectionidx" : '') . '/000/' . $statname;
         $env->bomb_if(!array_key_exists($statid, $statsdata), "Failed to locate stat: $statid");
         return $statsdata[$statid];
     }
