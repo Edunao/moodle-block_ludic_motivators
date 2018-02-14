@@ -33,7 +33,8 @@ class motivator_score extends motivator_base implements i_motivator {
             'title'         => 'Score',
             'full_title'    => 'Score',
             'changes_title' => 'Points Gagnés',
-            'no_course'     => 'Not in a tracked course',
+            'no_course'     => 'Not available',
+            'not_scored'    => 'Not available'
         ];
     }
 
@@ -64,7 +65,7 @@ class motivator_score extends motivator_base implements i_motivator {
 
         // if this is not a scored section then don't display the score
         if (! $scored){
-//            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('not_scored'));
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('not_scored'));
             return;
         }
 

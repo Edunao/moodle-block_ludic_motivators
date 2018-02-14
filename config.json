@@ -16,9 +16,9 @@
         { "course": "calcul-litteral#5", "motivator": { "type": "avatar", "title": "Section 13 completed", "layer": "calque14" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
         { "course": "calcul-litteral#6", "motivator": { "type": "avatar", "title": "Section 14 completed", "layer": "calque15" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
 
-        { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "5 sans-faute",  "icon": "badge2" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 5 } } },
-        { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "10 sans-faute", "icon": "badge3" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 10 } } },
-        { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "15 sans-faute", "icon": "badge4" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 15 } } },
+        { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "5 sans-faute",  "icon": "badge2" }, "stats": { "goal": { "type": "section_correct_run", "min": -1, "threshold": 5 } } },
+        { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "10 sans-faute", "icon": "badge3" }, "stats": { "goal": { "type": "section_correct_run", "min": -1, "threshold": 10 } } },
+        { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "15 sans-faute", "icon": "badge4" }, "stats": { "goal": { "type": "section_correct_run", "min": -1, "threshold": 15 } } },
         { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "Test Parfait",  "icon": "badge1" }, "stats": { "goal": { "type": "section_perfect" } } },
         { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "Test corrigé",  "icon": "badge5" }, "stats": { "goal": { "type": "section_auto_correct" } } },
 

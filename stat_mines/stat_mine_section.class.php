@@ -73,7 +73,7 @@ class stat_mine_section extends stat_mine_base {
             $data           = $datamine->get_section_progress($userid, $coursename, $sectionid);
             $grade          = ($data? $data->grade: 0);
             $maxgrade       = ($data? $data->maxgrade: 0);
-            $progress       = $maxgrade ? (int)(100 * $grade / $maxgrade) : 0;
+            $progress       = ($maxgrade > 0) ? (int)(100 * $grade / $maxgrade) : 0;
             $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $progress);
         }
 
@@ -332,7 +332,7 @@ class stat_mine_section extends stat_mine_base {
         $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_YET_ACHIEVABLE);
 
         // if not previously achieved then check for progress
-        if ($result < STATE_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-review', 'mod-quiz-view'])){
+        if ($result < STATE_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-review', 'mod-quiz-view', 'course-view-topics'])){
             // assume that we're not yet achievable until we have at least one answer attempt behind us
             $result = STATE_NOT_YET_ACHIEVABLE;
             $value  = STATE_NOT_YET_ACHIEVABLE;
@@ -355,6 +355,16 @@ class stat_mine_section extends stat_mine_base {
                     $count = 0;
                 }
             }
+
+            // if no grades were found and there is no MIN requirement then try harder to determine whether or not the dubry is achievable
+            if ($minrunlength < 0 && empty($grades)){
+                $quizstats = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
+                if (! empty($quizstats)){
+                    $result = STATE_NOT_ACHIEVED;
+                    $value  = STATE_NOT_ACHIEVED;
+                }
+            }
+
             // store away the current state in the achievements container
             $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $value);
         }
