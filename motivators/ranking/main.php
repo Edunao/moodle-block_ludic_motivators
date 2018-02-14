@@ -31,7 +31,7 @@ class motivator_ranking extends motivator_base implements i_motivator {
         return [
             'name'      => 'Ranking',
             'title'     => 'My Ranking',
-            'no_rank'   => 'No exercises completed yet',
+            'no_rank'   => 'Not available',
             'no_course' => 'Not in a tracked course',
             'bravo'     => 'Bravo!',
         ];
@@ -62,7 +62,7 @@ class motivator_ranking extends motivator_base implements i_motivator {
         $env->set_block_classes('luditype-ranking');
 
         // if we have at least one valid course score then render our ranking, otherwise render the place-holder text
-        if ($score){
+        if ($score || $classbest){
             // prepare the js data
             $jsdata = [
                 'userScore'      => $score,
@@ -83,7 +83,7 @@ class motivator_ranking extends motivator_base implements i_motivator {
             }
         }else{
             // render a place-holder text
-//            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_rank'));
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_rank'));
         }
     }
 

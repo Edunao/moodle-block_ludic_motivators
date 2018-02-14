@@ -28,10 +28,11 @@ require_once dirname(__DIR__) . '/classes/base_classes/stat_mine_base.class.php'
 
 class stat_mine_section extends stat_mine_base {
 
-    private $rawscore   = null;  // raw score as laoded from achievements table (-1 for section with no quizzes)
-    private $oldscore   = null;  // score as laoded from achievements table clamped to >= 0
-    private $newscore   = null;  // score as calculated dynamically
-    private $allscores  = null;
+    private $rawscore       = null;  // raw score as laoded from achievements table (-1 for section with no quizzes)
+    private $oldscore       = null;  // score as laoded from achievements table clamped to >= 0
+    private $newscore       = null;  // score as calculated dynamically
+    private $classscores    = null;  // scores of other class members (excluding self)
+    private $classscore     = null;  // own score as calaculated as a side effect of fetch_class_scores()
 
     public function evaluate_stat($env, $coursename, $sectionid, $key, $dfn){
         $env->bomb_if(!array_key_exists('type', $dfn), 'No type found in stats definition: ' . json_encode($dfn));
@@ -163,18 +164,17 @@ class stat_mine_section extends stat_mine_base {
     }
 
     private function evaluate_user_section_score($env, $coursename, $sectionid, $key, $dfn){
-        $userid = $env->get_userid();
-        $scores = $this->fetch_user_section_scores($env, $coursename, $sectionid);
-        return array_key_exists($userid, $scores) && $scores[$userid] != null ? $scores[$userid] : 0;
+        $this->fetch_class_scores($env, $coursename, $sectionid);
+        return $this->classscore? $this->classscore: 0;
     }
 
     private function evaluate_best_section_score($env, $coursename, $sectionid, $key, $dfn){
-        $scores = $this->fetch_user_section_scores($env, $coursename, $sectionid);
-        return $scores ? round(max($scores, 1)) : 0;
+        $scores = $this->fetch_class_scores($env, $coursename, $sectionid);
+        return $scores ? round(max($scores), 1) : 0;
     }
 
     private function evaluate_average_section_score($env, $coursename, $sectionid, $key, $dfn){
-        $scores = $this->fetch_user_section_scores($env, $coursename, $sectionid);
+        $scores = $this->fetch_class_scores($env, $coursename, $sectionid);
         $sum    = 0;
         foreach($scores as $score){
             $sum += $score;
@@ -184,45 +184,55 @@ class stat_mine_section extends stat_mine_base {
 
     private function evaluate_section_score_rank($env, $coursename, $sectionid, $key, $dfn){
         // call sister method to load calculate and store rank values
-        $this->fetch_user_section_scores($env, $coursename, $sectionid);
+        $this->fetch_class_scores($env, $coursename, $sectionid);
 
         return $this->newrank;
     }
 
     private function evaluate_section_score_old_rank($env, $coursename, $sectionid, $key, $dfn){
         // call sister method to load calculate and store rank values
-        $this->fetch_user_section_scores($env, $coursename, $sectionid);
+        $this->fetch_class_scores($env, $coursename, $sectionid);
 
         return $this->oldrank;
     }
 
     private function evaluate_section_scored_users($env, $coursename, $sectionid, $key, $dfn){
         $userid = $env->get_userid();
-        $scores = $this->fetch_user_section_scores($env, $coursename, $sectionid);
+        $scores = $this->fetch_class_scores($env, $coursename, $sectionid);
         return count($scores) + (array_key_exists($userid, $scores) && $scores[$userid] != null ? 0 : 1);
     }
 
-    private function fetch_user_section_scores($env, $coursename, $sectionid){
-        if ($this->allscores === null){
-            // fetch and cache the user scores for all users who have completed exercises in this section
-            $datamine           = $env->get_data_mine();
-            $scores             = $datamine->get_section_user_scores($coursename, $sectionid);
-            $this->allscores    = $scores;
-
-            // fetch and cache the old rank value
-            $userid             = $env->get_userid();
-            $achievement        = $env->get_current_motivator()->get_short_name() . '/rank';
-            $this->oldrank      = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, 0);
-
-            // calculate and stoe away the new rank value
-            $ownscore = array_key_exists($userid, $scores) ? $scores[$userid] : 0;
-            $this->newrank = 1;
-            foreach($scores as $score){
-                $this->newrank += ($score > $ownscore) ? 1 : 0;
-            }
-            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $this->newrank);
+    private function fetch_class_scores($env, $coursename, $sectionid){
+        if ($this->classscores !== null){
+            return $this->classscores;
         }
-        return $this->allscores;
+
+        // fetch the user scores for all users who have completed exercises in this section
+        $datamine           = $env->get_data_mine();
+        $scores             = $datamine->get_section_user_scores($coursename, $sectionid);
+
+        // split out own score from other class member scores
+        $userid             = $env->get_userid();
+        $this->classscores  = &$scores;
+        if (array_key_exists($userid, $scores)){
+            $this->classscore = $scores[$userid];
+            unset($scores[$userid]);
+        }
+
+        // fetch and cache the old rank value
+        $achievement        = $env->get_current_motivator()->get_short_name() . '/rank';
+        $this->oldrank      = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, 0);
+
+        // calculate and stoe away the new rank value
+        $ownscore = array_key_exists($userid, $scores) ? $scores[$userid] : 0;
+        $this->newrank = 1;
+        foreach($scores as $score){
+            $this->newrank += ($score > $ownscore) ? 1 : 0;
+        }
+        $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $this->newrank);
+
+        // return the set of class mate scores (with own scores ommitted)
+        return $this->classscores;
     }
 
     private function evaluate_section_perfect($env, $coursename, $sectionid, $key, $dfn){
@@ -322,7 +332,7 @@ class stat_mine_section extends stat_mine_base {
         $result         = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, STATE_NOT_YET_ACHIEVABLE);
 
         // if not previously achieved then check for progress
-        if ($result < STATE_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-view'])){
+        if ($result < STATE_ACHIEVED && $env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-review', 'mod-quiz-view'])){
             // assume that we're not yet achievable until we have at least one answer attempt behind us
             $result = STATE_NOT_YET_ACHIEVABLE;
             $value  = STATE_NOT_YET_ACHIEVABLE;
