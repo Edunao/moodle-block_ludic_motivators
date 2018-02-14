@@ -2,11 +2,11 @@
     "config":{
         "courses": ["Ludi01", "Ludi02", "Ludi03"],
         "elements":[
-            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "Test Parfait",  "icon": "badge1" }, "stats": { "goal": { "type": "section_perfect" } } },
-            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "Test corrigé",  "icon": "badge5" }, "stats": { "goal": { "type": "section_auto_correct" } } },
-            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "5 sans-faute",  "icon": "badge2" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 2 } } },
-            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "10 sans-faute", "icon": "badge3" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 4 } } },
-            { "course": "**", "motivator": { "type": "badges", "subtype": "local", "title": "15 sans-faute", "icon": "badge4" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 6 } } },
+            { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "Test Parfait",  "icon": "badge1" }, "stats": { "goal": { "type": "section_perfect" } } },
+            { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "Test corrigé",  "icon": "badge5" }, "stats": { "goal": { "type": "section_auto_correct" } } },
+            { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "5 bonnes réponses sans-faute",  "icon": "badge2" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 2 } } },
+            { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "10 bonnes réponses sans-faute", "icon": "badge3" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 4 } } },
+            { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "15 bonnes réponses sans-faute", "icon": "badge4" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 6 } } },
 
             { "course": "Ludi01#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
             { "course": "Ludi02#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },

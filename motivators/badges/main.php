@@ -32,7 +32,7 @@ class motivator_badges extends motivator_base implements i_motivator {
         return [
             'name'          => 'Badge',
             'title'         => 'Badges',
-            'full_title'    => 'Contextual Badges',
+            'full_title'    => 'Badges',
             'changes_title' => 'New Badges',
             'pyramid_title' => 'Acquired Competencies',
         ];
@@ -74,7 +74,7 @@ class motivator_badges extends motivator_base implements i_motivator {
         $contextcount = $globaldata['/context_count'];
 
         $badgeicons = '';
-        $newbadgeicons = '';
+        $newbadges = [];
         // match up the config elements and state data to determine the set of information to pass to the javascript
         foreach ($ctxtconfig as $element){
             if ($element['motivator']['subtype'] !== 'local'){
@@ -86,14 +86,15 @@ class motivator_badges extends motivator_base implements i_motivator {
                 $statevalue = $ctxtdata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
-                    $newbadgeicons  .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
-                    $badgeicons     .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
+                    $title              = $element['motivator']['title'];
+                    $newbadges[$title]  = "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
+//                    $badgeicons         .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
                     break;
                 case STATE_ACHIEVED:
-                    $badgeicons     .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-old'/>";
+                    $badgeicons         .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-old'/>";
                     break;
                 case STATE_NOT_ACHIEVED:
-                    $badgeicons     .= "<img src='" . $imageurl . "_inactif.svg' class='ludi-badge ludi-todo'/>";
+                    $badgeicons         .= "<img src='" . $imageurl . "_inactif.svg' class='ludi-badge ludi-todo'/>";
                     break;
                 }
             }
@@ -114,8 +115,8 @@ class motivator_badges extends motivator_base implements i_motivator {
         if (!empty($badgeicons)){
             $env->render('ludi-main ludi-detail', $this->get_string('full_title'), '<div class="ludi-course-badges">' . $badgeicons . '</div>');
         }
-        if (!empty($newbadgeicons)){
-            $env->render('ludi-change ludi-detail', $this->get_string('changes_title'), '<div class="ludi-course-badges">' . $newbadgeicons . '</div>');
+        foreach ($newbadges as $title => $icon){
+            $env->render('ludi-change ludi-detail', $title, '<div class="ludi-course-badges">' . $icon . '</div>');
         }
 
         // render the pyramid image
