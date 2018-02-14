@@ -33,8 +33,9 @@ class motivator_timer extends motivator_base implements i_motivator {
             'title'         => 'Timer',
             'time_title'    => 'Current Time',
             'first_attempt' => 'Times are not shown until an exercise has been completed at least once',
-            'history_title' => 'Attempt History',
             'no_course'     => 'Not in a tracked course',
+            'history_title' => 'Attempt History',
+            'key_time'      => 'Temps',
         ];
     }
 
@@ -71,7 +72,7 @@ class motivator_timer extends motivator_base implements i_motivator {
             $jsdata = [
                 'time_to_date'      => $timetodate,
                 'past_times'        => array_values($pasttimes),
-                'past_times_key'    => $this->get_string('history_title')
+                'key_time'          => $this->get_string('key_time'),
             ];
 
             // if this is a question attempt page then render the first iframe pane

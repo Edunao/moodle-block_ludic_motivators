@@ -34,6 +34,9 @@ class motivator_ranking extends motivator_base implements i_motivator {
             'no_rank'   => 'Not available',
             'no_course' => 'Not in a tracked course',
             'bravo'     => 'Bravo!',
+            'key_ave'   => 'Average Score',
+            'key_best'  => 'Best Score',
+            'key_my'    => 'My Score',
         ];
     }
 
@@ -65,10 +68,15 @@ class motivator_ranking extends motivator_base implements i_motivator {
         if ($score || $classbest){
             // prepare the js data
             $jsdata = [
-                'userScore'      => $score,
-                'classAverage'   => $classaverage,
-                'bestScore'      => $classbest,
-                'isFirstRank'    => ($score >= $classbest)
+                'userScore'     => $score,
+                'classAverage'  => $classaverage,
+                'bestScore'     => $classbest,
+                'isFirstRank'   => ($score >= $classbest),
+                // keys for the columns in the chart
+                'keyAveScore'   => $this->get_string('key_ave'),
+                'keyBestScore'  => $this->get_string('key_best'),
+                'keyMyScore'    => $this->get_string('key_my')
+
             ];
             $html = '<script>ludiRanking=' . json_encode($jsdata) . ';</script>';
 

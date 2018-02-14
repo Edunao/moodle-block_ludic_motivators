@@ -26,9 +26,9 @@ google.charts.setOnLoadCallback(drawScoreChart);
 function drawScoreChart() {
     var data = google.visualization.arrayToDataTable([
         ['Element', 'Score', {role: 'style'}],
-        ['Average score', parent.ludiRanking.classAverage, 'red'],
-        ['Best score', parent.ludiRanking.bestScore, 'orange'],
-        ['My Score', parent.ludiRanking.userScore, '#eee'],
+        [parent.ludiRanking.keyAveScore, parent.ludiRanking.classAverage, 'red'],
+        [parent.ludiRanking.keyBestScore, parent.ludiRanking.bestScore, 'orange'],
+        [parent.ludiRanking.keyMyScore, parent.ludiRanking.userScore, parent.ludiRanking.isFirstRank? 'green': '#eee'],
     ]);
 
     var view = new google.visualization.DataView(data);

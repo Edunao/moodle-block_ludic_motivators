@@ -31,7 +31,7 @@ function drawColumnChart() {
 
     // Declare columns
     data.addColumn('string', 'Element');    // Implicit domain column.
-    data.addColumn('number', 'Timing');     // Implicit data column.
+    data.addColumn('number', parent.ludiTimer.key_time);     // Implicit data column.
     data.addColumn({type:'string', role: 'style'});
 
     params.forEach(function(element, index) {
@@ -48,7 +48,6 @@ function drawColumnChart() {
     );
 
     var options = {
-//        title: parent.ludiTimer.past_times_key,
         width: 190,
         height: 300,
         bar: {groupWidth: "95%"},

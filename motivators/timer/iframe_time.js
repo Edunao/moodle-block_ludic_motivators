@@ -28,7 +28,7 @@ function drawGauge() {
 
     var data = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['Temps', {v: 0, f: '00:00'}]
+        [parent.ludiTimer.key_time, {v: 0, f: '00:00'}]
     ]);
 
     var pastTimes = parent.ludiTimer.past_times;
