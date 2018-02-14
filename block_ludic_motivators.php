@@ -100,7 +100,7 @@ class block_ludic_motivators extends block_base {
 
         // lookup the current motivator and set the block title
         $motivator    = $env->get_current_motivator();
-        $this->title  = $motivator->get_string('title');
+//        $this->title  = $motivator->get_string('title');
 
         // Ensure that required external JS plugins are loaded
         $env->page_requires_jquery_plugin('ui-css');
