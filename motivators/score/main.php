@@ -32,8 +32,7 @@ class motivator_score extends motivator_base implements i_motivator {
             'name'          => 'Score',
             'title'         => 'Score',
             'full_title'    => 'Score',
-            'changes_title' => 'New Points',
-            'bonus_title'   => 'Bonus !!',
+            'changes_title' => 'Points Gagnés',
             'no_course'     => 'Not in a tracked course',
         ];
     }
@@ -47,7 +46,7 @@ class motivator_score extends motivator_base implements i_motivator {
 
         // if the course isn't in the courses list then display a placeholder message and drop out
         if (!$ctxtdata){
-            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
+//            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
             return;
         }
 
@@ -55,15 +54,24 @@ class motivator_score extends motivator_base implements i_motivator {
         $sectionkey         = $coursename . ($sectionidx > -1 ? "#$sectionidx": '');
         $statnamescore      = $sectionkey . '/000/score';
         $statnamenewscore   = $sectionkey . '/000/new_score';
+        $statnamenewscored  = $sectionkey . '/000/scored';
         foreach ([$statnamescore, $statnamenewscore] as $dataname){
             $env->bomb_if(!array_key_exists($dataname, $ctxtdata), "Failed to locate stat: $dataname");
         }
         $score      = $ctxtdata[$statnamescore];
         $newscore   = $ctxtdata[$statnamenewscore];
+        $scored     = $ctxtdata[$statnamenewscored];
+
+        // if this is not a scored section then don't display the score
+        if (! $scored){
+//            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('not_scored'));
+            return;
+        }
 
         // match up the config elements and state data to determine the set of information to pass to the javascript
         $totalbonus = 0;
         $newbonus   = 0;
+        $bonuses    = [];
         foreach ($ctxtconfig as $element){
             $elementtype = $element['motivator']['subtype'];
             if($elementtype != 'bonus'){
@@ -78,6 +86,8 @@ class motivator_score extends motivator_base implements i_motivator {
             switch ($statevalue){
             case STATE_JUST_ACHIEVED:
                 $newbonus   += $bonusvalue;
+                $bonustitle = $element['motivator']['title'];
+                $bonuses[$bonustitle] = $bonusvalue;
             case STATE_ACHIEVED:
                 $totalbonus += $bonusvalue;
                 break;
@@ -97,17 +107,18 @@ class motivator_score extends motivator_base implements i_motivator {
         // render the new points pane
         if ($newscore){
             $newscorehtml = '';
-            $newscorehtml .= '<div class="ludi-score-pane">';
+//            $newscorehtml .= '<div class="ludi-score-pane">';
             $newscorehtml .= '<span class="ludi-score-new">+ ' . $newscore . '</span>';
-            // add bonus points as required
-            if ($newbonus){
-                $newscorehtml .= '&nbsp;&nbsp;';
-                $newscorehtml .= '<span class="ludi-score-bonus">+' . $newbonus . '</span>';
-            }
-            $newscorehtml .= '</div>';
+//             // add bonus points as required
+//             if ($newbonus){
+//                 $newscorehtml .= '&nbsp;&nbsp;';
+//                 $newscorehtml .= '<span class="ludi-score-bonus">+' . $newbonus . '</span>';
+//             }
+//            $newscorehtml .= '</div>';
             $env->render('ludi-change', $this->get_string('changes_title'), $newscorehtml);
-            if ($newbonus){
-                $env->render('ludi-change ludi-bonus', $this->get_string('bonus_title'), '');
+            foreach ($bonuses as $title =>$value){
+                $bonushtml = '<span class="ludi-score-bonus">+ ' . $value . '</span>';
+                $env->render('ludi-change ludi-bonus', $title, $bonushtml);
             }
         }
 

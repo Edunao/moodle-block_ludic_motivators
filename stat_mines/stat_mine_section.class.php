@@ -28,7 +28,8 @@ require_once dirname(__DIR__) . '/classes/base_classes/stat_mine_base.class.php'
 
 class stat_mine_section extends stat_mine_base {
 
-    private $oldscore   = null;  // score as laoded from achievements table
+    private $rawscore   = null;  // raw score as laoded from achievements table (-1 for section with no quizzes)
+    private $oldscore   = null;  // score as laoded from achievements table clamped to >= 0
     private $newscore   = null;  // score as calculated dynamically
     private $allscores  = null;
 
@@ -38,6 +39,7 @@ class stat_mine_section extends stat_mine_base {
         case 'section_progress':        return $this->evaluate_section_progress($env, $coursename, $sectionid, $key, $dfn);
         case 'section_complete':        return $this->evaluate_section_complete($env, $coursename, $sectionid, $key, $dfn);
         case 'section_score':           return $this->evaluate_section_score($env, $coursename, $sectionid, $key, $dfn);
+        case 'section_is_scored':       return $this->evaluate_section_is_scored($env, $coursename, $sectionid, $key, $dfn);
         case 'section_score_gain':      return $this->evaluate_section_score_gain($env, $coursename, $sectionid, $key, $dfn);
         case 'user_section_score':      return $this->evaluate_user_section_score($env, $coursename, $sectionid, $key, $dfn);
         case 'best_section_score':      return $this->evaluate_best_section_score($env, $coursename, $sectionid, $key, $dfn);
@@ -104,7 +106,31 @@ class stat_mine_section extends stat_mine_base {
         return $result;
     }
 
+    private function evaluate_section_is_scored($env, $coursename, $sectionid, $key, $dfn){
+        // call utility method to load calculate and store score values
+        $this->analyse_section_score($env, $coursename, $sectionid, $key, $dfn);
+
+        // return true if section contains at least 1 quiz (if not then rawscore will be -1)
+        return $this->rawscore >= 0;
+    }
+
     private function evaluate_section_score($env, $coursename, $sectionid, $key, $dfn){
+        // call utility method to load calculate and store score values
+        $this->analyse_section_score($env, $coursename, $sectionid, $key, $dfn);
+
+        // return the latest score
+        return round($this->newscore, 1);
+    }
+
+    private function evaluate_section_score_gain($env, $coursename, $sectionid, $key, $dfn){
+        // call utility method to load calculate and store score values
+        $this->analyse_section_score($env, $coursename, $sectionid, $key, $dfn);
+
+        // return the difference
+        return round($this->newscore - $this->oldscore, 1);
+    }
+
+    private function analyse_section_score($env, $coursename, $sectionid, $key, $dfn){
         // if we've already calculated the score then just return what we have
         if ($this->newscore !== null){
             return $this->newscore;
@@ -114,12 +140,14 @@ class stat_mine_section extends stat_mine_base {
         $userid         = $env->get_userid();
         $achievement    = $env->get_current_motivator()->get_short_name() . '/' . $key;
         $datamine       = $env->get_data_mine();
-        $this->oldscore = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, 0);
+        $this->rawscore = $datamine->get_user_section_achievement($userid, $coursename, $sectionid, $achievement, -1);
+        $this->oldscore = max($this->rawscore, 0);
         $this->newscore = $this->oldscore;
 
         // if this is a key course page then recalculate the score
         if ($env->is_page_type_in(['mod-quiz-review', 'course-view-topics'])){
             $this->newscore = 0;
+            $this->rawscore = -1;
             $sectiondata = $datamine->get_section_quiz_stats($userid, $coursename, $sectionid);
             foreach ($sectiondata as $quizdata){
                 $bestgrade = 0;
@@ -127,20 +155,11 @@ class stat_mine_section extends stat_mine_base {
                     $bestgrade = max($bestgrade, $grade);
                 }
                 $this->newscore += $bestgrade;
+                $this->rawscore = $this->newscore;
             }
             // record the new score in the achievements table for use next time
-            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $this->newscore);
+            $datamine->set_user_section_achievement($userid, $coursename, $sectionid, $achievement, $this->rawscore);
         }
-
-        return round($this->newscore, 1);
-    }
-
-    private function evaluate_section_score_gain($env, $coursename, $sectionid, $key, $dfn){
-        // call sister method to load calculate and store score values
-        $this->evaluate_section_score($env, $coursename, $sectionid, $key, $dfn);
-
-        // return the difference
-        return round($this->newscore - $this->oldscore, 1);
     }
 
     private function evaluate_user_section_score($env, $coursename, $sectionid, $key, $dfn){

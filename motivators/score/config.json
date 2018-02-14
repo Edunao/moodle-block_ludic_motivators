@@ -12,6 +12,9 @@
                 },
                 "new_score": {
                     "type": "section_score_gain"
+                },
+                "scored": {
+                    "type": "section_is_scored"
                 }
             }
         }
