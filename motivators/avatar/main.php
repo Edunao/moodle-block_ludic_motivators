@@ -32,7 +32,7 @@ class motivator_avatar extends motivator_base implements i_motivator {
             'name'          => 'Avatar',
             'title'         => 'Représentation de soi',
             'full_title'    => 'Moi même',
-            'changes_title' => 'Congratulations !',
+            'changes_title' => 'Compétence Acquis',
         ];
     }
 
