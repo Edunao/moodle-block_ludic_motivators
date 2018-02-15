@@ -47,7 +47,7 @@ class motivator_score extends motivator_base implements i_motivator {
 
         // if the course isn't in the courses list then display a placeholder message and drop out
         if (!$ctxtdata){
-//            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_course'));
             return;
         }
 
@@ -108,14 +108,7 @@ class motivator_score extends motivator_base implements i_motivator {
         // render the new points pane
         if ($newscore){
             $newscorehtml = '';
-//            $newscorehtml .= '<div class="ludi-score-pane">';
             $newscorehtml .= '<span class="ludi-score-new">+ ' . $newscore . '</span>';
-//             // add bonus points as required
-//             if ($newbonus){
-//                 $newscorehtml .= '&nbsp;&nbsp;';
-//                 $newscorehtml .= '<span class="ludi-score-bonus">+' . $newbonus . '</span>';
-//             }
-//            $newscorehtml .= '</div>';
             $env->render('ludi-change', $this->get_string('changes_title'), $newscorehtml);
             foreach ($bonuses as $title =>$value){
                 $bonushtml = '<span class="ludi-score-bonus">+ ' . $value . '</span>';

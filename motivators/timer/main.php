@@ -92,6 +92,8 @@ class motivator_timer extends motivator_base implements i_motivator {
             // render a place-holder text
             if ($env->is_page_type_in(['mod-quiz-attempt', 'mod-quiz-summary', 'mod-quiz-view'])){
                 $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('first_attempt'));
+            } else {
+                $env->render('ludi-place-holder', $this->get_string('name'), $this->get_string('no_course'));
             }
         }
     }
