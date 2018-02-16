@@ -33,6 +33,11 @@
 
 .ludi-goal-title{
     font-weight: bold;
+    font-size: 12pt;
+}
+
+.ludi-goal-detail{
+    font-size: 10pt;
 }
 
 .ludi-goal-image{
@@ -46,10 +51,14 @@
 .ludi-bullet{
     vertical-align: top;
     width: 100%;
-    padding-top: 5px;
+    padding-top: 2px;
 }
 
 .ludi-goal-texts{
     display: inline-block;
     width: 80%;
+}
+
+.ludi-done .ludi-goal-title{
+    color: rgb(248,179,52);
 }

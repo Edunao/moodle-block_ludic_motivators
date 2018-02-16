@@ -82,19 +82,25 @@ class motivator_badges extends motivator_base implements i_motivator {
             }
             $dataname = $coursename . ($sectionidx > -1 ? "#$sectionidx" : '') . '/' . array_keys($element['stats'])[0];
             if (array_key_exists($dataname,$ctxtdata)){
-                $imageurl = $this->image_url($element['motivator']['icon']);
+                $title      = $element['motivator']['title'];
+                $imageurl   = $this->image_url($element['motivator']['icon']);
                 $statevalue = $ctxtdata[$dataname];
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
-                    $title              = $element['motivator']['title'];
                     $newbadges[$title]  = "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
 //                    $badgeicons         .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-new'/>";
                     break;
                 case STATE_ACHIEVED:
+                    $badgeicons         .= "<div class='ludi-named-badge'>";
                     $badgeicons         .= "<img src='" . $imageurl . "_actif.svg' class='ludi-badge ludi-old'/>";
+                    $badgeicons         .= "<div class='ludi-badge-name ludi-old'>$title</div>";
+                    $badgeicons         .= "</div>";
                     break;
                 case STATE_NOT_ACHIEVED:
+                    $badgeicons         .= "<div class='ludi-named-badge'>";
                     $badgeicons         .= "<img src='" . $imageurl . "_inactif.svg' class='ludi-badge ludi-todo'/>";
+                    $badgeicons         .= "<div class='ludi-badge-name ludi-old'>$title</div>";
+                    $badgeicons         .= "</div>";
                     break;
                 }
             }

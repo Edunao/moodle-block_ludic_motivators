@@ -25,6 +25,10 @@
   Common block styles
 */
 
+.ludi-title{
+    font-weight: bold;
+}
+
 .ludi-pane {
     margin-bottom: 15px;
     border: 1px solid;

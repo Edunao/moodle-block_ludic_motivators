@@ -309,6 +309,7 @@ $times = array_keys($logsbytime);
 sort($times);
 
 header("Content-Type: text/plain");
+header("Content-disposition: attachment; filename=\"ludimoodle_trace.txt\"");
 foreach ($times as $time){
     foreach ($logsbytime[$time] as $log){
         $username = $log->user;
@@ -319,49 +320,3 @@ foreach ($times as $time){
         echo "$time ; $username ; $action ; " . ($elements ? json_encode($elements) : '') . "\n";
     }
 }
-
-/*
-mysql> select * from mdl_quiz_attempts where id=1;
-+----+------+--------+---------+----------+-------------+-------------+---------+----------+------------+------------+--------------+---------------------+----------------+-----------+
-| id | quiz | userid | attempt | uniqueid | layout      | currentpage | preview | state    | timestart  | timefinish | timemodified | timemodifiedoffline | timecheckstate | sumgrades |
-+----+------+--------+---------+----------+-------------+-------------+---------+----------+------------+------------+--------------+---------------------+----------------+-----------+
-|  1 |    5 |      4 |       1 |        1 | 1,0,2,0,3,0 |           2 |       0 | finished | 1516904863 | 1516904905 |   1516904905 |                   0 |           NULL | 102.00000 |
-+----+------+--------+---------+----------+-------------+-------------+---------+----------+------------+------------+--------------+---------------------+----------------+-----------+
-
-mysql> select qa.quiz, qa.userid, qa.attempt, qa.uniqueid, qa.timestart, qa.timefinish, qa.timemodified, qa.sumgrades from mdl_quiz_attempts qa join mdl_question_usages qu on qu.id=qa.uniqueid limit 5;
-+------+--------+---------+----------+------------+------------+--------------+-----------+
-| quiz | userid | attempt | uniqueid | timestart  | timefinish | timemodified | sumgrades |
-+------+--------+---------+----------+------------+------------+--------------+-----------+
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |
-|    5 |      4 |       2 |        2 | 1516904929 | 1516904971 |   1516904971 | 103.00000 |
-|    6 |      4 |       1 |        3 | 1516905008 | 1516905046 |   1516905046 | 102.50000 |
-|    3 |      4 |       1 |        4 | 1516905126 | 1516905150 |   1516905150 |   0.00000 |
-|    4 |      4 |       1 |        5 | 1516905187 | 1516905226 |   1516905226 | 201.00000 |
-+------+--------+---------+----------+------------+------------+--------------+-----------+
-
-mysql> select qa.quiz, qa.userid, qa.attempt, qa.uniqueid, qa.timestart, qa.timefinish, qa.timemodified, qa.sumgrades, a.slot from mdl_quiz_attempts qa join mdl_question_usages qu on qu.id=qa.uniqueid join mdl_question_attempts a on a.questionusageid=qu.id limit 5;
-+------+--------+---------+----------+------------+------------+--------------+-----------+------+
-| quiz | userid | attempt | uniqueid | timestart  | timefinish | timemodified | sumgrades | slot |
-+------+--------+---------+----------+------------+------------+--------------+-----------+------+
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    1 |
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    2 |
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    3 |
-|    5 |      4 |       2 |        2 | 1516904929 | 1516904971 |   1516904971 | 103.00000 |    1 |
-|    5 |      4 |       2 |        2 | 1516904929 | 1516904971 |   1516904971 | 103.00000 |    2 |
-+------+--------+---------+----------+------------+------------+--------------+-----------+------+
-
-mysql> select qa.quiz, qa.userid, qa.attempt, qa.uniqueid, qa.timestart, qa.timefinish, qa.timemodified, qa.sumgrades, a.slot, qas.sequencenumber , qas.state, qas.fraction   from mdl_quiz_attempts qa join mdl_question_usages qu on qu.id=qa.uniqueid join mdl_question_attempts a on a.questionusageid=qu.id join mdl_question_attempt_steps qas on questionattemptid=a.id limit 5;
-+------+--------+---------+----------+------------+------------+--------------+-----------+------+----------------+-------------+-----------+
-| quiz | userid | attempt | uniqueid | timestart  | timefinish | timemodified | sumgrades | slot | sequencenumber | state       | fraction  |
-+------+--------+---------+----------+------------+------------+--------------+-----------+------+----------------+-------------+-----------+
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    1 |              0 | todo        |      NULL |
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    1 |              1 | complete    |      NULL |
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    1 |              2 | gradedright | 1.0000000 |
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    2 |              0 | todo        |      NULL |
-|    5 |      4 |       1 |        1 | 1516904863 | 1516904905 |   1516904905 | 102.00000 |    2 |              1 | complete    |      NULL |
-+------+--------+---------+----------+------------+------------+--------------+-----------+------+----------------+-------------+-----------+
-
-
-*/
-
-
