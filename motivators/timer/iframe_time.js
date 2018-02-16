@@ -39,8 +39,9 @@ function drawGauge() {
         }
         bestTime = Math.min( bestTime, pastTimes[i] );
     }
-    bestTime /= 60;
-    graphMax = Math.round( 2 * bestTime );
+    timeUnit = (bestTime < 60)? 1: 60;
+    bestTime /= timeUnit;
+    graphMax = Math.round( 2 * bestTime + 0.25 );
     var options = {
         width: 190,
         height: 190,
@@ -57,7 +58,7 @@ function drawGauge() {
     var value = parent.ludiTimer.time_to_date;
     timerId = setInterval(function () {
         value = Math.max(0, value + 1);
-        data.setValue(0, 1, Math.min(graphMax, value/60));
+        data.setValue(0, 1, Math.min(graphMax, value/timeUnit));
 
         // Formatting minutes and seconds for displaying digit
         var seconds = value % 60;

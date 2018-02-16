@@ -26,16 +26,30 @@
  * .luditype-goals input[type="checkbox"]{
 }*/
 
-.ludi-bullet{
-    margin-right : 5px;
-    width: 13px;
-    padding-bottom: 3px;
+.ludi-goal{
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-.ludi-pane .goal-title{
-    display:inline;
+.ludi-goal-title{
     font-weight: bold;
 }
-.ludi-pane .goal-detail{
-    margin-left:20px;
+
+.ludi-goal-image{
+    display: inline;
+    width: 15%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:
+}
+
+.ludi-bullet{
+    vertical-align: top;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.ludi-goal-texts{
+    display: inline-block;
+    width: 80%;
 }

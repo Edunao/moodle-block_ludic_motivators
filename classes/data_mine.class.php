@@ -158,12 +158,14 @@ class data_mine extends data_mine_base {
         $query = '
             SELECT qa.id, qa.timestart, qa.timefinish
             FROM {modules} m
-            JOIN {course_modules} cm on cm.module=m.id
-            JOIN {quiz_attempts} qa on qa.quiz = cm.instance
+            JOIN {course_modules} cm ON cm.module=m.id
+            JOIN {quiz_attempts} qa ON qa.quiz = cm.instance
+            JOIN {quiz} q ON q.id = cm.instance AND qa.sumgrades = q.sumgrades
             WHERE m.name = "quiz"
             AND cm.id = :cmid
             AND qa.userid = :userid
             AND qa.timefinish > 0
+            AND qa.timefinish - qa.timestart < 3600
             ORDER BY qa.id
         ';
         $sqlresult = $DB->get_records_sql($query, ['userid' => $userid, 'cmid' => $cmid]);

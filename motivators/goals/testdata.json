@@ -2,11 +2,11 @@
     "config":{
         "courses": ["Ludi01", "Ludi02", "Ludi03"],
         "elements":[
-            { "course": "**", "motivator": { "type": "goals", "title": "Test Parfait",   "detail": "Parcour sans faute !"    }, "stats": { "goal": { "type": "section_perfect" } } },
-            { "course": "**", "motivator": { "type": "goals", "title": "Test corrigé",   "detail": "Tout corrigé"            }, "stats": { "goal": { "type": "section_auto_correct" } } },
-            { "course": "**", "motivator": { "type": "goals", "title": "5 sans-faute",   "detail": "5 réponses sans fautes"  }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 2 } } },
-            { "course": "**", "motivator": { "type": "goals", "title": "10 sans-faute",  "detail": "10 réponses sans fautes" }, "stats": { "goal": { "type": "section_correct_run", "min": 2, "threshold": 4 } } },
-            { "course": "**", "motivator": { "type": "goals", "title": "15 sans-faute",  "detail": "15 réponses sans fautes" }, "stats": { "goal": { "type": "section_correct_run", "min": 4, "threshold": 6 } } }
+            { "course": "xx**", "motivator": { "type": "goals", "title": "Test Parfait",   "detail": "Parcour sans faute !"    }, "stats": { "goal": { "type": "section_perfect" } } },
+            { "course": "xx**", "motivator": { "type": "goals", "title": "Test corrigé",   "detail": "Tout corrigé"            }, "stats": { "goal": { "type": "section_auto_correct" } } },
+            { "course": "xx**", "motivator": { "type": "goals", "title": "5 sans-faute",   "detail": "5 réponses sans fautes"  }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 2 } } },
+            { "course": "xx**", "motivator": { "type": "goals", "title": "10 sans-faute",  "detail": "10 réponses sans fautes" }, "stats": { "goal": { "type": "section_correct_run", "min": 2, "threshold": 4 } } },
+            { "course": "xx**", "motivator": { "type": "goals", "title": "15 sans-faute",  "detail": "15 réponses sans fautes" }, "stats": { "goal": { "type": "section_correct_run", "min": 4, "threshold": 6 } } }
         ]
     },
 

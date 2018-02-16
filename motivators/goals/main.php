@@ -77,23 +77,29 @@ class motivator_goals extends motivator_base implements i_motivator {
             $detail     = $element['motivator']['detail'];
             $bulleturl  = new \moodle_url('/blocks/ludic_motivators/motivators/goals/pix/' . ($checked===true ? 'icon_objectif_completed.svg' : 'icon_objectif_uncompleted.svg'));
             $goalhtml   .= "<div class='ludi-goal $cssclasses'>";
+            $goalhtml   .= "<div class='ludi-goal-image'>";
             $goalhtml   .= "<image src='$bulleturl' class='ludi-bullet'>";
-            $goalhtml   .= "<div class='goal-title'>$title</div>";
-            $goalhtml   .= "<div class='goal-detail'>$detail</div>";
             $goalhtml   .= "</div>";
-        }
-
-        // if we found no goals then display a placeholder text
-        if (empty($goalhtml)){
-            $goalhtml = $this->get_string('no_goals');
+            $goalhtml   .= "<div class='ludi-goal-texts'>";
+            $goalhtml   .= "<div class='ludi-goal-title'>$title</div>";
+            $goalhtml   .= "<div class='ludi-goal-detail'>$detail</div>";
+            $goalhtml   .= "</div>";
+            $goalhtml   .= "</div>";
         }
 
         // prepare to start rendering content
         $env->set_block_classes('luditype-goals');
 
         // render the goal list
-        $env->render('ludi-main', $this->get_string('full_title'), '<div class="ludi-goals">' . $goalhtml . '</div>');
+        if (empty($goalhtml)){
+            // if we found no goals then display a placeholder text
+            $env->render('ludi-place-holder', $this->get_string('title'), $this->get_string('no_goals'));
+        } else {
+            // render the full goals list
+            $env->render('ludi-main', $this->get_string('full_title'), '<div class="ludi-goals">' . $goalhtml . '</div>');
+        }
         if ($havechanges === true){
+            // render the newly achieved goals list
             $env->render('ludi-change', $this->get_string('changes_title'), "");
         }
     }
