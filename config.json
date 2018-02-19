@@ -73,6 +73,41 @@
         "avatar":{
             "avatar_image": "avatar.svg"
         },
+        "badges":{
+            "global_images": [
+                "pyramide_00.svg",
+                "pyramide_01.svg",
+                "pyramide_02.svg",
+                "pyramide_03.svg",
+                "pyramide_04.svg",
+                "pyramide_05.svg",
+                "pyramide_06.svg",
+                "pyramide_07.svg",
+                "pyramide_08.svg",
+                "pyramide_09.svg",
+                "pyramide_10.svg",
+                "pyramide_11.svg",
+                "pyramide_12.svg",
+                "pyramide_13.svg",
+                "pyramide_14.svg"
+            ],
+            "global_layers": [
+                "calque01",
+                "calque02",
+                "calque03",
+                "calque04",
+                "calque05",
+                "calque06",
+                "calque07",
+                "calque08",
+                "calque09",
+                "calque10",
+                "calque11",
+                "calque12",
+                "calque13",
+                "calque14"
+            ]
+        },
         "progress":{
             "course_layers": {
                 "calque01":   1,

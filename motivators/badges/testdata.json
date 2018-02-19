@@ -8,12 +8,31 @@
             { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "10 bonnes réponses sans-faute", "icon": "badge3" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 4 } } },
             { "course": "xx**", "motivator": { "type": "badges", "subtype": "local", "title": "15 bonnes réponses sans-faute", "icon": "badge4" }, "stats": { "goal": { "type": "section_correct_run", "min": 0, "threshold": 6 } } },
 
-            { "course": "Ludi01#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque01" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
-            { "course": "Ludi02#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque02" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
-            { "course": "Ludi03#1", "motivator": { "type": "badges", "subtype": "global", "layer": "calque03" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
-            { "course": "Ludi03#2", "motivator": { "type": "badges", "subtype": "global", "layer": "calque04" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
-            { "course": "Ludi03#3", "motivator": { "type": "badges", "subtype": "global", "layer": "calque05" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } }
-        ]
+            { "course": "Ludi01#1", "motivator": { "type": "badges", "subtype": "global" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi02#1", "motivator": { "type": "badges", "subtype": "global" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi03#1", "motivator": { "type": "badges", "subtype": "global" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi03#2", "motivator": { "type": "badges", "subtype": "global" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } },
+            { "course": "Ludi03#3", "motivator": { "type": "badges", "subtype": "global" }, "stats": { "done": { "type": "section_complete", "threshold": 70 } } }
+        ],
+        "motivators":{
+            "badges":{
+                "global_layers": [
+                    "calque01",
+                    "calque02",
+                    "calque03",
+                    "calque04",
+                    "calque05",
+                    "calque06",
+                    "calque07",
+                    "calque08"
+                ],
+                "global_images": [
+                    "pyramide_00.svg",
+                    "pyramide_01.svg",
+                    "pyramide_02.svg"
+                ]
+            }
+        }
     },
 
     "fullpreset":{

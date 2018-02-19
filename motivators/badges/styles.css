@@ -42,13 +42,13 @@ img.ludi-badge.ludi-new img {
     padding: 0;
 }
 
-.ludi-pyramid-container{
+.ludi-overview-container{
     width:100%;
     padding:2px;
     text-align: center;
 }
 
-.ludi-pyramid-container .svg [id^=calque]:not(#calque00){
+.ludi-overview-container .svg [id^=calque]:not(#calque00){
     visibility: hidden;
 }
 

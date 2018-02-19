@@ -41,10 +41,11 @@ class motivator_badges extends motivator_base implements i_motivator {
     public function render($env) {
         // prime a jsdata object with the different tables that we're going to provide to the JS script
         $jsdata = [
-            'pyramid_done' => []
+            'global_done' => []
         ];
 
         // fetch config and associated stat data
+        $systemconfig   = $env->get_motivator_config($this->get_short_name());
         $coursename     = $env->get_course_name();
         $sectionidx     = $env->get_section_idx();
         $ctxtconfig     = $env->get_contextual_config($this->get_short_name(), $coursename, $sectionidx);
@@ -52,7 +53,13 @@ class motivator_badges extends motivator_base implements i_motivator {
         $globalconfig   = $env->get_global_config($this->get_short_name());
         $globaldata     = $env->get_global_state_data($globalconfig);
 
+        // perform a few sanity tests on config data
+        foreach(['global_images', 'global_layers'] as $nodename){
+            $env->bomb_if(!isset($systemconfig[$nodename]),'Node not found in configuration: ' . $nodename);
+        }
+
         // match up the config elements and state data to determine the set of information to pass to the javascript
+        $idx = 0;
         foreach ($globalconfig as $element){
             if ($element['motivator']['subtype'] !== 'global'){
                 continue;
@@ -63,7 +70,8 @@ class motivator_badges extends motivator_base implements i_motivator {
                 switch ($statevalue){
                 case STATE_JUST_ACHIEVED:
                 case STATE_ACHIEVED:
-                    $jsdata['pyramid_done'][] = $element['motivator']['layer'];
+                    $jsdata['global_done'][] = $systemconfig['global_layers'][$idx];
+                    ++$idx;
                     break;
                 }
             }
@@ -125,10 +133,11 @@ class motivator_badges extends motivator_base implements i_motivator {
             $env->render('ludi-change ludi-detail', $title, '<div class="ludi-course-badges">' . $icon . '</div>');
         }
 
-        // render the pyramid image
-        $pyramidname    = sprintf("pyramide_%02d.svg", $contextcount);
-        $imageurl       = $this->image_url($pyramidname);
-        $imagehtml      = "<div class='ludi-pyramid-container'><img src='$imageurl' class='svg' id='ludi-pyramid'/></div>";
+        // render the global image
+        $imgidx         = min($contextcount, count($systemconfig['global_images']));
+        $imgname        = sprintf($systemconfig['global_images'][$imgidx]);
+        $imageurl       = $this->image_url($imgname);
+        $imagehtml      = "<div class='ludi-overview-container'><img src='$imageurl' class='svg' id='ludi-overview'/></div>";
         $env->render('ludi-main ludi-overview', $this->get_string('pyramid_title'), $imagehtml);
     }
 }
