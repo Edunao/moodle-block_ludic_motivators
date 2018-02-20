@@ -1,44 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="260px" height="260px" viewBox="0 0 260 260" enable-background="new 0 0 260 260" xml:space="preserve">
-<g id="calque00">
-	<g>
-		<g>
-			<path opacity="0.5" fill="#999999" enable-background="new    " d="M196.271,101.948c-5.969,0-10.799,4.832-10.799,10.801v79.216
-				h-34.385c-5.961,0-10.8,4.836-10.8,10.807c0,5.961,4.839,10.797,10.8,10.797h45.184c5.961,0,10.803-4.832,10.803-10.797V112.75
-				C207.074,106.78,202.232,101.948,196.271,101.948z"/>
-			<path opacity="0.5" fill="#999999" enable-background="new    " d="M196.271,69.08c-5.969,0-10.799,4.84-10.799,10.801l0,0
-				c0,5.961,4.83,10.806,10.799,10.806c5.961,0,10.803-4.845,10.803-10.806l0,0C207.074,73.912,202.232,69.08,196.271,69.08z"/>
-			<path opacity="0.5" fill="#999999" enable-background="new    " d="M44.974,0.009C23.669,0.009,6.331,17.34,6.331,38.65v182.709
-				c0,21.31,17.338,38.641,38.643,38.641h170.06c21.305,0,38.636-17.331,38.636-38.641V38.646c0-21.306-17.331-38.637-38.636-38.637
-				H44.974z M232.066,221.359L232.066,221.359c0,9.392-7.643,17.033-17.033,17.033H44.974c-9.39,0-17.033-7.642-17.033-17.033
-				l-0.009-182.71c0-9.396,7.652-17.038,17.042-17.038h170.06c9.392,0,17.032,7.641,17.032,17.034V221.359L232.066,221.359z"/>
-		</g>
-	</g>
-</g>
-<g id="calque01">
-	<g>
-		<path fill="#F8B334" d="M44.979,225.841h170.059c2.464,0,4.479-2.013,4.479-4.489V38.637c0-2.469-2.017-4.482-4.479-4.482H44.979
-			c-2.478,0-4.488,2.013-4.488,4.491l0.004,182.706C40.494,223.828,42.501,225.841,44.979,225.841z"/>
-		<path opacity="0.5" fill="#FFFFFF" enable-background="new    " d="M196.275,101.944c-5.969,0-10.801,4.836-10.801,10.801v79.221
-			h-34.383c-5.961,0-10.804,4.832-10.804,10.802c0,5.961,4.843,10.801,10.804,10.801h45.184c5.961,0,10.801-4.84,10.801-10.801
-			v-90.021C207.076,106.78,202.236,101.944,196.275,101.944z"/>
-		<g opacity="0.5">
-			<g>
-				<path fill="#FFFFFF" d="M196.275,69.08c-5.969,0-10.801,4.832-10.801,10.801l0,0c0,5.961,4.832,10.802,10.801,10.802
-					c5.961,0,10.801-4.841,10.801-10.802l0,0C207.076,73.912,202.236,69.08,196.275,69.08z"/>
-			</g>
-		</g>
-		<g>
-			<g>
-				<path fill="#F0670B" d="M44.979,0C23.673,0,6.331,17.331,6.331,38.646v182.706c0,21.313,17.342,38.645,38.647,38.645h170.059
-					c21.301,0,38.632-17.332,38.632-38.645V38.637C253.669,17.331,236.338,0,215.037,0H44.979z M232.068,221.352L232.068,221.352
-					c0,9.399-7.645,17.041-17.031,17.041H44.979c-9.395,0-17.034-7.642-17.034-17.041L27.936,38.646
-					c0-9.401,7.648-17.038,17.043-17.038h170.059c9.388,0,17.03,7.637,17.03,17.029V221.352L232.068,221.352z"/>
-			</g>
-		</g>
-	</g>
-</g>
-</svg>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Calque_1"
+   x="0px"
+   y="0px"
+   width="260px"
+   height="260px"
+   viewBox="0 0 260 260"
+   enable-background="new 0 0 260 260"
+   xml:space="preserve"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="pyramide_00.svg"><metadata
+     id="metadata37"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs35" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview33"
+     showgrid="false"
+     inkscape:zoom="0.90769231"
+     inkscape:cx="130"
+     inkscape:cy="130"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Calque_1" /></svg>
