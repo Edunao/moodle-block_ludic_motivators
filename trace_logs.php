@@ -304,12 +304,18 @@ foreach ($questionattemptrecords as $record){
     }
 }
 
-
 $times = array_keys($logsbytime);
 sort($times);
 
-header("Content-Type: text/plain");
-header("Content-disposition: attachment; filename=\"ludimoodle_trace.txt\"");
+// setup target path and file name
+$path = "{$CFG->dataroot}/filedir/trace_logs/";
+$tgtFile = "$path/".time().".gz";
+if (! file_exists($path)){
+    mkdir($path, 0777, true);
+}
+
+// generate the output file
+$outputStr = '';
 foreach ($times as $time){
     foreach ($logsbytime[$time] as $log){
         $username = $log->user;
@@ -317,6 +323,29 @@ foreach ($times as $time){
         $elements = (array)$log;
         unset($elements['user']);
         unset($elements['event']);
-        echo "$time ; $username ; $action ; " . ($elements ? json_encode($elements) : '') . "\n";
+        $outputStr .= "$time ; $username ; $action ; " . ($elements ? json_encode($elements) : '') . "\n";
     }
 }
+file_put_contents( 'compress.zlib://' . $tgtFile, $outputStr );
+
+// shut access to courses
+$DB->execute('UPDATE {course_sections} SET visible=0 WHERE course>2');
+purge_all_caches();
+
+// Upload to server for storage
+$ch = curl_init('http://ludimoodle-demo.proto.edunao.com/store_logs.php');
+$cfile = new CURLFile($tgtFile, 'application/gzip','ludimoodle_trace.txt.gz');
+$data = array('ludilog' => $cfile);
+curl_setopt($ch, CURLOPT_POST,1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+curl_exec($ch);
+
+// dump the output file
+header('Content-Description: File Transfer');
+header("Content-Type: application/gzip");
+header("Content-disposition: attachment; filename=\"ludimoodle_trace.log.gz\"");
+header('Expires: 0');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+header('Content-Length: ' . filesize($tgtFile));
+readfile($tgtFile);
