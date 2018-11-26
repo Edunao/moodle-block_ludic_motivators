@@ -25,6 +25,10 @@
   Common block styles
 */
 
+.block_ludic_motivators {
+    background-color: rgba(255,255,255,0.8) !important;
+}
+
 .ludi-title{
     font-weight: bold;
 }
@@ -85,3 +89,26 @@
 .ludi-debug-menu select {
     width: 100%;
 }
+
+
+/*----------------------------------------
+  Responsive
+ */
+
+.small-screen #mod_quiz_navblock {
+    flex-direction : initial;
+}
+
+.small-screen #region-main-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.small-screen section[data-region="blocks-column"] {
+    order: 1;
+}
+
+.small-screen #region-main {
+    order: 2;
+}
+

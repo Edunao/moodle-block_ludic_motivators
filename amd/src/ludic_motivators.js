@@ -23,15 +23,47 @@
 define(['jquery', 'core/tree'], function ($, Tree) {
     ludicMotivators = {
         init: function (motivator, params) {
-            require(['/blocks/ludic_motivators/motivators/'+motivator+'/amd/src/'+motivator+'.js'], function(motivator) {
+            var that = this;
+
+            // block display
+            this.resize_block();
+            $(window).resize(function () {
+                that.resize_block();
+            });
+
+            require(['/blocks/ludic_motivators/motivators/' + motivator + '/amd/src/' + motivator + '.js'], function (motivator) {
                 motivator.init(params);
             });
+        },
+        resize_block: function () {
+
+            var quizblock = $('#mod_quiz_navblock');
+            var sidecolumnblocks = $('#block-region-side-pre .block');
+
+            // small screens => Display the block before the page content on small screens
+            if (quizblock.length > 0 && window.innerWidth <= 1199) {
+
+                $('body').addClass('small-screen');
+
+                // 2 blocks => flex display
+                if (sidecolumnblocks.length == 2) {
+                    $('#block-region-side-pre').css('display', 'flex');
+                    quizblock.css('width', '35%');
+                    quizblock.css('margin-right', '3%');
+                    $('.block_ludic_motivators').css('width', '62%');
+                }
+            }
+            // big screens => normal display
+            else {
+                $('body').removeClass('small-screen');
+            }
+
         },
 
         /*
          * Convert SVG (<img>) in to raw SVG code (<svg>)
          */
-        convert_svg : function(selector) {
+        convert_svg: function (selector) {
             $(selector).each(function () {
                 var $img = $(this);
                 var imgID = $img.attr('id');
@@ -39,7 +71,7 @@ define(['jquery', 'core/tree'], function ($, Tree) {
                 var imgURL = $img.attr('src');
                 console.log("cleaning svg: ", imgURL);
 
-                $.get({url : imgURL, async : false}, function (data) {
+                $.get({url: imgURL, async: false}, function (data) {
                     var $svg = $(data).find('svg');
                     if (typeof imgID !== 'undefined') {
                         $svg = $svg.attr('id', imgID);
@@ -56,3 +88,4 @@ define(['jquery', 'core/tree'], function ($, Tree) {
 
     return ludicMotivators;
 });
+
