@@ -37,16 +37,15 @@ define(['jquery', 'core/tree'], function ($, Tree) {
         },
         resize_block: function () {
 
-            var quizblock = $('#mod_quiz_navblock');
-            var sidecolumnblocks = $('#block-region-side-pre .block');
-
             // small screens => Display the block before the page content on small screens
-            if (quizblock.length > 0 && window.innerWidth <= 1199) {
+            if (window.innerWidth <= 1199) {
 
                 $('body').addClass('small-screen');
+                var quizblock = $('#mod_quiz_navblock');
+                var sidecolumnblocks = $('#block-region-side-pre .block:visible');
 
                 // 2 blocks => flex display
-                if (sidecolumnblocks.length == 2) {
+                if (quizblock.length > 0 && sidecolumnblocks.length == 2) {
                     $('#block-region-side-pre').css('display', 'flex');
                     quizblock.css('width', '35%');
                     quizblock.css('margin-right', '3%');
