@@ -71,6 +71,12 @@ class block_ludic_motivators extends block_base {
         $env = $this->get_execution_environment();
         $jsdata = $env->get_js_init_data();
 
+        // call to global init js
+        $this->page->requires->js_call_amd(
+                'block_ludic_motivators/ludic_motivators',
+                'init'
+        );
+
         // if there is no js data then we're done
         if (empty($jsdata)){
             return;
@@ -79,7 +85,7 @@ class block_ludic_motivators extends block_base {
         // add an intialisation call for the motivator
         $this->page->requires->js_call_amd(
             'block_ludic_motivators/ludic_motivators',
-            'init',
+            'init_motivator',
             $jsdata
         );
 

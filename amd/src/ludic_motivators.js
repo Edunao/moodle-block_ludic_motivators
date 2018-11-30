@@ -22,17 +22,18 @@
 
 define(['jquery', 'core/tree'], function ($, Tree) {
     ludicMotivators = {
-        init: function (motivator, params) {
+        init_motivator: function (motivator, params) {
+            require(['/blocks/ludic_motivators/motivators/' + motivator + '/amd/src/' + motivator + '.js'], function (motivator) {
+                motivator.init(params);
+            });
+        },
+        init: function(){
             var that = this;
 
             // block display
             this.resize_block();
             $(window).resize(function () {
                 that.resize_block();
-            });
-
-            require(['/blocks/ludic_motivators/motivators/' + motivator + '/amd/src/' + motivator + '.js'], function (motivator) {
-                motivator.init(params);
             });
         },
         resize_block: function () {
